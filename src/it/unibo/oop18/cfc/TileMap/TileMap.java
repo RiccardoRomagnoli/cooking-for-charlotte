@@ -15,20 +15,6 @@ import it.unibo.oop18.cfc.Main.GamePanel;
  */
 public class TileMap {
 
-    // position
-    private int x;
-    private int y;
-    private int xdest;
-    private int ydest;
-    private int speed;
-    private boolean moving;
-
-    // bounds
-    private int xmin;
-    private int ymin;
-    private int xmax;
-    private int ymax;
-
     // map
     private int[][] map;
     private int tileSize;
@@ -57,7 +43,6 @@ public class TileMap {
         this.tileSize = tileSize;
         numRowsToDraw = GamePanel.HEIGHT / tileSize;
         numColsToDraw = GamePanel.WIDTH / tileSize;
-        speed = 10;
     }
 
     /**
@@ -113,13 +98,6 @@ public class TileMap {
             width = numCols * tileSize;
             height = numRows * tileSize;
 
-            xmin = GamePanel.WIDTH - width;
-            xmin = -width;
-            xmax = 0;
-            ymin = GamePanel.HEIGHT - height;
-            ymin = -height;
-            ymax = 0;
-
             final String delims = "\\s+";
             for (int row = 0; row < numRows; row++) {
                 final String line = br.readLine();
@@ -140,20 +118,6 @@ public class TileMap {
      */
     public int getTileSize() {
         return tileSize;
-    }
-
-    /**
-     * @return x
-     */
-    public int getx() {
-        return x;
-    }
-
-    /**
-     * @return y
-     */
-    public int gety() {
-        return y;
     }
 
     /**
@@ -206,13 +170,6 @@ public class TileMap {
     }
 
     /**
-     * @return if the map is moving
-     */
-    public boolean isMoving() {
-        return moving;
-    }
-
-    /**
      * @param row   the row of the tile
      * @param col   the col of the tile
      * @param index set the tile of the map at position row col
@@ -236,81 +193,9 @@ public class TileMap {
     }
 
     /**
-     * @param x the new position of the map at coord x
-     * @param y the new position of the map at coord y
-     */
-    public void setPosition(final int x, final int y) {
-        xdest = x;
-        ydest = y;
-    }
-
-    /**
-     * @param x the istant position of the map at coord x
-     * @param y the istant position of the map at coord y
-     */
-    public void setPositionImmediately(final int x, final int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    /**
-     * 
-     */
-    public void fixBounds() {
-        if (x < xmin) {
-            x = xmin;
-        }
-
-        if (y < ymin) {
-            y = ymin;
-        }
-
-        if (x > xmax) {
-            x = xmax;
-        }
-
-        if (y > ymax) {
-            y = ymax;
-        }
-
-    }
-
-    /**
      * 
      */
     public void update() {
-        if (x < xdest) {
-            x += speed;
-            if (x > xdest) {
-                x = xdest;
-            }
-        }
-        if (x > xdest) {
-            x -= speed;
-            if (x < xdest) {
-                x = xdest;
-            }
-        }
-        if (y < ydest) {
-            y += speed;
-            if (y > ydest) {
-                y = ydest;
-            }
-        }
-        if (y > ydest) {
-            y -= speed;
-            if (y < ydest) {
-                y = ydest;
-            }
-        }
-
-        fixBounds();
-
-        if (x != xdest || y != ydest) {
-            moving = true;
-        } else {
-            moving = false;
-        }
 
     }
 
@@ -338,7 +223,7 @@ public class TileMap {
                 final int r = rc / numTilesCols;
                 final int c = rc % numTilesCols;
 
-                g.drawImage(tiles[r][c].getImage(), x + col * tileSize, y + row * tileSize + GamePanel.HUDHEIGHT, null);
+                g.drawImage(tiles[r][c].getImage(), col * tileSize, row * tileSize + GamePanel.HUDHEIGHT, null);
 
             }
 

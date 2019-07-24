@@ -38,8 +38,6 @@ public abstract class Entity {
     // tilemap
     protected TileMap tileMap;
     protected int tileSize;
-    protected int xmap;
-    protected int ymap;
 
     // animation
     protected Animation animation;
@@ -72,11 +70,6 @@ public abstract class Entity {
         y = i2;
         xdest = x;
         ydest = y;
-    }
-
-    public void setMapPosition() {
-        xmap = tileMap.getx();
-        ymap = tileMap.gety();
     }
 
     public void setTilePosition(int i1, int i2) {
@@ -218,8 +211,7 @@ public abstract class Entity {
 
     // Draws the entity.
     public void draw(Graphics2D g) {
-        setMapPosition();
-        g.drawImage(animation.getImage(), x + xmap - width / 2, y + ymap - height / 2 + 128, null);
+        g.drawImage(animation.getImage(), x - width / 2, y - height / 2 + 128, null);
     }
 
 }

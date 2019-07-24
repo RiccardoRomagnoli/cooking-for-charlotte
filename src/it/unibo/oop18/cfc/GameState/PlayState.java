@@ -84,7 +84,6 @@ public class PlayState extends GameState {
 			eventFinish = true;
 			blockInput = true;
 		}
-		// time goes on
         ticks++;
     }
 
