@@ -14,11 +14,12 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
+import it.unibo.oop18.cfc.Entity.Player;
+import it.unibo.oop18.cfc.Input.KeyInput;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
-import it.unibo.oop18.cfc.Manager.Keys;
 
 @SuppressWarnings("serial")
-public class GamePanel extends JPanel implements Runnable, KeyListener {
+public class GamePanel extends JPanel implements Runnable {
 	
 	// dimensions
 	public static final int WIDTH = 1024; //larghezza
@@ -52,7 +53,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 	public void addNotify() {
 		super.addNotify();
 		if(thread == null) {
-			addKeyListener(this);
 			thread = new Thread(this);
 			thread.start();
 		}
@@ -87,9 +87,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 			catch(Exception e) {
 				e.printStackTrace();
 			}
-			
 		}
-		
 	}
 	
 	// initializes fields
@@ -98,12 +96,13 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		image = new BufferedImage(WIDTH, HEIGHT3, 1);
 		g = (Graphics2D) image.getGraphics();
 		gsm = new GameStateManager();
+		//Add KeyInput listener to the panel
+		super.addKeyListener(new KeyInput(gsm));
 	}
 	
 	// updates game
 	private void update() {
 		gsm.update();
-		Keys.update();
 	}
 	
 	// draws game
@@ -116,20 +115,5 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		Graphics g2 = getGraphics();
 		g2.drawImage(image, 0, 0, WIDTH * SCALE, HEIGHT3 * SCALE, null);
 		g2.dispose();
-	}
-	
-	// key event
-	@Override
-	public void keyTyped(KeyEvent key) {
-		
-	}
-	@Override
-	public void keyPressed(KeyEvent key) {
-		Keys.keySet(key.getKeyCode(), true);
-	}
-	@Override
-	public void keyReleased(KeyEvent key) {
-		Keys.keySet(key.getKeyCode(), false);
-	}
-	
+	}	
 }

@@ -7,20 +7,16 @@ import java.awt.Graphics2D;
 
 import it.unibo.oop18.cfc.Manager.Content;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
-import it.unibo.oop18.cfc.Manager.Keys;
-import it.unibo.oop18.cfc.Util.JukeBox;
 
 public class PauseState extends GameState {
 	
 	public PauseState(GameStateManager gsm) {
-		super(gsm);
+		super(gsm, GameStates.PAUSE);
 	}
 	
 	public void init() {}
 	
-	public void update() {
-		handleInput();
-	}
+	public void update() {}
 	
 	public void draw(Graphics2D g) {
 
@@ -31,17 +27,5 @@ public class PauseState extends GameState {
 		Content.drawString(g, "space : action", 200, 340);
 
 		Content.drawString(g, "F1: return to menu", 120, 410);
-
-
 	}
-	public void handleInput() {
-		if(Keys.isPressed(Keys.ESCAPE)) {
-			gsm.setState(GameStates.PLAY);
-			JukeBox.resumeLoop("music1");
-		}
-		if(Keys.isPressed(Keys.F1)) {
-			gsm.setState(GameStates.MENU);
-		}
-	}
-	
 }

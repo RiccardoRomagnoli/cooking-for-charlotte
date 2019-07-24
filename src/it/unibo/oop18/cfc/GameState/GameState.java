@@ -12,14 +12,19 @@ import it.unibo.oop18.cfc.Manager.GameStateManager;
 public abstract class GameState {
 	
 	protected GameStateManager gsm;
+	private GameStates gameStateName;
 	
-	public GameState(GameStateManager gsm) {
+	public GameState(GameStateManager gsm, GameStates gameStateName) {
 		this.gsm = gsm;
+		this.gameStateName = gameStateName;
+	}
+	
+	public GameStates getGameStateName() {
+		return gameStateName;
 	}
 	
 	public abstract void init();
 	public abstract void update();
 	public abstract void draw(Graphics2D g);
-	public abstract void handleInput();
 	
 }

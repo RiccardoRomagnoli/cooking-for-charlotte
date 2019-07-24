@@ -16,7 +16,6 @@ import it.unibo.oop18.cfc.Main.GamePanel;
 import it.unibo.oop18.cfc.Manager.Content;
 import it.unibo.oop18.cfc.Manager.Data;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
-import it.unibo.oop18.cfc.Manager.Keys;
 import it.unibo.oop18.cfc.Util.JukeBox;
 
 public class GameOverState extends GameState {
@@ -27,7 +26,7 @@ public class GameOverState extends GameState {
 	private long ticks;
 	
 	public GameOverState(GameStateManager gsm) {
-		super(gsm);
+		super(gsm, GameStates.GAMEOVER);
 	}
 	
 	public void init() {
@@ -68,12 +67,4 @@ public class GameOverState extends GameState {
 		Content.drawString(g, "press any key", 12, 110);
 		
 	}
-	
-	public void handleInput() {
-		if(Keys.isPressed(Keys.ENTER)) {
-			gsm.setState(GameStates.MENU);
-			JukeBox.play("collect");
-		}
-	}
-	
 }

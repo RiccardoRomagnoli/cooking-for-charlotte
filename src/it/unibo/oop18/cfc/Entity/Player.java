@@ -16,7 +16,7 @@ public interface Player {
 	
 	public void setUp();
 	
-	public void setAction();
+	public void doAction();
 	
 	public void increasePoints();
 	
@@ -27,5 +27,9 @@ public interface Player {
 	public void setTotalPoints(int i);
 	
 	public void setTilePosition(int a, int b);
+	
+	public void move(Direction way);
+	
+	public void stop();
 
 }

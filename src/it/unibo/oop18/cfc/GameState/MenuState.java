@@ -7,7 +7,6 @@ import java.awt.image.BufferedImage;
 
 import it.unibo.oop18.cfc.Manager.Content;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
-import it.unibo.oop18.cfc.Manager.Keys;
 import it.unibo.oop18.cfc.Util.JukeBox;
 
 public class MenuState extends GameState {
@@ -23,7 +22,7 @@ public class MenuState extends GameState {
 	};
 	
 	public MenuState(GameStateManager gsm) {
-		super(gsm);
+		super(gsm, GameStates.MENU);
 	}
 	
 	public void init() {
@@ -34,7 +33,7 @@ public class MenuState extends GameState {
 	}
 	
 	public void update() {
-		handleInput();
+		//handleInput();
 	}
 	
 	public void draw(Graphics2D g) {
@@ -50,21 +49,6 @@ public class MenuState extends GameState {
 		else if(currentOption == 2) g.drawImage(food, 280, 470, null);
 	}
 	
-	public void handleInput() {
-		if(Keys.isPressed(Keys.DOWN) && currentOption < options.length - 1) {
-			JukeBox.play("menuoption");
-			currentOption++;
-		}
-		if(Keys.isPressed(Keys.UP) && currentOption > 0) {
-			JukeBox.play("menuoption");
-			currentOption--;
-		}
-		if(Keys.isPressed(Keys.ENTER)) {
-			JukeBox.play("collect");
-			selectOption();
-		}
-	}
-	
 	private void selectOption() {
 		if(currentOption == 0) {
 			gsm.newGame();
@@ -72,6 +56,25 @@ public class MenuState extends GameState {
 		if(currentOption == 2) {
 			System.exit(0);
 		}
+	}
+	
+	public void goUp() {
+		if(currentOption > 0) {
+			JukeBox.play("menuoption");
+			currentOption--;
+		}
+	}
+	
+	public void goDown() {
+		if(currentOption < options.length - 1) {
+			JukeBox.play("menuoption");
+			currentOption++;
+		}
+	}
+	
+	public void select() {
+		JukeBox.play("collect");
+		selectOption();
 	}
 	
 }

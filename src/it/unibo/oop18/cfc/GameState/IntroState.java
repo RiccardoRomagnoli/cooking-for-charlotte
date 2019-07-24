@@ -8,9 +8,9 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
+import it.unibo.oop18.cfc.Main.Game;
 import it.unibo.oop18.cfc.Main.GamePanel;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
-import it.unibo.oop18.cfc.Manager.Keys;
 
 public class IntroState extends GameState {
 	
@@ -24,7 +24,7 @@ public class IntroState extends GameState {
 	private final int FADE_OUT = 60;
 	
 	public IntroState(GameStateManager gsm) {
-		super(gsm);
+		super(gsm, GameStates.INTRO);
 	}
 	
 	public void init() {
@@ -38,7 +38,6 @@ public class IntroState extends GameState {
 	}
 	
 	public void update() {
-		handleInput();
 		ticks++;
 		if(ticks < FADE_IN) {
 			alpha = (int) (255 - 255 * (1.0 * ticks / FADE_IN));
@@ -60,11 +59,4 @@ public class IntroState extends GameState {
 		g.setColor(new Color(0, 0, 0, alpha));
 		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT3);
 	}
-	
-	public void handleInput() {
-		if(Keys.isPressed(Keys.ENTER)) {
-			gsm.setState(GameStates.MENU);
-		}
-	}
-	
 }

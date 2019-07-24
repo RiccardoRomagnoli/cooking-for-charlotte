@@ -6,17 +6,12 @@
 package it.unibo.oop18.cfc.GameState;
 
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.util.ArrayList;
 
 import it.unibo.oop18.cfc.Entity.Player;
 import it.unibo.oop18.cfc.Entity.PlayerImpl;
 import it.unibo.oop18.cfc.HUD.DownHud;
 import it.unibo.oop18.cfc.HUD.TopHud;
-import it.unibo.oop18.cfc.Main.GamePanel;
-import it.unibo.oop18.cfc.Manager.Data;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
-import it.unibo.oop18.cfc.Manager.Keys;
 import it.unibo.oop18.cfc.TileMap.TileMap;
 import it.unibo.oop18.cfc.Util.JukeBox;
 
@@ -43,18 +38,17 @@ public class PlayState extends GameState {
 	
 	
 	public PlayState(GameStateManager gsm) {
-		super(gsm);
+		super(gsm, GameStates.PLAY);
+		loadMap();
+		player = new PlayerImpl(tileMap);
 	}
 	
 	public void init() {
+		
+		//reset timer
+		ticks = 0;
 
-		// load map
-		tileMap = new TileMap(64);
-		tileMap.loadTiles("/Tilesets/tilesheet.png");
-		tileMap.loadMap("/Maps/testmap1.map");
 
-		// create player
-		player = new PlayerImpl(tileMap);
 
 
 		// initialize player
@@ -66,11 +60,11 @@ public class PlayState extends GameState {
 		downhud = new DownHud(this, player.numPoints());
 
 		// load music
-                //JukeBox.load("/Music/bgmusic.mp3", "music1"); 
-                //JukeBox.setVolume("music1", -10);
-                //JukeBox.loop("music1", 1000, 1000, JukeBox.getFrames("music1") - 1000);
-                //JukeBox.load("/Music/finish.mp3", "finish");
-                //JukeBox.setVolume("finish", -10);
+        //JukeBox.load("/Music/bgmusic.mp3", "music1"); 
+        //JukeBox.setVolume("music1", -10);
+        //JukeBox.loop("music1", 1000, 1000, JukeBox.getFrames("music1") - 1000);
+        //JukeBox.load("/Music/finish.mp3", "finish");
+        //JukeBox.setVolume("finish", -10);
 
 
 		// load sfx
@@ -86,13 +80,9 @@ public class PlayState extends GameState {
 	}
 	
 	public void update() {
-
-		// check keys
-		handleInput();
-
 		// check events
 
-		//fine game
+		//end game
 		if (0 == 2) {
 			eventFinish = true;
 			blockInput = true;
@@ -122,19 +112,18 @@ public class PlayState extends GameState {
 		downhud.draw(g);
 	}
 	
-	public void handleInput() {
-		if(Keys.isPressed(Keys.ESCAPE)) {
-			JukeBox.stop("music1");
-			gsm.setState(GameStates.PAUSE);
-		}
-		if(blockInput) return;
-		if(Keys.isDown(Keys.LEFT)) player.setLeft();
-		if(Keys.isDown(Keys.RIGHT)) player.setRight();
-		if(Keys.isDown(Keys.UP)) player.setUp();
-		if(Keys.isDown(Keys.DOWN)) player.setDown();
-		if(Keys.isPressed(Keys.SPACE)) player.setAction();
+	// Used to update time.
+	public long getTicks() { 
+		return ticks; 
 	}
 	
-	// Used to update time.
-	public long getTicks() { return ticks; }
+	public Player getPlayer() {
+		return player;
+	}
+	
+	private void loadMap() {
+		tileMap = new TileMap(64);
+		tileMap.loadTiles("/Tilesets/tilesheet.png");
+		tileMap.loadMap("/Maps/testmap1.map");
+	}
 }

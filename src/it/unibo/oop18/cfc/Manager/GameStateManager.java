@@ -7,7 +7,6 @@
 package it.unibo.oop18.cfc.Manager;
 
 import java.awt.Graphics2D;
-
 import it.unibo.oop18.cfc.GameState.*;
 import it.unibo.oop18.cfc.Util.JukeBox;
 
@@ -24,17 +23,15 @@ public class GameStateManager {
 	
 	public GameStateManager() {		
 		JukeBox.init();
-		
 		pauseState = new PauseState(this);
 		introState = new IntroState(this);
 		menuState = new MenuState(this);
 		gameOverState = new GameOverState(this);
-		
+		playState = new PlayState(this);
 		setState(GameStates.INTRO);
 	}
 	
 	public void newGame() {
-		playState = new PlayState(this);
 		playState.init();
 		setState(GameStates.PLAY);
 	}
@@ -71,4 +68,11 @@ public class GameStateManager {
 		currentState.draw(g);
 	}
 	
+	public PlayState getPlayState() {
+		return (PlayState) playState;
+	}
+	
+	public GameState getCurrentGameState() {
+		return currentState;
+	}
 }
