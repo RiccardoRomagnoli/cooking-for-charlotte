@@ -13,7 +13,7 @@ import it.unibo.oop18.cfc.Manager.Content;
 import it.unibo.oop18.cfc.TileMap.TileMap;
 import it.unibo.oop18.cfc.Util.JukeBox;
 
-public class Player extends Entity {
+public class PlayerImpl extends Entity implements Player {
 	
 	// sprites
 	private BufferedImage[] downSprites;
@@ -33,7 +33,7 @@ public class Player extends Entity {
 	private int totalPoints;
 	private long ticks;
 	
-	public Player(TileMap tm) {
+	public PlayerImpl(TileMap tm) {
 
 		super(tm);
 
