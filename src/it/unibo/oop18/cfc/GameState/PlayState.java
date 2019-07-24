@@ -21,120 +21,125 @@ import it.unibo.oop18.cfc.TileMap.TileMap;
 import it.unibo.oop18.cfc.Util.JukeBox;
 
 public class PlayState extends GameState {
-	
-	// player
-	private Player player;
-	
-	// tilemap
-	private TileMap tileMap;	
-	
-	// hud
-	private TopHud tophud;
-	private DownHud downhud;
 
-	// events
-	private boolean blockInput;
-	private boolean eventStart;
-	private boolean eventFinish;
-	private int eventTick;
-	
-	//time
-	private long ticks;
-	
-	
-	public PlayState(GameStateManager gsm) {
-		super(gsm);
-	}
-	
-	public void init() {
+    // player
+    private Player player;
 
-		// load map
-		tileMap = new TileMap(64);
-		tileMap.loadTiles("/Tilesets/tilesheet.png");
-		tileMap.loadMap("/Maps/testmap1.map");
+    // tilemap
+    private TileMap tileMap;
 
-		// create player
-		player = new PlayerImpl(tileMap);
+    // hud
+    private TopHud tophud;
+    private DownHud downhud;
 
+    // events
+    private boolean blockInput;
+    private boolean eventStart;
+    private boolean eventFinish;
+    private int eventTick;
 
-		// initialize player
-		player.setTilePosition(3, 7);
-		player.setTotalPoints(1000);
+    // time
+    private long ticks;
 
-		// load hud
-		tophud = new TopHud(this);
-		downhud = new DownHud(this, player.numPoints());
+    public PlayState(GameStateManager gsm) {
+        super(gsm);
+    }
 
-		// load music
-                //JukeBox.load("/Music/bgmusic.mp3", "music1"); 
-                //JukeBox.setVolume("music1", -10);
-                //JukeBox.loop("music1", 1000, 1000, JukeBox.getFrames("music1") - 1000);
-                //JukeBox.load("/Music/finish.mp3", "finish");
-                //JukeBox.setVolume("finish", -10);
+    public void init() {
 
+        // load map
+        tileMap = new TileMap(64);
+        tileMap.loadTiles("/Tilesets/tilesheet.png");
+        tileMap.loadMap("/Maps/testmap1.map");
 
-		// load sfx
-		JukeBox.load("/SFX/collect.wav", "collect");
-		JukeBox.load("/SFX/mapmove.wav", "mapmove");
-		JukeBox.load("/SFX/tilechange.wav", "tilechange");
-		JukeBox.load("/SFX/splash.wav", "splash");
+        // create player
+        player = new PlayerImpl(tileMap);
 
-		// start event
-		//eventStart = true;
-		//eventStart();
+        // initialize player
+        player.setTilePosition(3, 7);
+        player.setTotalPoints(1000);
 
-	}
-	
-	public void update() {
+        // load hud
+        tophud = new TopHud(this);
+        downhud = new DownHud(this, player.numPoints());
 
-		// check keys
-		handleInput();
+        // load music
+        // JukeBox.load("/Music/bgmusic.mp3", "music1");
+        // JukeBox.setVolume("music1", -10);
+        // JukeBox.loop("music1", 1000, 1000, JukeBox.getFrames("music1") - 1000);
+        // JukeBox.load("/Music/finish.mp3", "finish");
+        // JukeBox.setVolume("finish", -10);
 
-		// check events
+        // load sfx
+        JukeBox.load("/SFX/collect.wav", "collect");
+        JukeBox.load("/SFX/mapmove.wav", "mapmove");
+        JukeBox.load("/SFX/tilechange.wav", "tilechange");
+        JukeBox.load("/SFX/splash.wav", "splash");
 
-		//fine game
-		if (0 == 2) {
-			eventFinish = true;
-			blockInput = true;
-		}
+        // start event
+        // eventStart = true;
+        // eventStart();
 
-		if (tileMap.isMoving()) {
-		    return;
-		} 
+    }
 
-		// update player
-		player.update();
-		
-		//time goes on
-		ticks++;
-	}
-	
-	public void draw(Graphics2D g) {
-		
-		// draw tilemap
-		tileMap.draw(g);
-		
-		// draw player
-		player.draw(g);
+    public void update() {
 
-		// draw hud
-		tophud.draw(g);
-		downhud.draw(g);
-	}
-	
-	public void handleInput() {
-		if(Keys.isPressed(Keys.ESCAPE)) {
-			JukeBox.stop("music1");
-			gsm.setState(GameStates.PAUSE);
-		}
-		if(blockInput) return;
-		if(Keys.isDown(Keys.LEFT)) player.setLeft();
-		if(Keys.isDown(Keys.RIGHT)) player.setRight();
-		if(Keys.isDown(Keys.UP)) player.setUp();
-		if(Keys.isDown(Keys.DOWN)) player.setDown();
-		if(Keys.isPressed(Keys.SPACE)) player.setAction();
-	}
-	
-	// Used to update time.
-	public long getTicks() { return ticks; }
+        // check keys
+        handleInput();
+
+        // check events
+
+        // fine game
+        if (0 == 2) {
+            eventFinish = true;
+            blockInput = true;
+        }
+
+        if (tileMap.isMoving()) {
+            return;
+        }
+
+        // update player
+        player.update();
+
+        // time goes on
+        ticks++;
+    }
+
+    public void draw(Graphics2D g) {
+
+        // draw tilemap
+        tileMap.draw(g);
+
+        // draw player
+        player.draw(g);
+
+        // draw hud
+        tophud.draw(g);
+        downhud.draw(g);
+    }
+
+    public void handleInput() {
+        if (Keys.isPressed(Keys.ESCAPE)) {
+            JukeBox.stop("music1");
+            gsm.setState(GameStates.PAUSE);
+        }
+        if (blockInput)
+            return;
+        if (Keys.isDown(Keys.LEFT))
+            player.setLeft();
+        if (Keys.isDown(Keys.RIGHT))
+            player.setRight();
+        if (Keys.isDown(Keys.UP))
+            player.setUp();
+        if (Keys.isDown(Keys.DOWN))
+            player.setDown();
+        if (Keys.isPressed(Keys.SPACE))
+            player.setAction();
+    }
+
+    // Used to update time.
+    public long getTicks() {
+        return ticks;
+    }
 }

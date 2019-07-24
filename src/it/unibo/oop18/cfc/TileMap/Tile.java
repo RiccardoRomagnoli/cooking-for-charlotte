@@ -25,6 +25,7 @@ public class Tile {
     public static final int COOKER = 12;
     public static final int CHOPPINGBOARD = 13;
     public static final int COUNTER = 14;
+
     /**
      * Constructor of the class.
      * 
