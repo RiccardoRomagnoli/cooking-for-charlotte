@@ -27,7 +27,10 @@ public class PlayState extends GameState {
     private long ticks;
     // tilemap
     private TileMap tileMap;
-
+    // hud
+    private TopHud tophud;
+    private DownHud downhud;
+    //player
     private Player player;
 
     public PlayState(GameStateManager gsm) {
@@ -36,15 +39,11 @@ public class PlayState extends GameState {
         player = new PlayerImpl(tileMap);
     }
 
-    // hud
-    private TopHud tophud;
-    private DownHud downhud;
+
 
     public void init() {
-
         // reset timer
         ticks = 0;
-        // load map
 
         // initialize player
         player.setTilePosition(3, 7);
