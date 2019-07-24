@@ -16,16 +16,7 @@ import it.unibo.oop18.cfc.TileMap.TileMap;
 import it.unibo.oop18.cfc.Util.JukeBox;
 
 public class PlayState extends GameState {
-	
-	// player
-	private Player player;
-	
-	// tilemap
-	private TileMap tileMap;	
-	
-	// hud
-	private TopHud tophud;
-	private DownHud downhud;
+
 
 	// events
 	private boolean blockInput;
@@ -35,7 +26,10 @@ public class PlayState extends GameState {
 	
 	//time
 	private long ticks;
+	// tilemap
+    private TileMap tileMap;
 	
+    private Player player;
 	
 	public PlayState(GameStateManager gsm) {
 		super(gsm, GameStates.PLAY);
@@ -43,75 +37,57 @@ public class PlayState extends GameState {
 		player = new PlayerImpl(tileMap);
 	}
 	
-	public void init() {
-		
-		//reset timer
-		ticks = 0;
+    
+
+    // hud
+    private TopHud tophud;
+    private DownHud downhud;
+
+    public void init() {
+    	
+    	//reset timer
+    	ticks = 0;
+        // load map
 
 
 
+        // initialize player
+        player.setTilePosition(3, 7);
+        player.setTotalPoints(1000);
+        
+        // load hud
+        tophud = new TopHud(this);
+        downhud = new DownHud(this, player.numPoints());
+        
+        // load music
+        // JukeBox.load("/Music/bgmusic.mp3", "music1");
+        // JukeBox.setVolume("music1", -10);
+        // JukeBox.loop("music1", 1000, 1000, JukeBox.getFrames("music1") - 1000);
+        // JukeBox.load("/Music/finish.mp3", "finish");
+        // JukeBox.setVolume("finish", -10);
 
-		// initialize player
-		player.setTilePosition(3, 7);
-		player.setTotalPoints(1000);
+        // load sfx
+        JukeBox.load("/SFX/collect.wav", "collect");
+        JukeBox.load("/SFX/mapmove.wav", "mapmove");
+        JukeBox.load("/SFX/tilechange.wav", "tilechange");
+        JukeBox.load("/SFX/splash.wav", "splash");
 
-		// load hud
-		tophud = new TopHud(this);
-		downhud = new DownHud(this, player.numPoints());
-
-		// load music
-        //JukeBox.load("/Music/bgmusic.mp3", "music1"); 
-        //JukeBox.setVolume("music1", -10);
-        //JukeBox.loop("music1", 1000, 1000, JukeBox.getFrames("music1") - 1000);
-        //JukeBox.load("/Music/finish.mp3", "finish");
-        //JukeBox.setVolume("finish", -10);
-
-
-		// load sfx
-		JukeBox.load("/SFX/collect.wav", "collect");
-		JukeBox.load("/SFX/mapmove.wav", "mapmove");
-		JukeBox.load("/SFX/tilechange.wav", "tilechange");
-		JukeBox.load("/SFX/splash.wav", "splash");
-
-		// start event
-		//eventStart = true;
-		//eventStart();
-
+        // start event
+        // eventStart = true;
+        // eventStart();
 	}
 	
 	public void update() {
-		// check events
-
+		
 		//end game
 		if (0 == 2) {
 			eventFinish = true;
 			blockInput = true;
 		}
+		// time goes on
+        ticks++;
+    }
 
-		if (tileMap.isMoving()) {
-		    return;
-		} 
-
-		// update player
-		player.update();
-		
-		//time goes on
-		ticks++;
-	}
-	
-	public void draw(Graphics2D g) {
-		
-		// draw tilemap
-		tileMap.draw(g);
-		
-		// draw player
-		player.draw(g);
-
-		// draw hud
-		tophud.draw(g);
-		downhud.draw(g);
-	}
-	
 	// Used to update time.
 	public long getTicks() { 
 		return ticks; 
@@ -126,4 +102,17 @@ public class PlayState extends GameState {
 		tileMap.loadTiles("/Tilesets/tilesheet.png");
 		tileMap.loadMap("/Maps/testmap1.map");
 	}
+	
+    public void draw(Graphics2D g) {
+
+        // draw tilemap
+        tileMap.draw(g);
+
+        // draw player
+        player.draw(g);
+
+        // draw hud
+        tophud.draw(g);
+        downhud.draw(g);
+    }
 }

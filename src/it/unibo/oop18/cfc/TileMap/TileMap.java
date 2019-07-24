@@ -1,7 +1,3 @@
-// The tile map class contains a loaded tile set
-// and a 2d array of the map.
-// Each index in the map corresponds to a specific tile.
-
 package it.unibo.oop18.cfc.TileMap;
 
 import java.awt.Graphics2D;
@@ -14,254 +10,340 @@ import javax.imageio.ImageIO;
 
 import it.unibo.oop18.cfc.Main.GamePanel;
 
+/**
+ * This class create and edit the tilemap.
+ */
 public class TileMap {
-	
-	// position
-	private int x;
-	private int y;
-	private int xdest;
-	private int ydest;
-	private int speed;
-	private boolean moving;
-	
-	// bounds
-	private int xmin;
-	private int ymin;
-	private int xmax;
-	private int ymax;
-	
-	// map
-	private int[][] map;
-	private int tileSize;
-	private int numRows;
-	private int numCols;
-	private int width;
-	private int height;
-	
-	// tileset
-	private BufferedImage tileset;
-	private int numTilesAcross;
-	private Tile[][] tiles;
-	
-	// drawing
-	private int rowOffset;
-	private int colOffset;
-	private int numRowsToDraw;
-	private int numColsToDraw;
-	
-	public TileMap(int tileSize) {
-		this.tileSize = tileSize;
-		numRowsToDraw = GamePanel.HEIGHT / tileSize;
-		numColsToDraw = GamePanel.WIDTH / tileSize;
-		speed = 4;
-	}
-	
-	public void loadTiles(String s) {
-		
-		try {
 
-			tileset = ImageIO.read(
-				getClass().getResourceAsStream(s)
-			);
-			numTilesAcross = tileset.getWidth() / tileSize;
-			tiles = new Tile[3][numTilesAcross];
-			
-			BufferedImage subimage;
-			for(int col = 0; col < numTilesAcross; col++) {
-				subimage = tileset.getSubimage(
-							col * tileSize,
-							0,
-							tileSize,
-							tileSize
-						);
-				tiles[0][col] = new Tile(subimage, Tile.NORMAL);
-				subimage = tileset.getSubimage(
-							col * tileSize,
-							tileSize,
-							tileSize,
-							tileSize
-						);
-				tiles[1][col] = new Tile(subimage, Tile.BLOCKED);
-				subimage = tileset.getSubimage(
-                                        col * tileSize,
-                                        2 * tileSize,
-                                        tileSize,
-                                        tileSize
-                                );
-                                tiles[2][col] = new Tile(subimage, Tile.BLOCKED);
-			}
-			
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
-	public void loadMap(String s) {
-		
-		try {
-			
-			InputStream in = getClass().getResourceAsStream(s);
-			BufferedReader br = new BufferedReader(
-						new InputStreamReader(in)
-					);
-			
-			numCols = Integer.parseInt(br.readLine());
-			numRows = Integer.parseInt(br.readLine());
-			map = new int[numRows][numCols];
-			width = numCols * tileSize;
-			height = numRows * tileSize;
-			
-			xmin = GamePanel.WIDTH - width;
-			xmin = -width;
-			xmax = 0;
-			ymin = GamePanel.HEIGHT - height;
-			ymin = -height;
-			ymax = 0;
-			
-			String delims = "\\s+";
-			for(int row = 0; row < numRows; row++) {
-				String line = br.readLine();
-				String[] tokens = line.split(delims);
-				for(int col = 0; col < numCols; col++) {
-					map[row][col] = Integer.parseInt(tokens[col]);
-				}
-			}
-			
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
-	public int getTileSize() { return tileSize; }
-	public int getx() { return x; }
-	public int gety() { return y; }
-	public int getWidth() { return width; }
-	public int getHeight() { return height; }
-	public int getNumRows() { return numRows; }
-	public int getNumCols() { return numCols; }
-	public int getType(int row, int col) {
-		int rc = map[row][col];
-		int r = rc / numTilesAcross;
-		int c = rc % numTilesAcross;
-		return tiles[r][c].getType();
-	}
-	public int getIndex(int row, int col) {
-		return map[row][col];
-	}
-	public boolean isMoving() { return moving; }
-	
-	public void setTile(int row, int col, int index) {
-		map[row][col] = index;
-	}
-	public void replace(int i1, int i2) {
-		for(int row = 0; row < numRows; row++) {
-			for(int col = 0; col < numCols; col++) {
-				if(map[row][col] == i1) map[row][col] = i2;
-			}
-		}
-	}
-	
-	public void setPosition(int x, int y) {
-		xdest = x;
-		ydest = y;
-	}
-	public void setPositionImmediately(int x, int y) {
-		this.x = x;
-		this.y = y;
-	}
-	
-	public void fixBounds() {
-		if(x < xmin) x = xmin;
-		if(y < ymin) y = ymin;
-		if(x > xmax) x = xmax;
-		if(y > ymax) y = ymax;
-	}
-	
-	public void update() {
-		if(x < xdest) {
-			x += speed;
-			if(x > xdest) {
-				x = xdest;
-			}
-		}
-		if(x > xdest) {
-			x -= speed;
-			if(x < xdest) {
-				x = xdest;
-			}
-		}
-		if(y < ydest) {
-			y += speed;
-			if(y > ydest) {
-				y = ydest;
-			}
-		}
-		if(y > ydest) {
-			y -= speed;
-			if(y < ydest) {
-				y = ydest;
-			}
-		}
-		
-		fixBounds();
-		
-		colOffset = -this.x / tileSize;
-		rowOffset = -this.y / tileSize;
-		
-		if(x != xdest || y != ydest) moving = true;
-		else moving = false;
-		
-	}
-	
-	public void draw(Graphics2D g) {
-		
-		for(int row = 0; row < numRowsToDraw; row++) {
-		
-			if(row >= numRows) break;
-			
-			for(int col = 0; col < numColsToDraw; col++) {
-				
-				if(col >= numCols) break;
-				if(map[row][col] == 0) continue;
-				
-				int rc = map[row][col];
-				int r = rc / numTilesAcross;
-				int c = rc % numTilesAcross;
-				
-				g.drawImage(
-					tiles[r][c].getImage(),
-					x + col * tileSize,
-					y + row * tileSize + 128,
-					null
-				);
-				
-			}
-			
-		}
-		
-	}
-	
+    // position
+    private int x;
+    private int y;
+    private int xdest;
+    private int ydest;
+    private int speed;
+    private boolean moving;
+
+    // bounds
+    private int xmin;
+    private int ymin;
+    private int xmax;
+    private int ymax;
+
+    // map
+    private int[][] map;
+    private int tileSize;
+    private int numRows;
+    private int numCols;
+    private int width;
+    private int height;
+
+    // tileset
+    private BufferedImage tileset;
+    private int numTilesCols;
+    private int numTilesRows;
+    private Tile[][] tiles;
+
+    // drawing
+    private int numRowsToDraw;
+    private int numColsToDraw;
+
+    /**
+     * Constructor of the class. Set the tilesize, the speed and calculate the rows
+     * and cols of the tilemap
+     * 
+     * @param tileSize The size of the tile
+     */
+    public TileMap(final int tileSize) {
+        this.tileSize = tileSize;
+        numRowsToDraw = GamePanel.HEIGHT / tileSize;
+        numColsToDraw = GamePanel.WIDTH / tileSize;
+        speed = 10;
+    }
+
+    /**
+     * Load all the tiles into the tiles matrix.
+     * 
+     * @param s The name of the file with tiles
+     */
+    public void loadTiles(final String s) {
+
+        try {
+
+            tileset = ImageIO.read(getClass().getResourceAsStream(s));
+            numTilesCols = tileset.getWidth() / tileSize;
+            numTilesRows = tileset.getHeight() / tileSize;
+            tiles = new Tile[numTilesRows][numTilesCols];
+
+            BufferedImage subimage;
+
+            for (int row = 0; row < numTilesRows; row++) {
+                for (int col = 0; col < numTilesCols; col++) {
+                    subimage = tileset.getSubimage(col * tileSize, row * tileSize, tileSize, tileSize);
+                    if (row == 0) {
+                        tiles[row][col] = new Tile(subimage, Tile.NORMAL);
+                    } else if (row == numTilesRows - 1) {
+                        tiles[row][col] = new Tile(subimage, Tile.BLOCKED);
+                    } else {
+                        tiles[row][col] = new Tile(subimage, col + row * numTilesRows);
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * Load the map of the game based of the bitmap.
+     * 
+     * @param s The name of the file with the bitmap
+     */
+    public void loadMap(final String s) {
+
+        try {
+
+            final InputStream in = getClass().getResourceAsStream(s);
+            final BufferedReader br = new BufferedReader(new InputStreamReader(in));
+
+            numCols = Integer.parseInt(br.readLine());
+            numRows = Integer.parseInt(br.readLine());
+            map = new int[numRows][numCols];
+            width = numCols * tileSize;
+            height = numRows * tileSize;
+
+            xmin = GamePanel.WIDTH - width;
+            xmin = -width;
+            xmax = 0;
+            ymin = GamePanel.HEIGHT - height;
+            ymin = -height;
+            ymax = 0;
+
+            final String delims = "\\s+";
+            for (int row = 0; row < numRows; row++) {
+                final String line = br.readLine();
+                final String[] tokens = line.split(delims);
+                for (int col = 0; col < numCols; col++) {
+                    map[row][col] = Integer.parseInt(tokens[col]);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * @return tileSize
+     */
+    public int getTileSize() {
+        return tileSize;
+    }
+
+    /**
+     * @return x
+     */
+    public int getx() {
+        return x;
+    }
+
+    /**
+     * @return y
+     */
+    public int gety() {
+        return y;
+    }
+
+    /**
+     * @return width
+     */
+    public int getWidth() {
+        return width;
+    }
+
+    /**
+     * @return height
+     */
+    public int getHeight() {
+        return height;
+    }
+
+    /**
+     * @return numRows
+     */
+    public int getNumRows() {
+        return numRows;
+    }
+
+    /**
+     * @return numCols
+     */
+    public int getNumCols() {
+        return numCols;
+    }
+
+    /**
+     * @param row the row of the tile
+     * @param col the col of the tile
+     * @return the type of the tile at position row col
+     */
+    public int getType(final int row, final int col) {
+        final int rc = map[row][col];
+        final int r = rc / numTilesCols;
+        final int c = rc % numTilesCols;
+        return tiles[r][c].getType();
+    }
+
+    /**
+     * @param row the row of the tile
+     * @param col the col of the tile
+     * @return the index of the bitmap at position row col
+     */
+    public int getIndex(final int row, final int col) {
+        return map[row][col];
+    }
+
+    /**
+     * @return if the map is moving
+     */
+    public boolean isMoving() {
+        return moving;
+    }
+
+    /**
+     * @param row   the row of the tile
+     * @param col   the col of the tile
+     * @param index set the tile of the map at position row col
+     */
+    public void setTile(final int row, final int col, final int index) {
+        map[row][col] = index;
+    }
+
+    /**
+     * @param i1 the number of the tile that need to be replaced
+     * @param i2 the new number in the bitmap
+     */
+    public void replace(final int i1, final int i2) {
+        for (int row = 0; row < numRows; row++) {
+            for (int col = 0; col < numCols; col++) {
+                if (map[row][col] == i1) {
+                    map[row][col] = i2;
+                }
+            }
+        }
+    }
+
+    /**
+     * @param x the new position of the map at coord x
+     * @param y the new position of the map at coord y
+     */
+    public void setPosition(final int x, final int y) {
+        xdest = x;
+        ydest = y;
+    }
+
+    /**
+     * @param x the istant position of the map at coord x
+     * @param y the istant position of the map at coord y
+     */
+    public void setPositionImmediately(final int x, final int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    /**
+     * 
+     */
+    public void fixBounds() {
+        if (x < xmin) {
+            x = xmin;
+        }
+
+        if (y < ymin) {
+            y = ymin;
+        }
+
+        if (x > xmax) {
+            x = xmax;
+        }
+
+        if (y > ymax) {
+            y = ymax;
+        }
+
+    }
+
+    /**
+     * 
+     */
+    public void update() {
+        if (x < xdest) {
+            x += speed;
+            if (x > xdest) {
+                x = xdest;
+            }
+        }
+        if (x > xdest) {
+            x -= speed;
+            if (x < xdest) {
+                x = xdest;
+            }
+        }
+        if (y < ydest) {
+            y += speed;
+            if (y > ydest) {
+                y = ydest;
+            }
+        }
+        if (y > ydest) {
+            y -= speed;
+            if (y < ydest) {
+                y = ydest;
+            }
+        }
+
+        fixBounds();
+
+        if (x != xdest || y != ydest) {
+            moving = true;
+        } else {
+            moving = false;
+        }
+
+    }
+
+    /**
+     * @param g the element that need to be drawn
+     */
+    public void draw(final Graphics2D g) {
+
+        for (int row = 0; row < numRowsToDraw; row++) {
+
+            if (row >= numRows) {
+                break;
+            }
+
+            for (int col = 0; col < numColsToDraw; col++) {
+
+                if (col >= numCols) {
+                    break;
+                }
+                if (map[row][col] == 0) {
+                    continue;
+                }
+
+                final int rc = map[row][col];
+                final int r = rc / numTilesCols;
+                final int c = rc % numTilesCols;
+
+                g.drawImage(tiles[r][c].getImage(), x + col * tileSize, y + row * tileSize + GamePanel.HUDHEIGHT, null);
+
+            }
+
+        }
+
+    }
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
