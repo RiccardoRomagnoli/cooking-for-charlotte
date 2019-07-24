@@ -17,48 +17,43 @@ import it.unibo.oop18.cfc.Util.JukeBox;
 
 public class PlayState extends GameState {
 
+    // events
+    private boolean blockInput;
+    private boolean eventStart;
+    private boolean eventFinish;
+    private int eventTick;
 
-	// events
-	private boolean blockInput;
-	private boolean eventStart;
-	private boolean eventFinish;
-	private int eventTick;
-	
-	//time
-	private long ticks;
-	// tilemap
+    // time
+    private long ticks;
+    // tilemap
     private TileMap tileMap;
-	
+
     private Player player;
-	
-	public PlayState(GameStateManager gsm) {
-		super(gsm, GameStates.PLAY);
-		loadMap();
-		player = new PlayerImpl(tileMap);
-	}
-	
-    
+
+    public PlayState(GameStateManager gsm) {
+        super(gsm, GameStates.PLAY);
+        loadMap();
+        player = new PlayerImpl(tileMap);
+    }
 
     // hud
     private TopHud tophud;
     private DownHud downhud;
 
     public void init() {
-    	
-    	//reset timer
-    	ticks = 0;
+
+        // reset timer
+        ticks = 0;
         // load map
-
-
 
         // initialize player
         player.setTilePosition(3, 7);
         player.setTotalPoints(1000);
-        
+
         // load hud
         tophud = new TopHud(this);
         downhud = new DownHud(this, player.numPoints());
-        
+
         // load music
         // JukeBox.load("/Music/bgmusic.mp3", "music1");
         // JukeBox.setVolume("music1", -10);
@@ -75,33 +70,34 @@ public class PlayState extends GameState {
         // start event
         // eventStart = true;
         // eventStart();
-	}
-	
-	public void update() {
-		
-		//end game
-		if (0 == 2) {
-			eventFinish = true;
-			blockInput = true;
-		}
-        ticks++;
     }
 
-	// Used to update time.
-	public long getTicks() { 
-		return ticks; 
-	}
-	
-	public Player getPlayer() {
-		return player;
-	}
-	
-	private void loadMap() {
-		tileMap = new TileMap(64);
-		tileMap.loadTiles("/Tilesets/tilesheet.png");
-		tileMap.loadMap("/Maps/testmap1.map");
-	}
-	
+    public void update() {
+
+        // end game
+        if (0 == 2) {
+            eventFinish = true;
+            blockInput = true;
+        }
+        ticks++;
+        player.update();
+    }
+
+    // Used to update time.
+    public long getTicks() {
+        return ticks;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    private void loadMap() {
+        tileMap = new TileMap(64);
+        tileMap.loadTiles("/Tilesets/tilesheet.png");
+        tileMap.loadMap("/Maps/testmap1.map");
+    }
+
     public void draw(Graphics2D g) {
 
         // draw tilemap
