@@ -21,10 +21,11 @@ import it.unibo.oop18.cfc.Manager.Keys;
 public class GamePanel extends JPanel implements Runnable, KeyListener {
 	
 	// dimensions
-	public static final int WIDTH = 1024; //larghezza
+	public static final int WIDTH = 1024; //larghezza della finestra
 	public static final int HEIGHT = 512; //altezza della mappa
-	public static final int HEIGHT2 = HEIGHT + 128; // altezza mappa + altezza hub sopra
-	public static final int HEIGHT3 = HEIGHT2 + 128; // altezza mappa + altezza hub sopra + altezza hub sotto
+	public static final int HUDHEIGHT = 128; //altezza dei hud
+	public static final int HEIGHT2 = HEIGHT + HUDHEIGHT; // altezza mappa + altezza hub sopra
+	public static final int HEIGHT3 = HEIGHT2 + HUDHEIGHT; // altezza mappa + altezza hub sopra + altezza hub sotto
 
 	public static final int SCALE = 1;
 	
