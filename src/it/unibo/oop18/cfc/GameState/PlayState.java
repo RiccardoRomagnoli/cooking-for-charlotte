@@ -95,10 +95,6 @@ public class PlayState extends GameState {
             blockInput = true;
         }
 
-        if (tileMap.isMoving()) {
-            return;
-        }
-
         // update player
         player.update();
 
