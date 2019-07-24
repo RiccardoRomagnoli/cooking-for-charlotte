@@ -10,6 +10,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import it.unibo.oop18.cfc.Entity.Player;
+import it.unibo.oop18.cfc.Entity.PlayerImpl;
 import it.unibo.oop18.cfc.HUD.DownHud;
 import it.unibo.oop18.cfc.HUD.TopHud;
 import it.unibo.oop18.cfc.Main.GamePanel;
@@ -37,6 +38,9 @@ public class PlayState extends GameState {
 	private boolean eventFinish;
 	private int eventTick;
 	
+	//time
+	private long ticks;
+	
 	
 	public PlayState(GameStateManager gsm) {
 		super(gsm);
@@ -50,7 +54,7 @@ public class PlayState extends GameState {
 		tileMap.loadMap("/Maps/testmap1.map");
 
 		// create player
-		player = new Player(tileMap);
+		player = new PlayerImpl(tileMap);
 
 
 		// initialize player
@@ -58,8 +62,8 @@ public class PlayState extends GameState {
 		player.setTotalPoints(1000);
 
 		// load hud
-		tophud = new TopHud(player);
-		downhud = new DownHud(player, player.numPoints());
+		tophud = new TopHud(this);
+		downhud = new DownHud(this, player.numPoints());
 
 		// load music
                 //JukeBox.load("/Music/bgmusic.mp3", "music1"); 
@@ -100,7 +104,9 @@ public class PlayState extends GameState {
 
 		// update player
 		player.update();
-
+		
+		//time goes on
+		ticks++;
 	}
 	
 	public void draw(Graphics2D g) {
@@ -119,7 +125,7 @@ public class PlayState extends GameState {
 	public void handleInput() {
 		if(Keys.isPressed(Keys.ESCAPE)) {
 			JukeBox.stop("music1");
-			gsm.setPaused(true);
+			gsm.setState(GameStates.PAUSE);
 		}
 		if(blockInput) return;
 		if(Keys.isDown(Keys.LEFT)) player.setLeft();
@@ -129,5 +135,6 @@ public class PlayState extends GameState {
 		if(Keys.isPressed(Keys.SPACE)) player.setAction();
 	}
 	
-	//===============================================
-	}
+	// Used to update time.
+	public long getTicks() { return ticks; }
+}

@@ -9,7 +9,8 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import it.unibo.oop18.cfc.Entity.Player;
+import it.unibo.oop18.cfc.Entity.PlayerImpl;
+import it.unibo.oop18.cfc.GameState.PlayState;
 import it.unibo.oop18.cfc.Manager.Content;
 
 public class TopHud {
@@ -17,7 +18,7 @@ public class TopHud {
         private int yoffset;
         private BufferedImage bar;
         //TODO: add vector with orderds
-        public TopHud(Player p) {
+        public TopHud(PlayState playstate) {
                 yoffset = 0;
                 bar = Content.TOPBAR[0][0];
         }

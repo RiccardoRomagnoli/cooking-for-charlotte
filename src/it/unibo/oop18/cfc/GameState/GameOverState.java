@@ -71,7 +71,7 @@ public class GameOverState extends GameState {
 	
 	public void handleInput() {
 		if(Keys.isPressed(Keys.ENTER)) {
-			gsm.setState(GameStateManager.MENU);
+			gsm.setState(GameStates.MENU);
 			JukeBox.play("collect");
 		}
 	}

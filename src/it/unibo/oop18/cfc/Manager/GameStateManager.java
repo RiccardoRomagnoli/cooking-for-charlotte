@@ -8,88 +8,67 @@ package it.unibo.oop18.cfc.Manager;
 
 import java.awt.Graphics2D;
 
-import it.unibo.oop18.cfc.GameState.GameOverState;
-import it.unibo.oop18.cfc.GameState.GameState;
-import it.unibo.oop18.cfc.GameState.IntroState;
-import it.unibo.oop18.cfc.GameState.MenuState;
-import it.unibo.oop18.cfc.GameState.PauseState;
-import it.unibo.oop18.cfc.GameState.PlayState;
+import it.unibo.oop18.cfc.GameState.*;
 import it.unibo.oop18.cfc.Util.JukeBox;
 
 
 public class GameStateManager {
 	
-	private boolean paused;
-	private PauseState pauseState;
+	private GameState introState;
+	private GameState menuState;
+	private GameState playState;
+	private GameState gameOverState;
+	private GameState pauseState;
 	
-	private GameState[] gameStates;
-	private int currentState;
-	private int previousState;
+	private GameState currentState;
 	
-	public static final int NUM_STATES = 4;
-	public static final int INTRO = 0;
-	public static final int MENU = 1;
-	public static final int PLAY = 2;
-	public static final int GAMEOVER = 3;
-	
-	public GameStateManager() {
-		
+	public GameStateManager() {		
 		JukeBox.init();
 		
-		paused = false;
 		pauseState = new PauseState(this);
+		introState = new IntroState(this);
+		menuState = new MenuState(this);
+		gameOverState = new GameOverState(this);
 		
-		gameStates = new GameState[NUM_STATES];
-		setState(INTRO);
-		
+		setState(GameStates.INTRO);
 	}
 	
-	public void setState(int i) {
-		previousState = currentState;
-		unloadState(previousState);
-		currentState = i;
-		if(i == INTRO) {
-			gameStates[i] = new IntroState(this);
-			gameStates[i].init();
-		}
-		else if(i == MENU) {
-			gameStates[i] = new MenuState(this);
-			gameStates[i].init();
-		}
-		else if(i == PLAY) {
-			gameStates[i] = new PlayState(this);
-			gameStates[i].init();
-		}
-		else if(i == GAMEOVER) {
-			gameStates[i] = new GameOverState(this);
-			gameStates[i].init();
-		}
+	public void newGame() {
+		playState = new PlayState(this);
+		playState.init();
+		setState(GameStates.PLAY);
 	}
 	
-	public void unloadState(int i) {
-		gameStates[i] = null;
-	}
-	
-	public void setPaused(boolean b) {
-		paused = b;
+	public void setState(GameStates gameState) {
+		switch(gameState) {
+			case INTRO:
+				currentState = introState;
+				introState.init();
+				break;
+			case MENU:
+				currentState = menuState;
+				menuState.init();
+				break;
+			case PLAY:
+				currentState = playState;
+				break;
+			case GAMEOVER:
+				currentState = gameOverState;
+				gameOverState.init();
+				break;
+			case PAUSE:
+				currentState = pauseState;
+			default:
+				break;
+		}
 	}
 	
 	public void update() {
-		if(paused) {
-			pauseState.update();
-		}
-		else if(gameStates[currentState] != null) {
-			gameStates[currentState].update();
-		}
+		currentState.update();
 	}
 	
 	public void draw(Graphics2D g) {
-		if(paused) {
-			pauseState.draw(g);
-		}
-		else if(gameStates[currentState] != null) {
-			gameStates[currentState].draw(g);
-		}
+		currentState.draw(g);
 	}
 	
 }

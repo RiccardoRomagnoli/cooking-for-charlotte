@@ -49,7 +49,7 @@ public class IntroState extends GameState {
 			if(alpha > 255) alpha = 255;
 		}
 		if(ticks > FADE_IN + LENGTH + FADE_OUT) {
-			gsm.setState(GameStateManager.MENU);
+			gsm.setState(GameStates.MENU);
 		}
 	}
 	
@@ -63,7 +63,7 @@ public class IntroState extends GameState {
 	
 	public void handleInput() {
 		if(Keys.isPressed(Keys.ENTER)) {
-			gsm.setState(GameStateManager.MENU);
+			gsm.setState(GameStates.MENU);
 		}
 	}
 	
