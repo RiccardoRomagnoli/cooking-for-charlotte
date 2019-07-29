@@ -46,7 +46,7 @@ public class PlayState extends GameState {
         ticks = 0;
 
         // initialize player
-        player.setTilePosition(3, 7);
+        player.getPhysics().setTilePosition(3, 7);
         player.setTotalPoints(1000);
 
         // load hud

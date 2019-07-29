@@ -10,59 +10,27 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import it.unibo.oop18.cfc.Manager.Content;
+import it.unibo.oop18.cfc.Physics.Direction;
+import it.unibo.oop18.cfc.Physics.DynamicPhysicsComponent;
+import it.unibo.oop18.cfc.Physics.DynamicPhysicsComponentImpl;
 import it.unibo.oop18.cfc.TileMap.TileMap;
-import it.unibo.oop18.cfc.Util.JukeBox;
 
-public class PlayerImpl extends Entity implements Player {
-
-    // sprites
-    private BufferedImage[] downSprites;
-    private BufferedImage[] leftSprites;
-    private BufferedImage[] rightSprites;
-    private BufferedImage[] upSprites;
-
-    // animation
-    private final int DOWN = 0;
-    private final int LEFT = 1;
-    private final int RIGHT = 2;
-    private final int UP = 3;
-
+public class PlayerImpl implements Player {
+	
     // gameplay
     private int points;
     private int totalPoints;
     private long ticks;
+    
+    //Phisics
+    private final DynamicPhysicsComponent physics;
 
     /**
      * @param tm
      */
     public PlayerImpl(final TileMap tm) {
-
-        super(tm);
-
-        width = 64;
-        height = 64;
-
-        moveSpeed = 2;
-
-        points = 0;
-
-        downSprites = Content.PLAYER[0];
-        leftSprites = Content.PLAYER[1];
-        rightSprites = Content.PLAYER[2];
-        upSprites = Content.PLAYER[3];
-        animation.setFrames(downSprites);
-        animation.setDelay(10);
-    }
-
-    /**
-     * @param i
-     * @param bi
-     * @param d
-     */
-    private void setAnimation(final int i, final BufferedImage[] bi, final int d) {
-        currentAnimation = i;
-        animation.setFrames(bi);
-        animation.setDelay(d);
+    	points = 0;
+        physics = new DynamicPhysicsComponentImpl(tm);
     }
 
     /**
@@ -114,48 +82,18 @@ public class PlayerImpl extends Entity implements Player {
      *
      */
     public void update() {
-
-        ticks++;
-
-        // check if had dish
-
-        // set animation
-        if (down) {
-            if (currentAnimation != DOWN) {
-                setAnimation(DOWN, downSprites, 10);
-            }
-        }
-        if (left) {
-            if (currentAnimation != LEFT) {
-                setAnimation(LEFT, leftSprites, 10);
-            }
-        }
-        if (right) {
-            if (currentAnimation != RIGHT) {
-                setAnimation(RIGHT, rightSprites, 10);
-            }
-        }
-        if (up) {
-            if (currentAnimation != UP) {
-                setAnimation(UP, upSprites, 10);
-            }
-        }
-
-        // update position
-        super.update();
-
+        physics.update();
     }
 
     /**
      * @param g element to draw
      */
     public void draw(final Graphics2D g) {
-        super.draw(g);
+        physics.draw(g);
     }
 
 	@Override
 	public void doAction() {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -164,26 +102,27 @@ public class PlayerImpl extends Entity implements Player {
 	public void move(Direction way) {
 		switch(way) {
 		case DOWN:
-			super.setDown();
+			physics.moveDown();
 			break;
 		case LEFT:
-			super.setLeft();
+			physics.moveLeft();
 			break;
 		case RIGHT:
-			super.setRight();
+			physics.moveRight();
 			break;
 		case UP:
-			super.setUp();
+			physics.moveUp();
 			break;
 		case STOP:
-			stop();
+			physics.stop();
+			break;
+		default:
 			break;
 		}
 	}
 
 	@Override
-	public void stop() {
-		// TODO Auto-generated method stub
-		
+	public DynamicPhysicsComponent getPhysics() {
+		return physics;
 	}
 }

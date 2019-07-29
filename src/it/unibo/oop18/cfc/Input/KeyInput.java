@@ -4,12 +4,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Optional;
 
-import it.unibo.oop18.cfc.Entity.Direction;
 import it.unibo.oop18.cfc.Entity.Player;
 import it.unibo.oop18.cfc.GameState.GameState;
 import it.unibo.oop18.cfc.GameState.GameStates;
 import it.unibo.oop18.cfc.GameState.MenuState;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
+import it.unibo.oop18.cfc.Physics.Direction;
 import it.unibo.oop18.cfc.Util.JukeBox;
 
 /**
@@ -61,6 +61,7 @@ public class KeyInput implements KeyListener {
         }
     }
 
+    //key pressed during play state
     private void playKeyInput(final KeyEvent e) {
         final Optional<Direction> way;
         switch (e.getKeyCode()) {
@@ -91,6 +92,7 @@ public class KeyInput implements KeyListener {
         this.moveEntity(way);
     }
 
+    //key pressed during intro state
     private void introKeyInput(final KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             gsm.setState(GameStates.MENU);
@@ -98,6 +100,7 @@ public class KeyInput implements KeyListener {
         }
     }
 
+    //key pressed during game over state
     private void gameOverKeyInput(final KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             gsm.setState(GameStates.MENU);
@@ -105,6 +108,7 @@ public class KeyInput implements KeyListener {
         }
     }
 
+    //key pressed during menu state
     private void menuKeyInput(final KeyEvent e) {
         MenuState menu = (MenuState) currentState;
         switch (e.getKeyCode()) {
@@ -118,7 +122,8 @@ public class KeyInput implements KeyListener {
             menu.select();
         }
     }
-
+    
+    //key pressed during pause state
     private void pauseKeyInput(final KeyEvent e) {
         switch (e.getKeyCode()) {
         case KeyEvent.VK_ESCAPE:
@@ -138,7 +143,7 @@ public class KeyInput implements KeyListener {
     @Override
     public void keyReleased(final KeyEvent e) {
         if (e.getKeyCode() != KeyEvent.VK_SPACE) {
-            this.player.stop();
+            //this.player.move(Direction.STOP);
         }
     }
 

@@ -1,4 +1,4 @@
-package it.unibo.oop18.cfc.Entity;
+package it.unibo.oop18.cfc.Physics;
 
 /**
  * Enum to define the entity way.
