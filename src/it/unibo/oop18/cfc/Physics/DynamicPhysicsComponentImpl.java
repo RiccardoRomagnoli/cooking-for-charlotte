@@ -4,8 +4,8 @@ import java.awt.geom.Rectangle2D;
 import java.util.Set;
 
 import it.unibo.oop18.cfc.Main.GamePanel;
-import it.unibo.oop18.cfc.Objects.Blocks.Block;
 import it.unibo.oop18.cfc.Objects.Entity.DynamicObject;
+import it.unibo.oop18.cfc.Objects.Items.Item;
 import it.unibo.oop18.cfc.TileMap.Tile;
 import it.unibo.oop18.cfc.TileMap.TileMap;
 import it.unibo.oop18.cfc.Util.Pair;
@@ -100,7 +100,7 @@ public class DynamicPhysicsComponentImpl implements DynamicPhysicsComponent{
 	}
 
 	@Override
-	public void checksCollisions(Set<Block> set) {
+	public void checksCollisions(Set<Item> set) {
         set.forEach(wall -> {
             if (wall.getBounds().intersects(this.getTopBound())) {
                 this.entity.getPosition().setY(wall.getPosition().getY() + Tile.SPRITE_SIZE);

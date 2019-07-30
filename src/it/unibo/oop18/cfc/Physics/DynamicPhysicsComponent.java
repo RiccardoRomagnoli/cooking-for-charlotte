@@ -4,7 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Set;
 
-import it.unibo.oop18.cfc.Objects.Blocks.Block;
+import it.unibo.oop18.cfc.Objects.Items.Item;
 import it.unibo.oop18.cfc.TileMap.Tile;
 import it.unibo.oop18.cfc.Util.Velocity;
 
@@ -52,7 +52,7 @@ public interface DynamicPhysicsComponent {
     /**
      * {@inheritDoc}
      */
-    public abstract void checksCollisions(Set<Block> objects);
+    public abstract void checksCollisions(Set<Item> objects);
 
 
 }

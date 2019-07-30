@@ -1,4 +1,4 @@
-package it.unibo.oop18.cfc.Objects.Blocks;
+package it.unibo.oop18.cfc.Objects.Items;
 
 import java.awt.Graphics2D;
 
@@ -9,7 +9,7 @@ import it.unibo.oop18.cfc.Util.Position;
 /**
  * This class manages a block.
  */
-public class Block extends AbstractGameObject {
+public class Item extends AbstractGameObject {
 
     private final Tile sprite;
     /**
@@ -19,7 +19,7 @@ public class Block extends AbstractGameObject {
      * @param position block's position
      * @param sprite block's sprite
      */
-    public Block(final Position position, final Tile sprite) {
+    public Item(final Position position, final Tile sprite) {
         super(position);
         this.sprite = sprite;
     }
