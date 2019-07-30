@@ -9,9 +9,9 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import it.unibo.oop18.cfc.Entity.PlayerImpl;
 import it.unibo.oop18.cfc.GameState.PlayState;
 import it.unibo.oop18.cfc.Manager.Content;
+import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
 
 public class TopHud {
         

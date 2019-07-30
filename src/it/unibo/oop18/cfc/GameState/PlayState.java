@@ -7,13 +7,15 @@ package it.unibo.oop18.cfc.GameState;
 
 import java.awt.Graphics2D;
 
-import it.unibo.oop18.cfc.Entity.Player;
-import it.unibo.oop18.cfc.Entity.PlayerImpl;
 import it.unibo.oop18.cfc.HUD.DownHud;
 import it.unibo.oop18.cfc.HUD.TopHud;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
+import it.unibo.oop18.cfc.Objects.Entity.Player;
+import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
+import it.unibo.oop18.cfc.TileMap.Tile;
 import it.unibo.oop18.cfc.TileMap.TileMap;
 import it.unibo.oop18.cfc.Util.JukeBox;
+import it.unibo.oop18.cfc.Util.Position;
 
 public class PlayState extends GameState {
 
@@ -36,7 +38,7 @@ public class PlayState extends GameState {
     public PlayState(GameStateManager gsm) {
         super(gsm, GameStates.PLAY);
         loadMap();
-        player = new PlayerImpl(tileMap);
+        player = new PlayerImpl(new Position(3*Tile.SPRITE_SIZE, 7*Tile.SPRITE_SIZE), tileMap);
     }
 
 
@@ -45,8 +47,6 @@ public class PlayState extends GameState {
         // reset timer
         ticks = 0;
 
-        // initialize player
-        player.getPhysics().setTilePosition(3, 7);
         player.setTotalPoints(1000);
 
         // load hud
