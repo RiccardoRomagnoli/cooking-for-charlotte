@@ -2,6 +2,7 @@ package it.unibo.oop18.cfc.Input;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import it.unibo.oop18.cfc.GameState.GameState;
@@ -21,6 +22,10 @@ public class KeyInput implements KeyListener {
     private final Player player;
     private GameState currentState;
     private final GameStateManager gsm;
+    private int nKeyPressing = 0;
+    
+
+    ArrayList<Integer> keys;
 
     /**
      * Creates {@code KeyInput}.
@@ -31,6 +36,12 @@ public class KeyInput implements KeyListener {
     public KeyInput(final GameStateManager gsm) {
         this.gsm = gsm;
         this.player = gsm.getPlayState().getPlayer();
+        keys= new ArrayList<>();
+        
+        keys.add(KeyEvent.VK_LEFT);
+        keys.add(KeyEvent.VK_RIGHT);
+        keys.add(KeyEvent.VK_UP);
+        keys.add(KeyEvent.VK_DOWN);
     }
 
     /**
@@ -91,6 +102,7 @@ public class KeyInput implements KeyListener {
         }
         this.moveEntity(way);
     }
+    
 
     //key pressed during intro state
     private void introKeyInput(final KeyEvent e) {
@@ -142,13 +154,15 @@ public class KeyInput implements KeyListener {
      */
     @Override
     public void keyReleased(final KeyEvent e) {
-        if (e.getKeyCode() != KeyEvent.VK_SPACE) {
-            this.player.getInput().stop();
+        if (keys.contains(e.getKeyCode())) {
+        	--nKeyPressing;
         }
+    	this.player.getInput().stop();
     }
 
     @Override
     public void keyTyped(final KeyEvent e) {
+
     }
 
     // to do

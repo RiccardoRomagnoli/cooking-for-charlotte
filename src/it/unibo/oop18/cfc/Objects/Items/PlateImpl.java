@@ -1,9 +1,10 @@
-package it.unibo.oop18.cfc.Objects.Entity;
+package it.unibo.oop18.cfc.Objects.Items;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import it.unibo.oop18.cfc.Manager.Content;
+import it.unibo.oop18.cfc.Objects.Entity.Player;
 
 public class PlateImpl extends ItemImpl implements Plate {
 
