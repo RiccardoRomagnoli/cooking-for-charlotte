@@ -1,263 +1,116 @@
 package it.unibo.oop18.cfc.Physics;
 
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
+import java.awt.geom.Rectangle2D;
+import java.util.Set;
 
-import it.unibo.oop18.cfc.Manager.Content;
+import it.unibo.oop18.cfc.Main.GamePanel;
+import it.unibo.oop18.cfc.Objects.Entity.DynamicObject;
+import it.unibo.oop18.cfc.Objects.Items.Item;
 import it.unibo.oop18.cfc.TileMap.Tile;
 import it.unibo.oop18.cfc.TileMap.TileMap;
+import it.unibo.oop18.cfc.Util.Pair;
+import it.unibo.oop18.cfc.Util.Position;
+import it.unibo.oop18.cfc.Util.Velocity;
+import it.unibo.oop18.cfc.Util.VelocityImpl;
 
 public class DynamicPhysicsComponentImpl implements DynamicPhysicsComponent{
 	
-	// dimensions
-    protected int width;
-    protected int height;
-    protected int cwidth;
-    protected int cheight;
-
-    // position
-    protected int x;
-    protected int y;
-    protected int xdest;
-    protected int ydest;
-    protected int rowTile;
-    protected int colTile;
-
-    // movement
-    protected boolean moving;
-    protected boolean left;
-    protected boolean right;
-    protected boolean up;
-    protected boolean down;
-
-    // attributes
-    protected int moveSpeed;
-
-    // tilemap
-    protected TileMap tileMap;
-    protected int tileSize;
-
-    // animation
-    protected Animation animation;
-    protected Direction currentDirection;
+    private static final int POSITION_ADJUSTMENT = 10;
+    private static final int HEIGHT_ADJUSTMENT = 5;
+    private static final int WIDTH_ADJUSTMENT = 20;
     
-    // sprites
-    private BufferedImage[] downSprites;
-    private BufferedImage[] leftSprites;
-    private BufferedImage[] rightSprites;
-    private BufferedImage[] upSprites;
-    private BufferedImage stopSprite;
+    
+    private final Velocity vector;
+    private final DynamicObject entity;
     
 
 
-    public DynamicPhysicsComponentImpl(TileMap tm) {
-    	width = 64;
-    	height = 64;
-
-      	moveSpeed = 2;
-      	
-        tileMap = tm;
-        tileSize = tileMap.getTileSize();
-        animation = new AnimationImpl();
-        
-        downSprites = Content.PLAYER[0];
-        leftSprites = Content.PLAYER[1];
-        rightSprites = Content.PLAYER[2];
-        upSprites = Content.PLAYER[3];
-        stopSprite = Content.PLAYER[0][0];
-        
-        //to do
-        animation.setFrame(stopSprite);
-    }
-
-    public int getx() {
-        return x;
-    }
-
-    public int gety() {
-        return y;
-    }
-
-    public int getRow() {
-        return rowTile;
-    }
-
-    public int getCol() {
-        return colTile;
-    }
-
-    public void setPosition(int i1, int i2) {
-        x = i1;
-        y = i2;
-        xdest = x;
-        ydest = y;
-    }
-
-    public void setTilePosition(int i1, int i2) {
-        y = i1 * tileSize + tileSize / 2;
-        x = i2 * tileSize + tileSize / 2;
-        xdest = x;
-        ydest = y;
+    public DynamicPhysicsComponentImpl(TileMap tm, final DynamicObject entity) {
+    	this.vector = new VelocityImpl();
+    	this.entity = entity;
     }
     
     public void stop() {
-    	animation.setFrame(stopSprite);
+    	
     }
 
-    public void moveLeft() {
-        if (moving)
-            return;
-        left = true;
-        moving = validateNextPosition();
-    }
-
-    public void moveRight() {
-        if (moving)
-            return;
-        right = true;
-        moving = validateNextPosition();
-    }
-
-    public void moveUp() {
-        if (moving)
-            return;
-        up = true;
-        moving = validateNextPosition();
-    }
-
-    public void moveDown() {
-        if (moving)
-            return;
-        down = true;
-        moving = validateNextPosition();
-    }
-
-    // Returns whether or not the entity can
-    // move into the next position.
-    public boolean validateNextPosition() {
-
-        if (moving)
-            return true;
-
-        rowTile = y / tileSize;
-        colTile = x / tileSize;
-
-        if (left) {
-            if (colTile == 0 || tileMap.getType(rowTile, colTile - 1) != Tile.NORMAL) {
-                return false;
-            } else {
-                xdest = x - tileSize;
-            }
-        }
-        if (right) {
-            if (colTile == tileMap.getNumCols() || tileMap.getType(rowTile, colTile + 1) != Tile.NORMAL) {
-                return false;
-            } else {
-                xdest = x + tileSize;
-            }
-        }
-        if (up) {
-            if (rowTile == 0 || tileMap.getType(rowTile - 1, colTile) != Tile.NORMAL) {
-                return false;
-            } else {
-                ydest = y - tileSize;
-            }
-        }
-        if (down) {
-            if (rowTile == tileMap.getNumRows() - 1 || tileMap.getType(rowTile + 1, colTile) != Tile.NORMAL) {
-                return false;
-            } else {
-                ydest = y + tileSize;
-            }
-        }
-        return true;
-    }
-
-    // Calculates the destination coordinates.
-    public void getNextPosition() {
-
-        if (left && x > xdest)
-            x -= moveSpeed;
-        else
-            left = false;
-        if (left && x < xdest)
-            x = xdest;
-
-        if (right && x < xdest)
-            x += moveSpeed;
-        else
-            right = false;
-        if (right && x > xdest)
-            x = xdest;
-
-        if (up && y > ydest)
-            y -= moveSpeed;
-        else
-            up = false;
-        if (up && y < ydest)
-            y = ydest;
-
-        if (down && y < ydest)
-            y += moveSpeed;
-        else
-            down = false;
-        if (down && y > ydest)
-            y = ydest;
-
+    public void move() {
+    	final Position previousPos = this.entity.getPosition();
+        double velX = this.vector.getSpaceX();
+        double velY = this.vector.getSpaceY();
+        
+        final Pair<Double, Double> deltas = this.getDeltas(new Pair<>(velX, velY), previousPos);
+        this.entity.getPosition().setX(this.entity.getPosition().getX() + deltas.getFirst());
+        this.entity.getPosition().setY(this.entity.getPosition().getY() + deltas.getSecond());
     }
     
-    /**
-     * @param i
-     * @param bi
-     * @param d
-     */
-    private void setAnimation(final Direction dir, final BufferedImage[] bi, final int delay) {
-        currentDirection = dir;
-        animation.setFrames(bi);
-        animation.setDelay(delay);
+    private Pair<Double, Double> getDeltas(final Pair<Double, Double> velocity, final Position previousPos) {
+        double deltaX = velocity.getFirst();
+        double deltaY = velocity.getSecond();
+        if (previousPos.getX() + deltaX >= GamePanel.RIGHT_BOUND_IN_PIXEL) {
+            deltaX = GamePanel.RIGHT_BOUND_IN_PIXEL - previousPos.getX();
+        } else if (previousPos.getX() + deltaX <= GamePanel.LEFT_BOUND_IN_PIXEL) {
+            deltaX = GamePanel.LEFT_BOUND_IN_PIXEL - previousPos.getX();
+        }
+        
+        if (previousPos.getY() + deltaY >= GamePanel.DOWN_BOUND_IN_PIXEL) {
+            deltaY = GamePanel.DOWN_BOUND_IN_PIXEL - previousPos.getY();
+        } else if (previousPos.getY() + deltaY <= GamePanel.TOP_BOUND_IN_PIXEL) {
+            deltaY = GamePanel.TOP_BOUND_IN_PIXEL - previousPos.getY();
+        }
+        return new Pair<>(deltaX, deltaY);
     }
 
-    public void update() {
-    	
-        if (down) {
-            if (currentDirection != Direction.DOWN) {
-                setAnimation(Direction.DOWN, downSprites, 10);
+	@Override
+	public Velocity getVelocity() {
+		return vector;
+	}
+
+	@Override
+	public Rectangle2D getTopBound() {
+        return new Rectangle2D.Double(this.entity.getPosition().getX() + POSITION_ADJUSTMENT,
+                					  this.entity.getPosition().getY(),
+                					  Tile.SPRITE_SIZE - WIDTH_ADJUSTMENT,
+                					  HEIGHT_ADJUSTMENT);
+	}
+
+	@Override
+	public Rectangle2D getLowerBound() {
+        return new Rectangle2D.Double(this.entity.getPosition().getX() + POSITION_ADJUSTMENT,
+                					  this.entity.getPosition().getY() + Tile.SPRITE_SIZE - HEIGHT_ADJUSTMENT,
+                                      Tile.SPRITE_SIZE - WIDTH_ADJUSTMENT,
+                                      HEIGHT_ADJUSTMENT);
+	}
+
+	@Override
+	public Rectangle2D getLeftBound() {
+        return new Rectangle2D.Double(this.entity.getPosition().getX(),
+                					  this.entity.getPosition().getY() + POSITION_ADJUSTMENT,
+                					  HEIGHT_ADJUSTMENT,
+                					  Tile.SPRITE_SIZE - WIDTH_ADJUSTMENT);
+	}
+
+	@Override
+	public Rectangle2D getRightBound() {
+        return new Rectangle2D.Double(this.entity.getPosition().getX() + Tile.SPRITE_SIZE
+                																	- HEIGHT_ADJUSTMENT,
+                					  this.entity.getPosition().getY() + POSITION_ADJUSTMENT,
+                					  HEIGHT_ADJUSTMENT,
+                					  Tile.SPRITE_SIZE - WIDTH_ADJUSTMENT);
+	}
+
+	@Override
+	public void checksCollisions(Set<Item> set) {
+        set.forEach(wall -> {
+            if (wall.getBounds().intersects(this.getTopBound())) {
+                this.entity.getPosition().setY(wall.getPosition().getY() + Tile.SPRITE_SIZE);
+            } else if (wall.getBounds().intersects(this.getLowerBound())) {
+                this.entity.getPosition().setY(wall.getPosition().getY() - Tile.SPRITE_SIZE);
+            } else if (wall.getBounds().intersects(this.getRightBound())) {
+                this.entity.getPosition().setX(wall.getPosition().getX() - Tile.SPRITE_SIZE);
+            } else if (wall.getBounds().intersects(this.getLeftBound())) {
+                this.entity.getPosition().setX(wall.getPosition().getX() + Tile.SPRITE_SIZE);
             }
-        }
-        if (left) {
-            if (currentDirection != Direction.LEFT) {
-                setAnimation(Direction.LEFT, leftSprites, 10);
-            }
-        }
-        if (right) {
-            if (currentDirection != Direction.RIGHT) {
-                setAnimation(Direction.RIGHT, rightSprites, 10);
-            }
-        }
-        if (up) {
-            if (currentDirection != Direction.UP) {
-                setAnimation(Direction.UP, upSprites, 10);
-            }
-        }
-
-        // get next position
-        if (moving)
-            getNextPosition();
-
-        // check stop moving
-        if (x == xdest && y == ydest) {
-            left = right = up = down = moving = false;
-            rowTile = y / tileSize;
-            colTile = x / tileSize;
-        }
-
-        // update animation
-        animation.update();
-
-    }
-
-    // Draws the entity.
-    public void draw(Graphics2D g) {
-        g.drawImage(animation.getImage(), x - width / 2, y - height / 2 + 128, null);
-    }
+        });
+	}
 }

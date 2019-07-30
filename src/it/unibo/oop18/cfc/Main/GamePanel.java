@@ -14,26 +14,34 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
-import it.unibo.oop18.cfc.Entity.Player;
 import it.unibo.oop18.cfc.Input.KeyInput;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
+import it.unibo.oop18.cfc.Objects.Entity.Player;
+import it.unibo.oop18.cfc.TileMap.Tile;
 
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements Runnable {
 	
 	// dimensions
+
 	public static final int WIDTH = 1024; //larghezza della finestra
 	public static final int HEIGHT = 512; //altezza della mappa
 	public static final int HUDHEIGHT = 128; //altezza dei hud
 	public static final int HEIGHT2 = HEIGHT + HUDHEIGHT; // altezza mappa + altezza hub sopra
 	public static final int HEIGHT3 = HEIGHT2 + HUDHEIGHT; // altezza mappa + altezza hub sopra + altezza hub sotto
+	
+	public static final int TOP_BOUND_IN_PIXEL = HUDHEIGHT + Tile.SPRITE_SIZE;
+	public static final int LEFT_BOUND_IN_PIXEL = Tile.SPRITE_SIZE;
+	public static final int RIGHT_BOUND_IN_PIXEL = WIDTH - (2 * Tile.SPRITE_SIZE);
+	public static final int DOWN_BOUND_IN_PIXEL = HEIGHT;
+
 
 	public static final int SCALE = 1;
 	
 	// game loop stuff
 	private Thread thread;
 	private boolean running;
-	private final int FPS = 30;
+	public static final int FPS = 30;
 	private final int TARGET_TIME = 1000 / FPS;
 	
 	// drawing stuff

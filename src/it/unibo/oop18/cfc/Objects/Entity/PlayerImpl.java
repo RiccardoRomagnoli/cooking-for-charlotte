@@ -1,36 +1,40 @@
-// The only subclass the fully utilizes the
-// Entity superclass (no other class requires
-// movement in a tile based map).
-// Contains all the gameplay associated with
-// the Player.
-
-package it.unibo.oop18.cfc.Entity;
+package it.unibo.oop18.cfc.Objects.Entity;
 
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 
+import it.unibo.oop18.cfc.Graphics.DynamicEntityGraphicsComponent;
+import it.unibo.oop18.cfc.Graphics.GraphicsComponent;
+import it.unibo.oop18.cfc.Input.PlayerInputComponent;
+import it.unibo.oop18.cfc.Input.PlayerInputComponentImpl;
 import it.unibo.oop18.cfc.Manager.Content;
 import it.unibo.oop18.cfc.Physics.Direction;
 import it.unibo.oop18.cfc.Physics.DynamicPhysicsComponent;
 import it.unibo.oop18.cfc.Physics.DynamicPhysicsComponentImpl;
+import it.unibo.oop18.cfc.TileMap.PlayerSprites;
 import it.unibo.oop18.cfc.TileMap.TileMap;
+import it.unibo.oop18.cfc.Util.Position;
 
-public class PlayerImpl implements Player {
+public class PlayerImpl extends AbstractEntity implements Player {
 	
     // gameplay
     private int points;
     private int totalPoints;
     private long ticks;
     
-    //Phisics
+    //Physics, Input and Graphics
     private final DynamicPhysicsComponent physics;
+    private final PlayerInputComponent input;
+    private final GraphicsComponent gfx;
 
     /**
      * @param tm
      */
-    public PlayerImpl(final TileMap tm) {
+    public PlayerImpl(final Position position, final TileMap tileMap) {
+    	super(position, tileMap);
     	points = 0;
-        physics = new DynamicPhysicsComponentImpl(tm);
+        this.physics = new DynamicPhysicsComponentImpl(tileMap, this);
+        this.input = new PlayerInputComponentImpl(this);
+        this.gfx = new DynamicEntityGraphicsComponent(this, new PlayerSprites(Content.PLAYER));
     }
 
     /**
@@ -82,14 +86,17 @@ public class PlayerImpl implements Player {
      *
      */
     public void update() {
-        physics.update();
+    	this.physics.move();
+    	//check collision with blocks in the map
+        //this.physics.checksCollisions(super.getTileMap());
+    	this.input.processInput();
     }
 
     /**
      * @param g element to draw
      */
     public void draw(final Graphics2D g) {
-        physics.draw(g);
+        gfx.draw(g);
     }
 
 	@Override
@@ -97,32 +104,13 @@ public class PlayerImpl implements Player {
 		
 	}
 
-	// Keyboard input. Moves the player.
-	@Override
-	public void move(Direction way) {
-		switch(way) {
-		case DOWN:
-			physics.moveDown();
-			break;
-		case LEFT:
-			physics.moveLeft();
-			break;
-		case RIGHT:
-			physics.moveRight();
-			break;
-		case UP:
-			physics.moveUp();
-			break;
-		case STOP:
-			physics.stop();
-			break;
-		default:
-			break;
-		}
-	}
-
 	@Override
 	public DynamicPhysicsComponent getPhysics() {
 		return physics;
+	}
+
+	@Override
+	public PlayerInputComponent getInput() {
+		return input;
 	}
 }

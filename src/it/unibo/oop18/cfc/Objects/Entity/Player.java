@@ -1,7 +1,8 @@
-package it.unibo.oop18.cfc.Entity;
+package it.unibo.oop18.cfc.Objects.Entity;
 
 import java.awt.Graphics2D;
 
+import it.unibo.oop18.cfc.Input.PlayerInputComponent;
 import it.unibo.oop18.cfc.Physics.Direction;
 import it.unibo.oop18.cfc.Physics.DynamicPhysicsComponent;
 
@@ -21,7 +22,12 @@ public interface Player {
 	
 	public void setTotalPoints(int i);
 	
-	public void move(Direction way);
-	
 	public DynamicPhysicsComponent getPhysics();
+	
+    /**
+     * Gets the player's input component.
+     *
+     * @return {@link PlayerInputComponent}
+     */
+    PlayerInputComponent getInput();
 }

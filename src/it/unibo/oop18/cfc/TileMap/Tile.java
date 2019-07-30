@@ -9,6 +9,8 @@ public class Tile {
 
     private final BufferedImage image;
     private final int type;
+    
+    public static final int SPRITE_SIZE = 64;
 
     // tile types
     // tile movement
