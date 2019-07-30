@@ -4,11 +4,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Optional;
 
-import it.unibo.oop18.cfc.Entity.Player;
 import it.unibo.oop18.cfc.GameState.GameState;
 import it.unibo.oop18.cfc.GameState.GameStates;
 import it.unibo.oop18.cfc.GameState.MenuState;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
+import it.unibo.oop18.cfc.Objects.Entity.Player;
 import it.unibo.oop18.cfc.Physics.Direction;
 import it.unibo.oop18.cfc.Util.JukeBox;
 
@@ -162,7 +162,7 @@ public class KeyInput implements KeyListener {
 
     private void moveEntity(final Optional<Direction> way) {
         if (way.isPresent()) {
-            this.player.move(way.get());
+            this.player.getInput().move(way.get());
         }
     }
 
