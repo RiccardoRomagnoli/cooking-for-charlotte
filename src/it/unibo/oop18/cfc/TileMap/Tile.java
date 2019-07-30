@@ -1,6 +1,7 @@
 package it.unibo.oop18.cfc.TileMap;
 
 import java.awt.image.BufferedImage;
+import java.util.Optional;
 
 /**
  * Tile class.
@@ -8,25 +9,8 @@ import java.awt.image.BufferedImage;
 public class Tile {
 
     private final BufferedImage image;
-    private final int type;
-    
+    private final Optional<TileType> type;
     public static final int SPRITE_SIZE = 64;
-
-    // tile types
-    // tile movement
-    public static final int NORMAL = 0;
-    public static final int BLOCKED = 1;
-    // tile food
-    public static final int SALAD = 5;
-    public static final int BREAD = 6;
-    public static final int TOMATO = 7;
-    public static final int MEAT = 8;
-    // tile action
-    public static final int DISH = 10;
-    public static final int WASHBASIN = 11;
-    public static final int COOKER = 12;
-    public static final int CHOPPINGBOARD = 13;
-    public static final int COUNTER = 14;
 
     /**
      * Constructor of the class.
@@ -34,9 +18,14 @@ public class Tile {
      * @param image The image of the tile
      * @param type  The type of the tile
      */
-    public Tile(final BufferedImage image, final int type) {
+    public Tile(final BufferedImage image, final TileType type) {
         this.image = image;
-        this.type = type;
+        this.type = Optional.ofNullable(type);
+    }
+
+    public Tile(final BufferedImage image) {
+        this.image = image;
+        this.type = Optional.empty();
     }
 
     /**
@@ -53,7 +42,7 @@ public class Tile {
      * 
      * @return type The type of the tile
      */
-    public int getType() {
+    public Optional<TileType> getType() {
         return type;
     }
 }

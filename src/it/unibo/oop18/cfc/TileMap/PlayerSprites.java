@@ -26,32 +26,32 @@ public class PlayerSprites {
      */
     public PlayerSprites(BufferedImage[][] EntitySprite) {
     	this.stop = new HashMap<>();
-    	stop.put(Direction.STOP, new Tile(EntitySprite[0][0], Tile.NORMAL));
-    	stop.put(Direction.DOWN, new Tile(EntitySprite[0][0], Tile.NORMAL));
-    	stop.put(Direction.LEFT, new Tile(EntitySprite[1][0], Tile.NORMAL));
-    	stop.put(Direction.RIGHT, new Tile(EntitySprite[2][0], Tile.NORMAL));
-    	stop.put(Direction.UP, new Tile(EntitySprite[3][0], Tile.NORMAL));
+    	stop.put(Direction.STOP, new Tile(EntitySprite[0][0]));
+    	stop.put(Direction.DOWN, new Tile(EntitySprite[0][0]));
+    	stop.put(Direction.LEFT, new Tile(EntitySprite[1][0]));
+    	stop.put(Direction.RIGHT, new Tile(EntitySprite[2][0]));
+    	stop.put(Direction.UP, new Tile(EntitySprite[3][0]));
 
         this.left = new ArrayList<>();
-        left.addAll(Arrays.asList(new Tile(EntitySprite[1][0], Tile.NORMAL),
-        						  new Tile(EntitySprite[1][1], Tile.NORMAL),
-        						  new Tile(EntitySprite[1][2], Tile.NORMAL),
-        						  new Tile(EntitySprite[1][3], Tile.NORMAL)));
+        left.addAll(Arrays.asList(new Tile(EntitySprite[1][0]),
+        						  new Tile(EntitySprite[1][1]),
+        						  new Tile(EntitySprite[1][2]),
+        						  new Tile(EntitySprite[1][3])));
         this.right = new ArrayList<>();
-        right.addAll(Arrays.asList(new Tile(EntitySprite[2][0], Tile.NORMAL),
-				  				   new Tile(EntitySprite[2][1], Tile.NORMAL),
-				  				   new Tile(EntitySprite[2][2], Tile.NORMAL),
-				  				   new Tile(EntitySprite[2][3], Tile.NORMAL)));
+        right.addAll(Arrays.asList(new Tile(EntitySprite[2][0]),
+				  				   new Tile(EntitySprite[2][1]),
+				  				   new Tile(EntitySprite[2][2]),
+				  				   new Tile(EntitySprite[2][3])));
         this.up = new ArrayList<>();
-        up.addAll(Arrays.asList(new Tile(EntitySprite[3][0], Tile.NORMAL),
-				  			    new Tile(EntitySprite[3][1], Tile.NORMAL),
-				  			    new Tile(EntitySprite[3][2], Tile.NORMAL),
-				  			    new Tile(EntitySprite[3][3], Tile.NORMAL)));
+        up.addAll(Arrays.asList(new Tile(EntitySprite[3][0]),
+				  			    new Tile(EntitySprite[3][1]),
+				  			    new Tile(EntitySprite[3][2]),
+				  			    new Tile(EntitySprite[3][3])));
         this.down = new ArrayList<>();
-        down.addAll(Arrays.asList(new Tile(EntitySprite[0][0], Tile.NORMAL),
-				  				  new Tile(EntitySprite[0][1], Tile.NORMAL),
-				  				  new Tile(EntitySprite[0][2], Tile.NORMAL),
-				  				  new Tile(EntitySprite[0][3], Tile.NORMAL)));
+        down.addAll(Arrays.asList(new Tile(EntitySprite[0][0]),
+				  				  new Tile(EntitySprite[0][1]),
+				  				  new Tile(EntitySprite[0][2]),
+				  				  new Tile(EntitySprite[0][3])));
     }
 
     /**

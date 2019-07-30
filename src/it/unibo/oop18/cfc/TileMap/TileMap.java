@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Optional;
 
 import javax.imageio.ImageIO;
 
@@ -63,13 +64,7 @@ public class TileMap {
             for (int row = 0; row < numTilesRows; row++) {
                 for (int col = 0; col < numTilesCols; col++) {
                     subimage = tileset.getSubimage(col * tileSize, row * tileSize, tileSize, tileSize);
-                    if (row == 0) {
-                        tiles[row][col] = new Tile(subimage, Tile.NORMAL);
-                    } else if (row == numTilesRows - 1) {
-                        tiles[row][col] = new Tile(subimage, Tile.BLOCKED);
-                    } else {
-                        tiles[row][col] = new Tile(subimage, col + row * numTilesRows);
-                    }
+                    tiles[row][col] = new Tile(subimage, TileType.getTileType(col + row * numTilesRows));
                 }
             }
         } catch (Exception e) {
@@ -147,11 +142,9 @@ public class TileMap {
      * @param col the col of the tile
      * @return the type of the tile at position row col
      */
-    public int getType(final int row, final int col) {
+    public TileType getType(final int row, final int col) {
         final int rc = map[row][col];
-        final int r = rc / numTilesCols;
-        final int c = rc % numTilesCols;
-        return tiles[r][c].getType();
+        return TileType.getTileType(rc);
     }
 
     /**
