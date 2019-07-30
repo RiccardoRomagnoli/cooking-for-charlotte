@@ -6,13 +6,7 @@ public interface DynamicPhysicsComponent {
 
 	void stop();
 
-	void moveDown();
-
-	void moveLeft();
-
-	void moveRight();
-
-	void moveUp();
+	void move(Direction dir);
 
 	void draw(Graphics2D g);
 

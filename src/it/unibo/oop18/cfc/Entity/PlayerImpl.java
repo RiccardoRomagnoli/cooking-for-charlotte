@@ -1,9 +1,3 @@
-// The only subclass the fully utilizes the
-// Entity superclass (no other class requires
-// movement in a tile based map).
-// Contains all the gameplay associated with
-// the Player.
-
 package it.unibo.oop18.cfc.Entity;
 
 import java.awt.Graphics2D;
@@ -100,25 +94,9 @@ public class PlayerImpl implements Player {
 	// Keyboard input. Moves the player.
 	@Override
 	public void move(Direction way) {
-		switch(way) {
-		case DOWN:
-			physics.moveDown();
-			break;
-		case LEFT:
-			physics.moveLeft();
-			break;
-		case RIGHT:
-			physics.moveRight();
-			break;
-		case UP:
-			physics.moveUp();
-			break;
-		case STOP:
+		if(way == Direction.STOP)
 			physics.stop();
-			break;
-		default:
-			break;
-		}
+		physics.move(way);
 	}
 
 	@Override

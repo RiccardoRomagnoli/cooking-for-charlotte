@@ -17,7 +17,7 @@ public class AnimationImpl implements Animation {
 		timesPlayed = 0;
 	}
 	
-	public void setFrames(BufferedImage[] frames) {
+	private void setFrames(BufferedImage[] frames) {
 		this.frames = frames;
 		currentFrame = 0;
 		count = 0;
@@ -26,7 +26,7 @@ public class AnimationImpl implements Animation {
 		numFrames = frames.length;
 	}
 	
-	public void setFrame(BufferedImage frame) {
+	private void setFrame(BufferedImage frame) {
 		this.frames = new BufferedImage[1];
 		this.frames[0] = frame;
 		currentFrame = 0;
@@ -36,7 +36,17 @@ public class AnimationImpl implements Animation {
 		numFrames = 0;
 	}
 	
-	public void setDelay(int i) {
+    /**
+     * @param i
+     * @param bi
+     * @param d
+     */
+    public void setAnimation(final Direction dir, final BufferedImage[] bi, final int delay) {
+        setFrames(bi);
+        setDelay(delay);
+    }
+	
+	private void setDelay(int i) {
 		delay = i;
 	}
 

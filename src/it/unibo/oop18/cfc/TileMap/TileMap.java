@@ -53,7 +53,6 @@ public class TileMap {
     public void loadTiles(final String s) {
 
         try {
-
             tileset = ImageIO.read(getClass().getResourceAsStream(s));
             numTilesCols = tileset.getWidth() / tileSize;
             numTilesRows = tileset.getHeight() / tileSize;
@@ -73,11 +72,9 @@ public class TileMap {
                     }
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     /**
@@ -88,7 +85,6 @@ public class TileMap {
     public void loadMap(final String s) {
 
         try {
-
             final InputStream in = getClass().getResourceAsStream(s);
             final BufferedReader br = new BufferedReader(new InputStreamReader(in));
 
@@ -106,11 +102,9 @@ public class TileMap {
                     map[row][col] = Integer.parseInt(tokens[col]);
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     /**
