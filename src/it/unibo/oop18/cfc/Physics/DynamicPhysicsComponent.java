@@ -2,10 +2,14 @@ package it.unibo.oop18.cfc.Physics;
 
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
+import java.util.Optional;
 import java.util.Set;
 
 import it.unibo.oop18.cfc.Objects.Items.Item;
 import it.unibo.oop18.cfc.TileMap.Tile;
+import it.unibo.oop18.cfc.TileMap.TileType;
+import it.unibo.oop18.cfc.Util.Pair;
+import it.unibo.oop18.cfc.Util.Position;
 import it.unibo.oop18.cfc.Util.Velocity;
 
 public interface DynamicPhysicsComponent {
@@ -54,5 +58,6 @@ public interface DynamicPhysicsComponent {
      */
     public abstract void checksCollisions(Set<Item> objects);
 
+    public TileType getNextTile();
 
 }

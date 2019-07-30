@@ -1,12 +1,14 @@
 package it.unibo.oop18.cfc.Objects.Entity;
 
 import java.awt.Graphics2D;
+import java.util.Optional;
 
 import it.unibo.oop18.cfc.Graphics.DynamicEntityGraphicsComponent;
 import it.unibo.oop18.cfc.Graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.Input.PlayerInputComponent;
 import it.unibo.oop18.cfc.Input.PlayerInputComponentImpl;
 import it.unibo.oop18.cfc.Manager.Content;
+import it.unibo.oop18.cfc.Objects.Items.Plate;
 import it.unibo.oop18.cfc.Physics.Direction;
 import it.unibo.oop18.cfc.Physics.DynamicPhysicsComponent;
 import it.unibo.oop18.cfc.Physics.DynamicPhysicsComponentImpl;
@@ -15,23 +17,27 @@ import it.unibo.oop18.cfc.TileMap.TileMap;
 import it.unibo.oop18.cfc.Util.Position;
 
 public class PlayerImpl extends AbstractEntity implements Player {
-	
+
     // gameplay
     private int points;
     private int totalPoints;
     private long ticks;
-    
-    //Physics, Input and Graphics
+
+    // Physics, Input and Graphics
     private final DynamicPhysicsComponent physics;
     private final PlayerInputComponent input;
     private final GraphicsComponent gfx;
 
+    //Plate and dishes
+    private Optional<Plate> plate;
+    
     /**
      * @param tm
      */
     public PlayerImpl(final Position position, final TileMap tileMap) {
-    	super(position, tileMap);
-    	points = 0;
+        super(position, tileMap);
+        points = 0;
+        plate = Optional.empty();
         this.physics = new DynamicPhysicsComponentImpl(tileMap, this);
         this.input = new PlayerInputComponentImpl(this);
         this.gfx = new DynamicEntityGraphicsComponent(this, new PlayerSprites(Content.PLAYER));
@@ -59,7 +65,7 @@ public class PlayerImpl extends AbstractEntity implements Player {
     }
 
     /**
-     *  @param i total point to reach
+     * @param i total point to reach
      */
     public void setTotalPoints(final int i) {
         totalPoints = i;
@@ -73,23 +79,14 @@ public class PlayerImpl extends AbstractEntity implements Player {
         return ticks;
     }
 
-    // Keyboard input.
-    // If Player has dish, can take food
-    /**
-     *
-     */
-    public void setAction() {
-
-    }
-
     /**
      *
      */
     public void update() {
-    	this.physics.move();
-    	//check collision with blocks in the map
-        //this.physics.checksCollisions(super.getTileMap());
-    	this.input.processInput();
+        this.physics.move();
+        // check collision with blocks in the map
+        // this.physics.checksCollisions(super.getTileMap());
+        this.input.processInput();
     }
 
     /**
@@ -99,18 +96,18 @@ public class PlayerImpl extends AbstractEntity implements Player {
         gfx.draw(g);
     }
 
-	@Override
-	public void doAction() {
-		
-	}
+    @Override
+    public void doAction() {
+        System.out.println(this.physics.getNextTile());
+    }
 
-	@Override
-	public DynamicPhysicsComponent getPhysics() {
-		return physics;
-	}
+    @Override
+    public DynamicPhysicsComponent getPhysics() {
+        return physics;
+    }
 
-	@Override
-	public PlayerInputComponent getInput() {
-		return input;
-	}
+    @Override
+    public PlayerInputComponent getInput() {
+        return input;
+    }
 }
