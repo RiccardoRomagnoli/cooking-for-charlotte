@@ -1,4 +1,4 @@
-package it.unibo.oop18.cfc.Entity;
+package it.unibo.oop18.cfc.Objects.Entity;
 
 public enum Food {
     TOMATO(4, 0),

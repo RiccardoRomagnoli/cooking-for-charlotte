@@ -1,4 +1,4 @@
-package it.unibo.oop18.cfc.Entity;
+package it.unibo.oop18.cfc.Objects.Entity;
 
 import java.awt.image.BufferedImage;
 
