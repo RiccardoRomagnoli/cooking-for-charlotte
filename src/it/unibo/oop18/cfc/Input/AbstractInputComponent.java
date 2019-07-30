@@ -68,6 +68,7 @@ public abstract class AbstractInputComponent implements InputComponent {
                 break;
         }
         this.setDirection(direction);
+
     }
 
     /**

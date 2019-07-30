@@ -3,7 +3,10 @@ package it.unibo.oop18.cfc.TileMap;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+
+import it.unibo.oop18.cfc.Physics.Direction;
 
 /**
  * Class that manages enemies and player {@link Sprite}.
@@ -12,23 +15,22 @@ public class PlayerSprites {
 
 	private static final int SPRITES_TO_MOVE = 4;
 	
-    private final Tile stopLeft;
-    private final Tile stopRight;
-    private final Tile stopUp;
-    private final Tile stopDown;
     private final List<Tile> left;
     private final List<Tile> right;
     private final List<Tile> down;
     private final List<Tile> up;
+    private final HashMap<Direction, Tile> stop;
 
     /**
      * Creates a {@code AbstractEntitySprites} that initializes all sprite lists for any movement.
      */
     public PlayerSprites(BufferedImage[][] EntitySprite) {
-    	this.stopDown = new Tile(EntitySprite[0][0], Tile.NORMAL);
-    	this.stopLeft = new Tile(EntitySprite[1][0], Tile.NORMAL);
-    	this.stopRight = new Tile(EntitySprite[2][0], Tile.NORMAL);
-    	this.stopUp = new Tile(EntitySprite[3][0], Tile.NORMAL);
+    	this.stop = new HashMap<>();
+    	stop.put(Direction.STOP, new Tile(EntitySprite[0][0], Tile.NORMAL));
+    	stop.put(Direction.DOWN, new Tile(EntitySprite[0][0], Tile.NORMAL));
+    	stop.put(Direction.LEFT, new Tile(EntitySprite[1][0], Tile.NORMAL));
+    	stop.put(Direction.RIGHT, new Tile(EntitySprite[2][0], Tile.NORMAL));
+    	stop.put(Direction.UP, new Tile(EntitySprite[3][0], Tile.NORMAL));
 
         this.left = new ArrayList<>();
         left.addAll(Arrays.asList(new Tile(EntitySprite[1][0], Tile.NORMAL),
@@ -53,36 +55,12 @@ public class PlayerSprites {
     }
 
     /**
-     * Gets the sprite for left stop animation.
+     * Gets the sprite for stop animation.
      *
      * @return list of {@link Sprite} to represent a still entity
      */
-    public Tile getStopLeftSprites() {
-        return this.stopLeft;
-    }
-    /**
-     * Gets the sprite for right stop animation.
-     *
-     * @return list of {@link Sprite} to represent a still entity
-     */
-    public Tile getStopRightSprites() {
-        return this.stopRight;
-    }
-    /**
-     * Gets the sprite for up stop animation.
-     *
-     * @return list of {@link Sprite} to represent a still entity
-     */
-    public Tile getStopUpSprites() {
-        return this.stopUp;
-    }
-    /**
-     * Gets the sprite for down stop animation.
-     *
-     * @return list of {@link Sprite} to represent a still entity
-     */
-    public Tile getStopDownSprites() {
-        return this.stopDown;
+    public Tile getStopSprites(Direction dir) {
+        return this.stop.get(dir);
     }
 
     /**

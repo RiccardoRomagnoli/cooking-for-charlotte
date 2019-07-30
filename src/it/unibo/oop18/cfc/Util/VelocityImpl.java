@@ -10,6 +10,7 @@ public class VelocityImpl implements Velocity {
     private double spaceX;
     private double spaceY;
     private Direction direction;
+    private Direction oldDirection;
 
     /**
      * Creates a new {@link Velocity}.
@@ -18,6 +19,7 @@ public class VelocityImpl implements Velocity {
         this.spaceX = 0;
         this.spaceY = 0;
         this.direction = Direction.STOP;
+        this.oldDirection = Direction.STOP;
     }
 
     /**
@@ -65,7 +67,13 @@ public class VelocityImpl implements Velocity {
      */
     @Override
     public void setDirection(final Direction direction) {
+    	this.oldDirection = this.direction;
         this.direction = direction;
     }
+
+	@Override
+	public Direction getOldDirection() {
+		return oldDirection;
+	}
 
 }

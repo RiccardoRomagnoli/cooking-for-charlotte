@@ -43,7 +43,9 @@ public class DynamicEntityGraphicsComponent implements GraphicsComponent {
     @Override
     public void draw(final Graphics2D g) {
         this.nextFrame();
-        switch (this.entity.getPhysics().getVelocity().getDirection()) {
+        Direction dir = this.entity.getPhysics().getVelocity().getDirection();
+        Direction oldDir = this.entity.getPhysics().getVelocity().getOldDirection();
+        switch (dir) {
         case UP:
             g.drawImage(this.sprites.getUpSprites().get(this.frame).getImage(),
                         AffineTransform.getTranslateInstance(this.entity.getPosition().getX(),
@@ -65,8 +67,7 @@ public class DynamicEntityGraphicsComponent implements GraphicsComponent {
                                                              this.entity.getPosition().getY()), null);
             break;
         default:
-        	//to do stop -> last direction
-            g.drawImage(this.sprites.getDownSprites().get(this.frame).getImage(),
+            g.drawImage(this.sprites.getStopSprites(oldDir).getImage(),
                     AffineTransform.getTranslateInstance(this.entity.getPosition().getX(),
                                                          this.entity.getPosition().getY()), null);
             break;
