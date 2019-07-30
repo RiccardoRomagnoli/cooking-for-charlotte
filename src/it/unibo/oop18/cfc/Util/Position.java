@@ -106,4 +106,9 @@ public class Position {
                 Math.round(position.getY() / dimSprite) * dimSprite);
     }
 
+	@Override
+	public String toString() {
+		return "Position [x=" + x + ", y=" + y + "]";
+	}
+
 }

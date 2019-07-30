@@ -38,7 +38,7 @@ public class PlayState extends GameState {
     public PlayState(GameStateManager gsm) {
         super(gsm, GameStates.PLAY);
         loadMap();
-        player = new PlayerImpl(new Position(3*Tile.SPRITE_SIZE, 7*Tile.SPRITE_SIZE), tileMap);
+        player = new PlayerImpl(new Position(7*Tile.SPRITE_SIZE, 5*Tile.SPRITE_SIZE), tileMap);
     }
 
 

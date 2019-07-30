@@ -143,7 +143,7 @@ public class KeyInput implements KeyListener {
     @Override
     public void keyReleased(final KeyEvent e) {
         if (e.getKeyCode() != KeyEvent.VK_SPACE) {
-            //this.player.move(Direction.STOP);
+            this.player.getInput().stop();
         }
     }
 

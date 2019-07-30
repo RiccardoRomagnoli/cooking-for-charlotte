@@ -66,9 +66,9 @@ public class DynamicEntityGraphicsComponent implements GraphicsComponent {
             break;
         default:
         	//to do stop -> last direction
-//            g.drawImage(this.sprites.getStopSprites().get(this.frame).getImage(),
-//                    AffineTransform.getTranslateInstance(this.entity.getPosition().getX(),
-//                                                         this.entity.getPosition().getY()), null);
+            g.drawImage(this.sprites.getDownSprites().get(this.frame).getImage(),
+                    AffineTransform.getTranslateInstance(this.entity.getPosition().getX(),
+                                                         this.entity.getPosition().getY()), null);
             break;
         }
     }
@@ -100,9 +100,9 @@ public class DynamicEntityGraphicsComponent implements GraphicsComponent {
     }
 
     private void nextStopFrame() {
-        this.updateFrame += 1;
-        this.frame = this.updateFrame < STOP_FRAME_DELAY ? 0 : 1;
-        this.resetUpdateFrameCounter();
+//        this.updateFrame += 1;
+//        this.frame = this.updateFrame < STOP_FRAME_DELAY ? 0 : 1;
+//        this.resetUpdateFrameCounter();
     }
 
     private void resetUpdateFrameCounter() {

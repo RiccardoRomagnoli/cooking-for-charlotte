@@ -11,7 +11,7 @@ import it.unibo.oop18.cfc.Util.Position;
  */
 public class PlayerInputComponentImpl extends AbstractInputComponent implements PlayerInputComponent {
 
-    private static final int PIXEL_PER_SECOND = 4 * Tile.SPRITE_SIZE;
+    private static final int PIXEL_PER_SECOND = 4;
 
     private final PlayerImpl player;
 

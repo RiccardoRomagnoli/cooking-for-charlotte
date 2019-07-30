@@ -87,7 +87,9 @@ public class PlayerImpl extends AbstractEntity implements Player {
      */
     public void update() {
     	this.physics.move();
+    	//check collision with blocks in the map
         //this.physics.checksCollisions(super.getTileMap());
+    	this.input.processInput();
     }
 
     /**
@@ -105,11 +107,6 @@ public class PlayerImpl extends AbstractEntity implements Player {
 	@Override
 	public DynamicPhysicsComponent getPhysics() {
 		return physics;
-	}
-
-	@Override
-	public void processInput() {
-		input.processInput();
 	}
 
 	@Override

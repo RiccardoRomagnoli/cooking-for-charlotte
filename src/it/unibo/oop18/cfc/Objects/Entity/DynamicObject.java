@@ -14,7 +14,7 @@ public interface DynamicObject extends GameObject{
     /**
      * Process input entity.
      */
-    void processInput();
+    void update();
 
     /**
      * Gets the entity's physics.

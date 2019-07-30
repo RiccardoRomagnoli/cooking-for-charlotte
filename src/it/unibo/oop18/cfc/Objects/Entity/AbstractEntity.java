@@ -14,7 +14,6 @@ import it.unibo.oop18.cfc.Util.Position;
 public abstract class AbstractEntity extends AbstractGameObject implements DynamicObject {
 
     private final TileMap world;
-    private final Position position;
 
     /**
      * Creates an {@code AbstractEntity}.
@@ -26,7 +25,6 @@ public abstract class AbstractEntity extends AbstractGameObject implements Dynam
     public AbstractEntity(final Position position, final TileMap world) {
     	super(position);
         this.world = world;
-        this.position = position;
     }
 
     /**
