@@ -14,9 +14,9 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
-import it.unibo.oop18.cfc.Entity.Player;
 import it.unibo.oop18.cfc.Input.KeyInput;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
+import it.unibo.oop18.cfc.Objects.Entity.Player;
 
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements Runnable {
@@ -33,7 +33,7 @@ public class GamePanel extends JPanel implements Runnable {
 	// game loop stuff
 	private Thread thread;
 	private boolean running;
-	private final int FPS = 30;
+	public static final int FPS = 30;
 	private final int TARGET_TIME = 1000 / FPS;
 	
 	// drawing stuff
