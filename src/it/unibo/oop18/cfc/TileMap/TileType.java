@@ -8,22 +8,22 @@ public enum TileType {
     // tile action
     DISH(10, 1), WASHBASIN(11, 1), COOKER(12, 1), CHOPPINGBOARD(13, 1), COUNTER(14, 1),
     //tile floor
-    LEFTPARQUET(1,0), RIGHTPARQUET(2,0);
+    LEFTPARQUET(1,2), RIGHTPARQUET(2,2);
 
     private int pos;
-    private int space;
+    private int type;
 
-    private TileType(final int pos, final int space) {
+    private TileType(final int pos, final int type) {
         this.pos = pos;
-        this.space = space;
+        this.type = type;
     }
 
     public int getPos() {
         return pos;
     }
 
-    public int getSpace() {
-        return space;
+    public int getType() {
+        return type;
     }
 
     public static TileType getTileType(int pos) {
