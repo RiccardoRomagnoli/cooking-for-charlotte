@@ -3,7 +3,9 @@ package it.unibo.oop18.cfc.Input;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import it.unibo.oop18.cfc.GameState.GameState;
 import it.unibo.oop18.cfc.GameState.GameStates;
@@ -25,7 +27,7 @@ public class KeyInput implements KeyListener {
     private int nKeyPressing = 0;
     
 
-    ArrayList<Integer> keys;
+    HashMap<Integer, Boolean> keys;
 
     /**
      * Creates {@code KeyInput}.
@@ -36,12 +38,12 @@ public class KeyInput implements KeyListener {
     public KeyInput(final GameStateManager gsm) {
         this.gsm = gsm;
         this.player = gsm.getPlayState().getPlayer();
-        keys= new ArrayList<>();
+        keys= new HashMap<>();
         
-        keys.add(KeyEvent.VK_LEFT);
-        keys.add(KeyEvent.VK_RIGHT);
-        keys.add(KeyEvent.VK_UP);
-        keys.add(KeyEvent.VK_DOWN);
+        keys.put(KeyEvent.VK_LEFT, false);
+        keys.put(KeyEvent.VK_RIGHT, false);
+        keys.put(KeyEvent.VK_UP, false);
+        keys.put(KeyEvent.VK_DOWN, false);
     }
 
     /**
@@ -97,8 +99,11 @@ public class KeyInput implements KeyListener {
             JukeBox.stop("music1");
             this.launchPause();
         default:
-            way = Optional.ofNullable(Direction.STOP);
+            way = Optional.empty();
             break;
+        }
+        if (keys.keySet().contains(e.getKeyCode())) {
+        	keys.put(e.getKeyCode(), true);
         }
         this.moveEntity(way);
     }
@@ -154,10 +159,7 @@ public class KeyInput implements KeyListener {
      */
     @Override
     public void keyReleased(final KeyEvent e) {
-        if (keys.contains(e.getKeyCode())) {
-        	--nKeyPressing;
-        }
-    	this.player.getInput().stop();
+    	handleStopPlayer(e);
     }
 
     @Override
@@ -177,6 +179,16 @@ public class KeyInput implements KeyListener {
     private void moveEntity(final Optional<Direction> way) {
         if (way.isPresent()) {
             this.player.getInput().move(way.get());
+        }
+    }
+    
+    private void handleStopPlayer(final KeyEvent e) {
+        if (keys.keySet().contains(e.getKeyCode())) {
+        	keys.put(e.getKeyCode(), false);
+        }
+        if(keys.values().stream().filter(k -> k==true).count() == 0 && 
+           keys.keySet().contains(e.getKeyCode())) {
+        	this.player.getInput().stop();
         }
     }
 
