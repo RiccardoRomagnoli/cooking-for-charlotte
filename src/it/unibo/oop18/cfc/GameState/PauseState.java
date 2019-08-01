@@ -8,24 +8,44 @@ import java.awt.Graphics2D;
 import it.unibo.oop18.cfc.Manager.Content;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
 
+/**
+ * Managing the pause screen. Display several info during the pause
+ */
 public class PauseState extends GameState {
-	
-	public PauseState(GameStateManager gsm) {
-		super(gsm, GameStates.PAUSE);
-	}
-	
-	public void init() {}
-	
-	public void update() {}
-	
-	public void draw(Graphics2D g) {
 
-		Content.drawString(g, "paused", 400, 200);
+    /**
+     * Class constructor.
+     * @param gsm
+     */
+    public PauseState(final GameStateManager gsm) {
+        super(gsm, GameStates.PAUSE);
+    }
 
-		Content.drawString(g, "arrow keys : move", 120, 270);
+    /**
+     * Init class.
+     */
+    public void init() {
+    }
 
-		Content.drawString(g, "space : action", 200, 340);
+    /**
+     * Update class. Nothing has to be done until it is on pause
+     */
+    public void update() {
+    }
 
-		Content.drawString(g, "F1: return to menu", 120, 410);
-	}
+    /**
+     * Draw elements on the pause screen.
+     * 
+     * @param g basic graphics
+     */
+    public void draw(final Graphics2D g) {
+
+        Content.drawString(g, "paused", 400, 200);
+
+        Content.drawString(g, "arrow keys : move", 120, 270);
+
+        Content.drawString(g, "space : action", 200, 340);
+
+        Content.drawString(g, "F1: return to menu", 120, 410);
+    }
 }
