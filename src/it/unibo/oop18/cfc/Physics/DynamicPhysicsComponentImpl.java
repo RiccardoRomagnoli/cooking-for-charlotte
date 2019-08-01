@@ -4,7 +4,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.Optional;
 import java.util.Set;
 
-import javax.xml.bind.ParseConversionEvent;
+//import javax.xml.bind.ParseConversionEvent;
 
 import it.unibo.oop18.cfc.Main.GamePanel;
 import it.unibo.oop18.cfc.Objects.Entity.DynamicObject;
