@@ -5,76 +5,108 @@ package it.unibo.oop18.cfc.GameState;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import it.unibo.oop18.cfc.Main.GamePanel;
 import it.unibo.oop18.cfc.Manager.Content;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
 import it.unibo.oop18.cfc.Util.JukeBox;
 
+/**
+ * Menu manager class. Provide methods to manage the selection of options and
+ * the printing of the options
+ */
 public class MenuState extends GameState {
-	
-	private BufferedImage bg;
-	private BufferedImage food;
-	
-	private int currentOption = 0;
-	private String[] options = {
-		"START",
-		"OPTIONS",
-		"QUIT"
-	};
-	
-	public MenuState(GameStateManager gsm) {
-		super(gsm, GameStates.MENU);
-	}
-	
-	public void init() {
-		bg = Content.MENUBG[0][0];
-		food = Content.FOOD[6][2];
-		JukeBox.load("/SFX/collect.wav", "collect");
-		JukeBox.load("/SFX/menuoption.wav", "menuoption");
-	}
-	
-	public void update() {
-		//handleInput();
-	}
-	
-	public void draw(Graphics2D g) {
-		
-		g.drawImage(bg, 0, 0, null);
-		
-		Content.drawString(g, options[0], 350, 350);
-		Content.drawString(g, options[1], 350, 410);
-		Content.drawString(g, options[2], 350, 470);
-		
-		if(currentOption == 0) g.drawImage(food, 280, 350, null);
-		else if(currentOption == 1) g.drawImage(food, 280, 410, null);
-		else if(currentOption == 2) g.drawImage(food, 280, 470, null);
-	}
-	
-	private void selectOption() {
-		if(currentOption == 0) {
-			gsm.newGame();
-		}
-		if(currentOption == 2) {
-			System.exit(0);
-		}
-	}
-	
-	public void goUp() {
-		if(currentOption > 0) {
-			JukeBox.play("menuoption");
-			currentOption--;
-		}
-	}
-	
-	public void goDown() {
-		if(currentOption < options.length - 1) {
-			JukeBox.play("menuoption");
-			currentOption++;
-		}
-	}
-	
-	public void select() {
-		JukeBox.play("collect");
-		selectOption();
-	}
-	
+
+    private BufferedImage bg;
+    private BufferedImage food;
+    //private final int height = GamePanel.HEIGHT;
+    private final int stringPos = 350;
+    private final int imagePos = 280;
+    private int currentOption = 0;
+    private String[] options = { "START", "OPTIONS", "INFO", "QUIT" };
+
+    private int menuOptions = options.length;
+
+    private int[] dim = { 300, 360, 420, 480 };
+
+    /**
+     * Menu state init.
+     * @param gsm game state manager
+     */
+    public MenuState(final GameStateManager gsm) {
+        super(gsm, GameStates.MENU);
+    }
+
+    /**
+     * Initialize the menu screen and load the sounds.
+     */
+    public void init() {
+        bg = Content.MENUBG[0][0];
+        food = Content.FOOD[6][2];
+        JukeBox.load("/SFX/collect.wav", "collect");
+        JukeBox.load("/SFX/menuoption.wav", "menuoption");
+    }
+
+    /**
+     * 
+     */
+    public void update() {
+        // handleInput();
+    }
+
+    /**
+     * Print the main menu on screen.
+     * 
+     * @param g is the image to be printed
+     */
+    public void draw(final Graphics2D g) {
+
+        g.drawImage(bg, 0, 0, null);
+
+        for (int i = 0; i < menuOptions; i++) {
+            Content.drawString(g, options[i], stringPos, dim[i]);
+        }
+        g.drawImage(food, imagePos, dim[currentOption], null);
+
+    }
+
+    /**
+     * Action to be performed when a menu entry is pressed.
+     */
+    private void selectOption() {
+        if (currentOption == 0) {
+            gsm.newGame();
+        }
+        if (currentOption == 3) {
+            System.exit(0);
+        }
+    }
+
+    /**
+     * Up botton pressed.
+     */
+    public void goUp() {
+        if (currentOption > 0) {
+            JukeBox.play("menuoption");
+            currentOption--;
+        }
+    }
+
+    /**
+     * Down button pressed.
+     */
+    public void goDown() {
+        if (currentOption < options.length - 1) {
+            JukeBox.play("menuoption");
+            currentOption++;
+        }
+    }
+
+    /**
+     * Enter button pressed.
+     */
+    public void select() {
+        JukeBox.play("collect");
+        selectOption();
+    }
+
 }
