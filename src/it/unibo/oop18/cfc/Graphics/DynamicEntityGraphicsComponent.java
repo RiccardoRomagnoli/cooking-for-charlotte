@@ -3,7 +3,7 @@ package it.unibo.oop18.cfc.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
-import it.unibo.oop18.cfc.Main.GamePanel;
+import it.unibo.oop18.cfc.Main.GameEngine;
 import it.unibo.oop18.cfc.Objects.Entity.AbstractEntity;
 import it.unibo.oop18.cfc.Physics.Direction;
 import it.unibo.oop18.cfc.TileMap.PlayerSprites;
@@ -14,8 +14,8 @@ import it.unibo.oop18.cfc.TileMap.PlayerSprites;
 public class DynamicEntityGraphicsComponent implements GraphicsComponent {
 
     private static final int DIVISION_BY_ZERO_PROTECTION = 1;
-    private static final int MOVE_FRAME_DELAY = Math.round(GamePanel.FPS / 15) + DIVISION_BY_ZERO_PROTECTION;
-    private static final int STOP_FRAME_DELAY = Math.round(GamePanel.FPS / 2) + DIVISION_BY_ZERO_PROTECTION;
+    private static final int MOVE_FRAME_DELAY = Math.round(GameEngine.FPS / 15) + DIVISION_BY_ZERO_PROTECTION;
+    private static final int STOP_FRAME_DELAY = Math.round(GameEngine.FPS / 2) + DIVISION_BY_ZERO_PROTECTION;
     private static final int COUNTER_FRAME_LIMITER = STOP_FRAME_DELAY * 2;
 
     private final AbstractEntity entity;
