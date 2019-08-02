@@ -21,8 +21,8 @@ public class WorldInitializerImpl implements WorldInitializer {
     private final GameObjectFactory factory;
     private TileMapImpl tilemap;
 
-    public WorldInitializerImpl(final String folder) {
-        this.factory = new GameObjectFactoryImpl(folder);
+    public WorldInitializerImpl() {
+        this.factory = new GameObjectFactoryImpl();
         this.tilemap = new TileMapImpl("testmap1.map");
     }
 
