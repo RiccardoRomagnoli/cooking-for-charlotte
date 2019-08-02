@@ -2,7 +2,8 @@ package it.unibo.oop18.cfc.Objects;
 
 import java.awt.geom.Rectangle2D;
 
-import it.unibo.oop18.cfc.TileMap.Tile;
+import it.unibo.oop18.cfc.Tile.Tile;
+import it.unibo.oop18.cfc.Tile.TileSheet;
 import it.unibo.oop18.cfc.Util.Position;
 
 /**
@@ -33,8 +34,8 @@ public abstract class AbstractGameObject implements GameObject {
      * {@inheritDoc}
      */
     public Rectangle2D getBounds() {
-        return new Rectangle2D.Double(this.getPosition().getX(), this.getPosition().getY(), Tile.SPRITE_SIZE,
-                Tile.SPRITE_SIZE);
+        return new Rectangle2D.Double(this.getPosition().getX(), this.getPosition().getY(), TileSheet.TILE_SIZE_IN_GAME,
+                TileSheet.TILE_SIZE_IN_GAME);
     }
 
 }
