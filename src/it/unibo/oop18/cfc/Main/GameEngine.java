@@ -8,16 +8,10 @@ package it.unibo.oop18.cfc.Main;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-
 import javax.swing.JPanel;
-
 import it.unibo.oop18.cfc.Input.KeyInput;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
-import it.unibo.oop18.cfc.Objects.Entity.Player;
-import it.unibo.oop18.cfc.Tile.Tile;
 import it.unibo.oop18.cfc.Tile.TileSheet;
 
 @SuppressWarnings("serial")
