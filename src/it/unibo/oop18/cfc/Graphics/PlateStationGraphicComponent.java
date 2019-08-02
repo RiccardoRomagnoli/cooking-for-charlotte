@@ -4,13 +4,13 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
 import it.unibo.oop18.cfc.Objects.GameObject;
-import it.unibo.oop18.cfc.TileMap.Tile;
+import it.unibo.oop18.cfc.Tile.Tile;
 
 
 /**
  * This class represents still object's graphic component and models {@link GraphicsComponent}.
  */
-public class StationObjectGraphicComponent implements GraphicsComponent {
+public class PlateStationGraphicComponent implements GraphicsComponent {
 
     private final Tile tile;
     private final GameObject object;
@@ -21,7 +21,7 @@ public class StationObjectGraphicComponent implements GraphicsComponent {
      * @param sprite block's sprite
      * @param object reference
      */
-    public StationObjectGraphicComponent(final GameObject object, final Tile tile) {
+    public PlateStationGraphicComponent(final GameObject object, final Tile tile) {
         this.tile = tile;
         this.object = object;
     }
