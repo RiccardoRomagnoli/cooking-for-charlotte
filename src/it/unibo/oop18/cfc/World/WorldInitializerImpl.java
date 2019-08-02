@@ -23,7 +23,7 @@ public class WorldInitializerImpl implements WorldInitializer {
 
     public WorldInitializerImpl(final String folder) {
         this.factory = new GameObjectFactoryImpl(folder);
-        this.tilemap = new TileMapImpl(64);
+        this.tilemap = new TileMapImpl("testmap1.map");
     }
 
     @Override
