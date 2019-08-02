@@ -6,7 +6,7 @@ import java.util.Optional;
 import it.unibo.oop18.cfc.Graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.Graphics.StationObjectGraphicComponent;
 import it.unibo.oop18.cfc.Objects.Items.DishImpl;
-import it.unibo.oop18.cfc.TileMap.Tile;
+import it.unibo.oop18.cfc.Tile.Tile;
 import it.unibo.oop18.cfc.Util.GameTimer;
 import it.unibo.oop18.cfc.Util.Position;
 

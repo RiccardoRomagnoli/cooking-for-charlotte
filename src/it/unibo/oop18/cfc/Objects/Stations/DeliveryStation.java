@@ -4,7 +4,7 @@ import java.awt.Graphics2D;
 
 import it.unibo.oop18.cfc.Graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.Graphics.StationObjectGraphicComponent;
-import it.unibo.oop18.cfc.TileMap.Tile;
+import it.unibo.oop18.cfc.Tile.Tile;
 import it.unibo.oop18.cfc.Util.Position;
 
 public class DeliveryStation extends AbstractStationObject{

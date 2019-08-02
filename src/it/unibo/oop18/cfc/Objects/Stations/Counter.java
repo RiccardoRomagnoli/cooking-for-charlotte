@@ -6,7 +6,7 @@ import java.util.Optional;
 import it.unibo.oop18.cfc.Graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.Graphics.StationObjectGraphicComponent;
 import it.unibo.oop18.cfc.Objects.Items.Item;
-import it.unibo.oop18.cfc.TileMap.Tile;
+import it.unibo.oop18.cfc.Tile.Tile;
 import it.unibo.oop18.cfc.Util.Position;
 
 public class Counter extends AbstractStationObject {

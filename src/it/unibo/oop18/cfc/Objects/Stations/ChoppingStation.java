@@ -6,11 +6,11 @@ import java.util.Optional;
 import it.unibo.oop18.cfc.Graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.Graphics.StationObjectGraphicComponent;
 import it.unibo.oop18.cfc.Objects.Items.DishImpl;
-import it.unibo.oop18.cfc.TileMap.Tile;
+import it.unibo.oop18.cfc.Tile.Tile;
 import it.unibo.oop18.cfc.Util.GameTimer;
 import it.unibo.oop18.cfc.Util.Position;
 
-public class ChoppingBoard extends AbstractStationObject {
+public class ChoppingStation extends AbstractStationObject {
 
     private final GraphicsComponent graphicComponent;
     private GameTimer timer;
@@ -22,7 +22,7 @@ public class ChoppingBoard extends AbstractStationObject {
      * @param position block's position
      * @param tile   block's sprite
      */
-    public ChoppingBoard(final Position position, final Tile tile) {
+    public ChoppingStation(final Position position, final Tile tile) {
         super(position);
         this.food = Optional.empty();
         timer = new GameTimer();
