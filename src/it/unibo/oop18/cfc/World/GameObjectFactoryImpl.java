@@ -16,14 +16,14 @@ import it.unibo.oop18.cfc.Util.Position;
  */
 public class GameObjectFactoryImpl implements GameObjectFactory {
 
-    //private SpriteManager sm;
+    //private TileManager tm;
     private TileManager tm;
     /**
      * Creates a {@code GameObjectFactoryImpl}.
-     * 
+     * @param tm tilemanager
      */
-    public GameObjectFactoryImpl() {
-
+    public GameObjectFactoryImpl(final TileManager tm) {
+        this.tm = tm;
     }
 
     /**
@@ -35,42 +35,42 @@ public class GameObjectFactoryImpl implements GameObjectFactory {
 //    }
 
     @Override
-    public ChoppingStation createChoppingBoard(Position position) {
+    public ChoppingStation createChoppingBoard(final Position position) {
         return new ChoppingStation(new Position(position), this.tm.getChoppingStationTile());
     }
 
     @Override
-    public Cooker createCooker(Position position) {
+    public Cooker createCooker(final Position position) {
         return new Cooker(new Position(position), this.tm.getCookerTile());
     }
 
     @Override
-    public Counter createCounter(Position position) {
+    public Counter createCounter(final Position position) {
         return new Counter(new Position(position), this.tm.getCounterTile());
     }
 
     @Override
-    public DeliveryStation createDeliveryStation(Position position) {
+    public DeliveryStation createDeliveryStation(final Position position) {
         return new DeliveryStation(new Position(position), this.tm.getDeliveryStationTile());
     }
 
     @Override
-    public FoodStation createFoodStation(Position position) {
+    public FoodStation createFoodStation(final Position position) {
         return new FoodStation(new Position(position), this.tm.getFoodStationTile());
     }
 
     @Override
-    public Trashcan createTrashcan(Position position) {
+    public Trashcan createTrashcan(final Position position) {
         return new Trashcan(new Position(position), this.tm.getTrashcanTile());
     }
 
     @Override
-    public Washbasin createWashbasin(Position position) {
+    public Washbasin createWashbasin(final Position position) {
         return new Washbasin(new Position(position), this.tm.getWashbasinTile());
     }
 
     @Override
-    public PlateStation createPlateStation(Position position) {
+    public PlateStation createPlateStation(final Position position) {
         return new PlateStation(new Position(position), this.tm.getPlateStationTile());
     }
 

@@ -1,13 +1,14 @@
 package it.unibo.oop18.cfc.World;
 
 import java.awt.Graphics2D;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-
+import it.unibo.oop18.cfc.Manager.TileManager;
 import it.unibo.oop18.cfc.Objects.GameObject;
 import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
 import it.unibo.oop18.cfc.Objects.Stations.ChoppingStation;
@@ -20,6 +21,7 @@ import it.unibo.oop18.cfc.Objects.Stations.Trashcan;
 import it.unibo.oop18.cfc.Objects.Stations.Washbasin;
 import it.unibo.oop18.cfc.Tile.TileSheet;
 import it.unibo.oop18.cfc.Util.GameTimer;
+import it.unibo.oop18.cfc.Util.Position;
 
 /**
  * This class manages the whole game world.
@@ -43,6 +45,10 @@ public class WorldImpl implements World {
      */
     public static final int LOWER_BOUND_IN_PIXEL = 0 + TileSheet.TILE_SIZE_IN_GAME;
 
+    public static final String MAPPATH = "/Maps/testmap1.map";
+
+    public static final String TILEPATH = "/Tilesets/tilesheet.png";
+
     private final Set<ChoppingStation> choppingStations;
     private final Set<Cooker> cookers;
     private final Set<Counter> counters;
@@ -58,9 +64,10 @@ public class WorldImpl implements World {
 
     /**
      * Creates a {@code WorldImpl}.
+     * @throws IOException 
      *
      */
-    public WorldImpl() {
+    public WorldImpl() throws IOException {
         this.choppingStations = new HashSet<>();
         this.counters = new HashSet<>();
         this.cookers = new HashSet<>();
@@ -69,7 +76,8 @@ public class WorldImpl implements World {
         this.plateStations = new HashSet<>();
         this.trashcans = new HashSet<>();
         this.washbasins = new HashSet<>();
-        this.createLevel();
+        this.createLevel(new TileManager(TILEPATH), MAPPATH);
+        this.player = new PlayerImpl(new Position(64*7, 64*5), this);
         this.timer = new GameTimer();
     }
 
@@ -87,7 +95,7 @@ public class WorldImpl implements World {
         allGameObjects.addAll(this.plateStations);
         allGameObjects.addAll(this.trashcans);
         allGameObjects.addAll(this.washbasins);
-        allGameObjects.add(this.player);
+        //allGameObjects.add(this.player);
         return Collections.unmodifiableList(allGameObjects);
     }
 
@@ -107,8 +115,6 @@ public class WorldImpl implements World {
         return this.timer;
     }
 
-    
-    
     /**
      * @return the choppingStations
      */
@@ -179,7 +185,7 @@ public class WorldImpl implements World {
     public void update() {
         // music update
         //this.enemies.forEach(e -> e.update(elapsedTime));
-        this.player.update();
+        //this.player.update();
         //this.bombs.forEach(e -> e.update(elapsedTime));
         //this.flames.forEach(e -> e.update(elapsedTime));
     }
@@ -200,8 +206,8 @@ public class WorldImpl implements World {
         // this.player.processInput();
     }
 
-    private void createLevel() {
-        final WorldInitializer initializer = new WorldInitializerImpl();
+    private void createLevel(final TileManager tm, final String mapPath) {
+        final WorldInitializer initializer = new WorldInitializerImpl(tm, mapPath);
         this.choppingStations.addAll(initializer.initializeChoppingBoard());
         this.cookers.addAll(initializer.initializeCooker());
         this.counters.addAll(initializer.initializeCounter());

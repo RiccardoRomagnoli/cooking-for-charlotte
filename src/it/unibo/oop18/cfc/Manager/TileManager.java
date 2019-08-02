@@ -32,11 +32,11 @@ public class TileManager {
     /**
      * Creates a {@code SpritesManager} to manage any {@link Sprite} in game.
      *
-     * @param folder theme
+     * @param path path
      * @throws IOException : problem during input/output
      */
-    public TileManager(final String folder) throws IOException {
-        final TileSheet sheet = new TileSheet(folder + "/tileSheet.png");
+    public TileManager(final String path) throws IOException {
+        final TileSheet sheet = new TileSheet(path);
         this.choppingStationTile = new ChoppingStationTile(sheet);
         this.cookerTile = new CookerTile(sheet);
         this.counterTile = new CounterTile(sheet);

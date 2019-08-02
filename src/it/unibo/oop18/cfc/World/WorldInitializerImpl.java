@@ -3,6 +3,7 @@ package it.unibo.oop18.cfc.World;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import it.unibo.oop18.cfc.Manager.TileManager;
 import it.unibo.oop18.cfc.Objects.Stations.ChoppingStation;
 import it.unibo.oop18.cfc.Objects.Stations.Cooker;
 import it.unibo.oop18.cfc.Objects.Stations.Counter;
@@ -21,9 +22,9 @@ public class WorldInitializerImpl implements WorldInitializer {
     private final GameObjectFactory factory;
     private TileMapImpl tilemap;
 
-    public WorldInitializerImpl() {
-        this.factory = new GameObjectFactoryImpl();
-        this.tilemap = new TileMapImpl("testmap1.map");
+    public WorldInitializerImpl(TileManager tm, String mapPath) {
+        this.factory = new GameObjectFactoryImpl(tm);
+        this.tilemap = new TileMapImpl(mapPath);
     }
 
     @Override
@@ -93,8 +94,6 @@ public class WorldInitializerImpl implements WorldInitializer {
                 .map(p -> this.factory.createPlateStation(p))
                 .collect(Collectors.toSet());
     }
-    
-    
 
 //    @Override
 //    public PlayerImpl initializePlayer(World world) {
