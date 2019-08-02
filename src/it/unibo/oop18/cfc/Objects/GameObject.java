@@ -24,4 +24,10 @@ public interface GameObject {
      * @return body's rectangle
      */
     Rectangle2D getBounds();
+    /**
+     * Renders object's sprite.
+     * 
+     * @param g component that draw the sprite
+     */
+    void draw(Graphics2D g);
 }

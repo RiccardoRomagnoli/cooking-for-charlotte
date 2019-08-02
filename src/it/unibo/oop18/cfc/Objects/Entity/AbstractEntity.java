@@ -22,7 +22,7 @@ public abstract class AbstractEntity extends AbstractGameObject implements Dynam
      * @param world reference 
      */
     public AbstractEntity(final Position position, final World world) {
-    	super(position);
+        super(position);
         this.world = world;
     }
 
