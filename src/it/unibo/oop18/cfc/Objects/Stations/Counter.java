@@ -3,10 +3,10 @@ package it.unibo.oop18.cfc.Objects.Stations;
 import java.awt.Graphics2D;
 import java.util.Optional;
 
+import it.unibo.oop18.cfc.Graphics.CounterGraphicComponent;
 import it.unibo.oop18.cfc.Graphics.GraphicsComponent;
-import it.unibo.oop18.cfc.Graphics.StationObjectGraphicComponent;
 import it.unibo.oop18.cfc.Objects.Items.Item;
-import it.unibo.oop18.cfc.Tile.Tile;
+import it.unibo.oop18.cfc.Tile.CounterTile;
 import it.unibo.oop18.cfc.Util.Position;
 
 public class Counter extends AbstractStationObject {
@@ -14,10 +14,10 @@ public class Counter extends AbstractStationObject {
     private final GraphicsComponent graphicComponent;
     private Optional<Item> item;
 
-    public Counter(final Position position, final Tile tile) {
+    public Counter(final Position position, final CounterTile counterTile) {
         super(position);
         this.item = Optional.empty();
-        this.graphicComponent = new StationObjectGraphicComponent(this, tile);
+        this.graphicComponent = new CounterGraphicComponent(this, counterTile);
     }
 
     @Override

@@ -3,10 +3,10 @@ package it.unibo.oop18.cfc.Objects.Stations;
 import java.awt.Graphics2D;
 import java.util.Optional;
 
+import it.unibo.oop18.cfc.Graphics.CookerGraphicComponent;
 import it.unibo.oop18.cfc.Graphics.GraphicsComponent;
-import it.unibo.oop18.cfc.Graphics.StationObjectGraphicComponent;
 import it.unibo.oop18.cfc.Objects.Items.DishImpl;
-import it.unibo.oop18.cfc.Tile.Tile;
+import it.unibo.oop18.cfc.Tile.CookerTile;
 import it.unibo.oop18.cfc.Util.GameTimer;
 import it.unibo.oop18.cfc.Util.Position;
 
@@ -20,13 +20,13 @@ public class Cooker extends AbstractStationObject {
      * Creates a generic {@code Station}.
      * 
      * @param position block's position
-     * @param tile   block's sprite
+     * @param cookerTile   block's tile
      */
-    public Cooker(final Position position, final Tile tile) {
+    public Cooker(final Position position, final CookerTile cookerTile) {
         super(position);
         this.food = Optional.empty();
         this.timer = new GameTimer();
-        this.graphicComponent = new StationObjectGraphicComponent(this, tile);
+        this.graphicComponent = new CookerGraphicComponent(this, cookerTile);
     }
 
     public void draw(final Graphics2D g) {

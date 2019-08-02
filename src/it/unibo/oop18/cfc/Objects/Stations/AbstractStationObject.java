@@ -1,7 +1,6 @@
 package it.unibo.oop18.cfc.Objects.Stations;
 
 import it.unibo.oop18.cfc.Objects.AbstractGameObject;
-import it.unibo.oop18.cfc.TileMap.Tile;
 import it.unibo.oop18.cfc.Util.Position;
 
 /**

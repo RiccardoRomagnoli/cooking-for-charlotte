@@ -4,9 +4,9 @@ import java.awt.Graphics2D;
 import java.util.Optional;
 
 import it.unibo.oop18.cfc.Graphics.GraphicsComponent;
-import it.unibo.oop18.cfc.Graphics.StationObjectGraphicComponent;
+import it.unibo.oop18.cfc.Graphics.WashbasinGraphicComponent;
 import it.unibo.oop18.cfc.Objects.Items.PlateImpl;
-import it.unibo.oop18.cfc.Tile.Tile;
+import it.unibo.oop18.cfc.Tile.WashbasinTile;
 import it.unibo.oop18.cfc.Util.GameTimer;
 import it.unibo.oop18.cfc.Util.Position;
 
@@ -22,11 +22,11 @@ public class Washbasin extends AbstractStationObject {
      * @param position block's position
      * @param tile   block's tile
      */
-    public Washbasin(final Position position, final Tile tile) {
+    public Washbasin(final Position position, final WashbasinTile washbasinTile) {
         super(position);
         this.plate = Optional.empty();
         this.timer = new GameTimer();
-        this.graphicComponent = new StationObjectGraphicComponent(this, tile);
+        this.graphicComponent = new WashbasinGraphicComponent(this, washbasinTile);
     }
 
     public void draw(final Graphics2D g) {
