@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
 import it.unibo.oop18.cfc.Objects.GameObject;
+import it.unibo.oop18.cfc.TileMap.Tile;
 
 
 /**
@@ -11,7 +12,7 @@ import it.unibo.oop18.cfc.Objects.GameObject;
  */
 public class StationObjectGraphicComponent implements GraphicsComponent {
 
-    private final Sprite sprite;
+    private final Tile tile;
     private final GameObject object;
 
     /**
@@ -20,8 +21,8 @@ public class StationObjectGraphicComponent implements GraphicsComponent {
      * @param sprite block's sprite
      * @param object reference
      */
-    public StationObjectGraphicComponent(final GameObject object, final Sprite sprite) {
-        this.sprite = sprite;
+    public StationObjectGraphicComponent(final GameObject object, final Tile tile) {
+        this.tile = tile;
         this.object = object;
     }
 
@@ -30,7 +31,7 @@ public class StationObjectGraphicComponent implements GraphicsComponent {
      */
     @Override
     public void draw(final Graphics2D g) {
-        g.drawImage(this.sprite.getImage(),
+        g.drawImage(this.tile.getImage(),
                 AffineTransform.getTranslateInstance(this.object.getPosition().getX(),
                                                      this.object.getPosition().getY()), null);
     }
