@@ -3,8 +3,7 @@ package it.unibo.oop18.cfc.Physics;
 import java.awt.geom.Rectangle2D;
 import java.util.Set;
 
-
-import it.unibo.oop18.cfc.Main.GamePanel;
+import it.unibo.oop18.cfc.Main.GameEngine;
 import it.unibo.oop18.cfc.Objects.Entity.DynamicObject;
 import it.unibo.oop18.cfc.Objects.Items.Item;
 import it.unibo.oop18.cfc.Tile.TileSheet;
@@ -45,16 +44,16 @@ public class DynamicPhysicsComponentImpl implements DynamicPhysicsComponent {
     private Pair<Double, Double> getDeltas(final Pair<Double, Double> velocity, final Position previousPos) {
         double deltaX = velocity.getFirst();
         double deltaY = velocity.getSecond();
-        if (previousPos.getX() + deltaX >= GamePanel.RIGHT_BOUND_IN_PIXEL) {
-            deltaX = GamePanel.RIGHT_BOUND_IN_PIXEL - previousPos.getX();
-        } else if (previousPos.getX() + deltaX <= GamePanel.LEFT_BOUND_IN_PIXEL) {
-            deltaX = GamePanel.LEFT_BOUND_IN_PIXEL - previousPos.getX();
+        if (previousPos.getX() + deltaX >= GameEngine.RIGHT_BOUND_IN_PIXEL) {
+            deltaX = GameEngine.RIGHT_BOUND_IN_PIXEL - previousPos.getX();
+        } else if (previousPos.getX() + deltaX <= GameEngine.LEFT_BOUND_IN_PIXEL) {
+            deltaX = GameEngine.LEFT_BOUND_IN_PIXEL - previousPos.getX();
         }
 
-        if (previousPos.getY() + deltaY >= GamePanel.DOWN_BOUND_IN_PIXEL) {
-            deltaY = GamePanel.DOWN_BOUND_IN_PIXEL - previousPos.getY();
-        } else if (previousPos.getY() + deltaY <= GamePanel.TOP_BOUND_IN_PIXEL) {
-            deltaY = GamePanel.TOP_BOUND_IN_PIXEL - previousPos.getY();
+        if (previousPos.getY() + deltaY >= GameEngine.DOWN_BOUND_IN_PIXEL) {
+            deltaY = GameEngine.DOWN_BOUND_IN_PIXEL - previousPos.getY();
+        } else if (previousPos.getY() + deltaY <= GameEngine.TOP_BOUND_IN_PIXEL) {
+            deltaY = GameEngine.TOP_BOUND_IN_PIXEL - previousPos.getY();
         }
         return new Pair<>(deltaX, deltaY);
     }
