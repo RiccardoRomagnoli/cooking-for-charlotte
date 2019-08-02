@@ -1,17 +1,13 @@
 package it.unibo.oop18.cfc.Physics;
 
 import java.awt.geom.Rectangle2D;
-import java.util.Optional;
 import java.util.Set;
 
-import javax.xml.bind.ParseConversionEvent;
 
 import it.unibo.oop18.cfc.Main.GamePanel;
 import it.unibo.oop18.cfc.Objects.Entity.DynamicObject;
 import it.unibo.oop18.cfc.Objects.Items.Item;
-import it.unibo.oop18.cfc.TileMap.Tile;
-import it.unibo.oop18.cfc.TileMap.TileMap;
-import it.unibo.oop18.cfc.TileMap.TileType;
+import it.unibo.oop18.cfc.Tile.TileSheet;
 import it.unibo.oop18.cfc.Util.Pair;
 import it.unibo.oop18.cfc.Util.Position;
 import it.unibo.oop18.cfc.Util.Velocity;
@@ -87,41 +83,41 @@ public class DynamicPhysicsComponentImpl implements DynamicPhysicsComponent {
     @Override
     public Rectangle2D getTopBound() {
         return new Rectangle2D.Double(this.entity.getPosition().getX() + POSITION_ADJUSTMENT,
-                this.entity.getPosition().getY(), Tile.SPRITE_SIZE - WIDTH_ADJUSTMENT, HEIGHT_ADJUSTMENT);
+                this.entity.getPosition().getY(), TileSheet.TILE_SIZE_IN_GAME - WIDTH_ADJUSTMENT, HEIGHT_ADJUSTMENT);
     }
 
     @Override
     public Rectangle2D getLowerBound() {
         return new Rectangle2D.Double(this.entity.getPosition().getX() + POSITION_ADJUSTMENT,
-                this.entity.getPosition().getY() + Tile.SPRITE_SIZE - HEIGHT_ADJUSTMENT,
-                Tile.SPRITE_SIZE - WIDTH_ADJUSTMENT, HEIGHT_ADJUSTMENT);
+                this.entity.getPosition().getY() + TileSheet.TILE_SIZE_IN_GAME - HEIGHT_ADJUSTMENT,
+                TileSheet.TILE_SIZE_IN_GAME - WIDTH_ADJUSTMENT, HEIGHT_ADJUSTMENT);
     }
 
     @Override
     public Rectangle2D getLeftBound() {
         return new Rectangle2D.Double(this.entity.getPosition().getX(),
                 this.entity.getPosition().getY() + POSITION_ADJUSTMENT, HEIGHT_ADJUSTMENT,
-                Tile.SPRITE_SIZE - WIDTH_ADJUSTMENT);
+                TileSheet.TILE_SIZE_IN_GAME - WIDTH_ADJUSTMENT);
     }
 
     @Override
     public Rectangle2D getRightBound() {
-        return new Rectangle2D.Double(this.entity.getPosition().getX() + Tile.SPRITE_SIZE - HEIGHT_ADJUSTMENT,
+        return new Rectangle2D.Double(this.entity.getPosition().getX() + TileSheet.TILE_SIZE_IN_GAME - HEIGHT_ADJUSTMENT,
                 this.entity.getPosition().getY() + POSITION_ADJUSTMENT, HEIGHT_ADJUSTMENT,
-                Tile.SPRITE_SIZE - WIDTH_ADJUSTMENT);
+                TileSheet.TILE_SIZE_IN_GAME - WIDTH_ADJUSTMENT);
     }
 
     @Override
     public void checksCollisions(Set<Item> set) {
         set.forEach(wall -> {
             if (wall.getBounds().intersects(this.getTopBound())) {
-                this.entity.getPosition().setY(wall.getPosition().getY() + Tile.SPRITE_SIZE);
+                this.entity.getPosition().setY(wall.getPosition().getY() + TileSheet.TILE_SIZE_IN_GAME);
             } else if (wall.getBounds().intersects(this.getLowerBound())) {
-                this.entity.getPosition().setY(wall.getPosition().getY() - Tile.SPRITE_SIZE);
+                this.entity.getPosition().setY(wall.getPosition().getY() - TileSheet.TILE_SIZE_IN_GAME);
             } else if (wall.getBounds().intersects(this.getRightBound())) {
-                this.entity.getPosition().setX(wall.getPosition().getX() - Tile.SPRITE_SIZE);
+                this.entity.getPosition().setX(wall.getPosition().getX() - TileSheet.TILE_SIZE_IN_GAME);
             } else if (wall.getBounds().intersects(this.getLeftBound())) {
-                this.entity.getPosition().setX(wall.getPosition().getX() + Tile.SPRITE_SIZE);
+                this.entity.getPosition().setX(wall.getPosition().getX() + TileSheet.TILE_SIZE_IN_GAME);
             }
         });
     }
