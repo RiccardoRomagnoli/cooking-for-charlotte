@@ -9,12 +9,12 @@ import it.unibo.oop18.cfc.Input.PlayerInputComponent;
 import it.unibo.oop18.cfc.Input.PlayerInputComponentImpl;
 import it.unibo.oop18.cfc.Manager.Content;
 import it.unibo.oop18.cfc.Objects.Items.Plate;
-import it.unibo.oop18.cfc.Physics.Direction;
 import it.unibo.oop18.cfc.Physics.DynamicPhysicsComponent;
 import it.unibo.oop18.cfc.Physics.DynamicPhysicsComponentImpl;
 import it.unibo.oop18.cfc.TileMap.PlayerSprites;
 import it.unibo.oop18.cfc.TileMap.TileMap;
 import it.unibo.oop18.cfc.Util.Position;
+import it.unibo.oop18.cfc.World.World;
 
 public class PlayerImpl extends AbstractEntity implements Player {
 
@@ -30,15 +30,15 @@ public class PlayerImpl extends AbstractEntity implements Player {
 
     //Plate and dishes
     private Optional<Plate> plate;
-    
+
     /**
      * @param tm
      */
-    public PlayerImpl(final Position position, final TileMap tileMap) {
-        super(position, tileMap);
+    public PlayerImpl(final Position position, final World world) {
+        super(position, world);
         points = 0;
         plate = Optional.empty();
-        this.physics = new DynamicPhysicsComponentImpl(tileMap, this);
+        this.physics = new DynamicPhysicsComponentImpl(this);
         this.input = new PlayerInputComponentImpl(this);
         this.gfx = new DynamicEntityGraphicsComponent(this, new PlayerSprites(Content.PLAYER));
     }
@@ -98,7 +98,7 @@ public class PlayerImpl extends AbstractEntity implements Player {
 
     @Override
     public void doAction() {
-        System.out.println(this.physics.getNextTile());
+        //System.out.println(this.physics.getNextTile());
     }
 
     @Override

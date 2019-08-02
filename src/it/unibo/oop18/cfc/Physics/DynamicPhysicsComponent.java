@@ -1,30 +1,25 @@
 package it.unibo.oop18.cfc.Physics;
 
-import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
-import java.util.Optional;
 import java.util.Set;
 
 import it.unibo.oop18.cfc.Objects.Items.Item;
-import it.unibo.oop18.cfc.TileMap.Tile;
 import it.unibo.oop18.cfc.TileMap.TileType;
-import it.unibo.oop18.cfc.Util.Pair;
-import it.unibo.oop18.cfc.Util.Position;
 import it.unibo.oop18.cfc.Util.Velocity;
 
 public interface DynamicPhysicsComponent {
 
-	void stop();
+    void stop();
 
-	void move();
-	
+    void move();
+
     /**
      * Gets the dynamic object's velocity.
      *
      * @return the dynamic object {@link VelocityImpl}.
      */
     Velocity getVelocity();
-    
+
     /**
      * Gets an entity upper shape.
      *
@@ -52,12 +47,12 @@ public interface DynamicPhysicsComponent {
      * @return a rectangle to check a right bound collision
      */
     Rectangle2D getRightBound();
-    
+
     /**
      * {@inheritDoc}
      */
     public abstract void checksCollisions(Set<Item> objects);
 
-    public TileType getNextTile();
+    // public TileType getNextTile();
 
 }

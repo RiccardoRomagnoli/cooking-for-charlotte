@@ -2,7 +2,7 @@ package it.unibo.oop18.cfc.Objects.Entity;
 
 import it.unibo.oop18.cfc.Input.PlayerInputComponent;
 
-public interface Player {
+public interface Player extends DynamicObject {
 
     public void doAction();
 
