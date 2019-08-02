@@ -14,9 +14,9 @@ import java.awt.Graphics2D;
 
 import it.unibo.oop18.cfc.Main.GameEngine;
 import it.unibo.oop18.cfc.Manager.Content;
-import it.unibo.oop18.cfc.Manager.Data;
+import it.unibo.oop18.cfc.Manager.DataUtil;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
-import it.unibo.oop18.cfc.Util.JukeBox;
+import it.unibo.oop18.cfc.Util.JukeBoxUtil;
 
 public class GameOverState extends GameState {
 
@@ -31,7 +31,7 @@ public class GameOverState extends GameState {
 
     public void init() {
         color = new Color(164, 198, 222);
-        ticks = Data.getTime();
+        ticks = DataUtil.getTime();
         if (ticks < 3600)
             rank = 1;
         else if (ticks < 5400)

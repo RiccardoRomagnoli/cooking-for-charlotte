@@ -16,16 +16,14 @@ import it.unibo.oop18.cfc.Util.Position;
  */
 public class GameObjectFactoryImpl implements GameObjectFactory {
 
-    private String folder;
     //private SpriteManager sm;
     private TileManager tm;
     /**
      * Creates a {@code GameObjectFactoryImpl}.
      * 
-     * @param theme the theme of objects' sprite
      */
-    public GameObjectFactoryImpl(final String folder) {
-        this.folder = folder;
+    public GameObjectFactoryImpl() {
+
     }
 
     /**

@@ -29,6 +29,6 @@ public class PlayState extends GameState {
     }
 
     public void draw(Graphics2D g) {
-        world.draw();
+        world.draw(g);
     }
 }
