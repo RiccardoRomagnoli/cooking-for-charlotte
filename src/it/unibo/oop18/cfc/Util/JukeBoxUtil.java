@@ -14,10 +14,14 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
-public class JukeBox {
-	
+public final class JukeBoxUtil {
+
 	private static HashMap<String, Clip> clips;
 	private static int gap;
+	
+	private JukeBoxUtil() {
+
+	}
 	
 	// Creates new clips HashMap.
 	public static void init() {
@@ -31,7 +35,7 @@ public class JukeBox {
 		if(clips.get(n) != null) return;
 		Clip clip;
 		try {
-			InputStream in = JukeBox.class.getResourceAsStream(s);
+			InputStream in = JukeBoxUtil.class.getResourceAsStream(s);
 			InputStream bin = new BufferedInputStream(in);
 			AudioInputStream ais =
 				AudioSystem.getAudioInputStream(bin);
