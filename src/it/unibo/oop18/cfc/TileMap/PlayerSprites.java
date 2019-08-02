@@ -2,11 +2,11 @@ package it.unibo.oop18.cfc.TileMap;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 import it.unibo.oop18.cfc.Physics.Direction;
+import it.unibo.oop18.cfc.Tile.Tile;
 
 /**
  * Class that manages enemies and player {@link Sprite}.
@@ -24,34 +24,34 @@ public class PlayerSprites {
     /**
      * Creates a {@code AbstractEntitySprites} that initializes all sprite lists for any movement.
      */
-    public PlayerSprites(BufferedImage[][] EntitySprite) {
+    public PlayerSprites(final BufferedImage[][] EntitySprite) {
     	this.stop = new HashMap<>();
-    	stop.put(Direction.STOP, new Tile(EntitySprite[0][0]));
-    	stop.put(Direction.DOWN, new Tile(EntitySprite[0][0]));
-    	stop.put(Direction.LEFT, new Tile(EntitySprite[1][0]));
-    	stop.put(Direction.RIGHT, new Tile(EntitySprite[2][0]));
-    	stop.put(Direction.UP, new Tile(EntitySprite[3][0]));
-
+//    	stop.put(Direction.STOP, new Tile(EntitySprite[0][0]));
+//    	stop.put(Direction.DOWN, new Tile(EntitySprite[0][0]));
+//    	stop.put(Direction.LEFT, new Tile(EntitySprite[1][0]));
+//    	stop.put(Direction.RIGHT, new Tile(EntitySprite[2][0]));
+//    	stop.put(Direction.UP, new Tile(EntitySprite[3][0]));
+//
         this.left = new ArrayList<>();
-        left.addAll(Arrays.asList(new Tile(EntitySprite[1][0]),
-        						  new Tile(EntitySprite[1][1]),
-        						  new Tile(EntitySprite[1][2]),
-        						  new Tile(EntitySprite[1][3])));
+//        left.addAll(Arrays.asList(new Tile(EntitySprite[1][0]),
+//        						  new Tile(EntitySprite[1][1]),
+//        						  new Tile(EntitySprite[1][2]),
+//        						  new Tile(EntitySprite[1][3])));
         this.right = new ArrayList<>();
-        right.addAll(Arrays.asList(new Tile(EntitySprite[2][0]),
-				  				   new Tile(EntitySprite[2][1]),
-				  				   new Tile(EntitySprite[2][2]),
-				  				   new Tile(EntitySprite[2][3])));
+//        right.addAll(Arrays.asList(new Tile(EntitySprite[2][0]),
+//				  				   new Tile(EntitySprite[2][1]),
+//				  				   new Tile(EntitySprite[2][2]),
+//				  				   new Tile(EntitySprite[2][3])));
         this.up = new ArrayList<>();
-        up.addAll(Arrays.asList(new Tile(EntitySprite[3][0]),
-				  			    new Tile(EntitySprite[3][1]),
-				  			    new Tile(EntitySprite[3][2]),
-				  			    new Tile(EntitySprite[3][3])));
+//        up.addAll(Arrays.asList(new Tile(EntitySprite[3][0]),
+//				  			    new Tile(EntitySprite[3][1]),
+//				  			    new Tile(EntitySprite[3][2]),
+//				  			    new Tile(EntitySprite[3][3])));
         this.down = new ArrayList<>();
-        down.addAll(Arrays.asList(new Tile(EntitySprite[0][0]),
-				  				  new Tile(EntitySprite[0][1]),
-				  				  new Tile(EntitySprite[0][2]),
-				  				  new Tile(EntitySprite[0][3])));
+//        down.addAll(Arrays.asList(new Tile(EntitySprite[0][0]),
+//				  				  new Tile(EntitySprite[0][1]),
+//				  				  new Tile(EntitySprite[0][2]),
+//				  				  new Tile(EntitySprite[0][3])));
     }
 
     /**

@@ -12,7 +12,6 @@ import it.unibo.oop18.cfc.Objects.Items.Plate;
 import it.unibo.oop18.cfc.Physics.DynamicPhysicsComponent;
 import it.unibo.oop18.cfc.Physics.DynamicPhysicsComponentImpl;
 import it.unibo.oop18.cfc.TileMap.PlayerSprites;
-import it.unibo.oop18.cfc.TileMap.TileMap;
 import it.unibo.oop18.cfc.Util.Position;
 import it.unibo.oop18.cfc.World.World;
 
