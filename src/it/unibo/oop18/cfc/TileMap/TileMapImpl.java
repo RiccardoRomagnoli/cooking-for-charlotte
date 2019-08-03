@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-
+import it.unibo.oop18.cfc.Main.GameEngine;
+import it.unibo.oop18.cfc.Tile.TileSheet;
 import it.unibo.oop18.cfc.Util.Pair;
 import it.unibo.oop18.cfc.Util.Position;
+import it.unibo.oop18.cfc.World.WorldImpl;
 /**
  * This class create and edit the tilemap.
  */
@@ -28,12 +30,13 @@ public class TileMapImpl implements TileMap {
      */
     public TileMapImpl(final String bitMap) {
         this.bitMap = bitMap;
+        loadMap();
     }
 
     /**
      * Load the map of the game based of the bitmap.
      */
-    public void loadMap() {
+    public final void loadMap() {
 
         try {
             final InputStream in = getClass().getResourceAsStream(bitMap);
@@ -47,7 +50,7 @@ public class TileMapImpl implements TileMap {
                 final String line = br.readLine();
                 final String[] tokens = line.split(delims);
                 for (int col = 0; col < numCols; col++) {
-                    maps.add(new Pair<Integer, Position>(Integer.parseInt(tokens[col]), new Position(row*64, col*64)));
+                    maps.add(new Pair<Integer, Position>(Integer.parseInt(tokens[col]), new Position(col * TileSheet.TILE_SIZE_IN_GAME, GameEngine.HUDHEIGHT + row * TileSheet.TILE_SIZE_IN_GAME)));
                 }
             }
         } catch (Exception e) {
