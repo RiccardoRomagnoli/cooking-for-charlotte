@@ -4,7 +4,8 @@ import java.awt.Graphics2D;
 
 import it.unibo.oop18.cfc.Objects.GameObject;
 import it.unibo.oop18.cfc.Physics.DynamicPhysicsComponent;
-import it.unibo.oop18.cfc.TileMap.TileMap;
+import it.unibo.oop18.cfc.TileMap.TileMapImpl;
+import it.unibo.oop18.cfc.World.World;
 
 /**
  *  Interface for moving objects.
@@ -28,8 +29,8 @@ public interface DynamicObject extends GameObject{
      * 
      * @return world that contains {@code AbstractEntity}
      */
-    TileMap getTileMap();
-    
+    World getWorld();
+
     /**
      * Renders object's sprite.
      * 

@@ -8,7 +8,7 @@ package it.unibo.oop18.cfc.Manager;
 
 import java.awt.Graphics2D;
 import it.unibo.oop18.cfc.GameState.*;
-import it.unibo.oop18.cfc.Util.JukeBox;
+import it.unibo.oop18.cfc.Util.JukeBoxUtil;
 
 
 public class GameStateManager {
@@ -22,7 +22,7 @@ public class GameStateManager {
 	private GameState currentState;
 	
 	public GameStateManager() {		
-		JukeBox.init();
+		JukeBoxUtil.init();
 		pauseState = new PauseState(this);
 		introState = new IntroState(this);
 		menuState = new MenuState(this);

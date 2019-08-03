@@ -1,15 +1,10 @@
 package it.unibo.oop18.cfc.TileMap;
 
-import java.util.stream.Stream;
-
 public enum TileType {
-    // tile food
-    SALAD(5, 0), BREAD(6, 0), TOMATO(7, 0), MEAT(8, 0),
-    // tile action
-    DISH(10, 1), WASHBASIN(11, 1), COOKER(12, 1), CHOPPINGBOARD(13, 1), COUNTER(14, 1),
-    //tile floor
-    LEFTPARQUET(1,2), RIGHTPARQUET(2,2);
+    // tile Station
+    CHOPPINGSTATION(1, 0), COOKER(2, 0), COUNTER(3, 0), DELIVERYSTATION(4, 0), FOODSTATION(5, 0), PLATESTATION(8, 0), TRASHCAN(6, 0), WASHBASIN(7, 0);
 
+    //tile Floor
     private int pos;
     private int type;
 

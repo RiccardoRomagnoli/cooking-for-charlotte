@@ -3,7 +3,7 @@ package it.unibo.oop18.cfc.Input;
 
 import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
 import it.unibo.oop18.cfc.Physics.Direction;
-import it.unibo.oop18.cfc.TileMap.Tile;
+import it.unibo.oop18.cfc.Tile.Tile;
 import it.unibo.oop18.cfc.Util.Position;
 
 /**
@@ -46,6 +46,6 @@ public class PlayerInputComponentImpl extends AbstractInputComponent implements 
      */
     @Override
     public void doAction(final Position position) {
-        
+        player.doAction();
     }
 }

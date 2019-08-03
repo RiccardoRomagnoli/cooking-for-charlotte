@@ -1,6 +1,6 @@
 package it.unibo.oop18.cfc.Util;
 
-import it.unibo.oop18.cfc.TileMap.Tile;
+import it.unibo.oop18.cfc.Tile.TileSheet;
 
 /**
  * Utility class that represents a position in game.
@@ -88,8 +88,8 @@ public class Position {
      * @return true if position is the center of a tile, otherwise false
      */
     public boolean isCentered() {
-        return Math.round(this.x) % (Tile.SPRITE_SIZE) == 0
-               && Math.round(this.y) % (Tile.SPRITE_SIZE) == 0;
+        return Math.round(this.x) % (TileSheet.TILE_SIZE_IN_GAME) == 0
+               && Math.round(this.y) % (TileSheet.TILE_SIZE_IN_GAME) == 0;
     }
 
     /**
@@ -101,9 +101,9 @@ public class Position {
      * @return a new centered position
      */
     public Position setInTile(final Position position) {
-        final double dimSprite = Tile.SPRITE_SIZE;
-        return new Position(Math.round(position.getX() / dimSprite) * dimSprite,
-                Math.round(position.getY() / dimSprite) * dimSprite);
+        final double dimTile = TileSheet.TILE_SIZE_IN_GAME;
+        return new Position(Math.round(position.getX() / dimTile) * dimTile,
+                Math.round(position.getY() / dimTile) * dimTile);
     }
 
 	@Override

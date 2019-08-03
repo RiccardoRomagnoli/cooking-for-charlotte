@@ -24,7 +24,6 @@ public class TopHud {
         }
 
         public void draw(Graphics2D g) {
-
                 // draw hud
                 g.drawImage(bar, 0, yoffset, null);               
         }

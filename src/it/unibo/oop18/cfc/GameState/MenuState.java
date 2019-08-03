@@ -5,10 +5,9 @@ package it.unibo.oop18.cfc.GameState;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import it.unibo.oop18.cfc.Main.GamePanel;
 import it.unibo.oop18.cfc.Manager.Content;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
-import it.unibo.oop18.cfc.Util.JukeBox;
+import it.unibo.oop18.cfc.Util.JukeBoxUtil;
 
 /**
  * Menu manager class. Provide methods to manage the selection of options and
@@ -42,8 +41,8 @@ public class MenuState extends GameState {
     public void init() {
         bg = Content.MENUBG[0][0];
         food = Content.FOOD[6][2];
-        JukeBox.load("/SFX/collect.wav", "collect");
-        JukeBox.load("/SFX/menuoption.wav", "menuoption");
+        JukeBoxUtil.load("/SFX/collect.wav", "collect");
+        JukeBoxUtil.load("/SFX/menuoption.wav", "menuoption");
     }
 
     /**
@@ -86,7 +85,7 @@ public class MenuState extends GameState {
      */
     public void goUp() {
         if (currentOption > 0) {
-            JukeBox.play("menuoption");
+            JukeBoxUtil.play("menuoption");
             currentOption--;
         }
     }
@@ -96,7 +95,7 @@ public class MenuState extends GameState {
      */
     public void goDown() {
         if (currentOption < options.length - 1) {
-            JukeBox.play("menuoption");
+            JukeBoxUtil.play("menuoption");
             currentOption++;
         }
     }
@@ -105,7 +104,7 @@ public class MenuState extends GameState {
      * Enter button pressed.
      */
     public void select() {
-        JukeBox.play("collect");
+        JukeBoxUtil.play("collect");
         selectOption();
     }
 
