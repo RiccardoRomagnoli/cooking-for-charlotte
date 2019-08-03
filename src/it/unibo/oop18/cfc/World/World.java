@@ -1,6 +1,7 @@
 package it.unibo.oop18.cfc.World;
 
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -14,6 +15,7 @@ import it.unibo.oop18.cfc.Objects.Stations.FoodStation;
 import it.unibo.oop18.cfc.Objects.Stations.PlateStation;
 import it.unibo.oop18.cfc.Objects.Stations.Trashcan;
 import it.unibo.oop18.cfc.Objects.Stations.Washbasin;
+import it.unibo.oop18.cfc.Orders.Order;
 import it.unibo.oop18.cfc.Util.GameTimer;
 
 /**
@@ -67,14 +69,14 @@ public interface World {
     GameTimer getGameTimer();
 
     /**
-     * Gets the game timer.
+     * Gets the Chopping Stations objects.
      * 
      * @return all this stations
      */
     Set<ChoppingStation> getChoppingStations();
 
     /**
-     * Gets the game timer.
+     * Gets the Cooker Stations objects.
      * 
      * @return all this stations
      */
@@ -82,7 +84,7 @@ public interface World {
     Set<Cooker> getCookers();
 
     /**
-     * Gets the game timer.
+     * Gets the Counters Stations objects.
      * 
      * @return all this stations
      */
@@ -90,7 +92,7 @@ public interface World {
     Set<Counter> getCounters();
 
     /**
-     * Gets the game timer.
+     * Gets the Delivery Stations objects.
      * 
      * @return all this stations
      */
@@ -98,7 +100,7 @@ public interface World {
     Set<DeliveryStation> getDeliveryStations();
 
     /**
-     * Gets the game timer.
+     * Gets the Food Stations objects.
      * 
      * @return all this stations
      */
@@ -106,7 +108,7 @@ public interface World {
     Set<FoodStation> getFoodStations();
 
     /**
-     * Gets the game timer.
+     * Gets the Plate Stations objects.
      * 
      * @return all this stations
      */
@@ -114,17 +116,16 @@ public interface World {
     Set<PlateStation> getPlateStations();
 
     /**
-     * Gets the game timer.
+     * Gets the TrashCans Stations objects.
      * 
      * @return all this stations
      */
     Set<Trashcan> getTrashcans();
 
     /**
-     * Gets the game timer.
+     * Gets the WashBasin Stations objects.
      * 
      * @return all this stations
      */
     Set<Washbasin> getWashbasins();
-
 }

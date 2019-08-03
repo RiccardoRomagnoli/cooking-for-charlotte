@@ -11,12 +11,13 @@ import java.io.IOException;
 import it.unibo.oop18.cfc.HUD.DownHud;
 import it.unibo.oop18.cfc.HUD.TopHud;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
+import it.unibo.oop18.cfc.World.World;
 import it.unibo.oop18.cfc.World.WorldImpl;
 
 
 public class PlayState extends GameState {
 
-    private WorldImpl world;
+    private World world;
     private TopHud topHud;
     private DownHud downHud;
     public PlayState(GameStateManager gsm) {
