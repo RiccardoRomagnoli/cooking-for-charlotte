@@ -8,9 +8,9 @@ import it.unibo.oop18.cfc.TileMap.TileMapImpl;
 import it.unibo.oop18.cfc.World.World;
 
 /**
- *  Interface for moving objects.
+ * Interface for moving objects.
  */
-public interface DynamicObject extends GameObject{
+public interface DynamicObject extends GameObject {
 
     /**
      * Process input entity.

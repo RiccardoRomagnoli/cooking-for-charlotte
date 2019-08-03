@@ -6,15 +6,15 @@ import java.awt.geom.AffineTransform;
 import it.unibo.oop18.cfc.Objects.Stations.FoodStation;
 import it.unibo.oop18.cfc.Tile.FoodStationTile;
 
-public class FoodStationGraphicComponent implements GraphicsComponent{
+public class FoodStationGraphicComponent implements GraphicsComponent {
     private final FoodStation foodStation;
     private final FoodStationTile foodStationTile;
 
     /**
      * Creates a {@code DoorGraphicComponent}.
      * 
-     * @param door the logic of the door
-     * @param doorSprite door's sprite
+     * @param foodStation       the logic of the door
+     * @param foodStationTile door's sprite
      */
     public FoodStationGraphicComponent(final FoodStation foodStation, final FoodStationTile foodStationTile) {
         this.foodStation = foodStation;
@@ -26,7 +26,7 @@ public class FoodStationGraphicComponent implements GraphicsComponent{
      */
     @Override
     public void draw(final Graphics2D g) {
-        g.drawImage(this.foodStationTile.getTiles().get(0).getImage(), AffineTransform
-                .getTranslateInstance(this.foodStation.getPosition().getX(), this.foodStation.getPosition().getY()), null);
+        g.drawImage(this.foodStationTile.getTiles().get(0).getImage(), AffineTransform.getTranslateInstance(
+                this.foodStation.getPosition().getX(), this.foodStation.getPosition().getY()), null);
     }
 }

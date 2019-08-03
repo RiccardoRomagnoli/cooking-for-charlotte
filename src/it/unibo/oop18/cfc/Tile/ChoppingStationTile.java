@@ -3,10 +3,8 @@ package it.unibo.oop18.cfc.Tile;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+public class ChoppingStationTile extends AbstractStationTile {
 
-public class ChoppingStationTile extends AbstractStationTile{
-
-     
     private static final int Y_LOCATION = 1;
     private static final int N_TILES = 3;
 
@@ -17,9 +15,8 @@ public class ChoppingStationTile extends AbstractStationTile{
      */
     public ChoppingStationTile(final TileSheet sheet) {
         super();
-        IntStream.range(0, N_TILES).mapToObj(a -> new Tile(sheet, a, Y_LOCATION))
-                                     .collect(Collectors.toList())
-                                     .forEach(a -> super.getTiles().add(a));
+        IntStream.range(0, N_TILES).mapToObj(a -> new Tile(sheet, a, Y_LOCATION)).collect(Collectors.toList())
+                .forEach(a -> super.getTiles().add(a));
     }
 
     /**

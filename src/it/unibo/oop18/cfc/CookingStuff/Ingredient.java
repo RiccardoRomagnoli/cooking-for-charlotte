@@ -67,7 +67,7 @@ public class Ingredient {
 	protected long getTimeToBurn() {
 		return this.timeToBurn;
 	}
-	protected void changeState( IngredientState newState) {
+	protected void changeState(IngredientState newState) {
 		this.state = newState;
 	}
 	protected boolean isRawGood() {

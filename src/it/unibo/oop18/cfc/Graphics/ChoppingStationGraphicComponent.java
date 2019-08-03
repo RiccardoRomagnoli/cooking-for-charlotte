@@ -7,7 +7,7 @@ import it.unibo.oop18.cfc.Objects.Stations.ChoppingStation;
 import it.unibo.oop18.cfc.Tile.ChoppingStationTile;
 
 
-public class ChoppingStationGraphicComponent implements GraphicsComponent{
+public class ChoppingStationGraphicComponent implements GraphicsComponent {
     private final ChoppingStation choppingStation;
     private final ChoppingStationTile choppingStationTile;
 

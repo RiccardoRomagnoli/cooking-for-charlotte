@@ -45,8 +45,14 @@ public class WorldImpl implements World {
      */
     public static final int LOWER_BOUND_IN_PIXEL = 0 + TileSheet.TILE_SIZE_IN_GAME;
 
+    /**
+     * Path to map.
+     */
     public static final String MAPPATH = "/Maps/testmap1.map";
 
+    /**
+     * Path to tilesheet.
+     */
     public static final String TILEPATH = "/Tilesets/tilesheet.png";
 
     private final Set<ChoppingStation> choppingStations;
@@ -64,7 +70,8 @@ public class WorldImpl implements World {
 
     /**
      * Creates a {@code WorldImpl}.
-     * @throws IOException 
+     * 
+     * @throws IOException on tilemanager error
      *
      */
     public WorldImpl() throws IOException {
@@ -77,7 +84,7 @@ public class WorldImpl implements World {
         this.trashcans = new HashSet<>();
         this.washbasins = new HashSet<>();
         this.createLevel(new TileManager(TILEPATH), MAPPATH);
-        this.player = new PlayerImpl(new Position(64*7, 64*5), this);
+        this.player = new PlayerImpl(new Position(64 * 7, 64 * 5), this);
         this.timer = new GameTimer();
     }
 
@@ -95,7 +102,7 @@ public class WorldImpl implements World {
         allGameObjects.addAll(this.plateStations);
         allGameObjects.addAll(this.trashcans);
         allGameObjects.addAll(this.washbasins);
-        //allGameObjects.add(this.player);
+        // allGameObjects.add(this.player);
         return Collections.unmodifiableList(allGameObjects);
     }
 
@@ -184,10 +191,10 @@ public class WorldImpl implements World {
     @Override
     public void update() {
         // music update
-        //this.enemies.forEach(e -> e.update(elapsedTime));
-        //this.player.update();
-        //this.bombs.forEach(e -> e.update(elapsedTime));
-        //this.flames.forEach(e -> e.update(elapsedTime));
+        // this.enemies.forEach(e -> e.update(elapsedTime));
+        // this.player.update();
+        // this.bombs.forEach(e -> e.update(elapsedTime));
+        // this.flames.forEach(e -> e.update(elapsedTime));
     }
 
     /**

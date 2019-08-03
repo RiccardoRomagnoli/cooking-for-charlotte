@@ -7,10 +7,19 @@ import it.unibo.oop18.cfc.Graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.Tile.FoodStationTile;
 import it.unibo.oop18.cfc.Util.Position;
 
-public class FoodStation extends AbstractStationObject{
+/**
+ * Managing of the place where food is processed.
+ *
+ */
+public class FoodStation extends AbstractStationObject {
 
     private final GraphicsComponent graphicComponent;
-    
+
+    /**
+     * Constructor method.
+     * @param position entity
+     * @param foodStationTile image
+     */
     public FoodStation(final Position position, final FoodStationTile foodStationTile) {
         super(position);
         this.graphicComponent = new FoodStationGraphicComponent(this, foodStationTile);
