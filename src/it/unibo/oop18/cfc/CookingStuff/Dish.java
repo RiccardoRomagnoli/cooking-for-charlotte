@@ -2,10 +2,14 @@ package it.unibo.oop18.cfc.CookingStuff;
 
 import java.util.List;
 
+/**
+ * Dish manage and setting.
+ * 
+ */
 public class Dish {
 
-    private String name;
-    private List<Ingredient> ingredients;
+    private final String name;
+    private final List<Ingredient> ingredients;
     private int points;
 
     /**
@@ -25,7 +29,7 @@ public class Dish {
     }
 
     /**
-     * TODO.
+     * TODO. Add method description
      * 
      * @return true if it's ready, or viceversa
      */
