@@ -27,11 +27,11 @@ public class CookerGraphicComponent implements GraphicsComponent{
     @Override
     public void draw(final Graphics2D g) {
         if (this.cooker.isCooked()) {
-            g.drawImage(this.cookerTile.getTiles().get(0).getImage(),
+            g.drawImage(this.cookerTile.getTiles().get(1).getImage(),
                     AffineTransform.getTranslateInstance(this.cooker.getPosition().getX(), this.cooker.getPosition().getY()),
                     null);
         } else {
-            g.drawImage(this.cookerTile.getTiles().get(1).getImage(),
+            g.drawImage(this.cookerTile.getTiles().get(0).getImage(),
                     AffineTransform.getTranslateInstance(this.cooker.getPosition().getX(), this.cooker.getPosition().getY()),
                     null);
         }

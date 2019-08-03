@@ -28,11 +28,11 @@ public class ChoppingStationGraphicComponent implements GraphicsComponent{
     @Override
     public void draw(final Graphics2D g) {
         if (this.choppingStation.isCut()) {
-            g.drawImage(this.choppingStationTile.getTiles().get(0).getImage(),
+            g.drawImage(this.choppingStationTile.getTiles().get(1).getImage(),
                     AffineTransform.getTranslateInstance(this.choppingStation.getPosition().getX(), this.choppingStation.getPosition().getY()),
                     null);
         } else {
-            g.drawImage(this.choppingStationTile.getTiles().get(1).getImage(),
+            g.drawImage(this.choppingStationTile.getTiles().get(0).getImage(),
                     AffineTransform.getTranslateInstance(this.choppingStation.getPosition().getX(), this.choppingStation.getPosition().getY()),
                     null);
         }
