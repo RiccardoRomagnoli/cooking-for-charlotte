@@ -10,9 +10,9 @@ import it.unibo.oop18.cfc.Tile.FoodStationTile;
 import it.unibo.oop18.cfc.Tile.PlateStationTile;
 import it.unibo.oop18.cfc.Tile.Tile;
 
-
 /**
- * This class represents still object's graphic component and models {@link GraphicsComponent}.
+ * This class represents still object's graphic component and models
+ * {@link GraphicsComponent}.
  */
 public class PlateStationGraphicComponent implements GraphicsComponent {
     private final PlateStation plateStation;
@@ -21,8 +21,8 @@ public class PlateStationGraphicComponent implements GraphicsComponent {
     /**
      * Creates a {@code DoorGraphicComponent}.
      * 
-     * @param door the logic of the door
-     * @param doorSprite door's sprite
+     * @param plateStation     the logic of the door
+     * @param plateStationTile door's sprite
      */
     public PlateStationGraphicComponent(final PlateStation plateStation, final PlateStationTile plateStationTile) {
         this.plateStation = plateStation;
@@ -34,7 +34,7 @@ public class PlateStationGraphicComponent implements GraphicsComponent {
      */
     @Override
     public void draw(final Graphics2D g) {
-        g.drawImage(this.plateStationTile.getTiles().get(0).getImage(), AffineTransform
-                .getTranslateInstance(this.plateStation.getPosition().getX(), this.plateStation.getPosition().getY()), null);
+        g.drawImage(this.plateStationTile.getTiles().get(0).getImage(), AffineTransform.getTranslateInstance(
+                this.plateStation.getPosition().getX(), this.plateStation.getPosition().getY()), null);
     }
 }

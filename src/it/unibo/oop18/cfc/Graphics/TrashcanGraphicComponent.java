@@ -6,19 +6,19 @@ import java.awt.geom.AffineTransform;
 import it.unibo.oop18.cfc.Objects.Stations.Trashcan;
 import it.unibo.oop18.cfc.Tile.TrashcanTile;
 
-public class TrashcanGraphicComponent implements GraphicsComponent{
+public class TrashcanGraphicComponent implements GraphicsComponent {
     private final Trashcan trashcan;
     private final TrashcanTile trashcanTile;
 
     /**
      * Creates a {@code DoorGraphicComponent}.
      * 
-     * @param door the logic of the door
-     * @param doorSprite door's sprite
+     * @param trashcan     the logic of the door
+     * @param trashcanTile door's sprite
      */
     public TrashcanGraphicComponent(final Trashcan trashcan, final TrashcanTile trashcanTile) {
         this.trashcan = trashcan;
-        this.trashcanTile =  trashcanTile;
+        this.trashcanTile = trashcanTile;
     }
 
     /**

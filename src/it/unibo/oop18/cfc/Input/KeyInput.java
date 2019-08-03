@@ -21,15 +21,14 @@ public class KeyInput implements KeyListener {
     private GameState currentState;
     private final GameStateManager gsm;
     private int nKeyPressing = 0;
-    
 
     HashMap<Integer, Boolean> keys;
 
     /**
      * Creates {@code KeyInput}.
      *
-     * @param player reference to move
-     * @param game   state manager used to set state Pause
+     * 
+     * @param gsm state manager used to set state Pause
      */
     public KeyInput(final GameStateManager gsm) {
         this.gsm = gsm;
@@ -68,10 +67,10 @@ public class KeyInput implements KeyListener {
             break;
         default:
             break;
-       }
+        }
     }
 
-    //key pressed during play state
+    // key pressed during play state
     private void playKeyInput(final KeyEvent e) {
         final Optional<Direction> way;
         switch (e.getKeyCode()) {
@@ -88,7 +87,7 @@ public class KeyInput implements KeyListener {
             way = Optional.ofNullable(Direction.UP);
             break;
         case KeyEvent.VK_SPACE:
-            //this.doAction();
+            // this.doAction();
             way = Optional.empty();
             break;
         case KeyEvent.VK_P:
@@ -100,13 +99,12 @@ public class KeyInput implements KeyListener {
             break;
         }
         if (keys.keySet().contains(e.getKeyCode())) {
-        	keys.put(e.getKeyCode(), true);
+            keys.put(e.getKeyCode(), true);
         }
-        //this.moveEntity(way);
+        // this.moveEntity(way);
     }
-    
 
-    //key pressed during intro state
+    // key pressed during intro state
     private void introKeyInput(final KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             gsm.setState(GameStates.MENU);
@@ -114,7 +112,7 @@ public class KeyInput implements KeyListener {
         }
     }
 
-    //key pressed during game over state
+    // key pressed during game over state
     private void gameOverKeyInput(final KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             gsm.setState(GameStates.MENU);
@@ -122,7 +120,7 @@ public class KeyInput implements KeyListener {
         }
     }
 
-    //key pressed during menu state
+    // key pressed during menu state
     private void menuKeyInput(final KeyEvent e) {
         MenuState menu = (MenuState) currentState;
         switch (e.getKeyCode()) {
@@ -136,8 +134,8 @@ public class KeyInput implements KeyListener {
             menu.select();
         }
     }
-    
-    //key pressed during pause state
+
+    // key pressed during pause state
     private void pauseKeyInput(final KeyEvent e) {
         switch (e.getKeyCode()) {
         case KeyEvent.VK_ESCAPE:
@@ -148,26 +146,27 @@ public class KeyInput implements KeyListener {
         case KeyEvent.VK_F1:
             gsm.setState(GameStates.MENU);
             break;
+        default:
+            break;
         }
     }
-    
+
     private void infoKeyInput(KeyEvent e) {
         gsm.setState(GameStates.MENU);
     }
-    
+
     /**
      * It stops the player when a key button is released.
      */
     @Override
     public void keyReleased(final KeyEvent e) {
-    	//handleStopPlayer(e);
+        // handleStopPlayer(e);
     }
 
     @Override
     public void keyTyped(final KeyEvent e) {
 
     }
-
 
     private void launchPause() {
         this.gsm.setState(GameStates.PAUSE);

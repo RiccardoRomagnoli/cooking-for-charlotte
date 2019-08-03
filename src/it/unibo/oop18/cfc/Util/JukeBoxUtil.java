@@ -62,8 +62,9 @@ public final class JukeBoxUtil {
         if (c.isRunning())
             c.stop();
         c.setFramePosition(i);
-        while (!c.isRunning())
+        while (!c.isRunning()) {
             c.start();
+        }
     }
 
     public static void stop(String s) {

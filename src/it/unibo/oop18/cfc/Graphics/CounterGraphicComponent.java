@@ -13,8 +13,8 @@ public class CounterGraphicComponent implements GraphicsComponent {
     /**
      * Creates a {@code DoorGraphicComponent}.
      * 
-     * @param door       the logic of the door
-     * @param doorSprite door's sprite
+     * @param counter       the logic of the door
+     * @param counterTile door's sprite
      */
     public CounterGraphicComponent(final Counter counter, final CounterTile counterTile) {
         this.counter = counter;

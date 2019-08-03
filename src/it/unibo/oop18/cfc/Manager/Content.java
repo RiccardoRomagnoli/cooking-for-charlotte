@@ -47,14 +47,18 @@ public class Content {
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             // if(c == 47) c = 36; // slash
-            if (c == 58)
+            if (c == 58) {
                 c = 26; // colon
-            if (c == 32)
+            }
+            if (c == 32) {
                 c = 28; // space
-            if (c >= 48 && c <= 57)
+            }
+            if (c >= 48 && c <= 57) {
                 c -= 32; // numbers
-            if (c >= 65 && c <= 90)
+            }
+            if (c >= 65 && c <= 90) {
                 c -= 32; // letters
+            }
             int row = c / font[0].length;
             int col = c % font[0].length;
             g.drawImage(font[row][col], x + 50 * i, y, null);

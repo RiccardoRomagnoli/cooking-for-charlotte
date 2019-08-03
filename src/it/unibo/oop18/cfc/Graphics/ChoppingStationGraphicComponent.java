@@ -14,8 +14,8 @@ public class ChoppingStationGraphicComponent implements GraphicsComponent {
     /**
      * Creates a {@code DoorGraphicComponent}.
      * 
-     * @param door the logic of the door
-     * @param doorSprite door's sprite
+     * @param choppingStation the logic of the door
+     * @param choppingStationTile door's sprite
      */
     public ChoppingStationGraphicComponent(final ChoppingStation choppingStation, final ChoppingStationTile choppingStationTile) {
         this.choppingStation = choppingStation;

@@ -29,7 +29,7 @@ public class InfoState extends GameState {
      * Init class.
      */
     public void init() {
-        
+
     }
 
     /**
