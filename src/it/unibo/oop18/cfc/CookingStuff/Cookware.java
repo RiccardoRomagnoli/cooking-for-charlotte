@@ -1,14 +1,14 @@
 package it.unibo.oop18.cfc.CookingStuff;
 
 /**
- * an interface for cookaware stuff, like pan adn pots.
+ * an interface for cookaware stuff, like pan and pots.
  *
  */
 public interface Cookware {
 
     /**
      * @param ing : the ingredient you're about to add to the cookware. it also
-     *             resets the ingredient to his CHOPPED state.
+     *            resets the ingredient to his CHOPPED state.
      */
     void add(Ingredient ing);
 

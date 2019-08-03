@@ -1,8 +1,8 @@
-// Global helper class.
-// Records finish time upon game completion.
-
 package it.unibo.oop18.cfc.Manager;
 
+/**
+ * Global helper class. Records finish time upon game completion
+ */
 public final class DataUtil {
 
     public static long time;
