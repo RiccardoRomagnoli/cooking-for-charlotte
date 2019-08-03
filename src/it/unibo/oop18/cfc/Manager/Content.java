@@ -1,7 +1,3 @@
-// Loads and splits all sprites on start up.
-// The sprites can easily be accessed as they
-// are public and static.
-
 package it.unibo.oop18.cfc.Manager;
 
 import java.awt.Graphics2D;
@@ -9,19 +5,24 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
+/**
+ * Loads and splits all sprites on start up. The sprites can easily be accessed
+ * as they are public and static.
+ * 
+ */
 public class Content {
 
-    public static BufferedImage[][] MENUBG = load("/HUD/menu.png", 1024, 768);
-    public static BufferedImage[][] TOPBAR = load("/HUD/topbar.png", 1024, 128);
-    public static BufferedImage[][] DOWNBAR = load("/HUD/downbar.png", 1024, 128);
+    public static final BufferedImage[][] MENUBG = load("/HUD/menu.png", 1024, 768);
+    public static final BufferedImage[][] TOPBAR = load("/HUD/topbar.png", 1024, 128);
+    public static final BufferedImage[][] DOWNBAR = load("/HUD/downbar.png", 1024, 128);
 
-    public static BufferedImage[][] FOOD = load("/Sprites/Food.png", 50, 50);
+    public static final BufferedImage[][] FOOD = load("/Sprites/Food.png", 50, 50);
 
-    public static BufferedImage[][] PLAYER = load("/Sprites/baker.png", 64, 64);
+    public static final BufferedImage[][] PLAYER = load("/Sprites/baker.png", 64, 64);
 
     public static BufferedImage[][] font = load("/HUD/font.png", 50, 50);
 
-    public static BufferedImage[][] load(String s, int w, int h) {
+    public static final BufferedImage[][] load(String s, int w, int h) {
         BufferedImage[][] ret;
         try {
             BufferedImage spritesheet = ImageIO.read(Content.class.getResourceAsStream(s));
@@ -42,8 +43,16 @@ public class Content {
         return null;
     }
 
-    public static void drawString(Graphics2D g, String s, int x, int y) {
-        s = s.toUpperCase();
+    /**
+     * Draw.
+     * 
+     * @param g   graphic to be printed
+     * @param str String to be printed
+     * @param x   Pos
+     * @param y   Pos
+     */
+    public static void drawString(final Graphics2D g, final String str, final int x, final int y) {
+        final String s = str.toUpperCase();
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             // if(c == 47) c = 36; // slash
@@ -59,8 +68,8 @@ public class Content {
             if (c >= 65 && c <= 90) {
                 c -= 32; // letters
             }
-            int row = c / font[0].length;
-            int col = c % font[0].length;
+            final int row = c / font[0].length;
+            final int col = c % font[0].length;
             g.drawImage(font[row][col], x + 50 * i, y, null);
         }
     }
