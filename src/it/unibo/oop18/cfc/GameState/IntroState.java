@@ -14,7 +14,6 @@ import it.unibo.oop18.cfc.Manager.GameStateManager;
 public class IntroState extends GameState {
 
     private BufferedImage logo;
-
     private int alpha;
     private int ticks;
 

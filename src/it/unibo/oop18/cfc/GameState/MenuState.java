@@ -17,7 +17,7 @@ public class MenuState extends GameState {
 
     private BufferedImage bg;
     private BufferedImage food;
-    //private final int height = GamePanel.HEIGHT;
+    // private final int height = GamePanel.HEIGHT;
     private final int stringPos = 350;
     private final int imagePos = 280;
     private int currentOption = 0;
@@ -29,6 +29,7 @@ public class MenuState extends GameState {
 
     /**
      * Menu state init.
+     * 
      * @param gsm game state manager
      */
     public MenuState(final GameStateManager gsm) {
@@ -74,6 +75,11 @@ public class MenuState extends GameState {
     private void selectOption() {
         if (currentOption == 0) {
             gsm.newGame();
+        }
+        if (currentOption == 2) {
+            gsm.setState(GameStates.INFO);
+            Graphics2D g = null;
+            gsm.draw(g);
         }
         if (currentOption == 3) {
             System.exit(0);

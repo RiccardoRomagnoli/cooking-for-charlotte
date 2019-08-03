@@ -63,9 +63,12 @@ public class KeyInput implements KeyListener {
         case PAUSE:
             pauseKeyInput(e);
             break;
+        case INFO:
+            infoKeyInput(e);
+            break;
         default:
             break;
-        }
+       }
     }
 
     //key pressed during play state
@@ -147,7 +150,11 @@ public class KeyInput implements KeyListener {
             break;
         }
     }
-
+    
+    private void infoKeyInput(KeyEvent e) {
+        gsm.setState(GameStates.MENU);
+    }
+    
     /**
      * It stops the player when a key button is released.
      */
