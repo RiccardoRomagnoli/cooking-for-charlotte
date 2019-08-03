@@ -9,12 +9,11 @@ import java.util.TimerTask;
  */
 public class Ingredient {
 
-	private final short TIME_TO_CHOP = 2; 
+	private static int TIME_TO_CHOP = 2; 
 	private String name;
 	/*
 	 * private long startTime; private long endTime; 
 	 */
-	private long cookedTime;
 	private long timeToCook;
 	private long timeToBurn;
 	private int pointsValue;
@@ -87,7 +86,6 @@ public class Ingredient {
 	}
 	
 	protected void restartCooking() {
-		this.cookedTime = 0;
 		this.state = IngredientState.CHOPPED;
 	}
 	
