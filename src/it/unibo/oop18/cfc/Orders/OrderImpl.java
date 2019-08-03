@@ -30,6 +30,8 @@ public class OrderImpl implements Order {
 	}
 	
 	public void addIngredient(Food food, IngredientState ingredientState) {
+		if(plate.size()>4)
+			throw new IllegalStateException();
 		plate.add(new Pair<Food, IngredientState>(food, ingredientState));
 	}
 	

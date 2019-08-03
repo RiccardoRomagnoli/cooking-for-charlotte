@@ -1,12 +1,8 @@
 package it.unibo.oop18.cfc.Orders;
 
 public interface OrderGenerator {
+
+	public void setDifficulty(OrderDifficulty currentDifficulty);
 	
-	/**
-	 * Generate a new random Order
-	 * 
-	 * @param difficulty Criteria of generation for the new Order
-	 * @return Order generated
-	 */
-	public Order generateNewOrder(OrderDifficulty difficulty);
+	public void startGeneration(long intervalMilliseconds);
 }

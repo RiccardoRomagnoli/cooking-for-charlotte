@@ -17,4 +17,8 @@ public interface OrdersManager {
 	public void update();
 	
 	public void draw(Graphics2D g);
+	
+	public void addOrder(Order o);
+	
+	public int getOrderQuantity();
 }
