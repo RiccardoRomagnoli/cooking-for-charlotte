@@ -8,6 +8,7 @@ import java.util.Optional;
 import it.unibo.oop18.cfc.GameState.GameState;
 import it.unibo.oop18.cfc.GameState.GameStates;
 import it.unibo.oop18.cfc.GameState.MenuState;
+import it.unibo.oop18.cfc.GameState.OptionState;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
 import it.unibo.oop18.cfc.Physics.Direction;
 import it.unibo.oop18.cfc.Util.JukeBoxUtil;
@@ -65,8 +66,35 @@ public class KeyInput implements KeyListener {
         case INFO:
             infoKeyInput(e);
             break;
+        case OPTION:
+            optionKeyInput(e);
+            break;
         default:
             break;
+        }
+    }
+
+    private void optionKeyInput(final KeyEvent e) {
+        gsm.setState(GameStates.OPTION);
+        switch (e.getKeyCode()) {
+        case KeyEvent.VK_UP:
+            OptionState.increaseVolume();
+            break;
+        case KeyEvent.VK_DOWN:
+            OptionState.decreaseVolume();
+            break;
+        case KeyEvent.VK_RIGHT:
+            OptionState.increaseResolution();
+            break;
+        case KeyEvent.VK_LEFT:
+            OptionState.decreaseVolume();
+            break;
+        default:
+            break;
+        }
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            gsm.setState(GameStates.MENU);
+            JukeBoxUtil.play("collect");
         }
     }
 
@@ -132,6 +160,9 @@ public class KeyInput implements KeyListener {
             break;
         case KeyEvent.VK_ENTER:
             menu.select();
+        default:
+            break;
+      
         }
     }
 

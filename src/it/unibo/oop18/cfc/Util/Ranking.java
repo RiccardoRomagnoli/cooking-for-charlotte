@@ -11,6 +11,7 @@ public interface Ranking {
 
     /**
      * Add a row in the rank file.
+     * 
      * @param points gained in the game
      * 
      * @param player name of the gamer
@@ -24,13 +25,15 @@ public interface Ranking {
 
     /**
      * Save rank on a csv formatted file.
-     * @throws IOException 
+     * 
+     * @throws IOException
      */
     void saveRanking() throws IOException;
 
     /**
      * Load the rank from a csv formatted file.
-     * @throws IOException 
+     * 
+     * @throws IOException
      */
     void loadRanking() throws IOException;
 }

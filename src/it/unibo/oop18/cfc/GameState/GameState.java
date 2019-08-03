@@ -9,10 +9,14 @@ import java.awt.Graphics2D;
 
 import it.unibo.oop18.cfc.Manager.GameStateManager;
 
+/**
+ * This class provide the basic mechanism to change between different state.
+ *
+ */
 public abstract class GameState {
 
     protected GameStateManager gsm;
-    private GameStates gameStateName;
+    private final GameStates gameStateName;
 
     public GameState(GameStateManager gsm, GameStates gameStateName) {
         this.gsm = gsm;

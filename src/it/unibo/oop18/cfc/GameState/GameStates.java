@@ -28,5 +28,9 @@ public enum GameStates {
     /**
      * Info state.
      */
-    INFO
+    INFO,
+    /**
+     * Option state.
+     */
+    OPTION
 }

@@ -18,14 +18,14 @@ public class MenuState extends GameState {
     private BufferedImage bg;
     private BufferedImage food;
     // private final int height = GamePanel.HEIGHT;
-    private final int stringPos = 350;
-    private final int imagePos = 280;
+    private static final int STRING_POS = 350;
+    private static final int IMAGE_POS = 280;
     private int currentOption = 0;
-    private String[] options = { "START", "OPTIONS", "INFO", "QUIT" };
+    private final String[] options = { "START", "OPTIONS", "INFO", "QUIT" };
 
-    private int menuOptions = options.length;
+    private final int menuOptions = options.length;
 
-    private int[] dim = { 300, 360, 420, 480 };
+    private final int[] dim = { 300, 360, 420, 480 };
 
     /**
      * Menu state init.
@@ -63,9 +63,9 @@ public class MenuState extends GameState {
         g.drawImage(bg, 0, 0, null);
 
         for (int i = 0; i < menuOptions; i++) {
-            Content.drawString(g, options[i], stringPos, dim[i]);
+            Content.drawString(g, options[i], STRING_POS, dim[i]);
         }
-        g.drawImage(food, imagePos, dim[currentOption], null);
+        g.drawImage(food, IMAGE_POS, dim[currentOption], null);
 
     }
 
@@ -76,9 +76,14 @@ public class MenuState extends GameState {
         if (currentOption == 0) {
             gsm.newGame();
         }
+        if (currentOption == 1) {
+            gsm.setState(GameStates.OPTION);
+            final Graphics2D g = null;
+            gsm.draw(g);
+        }
         if (currentOption == 2) {
             gsm.setState(GameStates.INFO);
-            Graphics2D g = null;
+            final Graphics2D g = null;
             gsm.draw(g);
         }
         if (currentOption == 3) {

@@ -10,7 +10,6 @@ import java.util.LinkedHashMap;
 import static java.util.stream.Collectors.toMap;
 import static java.util.Map.Entry.comparingByValue;
 
-
 /**
  * 
  * Ranking class manage a CSV file.
@@ -23,19 +22,20 @@ public class RankingImpl implements Ranking {
     private int rowNumber = 0;
 
     /**
-     * @throws IOException 
+     * Constructor.
+     * 
+     * @throws IOException generic exception
      * 
      */
     public RankingImpl() throws IOException {
         this.rowNumber = ranked.size();
-        loadRanking(); //Loads the ranking, so now the HashMap is filled
-        //loadRanking()
+        loadRanking(); // Loads the ranking, so now the HashMap is filled
+        // loadRanking()
         ranked = orderRank(ranked);
     }
 
     /**
-     * @param player 
-     * player that scored @param points
+     * @param player player that scored @param points
      */
     @Override
     public void addPlacement(final String player, final int points) {
@@ -43,15 +43,16 @@ public class RankingImpl implements Ranking {
             ranked.put(player, points);
         }
     }
+
     /**
      * 
      */
     @Override
-    public void printOnScreen() {        
+    public void printOnScreen() {
         int count = 1;
-        for (HashMap.Entry<String, Integer> entry : ranked.entrySet()) {
-            String key = entry.getKey();
-            Integer value = entry.getValue();
+        for (final HashMap.Entry<String, Integer> entry : ranked.entrySet()) {
+            final String key = entry.getKey();
+            final Integer value = entry.getValue();
             System.out.printf("#%d  -  Name: %s  -  Points: %d ", count, key, value);
             count++;
         }
@@ -59,7 +60,8 @@ public class RankingImpl implements Ranking {
 
     /**
      * Write the rank to a CSV file.
-     * @throws IOException 
+     * 
+     * @throws IOException
      * 
      */
     @Override
@@ -70,26 +72,28 @@ public class RankingImpl implements Ranking {
         BufferedWriter b;
         b = new BufferedWriter(w);
 
-        for (HashMap.Entry<String, Integer> entry : ranked.entrySet()) {
-            String key = entry.getKey();
-            Integer value = entry.getValue();
-            String row = String.format("%s;%d\n", key, value);
+        for (final HashMap.Entry<String, Integer> entry : ranked.entrySet()) {
+            final String key = entry.getKey();
+            final Integer value = entry.getValue();
+            final String row = String.format("%s;%d\n", key, value);
             b.write(row);
         }
         b.close();
+        w.close();
     }
 
     /**
      * Read the ranking from the CSV file.
-     * @throws IOException 
+     * 
+     * @throws IOException
      *
      */
     @Override
-    public void loadRanking() throws IOException {
-        BufferedReader csvReader = new BufferedReader(new FileReader("prova.txt"));
+    public final void loadRanking() throws IOException {
+        final BufferedReader csvReader = new BufferedReader(new FileReader("prova.txt"));
         String row;
         while ((row = csvReader.readLine()) != null) {
-            String[] data = row.split(";");
+            final String[] data = row.split(";");
             ranked.put(data[0], Integer.parseInt(data[1]));
         }
         csvReader.close();
@@ -97,24 +101,18 @@ public class RankingImpl implements Ranking {
 
     /**
      * Returns the map ordered.
+     * 
      * @return the ordered map
      * @param map to be ordered
      */
-    public HashMap<String, Integer> orderRank(final HashMap<String, Integer> map) {
-        HashMap<String, Integer> sorted = map
-                .entrySet()
-                .stream()
-                .sorted(comparingByValue())
-                .collect(
-                    toMap(e -> e.getKey(), e -> e.getValue(), (e1, e2) -> e2,
-                        LinkedHashMap::new));
-        return sorted;
+    public final HashMap<String, Integer> orderRank(final HashMap<String, Integer> map) {
+        return map.entrySet().stream().sorted(comparingByValue())
+                .collect(toMap(e -> e.getKey(), e -> e.getValue(), (e1, e2) -> e2, LinkedHashMap::new));
     }
 
     /**
      * 
-     * @return the number of row in the map
-     * (dimension of the map)
+     * @return the number of row in the map (dimension of the map)
      */
     public int getRowNumber() {
         return rowNumber;
