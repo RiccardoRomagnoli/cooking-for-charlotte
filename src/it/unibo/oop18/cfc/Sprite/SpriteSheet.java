@@ -1,4 +1,4 @@
-package it.unibo.oop18.cfc.Graphics;
+package it.unibo.oop18.cfc.Sprite;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -14,7 +14,6 @@ public class SpriteSheet {
      * It sets the sprite size used in game.
      */
     public static final int SPRITE_SIZE_IN_GAME = 64;
-    private static final int REAL_SPRITE_SIZE = 64;
     private final BufferedImage sheet;
 
     /**
@@ -35,9 +34,9 @@ public class SpriteSheet {
      * @return a buffered image of the {@link Sprite}
      */
     public BufferedImage getSingleSprite(final int x, final int y) {
-        return this.sheet.getSubimage(x * REAL_SPRITE_SIZE - REAL_SPRITE_SIZE,
-                                      y * REAL_SPRITE_SIZE - REAL_SPRITE_SIZE,
-                                      REAL_SPRITE_SIZE, REAL_SPRITE_SIZE);
+        return this.sheet.getSubimage(x * SPRITE_SIZE_IN_GAME,
+                                      y * SPRITE_SIZE_IN_GAME,
+                                      SPRITE_SIZE_IN_GAME, SPRITE_SIZE_IN_GAME);
     }
 
 }

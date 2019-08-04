@@ -1,4 +1,4 @@
-package it.unibo.oop18.cfc.Graphics;
+package it.unibo.oop18.cfc.Sprite;
 
 import java.awt.Image;
 

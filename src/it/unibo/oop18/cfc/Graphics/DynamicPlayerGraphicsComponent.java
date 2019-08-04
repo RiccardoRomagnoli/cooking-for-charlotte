@@ -6,12 +6,12 @@ import java.awt.geom.AffineTransform;
 import it.unibo.oop18.cfc.Main.GameEngine;
 import it.unibo.oop18.cfc.Objects.Entity.AbstractEntity;
 import it.unibo.oop18.cfc.Physics.Direction;
-import it.unibo.oop18.cfc.TileMap.PlayerSprites;
+import it.unibo.oop18.cfc.Sprite.PlayerSprites;
 
 /**
  * Graphics component for any dynamic entity that it moves.
  */
-public class DynamicEntityGraphicsComponent implements GraphicsComponent {
+public class DynamicPlayerGraphicsComponent implements GraphicsComponent {
 
     private static final int DIVISION_BY_ZERO_PROTECTION = 1;
     private static final int MOVE_FRAME_DELAY = Math.round(GameEngine.FPS / 15) + DIVISION_BY_ZERO_PROTECTION;
@@ -29,7 +29,7 @@ public class DynamicEntityGraphicsComponent implements GraphicsComponent {
      * @param entity reference to take its direction
      * @param sprites for player and entity animations
      */
-    public DynamicEntityGraphicsComponent(final AbstractEntity entity,
+    public DynamicPlayerGraphicsComponent(final AbstractEntity entity,
                                           final PlayerSprites sprites) {
         this.sprites = sprites;
         this.entity = entity;
@@ -67,7 +67,7 @@ public class DynamicEntityGraphicsComponent implements GraphicsComponent {
                                                              this.entity.getPosition().getY()), null);
             break;
         default:
-            g.drawImage(this.sprites.getStopSprites(oldDir).getImage(),
+            g.drawImage(this.sprites.getStopSprites().get(oldDir).getImage(),
                     AffineTransform.getTranslateInstance(this.entity.getPosition().getX(),
                                                          this.entity.getPosition().getY()), null);
             break;
