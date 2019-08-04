@@ -24,7 +24,7 @@ public class Ingredient {
     /*
      * private boolean cooking; private boolean chopping;
      */
-    private short choppingTime;
+    private int choppingTime;
 
     // timer section
     /*

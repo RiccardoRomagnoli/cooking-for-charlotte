@@ -21,12 +21,12 @@ public class OptionState extends GameState {
     private Color color;
     private static List<Integer> volume = new ArrayList<Integer>(Arrays.asList(0, 15, 30, 45, 60, 75, 90, 100));
     private static List<String> resolution = new ArrayList<String>(Arrays.asList("1920x1080", "800*600", "1024*512"));
-    private static int initialVolume = volume.get(volume.size());
-    private static String initialResolution = resolution.get(resolution.size());
+    private static int initialVolume = volume.get(volume.size() - 1);
+    private static String initialResolution = resolution.get(resolution.size() - 1);
     private static int volumeIndex = volume.size();
     private static int resolutionIndex = resolution.size();
-    private static int actualVolume = volume.get(volume.size());
-    private static String actualResolution = resolution.get(resolution.size());
+    private static int actualVolume = volume.get(volume.size() - 1);
+    private static String actualResolution = resolution.get(resolution.size() - 1);
 
     /**
      * Class constructor.
@@ -86,7 +86,7 @@ public class OptionState extends GameState {
         JukeBoxUtil.play("menuoption");
         if (volumeIndex < volume.size()) {
             volumeIndex--;
-            actualVolume = volume.get(volumeIndex);
+            actualVolume = volume.get(volumeIndex-1);
         }
     }
 
@@ -97,7 +97,7 @@ public class OptionState extends GameState {
         JukeBoxUtil.play("menuoption");
         if (volumeIndex > 0) {
             volumeIndex--;
-            actualVolume = volume.get(volumeIndex);
+            actualVolume = volume.get(volumeIndex-1);
         }
     }
 
@@ -111,7 +111,7 @@ public class OptionState extends GameState {
         } else {
             resolutionIndex--;
         }
-        setActualResolution(resolution.get(resolutionIndex));
+        setActualResolution(resolution.get(resolutionIndex-1));
     }
 
     /**
@@ -124,7 +124,7 @@ public class OptionState extends GameState {
         } else {
             resolutionIndex--;
         }
-        setActualResolution(resolution.get(resolutionIndex));
+        setActualResolution(resolution.get(resolutionIndex-1));
     }
     
     public static List<Integer> getVolume() {

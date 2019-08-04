@@ -14,15 +14,19 @@ import it.unibo.oop18.cfc.Util.JukeBoxUtil;
  * Game manager, help to choose from different state during the game.
  */
 public class GameStateManager {
-    private GameState introState;
-    private GameState menuState;
-    private GameState playState;
-    private GameState gameOverState;
-    private GameState pauseState;
-    private GameState infoState;
+    private final GameState introState;
+    private final GameState menuState;
+    private final GameState playState;
+    private final GameState gameOverState;
+    private final GameState pauseState;
+    private final GameState infoState;
+    private final GameState optionState;
 
     private GameState currentState;
 
+    /**
+     * TODO. add intro case
+     */
     public GameStateManager() {
         JukeBoxUtil.init();
         pauseState = new PauseState(this);
@@ -31,6 +35,7 @@ public class GameStateManager {
         gameOverState = new GameOverState(this);
         playState = new PlayState(this);
         infoState = new InfoState(this);
+        optionState = new OptionState(this);
         setState(GameStates.INTRO);
     }
 
@@ -38,7 +43,10 @@ public class GameStateManager {
         playState.init();
         setState(GameStates.PLAY);
     }
-
+    /**
+     * TODO. remove intro case and add the code in the constructor 
+     * @param gameState ....
+     */
     public void setState(final GameStates gameState) {
         switch (gameState) {
         case INTRO:
@@ -63,6 +71,9 @@ public class GameStateManager {
             currentState = infoState;
             infoState.init();
             break;
+        case OPTION:
+            currentState = optionState;
+            optionState.init();
         default:
             break;
         }
