@@ -7,6 +7,7 @@ import java.util.Set;
 
 import it.unibo.oop18.cfc.Objects.GameObject;
 import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
+import it.unibo.oop18.cfc.Objects.Floors.ParquetFloor;
 import it.unibo.oop18.cfc.Objects.Stations.ChoppingStation;
 import it.unibo.oop18.cfc.Objects.Stations.Cooker;
 import it.unibo.oop18.cfc.Objects.Stations.Counter;
@@ -128,4 +129,11 @@ public interface World {
      * @return all this stations
      */
     Set<Washbasin> getWashbasins();
+    
+    /**
+     * Gets the WashBasin Stations objects.
+     * 
+     * @return all this stations
+     */
+    Set<ParquetFloor> getParquetFloor();
 }

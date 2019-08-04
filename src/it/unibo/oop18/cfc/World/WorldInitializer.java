@@ -3,6 +3,7 @@ package it.unibo.oop18.cfc.World;
 import java.util.Set;
 
 import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
+import it.unibo.oop18.cfc.Objects.Floors.ParquetFloor;
 import it.unibo.oop18.cfc.Objects.Stations.ChoppingStation;
 import it.unibo.oop18.cfc.Objects.Stations.Cooker;
 import it.unibo.oop18.cfc.Objects.Stations.Counter;
@@ -80,6 +81,13 @@ public interface WorldInitializer {
      */
     Set<PlateStation> initializePlateStation();
 
+    /**
+     * Initializes initial free tiles.
+     * 
+     * @return free tiles
+     */
+    Set<ParquetFloor> initializeParquetFloor();
+    
     /**
      * Initializes the player.
      * 

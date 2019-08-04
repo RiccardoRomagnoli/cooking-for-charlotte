@@ -11,6 +11,7 @@ import java.util.Set;
 import it.unibo.oop18.cfc.Manager.TileManager;
 import it.unibo.oop18.cfc.Objects.GameObject;
 import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
+import it.unibo.oop18.cfc.Objects.Floors.ParquetFloor;
 import it.unibo.oop18.cfc.Objects.Stations.ChoppingStation;
 import it.unibo.oop18.cfc.Objects.Stations.Cooker;
 import it.unibo.oop18.cfc.Objects.Stations.Counter;
@@ -63,7 +64,8 @@ public class WorldImpl implements World {
     private final Set<PlateStation> plateStations;
     private final Set<Trashcan> trashcans;
     private final Set<Washbasin> washbasins;
-
+    private final Set<ParquetFloor> parquetFloor;
+    
     private PlayerImpl player;
     private final GameTimer timer;
     // private final PlayerScore score;
@@ -83,6 +85,7 @@ public class WorldImpl implements World {
         this.plateStations = new HashSet<>();
         this.trashcans = new HashSet<>();
         this.washbasins = new HashSet<>();
+        this.parquetFloor = new HashSet<>();
         this.createLevel(new TileManager(TILEPATH), MAPPATH);
         this.player = new PlayerImpl(new Position(64 * 7, 64 * 5), this);
         this.timer = new GameTimer();
@@ -102,6 +105,7 @@ public class WorldImpl implements World {
         allGameObjects.addAll(this.plateStations);
         allGameObjects.addAll(this.trashcans);
         allGameObjects.addAll(this.washbasins);
+        allGameObjects.addAll(this.parquetFloor);
         // allGameObjects.add(this.player);
         return Collections.unmodifiableList(allGameObjects);
     }
@@ -177,7 +181,13 @@ public class WorldImpl implements World {
     public Set<Washbasin> getWashbasins() {
         return washbasins;
     }
-
+    
+    /**
+     * @return the washbasins
+     */
+    public Set<ParquetFloor> getParquetFloor() {
+        return parquetFloor;
+    }
     /**
      * {@inheritDoc}
      */
@@ -223,5 +233,6 @@ public class WorldImpl implements World {
         this.plateStations.addAll(initializer.initializePlateStation());
         this.trashcans.addAll(initializer.initializeTrashcan());
         this.washbasins.addAll(initializer.initializeWashbasin());
+        this.parquetFloor.addAll(initializer.initializeParquetFloor());
     }
 }

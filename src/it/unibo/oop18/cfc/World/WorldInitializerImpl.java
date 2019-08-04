@@ -4,6 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import it.unibo.oop18.cfc.Manager.TileManager;
+import it.unibo.oop18.cfc.Objects.Floors.ParquetFloor;
 import it.unibo.oop18.cfc.Objects.Stations.ChoppingStation;
 import it.unibo.oop18.cfc.Objects.Stations.Cooker;
 import it.unibo.oop18.cfc.Objects.Stations.Counter;
@@ -92,6 +93,13 @@ public class WorldInitializerImpl implements WorldInitializer {
     public Set<PlateStation> initializePlateStation() {
         return this.tilemap.getPlateStationPosition().stream()
                 .map(p -> this.factory.createPlateStation(p))
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    public Set<ParquetFloor> initializeParquetFloor() {
+        return this.tilemap.getParquetFloorPosition().stream()
+                .map(p -> this.factory.createParquetFloor(p, p.getX() / 64 % 2 == 0 ? true : false))
                 .collect(Collectors.toSet());
     }
 
