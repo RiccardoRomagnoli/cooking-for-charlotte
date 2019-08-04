@@ -7,6 +7,7 @@ import it.unibo.oop18.cfc.Tile.CookerTile;
 import it.unibo.oop18.cfc.Tile.CounterTile;
 import it.unibo.oop18.cfc.Tile.DeliveryStationTile;
 import it.unibo.oop18.cfc.Tile.FoodStationTile;
+import it.unibo.oop18.cfc.Tile.ParquetFloorTile;
 import it.unibo.oop18.cfc.Tile.PlateStationTile;
 import it.unibo.oop18.cfc.Tile.TileSheet;
 import it.unibo.oop18.cfc.Tile.TrashcanTile;
@@ -29,6 +30,7 @@ public class TileManager {
     private final PlateStationTile plateStationTile;
     private final TrashcanTile trashcanTile;
     private final WashbasinTile washbasinTile;
+    private final ParquetFloorTile parquetFloorTile;
     /**
      * Creates a {@code SpritesManager} to manage any {@link Sprite} in game.
      *
@@ -45,6 +47,7 @@ public class TileManager {
         this.plateStationTile = new PlateStationTile(sheet);
         this.trashcanTile = new TrashcanTile(sheet);
         this.washbasinTile = new WashbasinTile(sheet);
+        this.parquetFloorTile = new ParquetFloorTile(sheet);
     }
     /**
      * @return the choppingStationTile
@@ -94,5 +97,10 @@ public class TileManager {
     public WashbasinTile getWashbasinTile() {
         return washbasinTile;
     }
-
+    /**
+     * @return the washbasinTile
+     */
+    public ParquetFloorTile getParquetFloorTile() {
+        return parquetFloorTile;
+    }
 }

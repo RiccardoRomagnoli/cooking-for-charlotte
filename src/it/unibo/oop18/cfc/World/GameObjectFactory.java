@@ -1,6 +1,7 @@
 package it.unibo.oop18.cfc.World;
 
 import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
+import it.unibo.oop18.cfc.Objects.Floors.ParquetFloor;
 import it.unibo.oop18.cfc.Objects.Stations.ChoppingStation;
 import it.unibo.oop18.cfc.Objects.Stations.Cooker;
 import it.unibo.oop18.cfc.Objects.Stations.Counter;
@@ -63,8 +64,8 @@ public interface GameObjectFactory {
      * @param position block's position
      * @return a new unbreakable Block
      */
-    PlateStation createPlateStation(Position position);    
-    
+    PlateStation createPlateStation(Position position);
+
     /**
      * Creates an unbreakable {@link Block}.
      * 
@@ -88,6 +89,14 @@ public interface GameObjectFactory {
      * @return a new unbreakable Block
      */
     Washbasin createWashbasin(Position position);
+
+    /**
+     * Creates an unbreakable {@link Block}.
+     * 
+     * @param position block's position
+     * @return a new unbreakable Block
+     */
+    ParquetFloor createParquetFloor(Position position, boolean leftParquet);
 
     /**
      * Creates an unbreakable {@link Block}.

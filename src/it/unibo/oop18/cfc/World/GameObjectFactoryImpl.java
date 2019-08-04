@@ -1,6 +1,7 @@
 package it.unibo.oop18.cfc.World;
 
 import it.unibo.oop18.cfc.Manager.TileManager;
+import it.unibo.oop18.cfc.Objects.Floors.ParquetFloor;
 import it.unibo.oop18.cfc.Objects.Stations.ChoppingStation;
 import it.unibo.oop18.cfc.Objects.Stations.Cooker;
 import it.unibo.oop18.cfc.Objects.Stations.Counter;
@@ -72,6 +73,11 @@ public class GameObjectFactoryImpl implements GameObjectFactory {
     @Override
     public PlateStation createPlateStation(final Position position) {
         return new PlateStation(new Position(position), this.tm.getPlateStationTile());
+    }
+
+    @Override
+    public ParquetFloor createParquetFloor(final Position position, final boolean leftFloor) {
+        return new ParquetFloor(new Position(position), this.tm.getParquetFloorTile(), leftFloor);
     }
 
 }

@@ -68,4 +68,12 @@ interface TileMap {
      * @return set of position
      */
     Set<Position> getWashbasinPosition();
+
+    /**
+     * Get the set of wash bin Position.
+     * 
+     * @return set of position
+     */
+    Set<Position> getParquetFloorPosition(); 
+
 }

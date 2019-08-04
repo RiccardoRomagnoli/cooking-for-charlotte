@@ -136,4 +136,12 @@ public class TileMapImpl implements TileMap {
                 .collect(Collectors.toSet());
     }
 
+    @Override
+    public Set<Position> getParquetFloorPosition() {
+        return maps.stream()
+                .filter(p -> p.getFirst() == TileType.PARQUETFLOOR.getPos())
+                .map(o -> o.getSecond())
+                .collect(Collectors.toSet());
+    }
+
 }
