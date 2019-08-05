@@ -2,6 +2,8 @@ package it.unibo.oop18.cfc.CookingStuff;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import it.unibo.oop18.cfc.Objects.Items.IngredientState;
 /**
  * a cookware used to cook more then one ingredient.
  */

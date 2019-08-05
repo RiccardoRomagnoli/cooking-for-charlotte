@@ -3,6 +3,8 @@ package it.unibo.oop18.cfc.CookingStuff;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import it.unibo.oop18.cfc.Objects.Items.IngredientState;
+
 public class ChoppingBoard {
 
     private boolean chopping;

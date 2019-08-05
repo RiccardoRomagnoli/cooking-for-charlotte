@@ -1,5 +1,7 @@
 package it.unibo.oop18.cfc.CookingStuff;
 
+import it.unibo.oop18.cfc.Objects.Items.IngredientState;
+
 /**
  * a cookware used to cook one ingredient.
  *

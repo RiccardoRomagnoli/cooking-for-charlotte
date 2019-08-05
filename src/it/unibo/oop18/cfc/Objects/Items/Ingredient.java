@@ -1,7 +1,7 @@
 package it.unibo.oop18.cfc.Objects.Items;
 
-public interface Dish {
-    public Food getFood();
+public interface Ingredient {
+    public IngredientType getFood();
 
     public boolean isCooked();
 

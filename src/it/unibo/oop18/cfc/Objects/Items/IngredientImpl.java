@@ -1,23 +1,22 @@
 package it.unibo.oop18.cfc.Objects.Items;
 
-import java.awt.image.BufferedImage;
+import java.awt.Graphics2D;
 
-import it.unibo.oop18.cfc.Manager.Content;
+import it.unibo.oop18.cfc.Util.Position;
 
-public class DishImpl extends ItemImpl implements Dish {
+public class IngredientImpl extends AbstractItem implements Ingredient {
 
-    private Food f;
+    private IngredientType f;
     private boolean isCooked;
     private boolean isCut;
 
-    public DishImpl(Food f) {
-        super(Content.FOOD[f.getX()][f.getY()]);
-        this.f = f;
+    public IngredientImpl(final Position position) {
+        super(position);
         this.isCut = false;
         this.isCooked = false;
     }
 
-    public Food getFood() {
+    public IngredientType getFood() {
         return f;
     }
 
@@ -35,6 +34,12 @@ public class DishImpl extends ItemImpl implements Dish {
 
     public void setCut(boolean isCut) {
         this.isCut = isCut;
+    }
+
+    @Override
+    public void draw(Graphics2D g) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

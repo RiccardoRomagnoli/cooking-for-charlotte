@@ -1,7 +1,5 @@
 package it.unibo.oop18.cfc.Objects.Entity;
 
-import java.awt.geom.Rectangle2D;
-
 import it.unibo.oop18.cfc.Objects.AbstractGameObject;
 
 import it.unibo.oop18.cfc.Util.Position;

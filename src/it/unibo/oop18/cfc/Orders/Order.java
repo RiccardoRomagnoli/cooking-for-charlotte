@@ -1,7 +1,7 @@
 package it.unibo.oop18.cfc.Orders;
 
-import it.unibo.oop18.cfc.CookingStuff.IngredientState;
-import it.unibo.oop18.cfc.Objects.Items.Food;
+import it.unibo.oop18.cfc.Objects.Items.IngredientType;
+import it.unibo.oop18.cfc.Objects.Items.IngredientState;
 import it.unibo.oop18.cfc.Objects.Items.Plate;
 
 
@@ -17,5 +17,5 @@ public interface Order{
 	
 	public int getPoints();
 	
-	public void addIngredient(Food food, IngredientState ingredientState);
+	public void addIngredient(IngredientType food, IngredientState ingredientState);
 }

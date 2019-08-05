@@ -1,4 +1,4 @@
-package it.unibo.oop18.cfc.CookingStuff;
+package it.unibo.oop18.cfc.Objects.Items;
 
 public enum IngredientState {
 

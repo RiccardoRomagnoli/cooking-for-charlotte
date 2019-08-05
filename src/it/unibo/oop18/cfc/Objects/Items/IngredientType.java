@@ -1,6 +1,6 @@
 package it.unibo.oop18.cfc.Objects.Items;
 
-public enum Food {
+public enum IngredientType {
     TOMATO(4, 0),
     MEAT(2, 5),
     SALAD(7, 0),
@@ -17,7 +17,7 @@ public enum Food {
         return this.y;
     }
 
-    private Food(int x, int y) {
+    private IngredientType(int x, int y) {
         this.x = x;
         this.y = y;
     }
