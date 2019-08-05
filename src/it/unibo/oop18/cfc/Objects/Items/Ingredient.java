@@ -1,13 +1,9 @@
 package it.unibo.oop18.cfc.Objects.Items;
 
 public interface Ingredient {
-    public IngredientType getFood();
+    IngredientType getFood();
 
-    public boolean isCooked();
+    IngredientState getState();
 
-    public void setCooked(boolean isCooked);
-
-    public boolean isCut();
-
-    public void setCut(boolean isCut);
+    void changeState(IngredientState state);
 }

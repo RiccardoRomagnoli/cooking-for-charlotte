@@ -7,39 +7,25 @@ import it.unibo.oop18.cfc.Util.Position;
 public class IngredientImpl extends AbstractItem implements Ingredient {
 
     private IngredientType f;
-    private boolean isCooked;
-    private boolean isCut;
+    private IngredientState state;
 
     public IngredientImpl(final Position position) {
         super(position);
-        this.isCut = false;
-        this.isCooked = false;
+        this.state = IngredientState.RAW;
     }
 
     public IngredientType getFood() {
         return f;
     }
-
-    public boolean isCooked() {
-        return isCooked;
+    public IngredientState getState() {
+        return this.state;
     }
-
-    public void setCooked(boolean isCooked) {
-        this.isCooked = isCooked;
+    public void changeState(IngredientState state){
+        this.state = state;
     }
-
-    public boolean isCut() {
-        return isCut;
-    }
-
-    public void setCut(boolean isCut) {
-        this.isCut = isCut;
-    }
-
     @Override
-    public void draw(Graphics2D g) {
+    public void draw(final Graphics2D g) {
         // TODO Auto-generated method stub
-        
     }
 
 }
