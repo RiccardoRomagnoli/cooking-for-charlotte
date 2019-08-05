@@ -3,12 +3,8 @@ package it.unibo.oop18.cfc.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
-import it.unibo.oop18.cfc.Objects.GameObject;
-import it.unibo.oop18.cfc.Objects.Stations.FoodStation;
 import it.unibo.oop18.cfc.Objects.Stations.PlateStation;
-import it.unibo.oop18.cfc.Tile.FoodStationTile;
 import it.unibo.oop18.cfc.Tile.PlateStationTile;
-import it.unibo.oop18.cfc.Tile.Tile;
 
 /**
  * This class represents still object's graphic component and models
