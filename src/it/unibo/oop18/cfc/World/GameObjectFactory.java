@@ -24,7 +24,7 @@ public interface GameObjectFactory {
      * @param world    the world where to add the player
      * @return a new player
      */
-    //PlayerImpl createPlayer(Position position, World world);
+    PlayerImpl createPlayer(Position position, World world);
 
     /**
      * Creates an unbreakable {@link Block}.

@@ -3,15 +3,17 @@ package it.unibo.oop18.cfc.Objects.Entity;
 import java.awt.Graphics2D;
 import java.util.Optional;
 
-import it.unibo.oop18.cfc.Graphics.DynamicEntityGraphicsComponent;
+import it.unibo.oop18.cfc.Graphics.DynamicPlayerGraphicsComponent;
 import it.unibo.oop18.cfc.Graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.Input.PlayerInputComponent;
 import it.unibo.oop18.cfc.Input.PlayerInputComponentImpl;
 import it.unibo.oop18.cfc.Manager.Content;
+import it.unibo.oop18.cfc.Manager.SpriteManager;
+import it.unibo.oop18.cfc.Objects.Items.Item;
 import it.unibo.oop18.cfc.Objects.Items.Plate;
 import it.unibo.oop18.cfc.Physics.DynamicPhysicsComponent;
 import it.unibo.oop18.cfc.Physics.DynamicPhysicsComponentImpl;
-import it.unibo.oop18.cfc.TileMap.PlayerSprites;
+import it.unibo.oop18.cfc.Sprite.PlayerSprites;
 import it.unibo.oop18.cfc.Util.Position;
 import it.unibo.oop18.cfc.World.World;
 
@@ -20,7 +22,6 @@ public class PlayerImpl extends AbstractEntity implements Player {
     // gameplay
     private int points;
     private int totalPoints;
-    private long ticks;
 
     // Physics, Input and Graphics
     private final DynamicPhysicsComponent physics;
@@ -28,18 +29,18 @@ public class PlayerImpl extends AbstractEntity implements Player {
     private final GraphicsComponent gfx;
 
     //Plate and dishes
-    private Optional<Plate> plate;
+    private Optional<Item> hand;
 
     /**
      * @param tm
      */
-    public PlayerImpl(final Position position, final World world) {
+    public PlayerImpl(final Position position, final PlayerSprites playerSprites, final World world) {
         super(position, world);
         points = 0;
-        plate = Optional.empty();
+        hand = Optional.empty();
         this.physics = new DynamicPhysicsComponentImpl(this);
         this.input = new PlayerInputComponentImpl(this);
-        this.gfx = new DynamicEntityGraphicsComponent(this, new PlayerSprites(Content.PLAYER));
+        this.gfx = new DynamicPlayerGraphicsComponent(this, playerSprites);
     }
 
     /**
@@ -70,22 +71,15 @@ public class PlayerImpl extends AbstractEntity implements Player {
         totalPoints = i;
     }
 
-    // Used to update time.
-    /**
-     * @return
-     */
-    public long getTicks() {
-        return ticks;
-    }
-
     /**
      *
      */
     public void update() {
+        this.input.processInput();
+
         this.physics.move();
         // check collision with blocks in the map
         // this.physics.checksCollisions(super.getTileMap());
-        this.input.processInput();
     }
 
     /**

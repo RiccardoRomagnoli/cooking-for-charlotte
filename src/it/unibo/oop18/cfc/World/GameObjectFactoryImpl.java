@@ -1,6 +1,8 @@
 package it.unibo.oop18.cfc.World;
 
+import it.unibo.oop18.cfc.Manager.SpriteManager;
 import it.unibo.oop18.cfc.Manager.TileManager;
+import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
 import it.unibo.oop18.cfc.Objects.Floors.ParquetFloor;
 import it.unibo.oop18.cfc.Objects.Stations.ChoppingStation;
 import it.unibo.oop18.cfc.Objects.Stations.Cooker;
@@ -17,23 +19,24 @@ import it.unibo.oop18.cfc.Util.Position;
  */
 public class GameObjectFactoryImpl implements GameObjectFactory {
 
-    //private TileManager tm;
+    private SpriteManager sm;
     private TileManager tm;
     /**
      * Creates a {@code GameObjectFactoryImpl}.
      * @param tm tilemanager
      */
-    public GameObjectFactoryImpl(final TileManager tm) {
+    public GameObjectFactoryImpl(final TileManager tm, final SpriteManager sm) {
         this.tm = tm;
+        this.sm = sm;
     }
 
     /**
      * {@inheritDoc}
      */
-//    @Override
-//    public PlayerImpl createPlayer(final Position position, final World world) {
-//        return new PlayerImpl(new Position(position), this.theme.getSprites().getPlayerSprite(), world);
-//    }
+    @Override
+    public PlayerImpl createPlayer(final Position position, final World world) {
+        return new PlayerImpl(new Position(position), this.sm.getPlayerSprites(), world);
+    }
 
     @Override
     public ChoppingStation createChoppingBoard(final Position position) {
