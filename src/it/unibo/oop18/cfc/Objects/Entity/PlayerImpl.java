@@ -7,10 +7,10 @@ import it.unibo.oop18.cfc.Graphics.DynamicPlayerGraphicsComponent;
 import it.unibo.oop18.cfc.Graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.Input.PlayerInputComponent;
 import it.unibo.oop18.cfc.Input.PlayerInputComponentImpl;
-import it.unibo.oop18.cfc.Manager.Content;
-import it.unibo.oop18.cfc.Manager.SpriteManager;
+import it.unibo.oop18.cfc.Objects.Items.IngredientImpl;
 import it.unibo.oop18.cfc.Objects.Items.Item;
-import it.unibo.oop18.cfc.Objects.Items.Plate;
+import it.unibo.oop18.cfc.Objects.Items.PlateImpl;
+import it.unibo.oop18.cfc.Physics.Direction;
 import it.unibo.oop18.cfc.Physics.DynamicPhysicsComponent;
 import it.unibo.oop18.cfc.Physics.DynamicPhysicsComponentImpl;
 import it.unibo.oop18.cfc.Sprite.PlayerSprites;
@@ -76,10 +76,14 @@ public class PlayerImpl extends AbstractEntity implements Player {
      */
     public void update() {
         this.input.processInput();
-
+        //this.physics.
         this.physics.move();
         // check collision with blocks in the map
         // this.physics.checksCollisions(super.getTileMap());
+    }
+
+    public Optional<Item> getItemInHand(){
+        return this.hand;
     }
 
     /**
@@ -90,11 +94,6 @@ public class PlayerImpl extends AbstractEntity implements Player {
     }
 
     @Override
-    public void doAction() {
-        //System.out.println(this.physics.getNextTile());
-    }
-
-    @Override
     public DynamicPhysicsComponent getPhysics() {
         return physics;
     }
@@ -102,5 +101,46 @@ public class PlayerImpl extends AbstractEntity implements Player {
     @Override
     public PlayerInputComponent getInput() {
         return input;
+    }
+
+    @Override
+    public void doAction() {
+        if (this.getItemInHand().isPresent()) {
+            if (this.getItemInHand().get() instanceof IngredientImpl) {
+                IngredientImpl ingr = (IngredientImpl) this.getItemInHand().get();
+            } else if (this.getItemInHand().get() instanceof PlateImpl) {
+
+            }
+        } else {
+            this.getWorld().getAllGameObjects().stream()
+                    .filter(p -> p.getPosition().samePosition((Position.setInTile(getNextPosition()))))
+                    .forEach(System.out::println);
+        }
+    }
+
+    private Position getNextPosition() {
+        Position nextPosition = new Position(0, 0);
+        Direction way = this.physics.getVelocity().getOldDirection();
+        switch (way) {
+        case UP:
+            nextPosition.setX(this.getPosition().getX() + 32);
+            nextPosition.setY(this.getPosition().getY() - 1);
+            break;
+        case DOWN:
+            nextPosition.setX(this.getPosition().getX() + 32);
+            nextPosition.setY(this.getPosition().getY() + 65);
+            break;
+        case LEFT:
+            nextPosition.setX(this.getPosition().getX() - 1);
+            nextPosition.setY(this.getPosition().getY() + 32);
+            break;
+        case RIGHT:
+            nextPosition.setX(this.getPosition().getX() + 65);
+            nextPosition.setY(this.getPosition().getY() + 32);
+            break;
+        default:
+            break;
+        }
+        return nextPosition;
     }
 }

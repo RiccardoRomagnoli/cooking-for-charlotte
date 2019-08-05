@@ -100,15 +100,19 @@ public class Position {
      * @param position to be centered
      * @return a new centered position
      */
-    public Position setInTile(final Position position) {
+    public static Position setInTile(final Position position) {
         final double dimTile = TileSheet.TILE_SIZE_IN_GAME;
-        return new Position(Math.round(position.getX() / dimTile) * dimTile,
-                Math.round(position.getY() / dimTile) * dimTile);
+        return new Position(Math.floor(position.getX() / dimTile) * dimTile,
+                Math.floor(position.getY() / dimTile) * dimTile);
     }
 
-	@Override
-	public String toString() {
-		return "Position [x=" + x + ", y=" + y + "]";
-	}
+    public boolean samePosition(Position p) {
+        return p.x == this.x && p.y == this.y;
+    }
+
+    @Override
+    public String toString() {
+        return "Position [x=" + x + ", y=" + y + "]";
+    }
 
 }

@@ -12,6 +12,8 @@ import it.unibo.oop18.cfc.GameState.OptionState;
 import it.unibo.oop18.cfc.GameState.PlayState;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
 import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
+import it.unibo.oop18.cfc.Objects.Items.IngredientImpl;
+import it.unibo.oop18.cfc.Objects.Items.PlateImpl;
 import it.unibo.oop18.cfc.Physics.Direction;
 import it.unibo.oop18.cfc.Util.JukeBoxUtil;
 
@@ -123,7 +125,7 @@ public class KeyInput implements KeyListener {
             way = Optional.ofNullable(Direction.UP);
             break;
         case KeyEvent.VK_SPACE:
-            //this.doAction();
+            this.doAction();
             way = Optional.empty();
             break;
         case KeyEvent.VK_P:
@@ -216,6 +218,10 @@ public class KeyInput implements KeyListener {
         if (way.isPresent()) {
             this.player.getInput().move(way.get());
         }
+    }
+
+    private void doAction() {
+        this.player.getInput().doAction();
     }
 
     private void handleStopPlayer(final KeyEvent e) {

@@ -2,9 +2,11 @@ package it.unibo.oop18.cfc.Input;
 
 
 import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
+import it.unibo.oop18.cfc.Objects.Items.IngredientImpl;
+import it.unibo.oop18.cfc.Objects.Items.PlateImpl;
 import it.unibo.oop18.cfc.Physics.Direction;
-import it.unibo.oop18.cfc.Tile.Tile;
 import it.unibo.oop18.cfc.Util.Position;
+import it.unibo.oop18.cfc.World.World;
 
 /**
  * Input component for the player. It implements {@link PlayerInputComponent}.
@@ -14,7 +16,6 @@ public class PlayerInputComponentImpl extends AbstractInputComponent implements 
     private static final int PIXEL_PER_SECOND = 4;
 
     private final PlayerImpl player;
-
     /**
      * Creates {@code PlayerInputComponentImpl}.
      *
@@ -45,7 +46,10 @@ public class PlayerInputComponentImpl extends AbstractInputComponent implements 
      * {@inheritDoc}
      */
     @Override
-    public void doAction(final Position position) {
-        player.doAction();
+    public void doAction() {
+        super.createGenericCommand(() -> {
+            this.player.doAction();
+        });
+
     }
 }

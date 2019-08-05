@@ -23,7 +23,6 @@ import it.unibo.oop18.cfc.Objects.Stations.Trashcan;
 import it.unibo.oop18.cfc.Objects.Stations.Washbasin;
 import it.unibo.oop18.cfc.Tile.TileSheet;
 import it.unibo.oop18.cfc.Util.GameTimer;
-import it.unibo.oop18.cfc.Util.Position;
 
 /**
  * This class manages the whole game world.
@@ -70,10 +69,11 @@ public class WorldImpl implements World {
     private final Set<Trashcan> trashcans;
     private final Set<Washbasin> washbasins;
     private final Set<ParquetFloor> parquetFloor;
+    //private final Set<Item> itemsInWorld;
     private PlayerImpl player;
     private final GameTimer timer;
     // private final PlayerScore score;
-    
+
     /**
      * Creates a {@code WorldImpl}.
      * 

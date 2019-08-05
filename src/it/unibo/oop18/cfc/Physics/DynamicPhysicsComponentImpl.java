@@ -22,14 +22,10 @@ public class DynamicPhysicsComponentImpl implements DynamicPhysicsComponent {
 
     private final Velocity vector;
     private final DynamicObject entity;
-
+    
     public DynamicPhysicsComponentImpl(final DynamicObject entity) {
         this.vector = new VelocityImpl();
         this.entity = entity;
-    }
-
-    public void stop() {
-
     }
 
     public void move() {
@@ -58,22 +54,6 @@ public class DynamicPhysicsComponentImpl implements DynamicPhysicsComponent {
         }
         return new Pair<>(deltaX, deltaY);
     }
-
-//    public TileType getNextTile() {        
-//        int x = (int) this.entity.getPosition().getX() / Tile.SPRITE_SIZE;
-//        int y = (int) this.entity.getPosition().getY() / Tile.SPRITE_SIZE - 2;
-//
-//        if (this.getVelocity().getDirection() == Direction.DOWN || this.getVelocity().getOldDirection() == Direction.DOWN) {
-//            y++;
-//        } else if (this.getVelocity().getDirection() == Direction.LEFT || this.getVelocity().getOldDirection() == Direction.LEFT) {
-//            x--;
-//        } else if (this.getVelocity().getDirection() == Direction.RIGHT || this.getVelocity().getOldDirection() == Direction.RIGHT) {
-//            x++;
-//        } else if (this.getVelocity().getDirection() == Direction.UP || this.getVelocity().getOldDirection() == Direction.UP) {
-//            y--;
-//        }
-//        return tm.getType(y, x); 
-//    }
 
     @Override
     public Velocity getVelocity() {
