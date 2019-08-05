@@ -9,7 +9,9 @@ import it.unibo.oop18.cfc.GameState.GameState;
 import it.unibo.oop18.cfc.GameState.GameStates;
 import it.unibo.oop18.cfc.GameState.MenuState;
 import it.unibo.oop18.cfc.GameState.OptionState;
+import it.unibo.oop18.cfc.GameState.PlayState;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
+import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
 import it.unibo.oop18.cfc.Physics.Direction;
 import it.unibo.oop18.cfc.Util.JukeBoxUtil;
 
@@ -22,6 +24,7 @@ public class KeyInput implements KeyListener {
     private GameState currentState;
     private final GameStateManager gsm;
     private int nKeyPressing = 0;
+    private PlayerImpl player;
 
     HashMap<Integer, Boolean> keys;
 
@@ -40,6 +43,10 @@ public class KeyInput implements KeyListener {
         keys.put(KeyEvent.VK_DOWN, false);
     }
 
+    public void setPlayer(final PlayerImpl pl) {
+        this.player = pl;
+    }
+
     /**
      * It generates a {@link Direction} when specific key is pressed and call
      * specific method on specific Game State.
@@ -49,6 +56,7 @@ public class KeyInput implements KeyListener {
         currentState = gsm.getCurrentGameState();
         switch (currentState.getGameStateName()) {
         case PLAY:
+            this.player = ((PlayState) currentState).getWorld().getPlayer();
             playKeyInput(e);
             break;
         case INTRO:
@@ -115,7 +123,7 @@ public class KeyInput implements KeyListener {
             way = Optional.ofNullable(Direction.UP);
             break;
         case KeyEvent.VK_SPACE:
-            // this.doAction();
+            //this.doAction();
             way = Optional.empty();
             break;
         case KeyEvent.VK_P:
@@ -129,7 +137,7 @@ public class KeyInput implements KeyListener {
         if (keys.keySet().contains(e.getKeyCode())) {
             keys.put(e.getKeyCode(), true);
         }
-        // this.moveEntity(way);
+        this.moveEntity(way);
     }
 
     // key pressed during intro state
@@ -162,7 +170,6 @@ public class KeyInput implements KeyListener {
             menu.select();
         default:
             break;
-      
         }
     }
 
@@ -182,7 +189,7 @@ public class KeyInput implements KeyListener {
         }
     }
 
-    private void infoKeyInput(KeyEvent e) {
+    private void infoKeyInput(final KeyEvent e) {
         gsm.setState(GameStates.MENU);
     }
 
@@ -191,7 +198,9 @@ public class KeyInput implements KeyListener {
      */
     @Override
     public void keyReleased(final KeyEvent e) {
-        // handleStopPlayer(e);
+        if(gsm.getCurrentGameState().getGameStateName() == GameStates.PLAY) {
+            handleStopPlayer(e);
+        }
     }
 
     @Override
@@ -203,20 +212,19 @@ public class KeyInput implements KeyListener {
         this.gsm.setState(GameStates.PAUSE);
     }
 
-//    private void moveEntity(final Optional<Direction> way) {
-//        if (way.isPresent()) {
-//            this.player.getInput().move(way.get());
-//        }
-//    }
-//    
-//    private void handleStopPlayer(final KeyEvent e) {
-//        if (keys.keySet().contains(e.getKeyCode())) {
-//        	keys.put(e.getKeyCode(), false);
-//        }
-//        if(keys.values().stream().filter(k -> k==true).count() == 0 && 
-//           keys.keySet().contains(e.getKeyCode())) {
-//        	this.player.getInput().stop();
-//        }
-//    }
+    private void moveEntity(final Optional<Direction> way) {
+        if (way.isPresent()) {
+            this.player.getInput().move(way.get());
+        }
+    }
+
+    private void handleStopPlayer(final KeyEvent e) {
+        if (keys.keySet().contains(e.getKeyCode())) {
+            keys.put(e.getKeyCode(), false);
+        }
+        if (keys.values().stream().filter(k -> k == true).count() == 0 && keys.keySet().contains(e.getKeyCode())) {
+            this.player.getInput().stop();
+        }
+    }
 
 }

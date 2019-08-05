@@ -20,11 +20,9 @@ public class PlayState extends GameState {
     private World world;
     private TopHud topHud;
     private DownHud downHud;
-    public PlayState(GameStateManager gsm) {
+    public PlayState(final GameStateManager gsm) {
         super(gsm, GameStates.PLAY);
     }
-
-
 
     public void init(){
         try {
@@ -40,9 +38,13 @@ public class PlayState extends GameState {
         world.update();
     }
 
-    public void draw(Graphics2D g) {
+    public void draw(final Graphics2D g) {
         world.draw(g);
         topHud.draw(g);
         downHud.draw(g);
+    }
+
+    public World getWorld() {
+        return this.world;
     }
 }
