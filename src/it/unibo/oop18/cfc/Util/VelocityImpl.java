@@ -19,7 +19,7 @@ public class VelocityImpl implements Velocity {
         this.spaceX = 0;
         this.spaceY = 0;
         this.direction = Direction.STOP;
-        this.oldDirection = Direction.STOP;
+        this.oldDirection = Direction.DOWN;
     }
 
     /**
@@ -67,7 +67,9 @@ public class VelocityImpl implements Velocity {
      */
     @Override
     public void setDirection(final Direction direction) {
-    	this.oldDirection = this.direction;
+        if(direction != Direction.STOP) {
+            this.oldDirection = direction;
+        }
         this.direction = direction;
     }
 
