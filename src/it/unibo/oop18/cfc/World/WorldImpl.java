@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import it.unibo.oop18.cfc.Manager.SpriteManager;
 import it.unibo.oop18.cfc.Manager.TileManager;
 import it.unibo.oop18.cfc.Objects.GameObject;
 import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
@@ -55,6 +56,10 @@ public class WorldImpl implements World {
      * Path to tilesheet.
      */
     public static final String TILEPATH = "/Tilesets/tilesheet.png";
+    /**
+     * Path to player Sprite.
+     */
+    public static final String SPRITEPATH = "/Sprites/baker.png";
 
     private final Set<ChoppingStation> choppingStations;
     private final Set<Cooker> cookers;
@@ -65,11 +70,10 @@ public class WorldImpl implements World {
     private final Set<Trashcan> trashcans;
     private final Set<Washbasin> washbasins;
     private final Set<ParquetFloor> parquetFloor;
-    
     private PlayerImpl player;
     private final GameTimer timer;
     // private final PlayerScore score;
-
+    
     /**
      * Creates a {@code WorldImpl}.
      * 
@@ -86,8 +90,7 @@ public class WorldImpl implements World {
         this.trashcans = new HashSet<>();
         this.washbasins = new HashSet<>();
         this.parquetFloor = new HashSet<>();
-        this.createLevel(new TileManager(TILEPATH), MAPPATH);
-        this.player = new PlayerImpl(new Position(64 * 7, 64 * 5), this);
+        this.createLevel(new TileManager(TILEPATH), new SpriteManager(SPRITEPATH), MAPPATH);
         this.timer = new GameTimer();
     }
 
@@ -106,7 +109,7 @@ public class WorldImpl implements World {
         allGameObjects.addAll(this.trashcans);
         allGameObjects.addAll(this.washbasins);
         allGameObjects.addAll(this.parquetFloor);
-        // allGameObjects.add(this.player);
+        allGameObjects.add(this.player);
         return Collections.unmodifiableList(allGameObjects);
     }
 
@@ -181,7 +184,7 @@ public class WorldImpl implements World {
     public Set<Washbasin> getWashbasins() {
         return washbasins;
     }
-    
+
     /**
      * @return the washbasins
      */
@@ -202,7 +205,7 @@ public class WorldImpl implements World {
     public void update() {
         // music update
         // this.enemies.forEach(e -> e.update(elapsedTime));
-        // this.player.update();
+        this.player.update();
         // this.bombs.forEach(e -> e.update(elapsedTime));
         // this.flames.forEach(e -> e.update(elapsedTime));
     }
@@ -211,7 +214,7 @@ public class WorldImpl implements World {
      * {@inheritDoc}
      */
     @Override
-    public void draw(Graphics2D g) {
+    public void draw(final Graphics2D g) {
         this.getAllGameObjects().forEach(o -> o.draw(g));
     }
 
@@ -223,8 +226,8 @@ public class WorldImpl implements World {
         // this.player.processInput();
     }
 
-    private void createLevel(final TileManager tm, final String mapPath) {
-        final WorldInitializer initializer = new WorldInitializerImpl(tm, mapPath);
+    private void createLevel(final TileManager tm, final SpriteManager sm, final String mapPath) {
+        final WorldInitializer initializer = new WorldInitializerImpl(tm, sm, mapPath);
         this.choppingStations.addAll(initializer.initializeChoppingBoard());
         this.cookers.addAll(initializer.initializeCooker());
         this.counters.addAll(initializer.initializeCounter());
@@ -234,5 +237,6 @@ public class WorldImpl implements World {
         this.trashcans.addAll(initializer.initializeTrashcan());
         this.washbasins.addAll(initializer.initializeWashbasin());
         this.parquetFloor.addAll(initializer.initializeParquetFloor());
+        this.player = initializer.initializePlayer(this);
     }
 }

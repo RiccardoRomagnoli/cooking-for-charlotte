@@ -3,7 +3,9 @@ package it.unibo.oop18.cfc.World;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import it.unibo.oop18.cfc.Manager.SpriteManager;
 import it.unibo.oop18.cfc.Manager.TileManager;
+import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
 import it.unibo.oop18.cfc.Objects.Floors.ParquetFloor;
 import it.unibo.oop18.cfc.Objects.Stations.ChoppingStation;
 import it.unibo.oop18.cfc.Objects.Stations.Cooker;
@@ -13,18 +15,22 @@ import it.unibo.oop18.cfc.Objects.Stations.FoodStation;
 import it.unibo.oop18.cfc.Objects.Stations.PlateStation;
 import it.unibo.oop18.cfc.Objects.Stations.Trashcan;
 import it.unibo.oop18.cfc.Objects.Stations.Washbasin;
+import it.unibo.oop18.cfc.Sprite.SpriteSheet;
 import it.unibo.oop18.cfc.TileMap.TileMapImpl;
+import it.unibo.oop18.cfc.Util.Position;
 
 /**
  * This class models {@link WorldInitializer}.
  */
 public class WorldInitializerImpl implements WorldInitializer {
 
+    private static final int START_PLAYER_X = 7;
+    private static final int START_PLAYER_Y = 7;
     private final GameObjectFactory factory;
     private TileMapImpl tilemap;
 
-    public WorldInitializerImpl(TileManager tm, String mapPath) {
-        this.factory = new GameObjectFactoryImpl(tm);
+    public WorldInitializerImpl(TileManager tm, SpriteManager sm, String mapPath) {
+        this.factory = new GameObjectFactoryImpl(tm, sm);
         this.tilemap = new TileMapImpl(mapPath);
     }
 
@@ -103,12 +109,12 @@ public class WorldInitializerImpl implements WorldInitializer {
                 .collect(Collectors.toSet());
     }
 
-//    @Override
-//    public PlayerImpl initializePlayer(World world) {
-//        return this.tilemap.getChoppingStationPosition().stream()
-//                .map(p -> this.factory.createChoppingBoard(p))
-//                .collect(Collectors.toSet());
-//    }
+    @Override
+    public PlayerImpl initializePlayer(World world) {
+        return this.factory.createPlayer(new Position(START_PLAYER_X * SpriteSheet.SPRITE_SIZE_IN_GAME,
+                START_PLAYER_Y * SpriteSheet.SPRITE_SIZE_IN_GAME), world);
+
+    }
 
 
 

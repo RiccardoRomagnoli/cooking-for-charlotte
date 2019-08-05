@@ -19,13 +19,6 @@ import it.unibo.oop18.cfc.Objects.Stations.Washbasin;
 public interface WorldInitializer {
 
     /**
-     * Initializes initial free tiles.
-     * 
-     * @return free tiles
-     */
-    // Set<Floor> initializeFloor();
-
-    /**
      * Initializes all unbreakable blocks.
      * 
      * @return a set of unbreakable blocks
@@ -87,12 +80,12 @@ public interface WorldInitializer {
      * @return free tiles
      */
     Set<ParquetFloor> initializeParquetFloor();
-    
+
     /**
      * Initializes the player.
      * 
      * @param world where to add the player
      * @return the player
      */
-    //PlayerImpl initializePlayer(World world); 
+    PlayerImpl initializePlayer(World world); 
 }
