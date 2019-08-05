@@ -18,8 +18,6 @@ public class Content {
 
     public static final BufferedImage[][] FOOD = load("/Sprites/Food.png", 50, 50);
 
-    public static final BufferedImage[][] PLAYER = load("/Sprites/baker.png", 64, 64);
-
     public static BufferedImage[][] font = load("/HUD/font.png", 50, 50);
 
     public static final BufferedImage[][] load(String s, int w, int h) {
