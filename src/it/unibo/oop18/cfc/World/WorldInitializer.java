@@ -4,12 +4,15 @@ import java.util.Set;
 
 import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
 import it.unibo.oop18.cfc.Objects.Floors.ParquetFloor;
+import it.unibo.oop18.cfc.Objects.Stations.BreadStation;
 import it.unibo.oop18.cfc.Objects.Stations.ChoppingStation;
 import it.unibo.oop18.cfc.Objects.Stations.Cooker;
 import it.unibo.oop18.cfc.Objects.Stations.Counter;
 import it.unibo.oop18.cfc.Objects.Stations.DeliveryStation;
-import it.unibo.oop18.cfc.Objects.Stations.FoodStation;
+import it.unibo.oop18.cfc.Objects.Stations.LettuceStation;
+import it.unibo.oop18.cfc.Objects.Stations.MeatStation;
 import it.unibo.oop18.cfc.Objects.Stations.PlateStation;
+import it.unibo.oop18.cfc.Objects.Stations.TomatoStation;
 import it.unibo.oop18.cfc.Objects.Stations.Trashcan;
 import it.unibo.oop18.cfc.Objects.Stations.Washbasin;
 
@@ -51,8 +54,28 @@ public interface WorldInitializer {
      * 
      * @return free tiles
      */
-    Set<FoodStation> initializeFoodStation();
+    Set<BreadStation> initializeBreadStation();
 
+    /**
+     * Initializes initial free tiles.
+     * 
+     * @return free tiles
+     */
+    Set<MeatStation> initializeMeatStation();
+
+    /**
+     * Initializes initial free tiles.
+     * 
+     * @return free tiles
+     */
+    Set<TomatoStation> initializeTomatoStation();
+
+    /**
+     * Initializes initial free tiles.
+     * 
+     * @return free tiles
+     */
+    Set<LettuceStation> initializeLettuceStation();
     /**
      * Initializes initial free tiles.
      * 

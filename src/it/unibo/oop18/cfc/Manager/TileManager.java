@@ -2,14 +2,17 @@ package it.unibo.oop18.cfc.Manager;
 
 import java.io.IOException;
 
+import it.unibo.oop18.cfc.Tile.BreadStationTile;
 import it.unibo.oop18.cfc.Tile.ChoppingStationTile;
 import it.unibo.oop18.cfc.Tile.CookerTile;
 import it.unibo.oop18.cfc.Tile.CounterTile;
 import it.unibo.oop18.cfc.Tile.DeliveryStationTile;
-import it.unibo.oop18.cfc.Tile.FoodStationTile;
+import it.unibo.oop18.cfc.Tile.LettuceStationTile;
+import it.unibo.oop18.cfc.Tile.MeatStationTile;
 import it.unibo.oop18.cfc.Tile.ParquetFloorTile;
 import it.unibo.oop18.cfc.Tile.PlateStationTile;
 import it.unibo.oop18.cfc.Tile.TileSheet;
+import it.unibo.oop18.cfc.Tile.TomatoStationTile;
 import it.unibo.oop18.cfc.Tile.TrashcanTile;
 import it.unibo.oop18.cfc.Tile.WashbasinTile;
 
@@ -26,7 +29,10 @@ public class TileManager {
     private final CookerTile cookerTile;
     private final CounterTile counterTile;
     private final DeliveryStationTile deliveryStationTile;
-    private final FoodStationTile foodStationTile;
+    private final BreadStationTile breadStationTile;
+    private final MeatStationTile meatStationTile;
+    private final LettuceStationTile lettuceStationTile;
+    private final TomatoStationTile tomatoStationTile;
     private final PlateStationTile plateStationTile;
     private final TrashcanTile trashcanTile;
     private final WashbasinTile washbasinTile;
@@ -43,11 +49,14 @@ public class TileManager {
         this.cookerTile = new CookerTile(sheet);
         this.counterTile = new CounterTile(sheet);
         this.deliveryStationTile = new DeliveryStationTile(sheet);
-        this.foodStationTile = new FoodStationTile(sheet);
+        this.breadStationTile = new BreadStationTile(sheet);
         this.plateStationTile = new PlateStationTile(sheet);
         this.trashcanTile = new TrashcanTile(sheet);
         this.washbasinTile = new WashbasinTile(sheet);
         this.parquetFloorTile = new ParquetFloorTile(sheet);
+        this.tomatoStationTile = new TomatoStationTile(sheet);
+        this.lettuceStationTile = new LettuceStationTile(sheet);
+        this.meatStationTile = new MeatStationTile(sheet);
     }
     /**
      * @return the choppingStationTile
@@ -74,10 +83,10 @@ public class TileManager {
         return deliveryStationTile;
     }
     /**
-     * @return the foodStationTile
+     * @return the breadStationTile
      */
-    public FoodStationTile getFoodStationTile() {
-        return foodStationTile;
+    public BreadStationTile getBreadStationTile() {
+        return breadStationTile;
     }
     /**
      * @return the plateStationTile
@@ -102,5 +111,23 @@ public class TileManager {
      */
     public ParquetFloorTile getParquetFloorTile() {
         return parquetFloorTile;
+    }
+    /**
+     * @return the meatStationTile
+     */
+    public MeatStationTile getMeatStationTile() {
+        return meatStationTile;
+    }
+    /**
+     * @return the lettuceStationTile
+     */
+    public LettuceStationTile getLettuceStationTile() {
+        return lettuceStationTile;
+    }
+    /**
+     * @return the tomatoStationTile
+     */
+    public TomatoStationTile getTomatoStationTile() {
+        return tomatoStationTile;
     }
 }

@@ -8,12 +8,15 @@ import java.util.Set;
 import it.unibo.oop18.cfc.Objects.GameObject;
 import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
 import it.unibo.oop18.cfc.Objects.Floors.ParquetFloor;
+import it.unibo.oop18.cfc.Objects.Stations.BreadStation;
 import it.unibo.oop18.cfc.Objects.Stations.ChoppingStation;
 import it.unibo.oop18.cfc.Objects.Stations.Cooker;
 import it.unibo.oop18.cfc.Objects.Stations.Counter;
 import it.unibo.oop18.cfc.Objects.Stations.DeliveryStation;
-import it.unibo.oop18.cfc.Objects.Stations.FoodStation;
+import it.unibo.oop18.cfc.Objects.Stations.LettuceStation;
+import it.unibo.oop18.cfc.Objects.Stations.MeatStation;
 import it.unibo.oop18.cfc.Objects.Stations.PlateStation;
+import it.unibo.oop18.cfc.Objects.Stations.TomatoStation;
 import it.unibo.oop18.cfc.Objects.Stations.Trashcan;
 import it.unibo.oop18.cfc.Objects.Stations.Washbasin;
 import it.unibo.oop18.cfc.Orders.Order;
@@ -106,7 +109,31 @@ public interface World {
      * @return all this stations
      */
 
-    Set<FoodStation> getFoodStations();
+    Set<BreadStation> getBreadStations();
+
+    /**
+     * Gets the Food Stations objects.
+     * 
+     * @return all this stations
+     */
+
+    Set<MeatStation> getMeatStations();
+
+    /**
+     * Gets the Food Stations objects.
+     * 
+     * @return all this stations
+     */
+
+    Set<TomatoStation> getTomatoStations();
+
+    /**
+     * Gets the Food Stations objects.
+     * 
+     * @return all this stations
+     */
+
+    Set<LettuceStation> getLettuceStations();
 
     /**
      * Gets the Plate Stations objects.
@@ -129,7 +156,7 @@ public interface World {
      * @return all this stations
      */
     Set<Washbasin> getWashbasins();
-    
+
     /**
      * Gets the WashBasin Stations objects.
      * 

@@ -7,12 +7,15 @@ import it.unibo.oop18.cfc.Manager.SpriteManager;
 import it.unibo.oop18.cfc.Manager.TileManager;
 import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
 import it.unibo.oop18.cfc.Objects.Floors.ParquetFloor;
+import it.unibo.oop18.cfc.Objects.Stations.BreadStation;
 import it.unibo.oop18.cfc.Objects.Stations.ChoppingStation;
 import it.unibo.oop18.cfc.Objects.Stations.Cooker;
 import it.unibo.oop18.cfc.Objects.Stations.Counter;
 import it.unibo.oop18.cfc.Objects.Stations.DeliveryStation;
-import it.unibo.oop18.cfc.Objects.Stations.FoodStation;
+import it.unibo.oop18.cfc.Objects.Stations.LettuceStation;
+import it.unibo.oop18.cfc.Objects.Stations.MeatStation;
 import it.unibo.oop18.cfc.Objects.Stations.PlateStation;
+import it.unibo.oop18.cfc.Objects.Stations.TomatoStation;
 import it.unibo.oop18.cfc.Objects.Stations.Trashcan;
 import it.unibo.oop18.cfc.Objects.Stations.Washbasin;
 import it.unibo.oop18.cfc.Sprite.SpriteSheet;
@@ -27,9 +30,9 @@ public class WorldInitializerImpl implements WorldInitializer {
     private static final int START_PLAYER_X = 7;
     private static final int START_PLAYER_Y = 7;
     private final GameObjectFactory factory;
-    private TileMapImpl tilemap;
+    private final TileMapImpl tilemap;
 
-    public WorldInitializerImpl(TileManager tm, SpriteManager sm, String mapPath) {
+    public WorldInitializerImpl(final TileManager tm, final SpriteManager sm, final String mapPath) {
         this.factory = new GameObjectFactoryImpl(tm, sm);
         this.tilemap = new TileMapImpl(mapPath);
     }
@@ -71,9 +74,9 @@ public class WorldInitializerImpl implements WorldInitializer {
 
 
     @Override
-    public Set<FoodStation> initializeFoodStation() {
-        return this.tilemap.getFoodStationPosition().stream()
-                .map(p -> this.factory.createFoodStation(p))
+    public Set<BreadStation> initializeBreadStation() {
+        return this.tilemap.getBreadStationPosition().stream()
+                .map(p -> this.factory.createBreadStation(p))
                 .collect(Collectors.toSet());
     }
 
@@ -110,10 +113,31 @@ public class WorldInitializerImpl implements WorldInitializer {
     }
 
     @Override
-    public PlayerImpl initializePlayer(World world) {
+    public PlayerImpl initializePlayer(final World world) {
         return this.factory.createPlayer(new Position(START_PLAYER_X * SpriteSheet.SPRITE_SIZE_IN_GAME,
                 START_PLAYER_Y * SpriteSheet.SPRITE_SIZE_IN_GAME), world);
 
+    }
+
+    @Override
+    public Set<MeatStation> initializeMeatStation() {
+        return this.tilemap.getMeatStationPosition().stream()
+                .map(p -> this.factory.createMeatStation(p))
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    public Set<TomatoStation> initializeTomatoStation() {
+        return this.tilemap.getTomatoStationPosition().stream()
+                .map(p -> this.factory.createTomatoStation(p))
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    public Set<LettuceStation> initializeLettuceStation() {
+        return this.tilemap.getLettuceStationPosition().stream()
+                .map(p -> this.factory.createLettuceStation(p))
+                .collect(Collectors.toSet());
     }
 
 

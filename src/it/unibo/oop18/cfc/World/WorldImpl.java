@@ -13,12 +13,15 @@ import it.unibo.oop18.cfc.Manager.TileManager;
 import it.unibo.oop18.cfc.Objects.GameObject;
 import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
 import it.unibo.oop18.cfc.Objects.Floors.ParquetFloor;
+import it.unibo.oop18.cfc.Objects.Stations.BreadStation;
 import it.unibo.oop18.cfc.Objects.Stations.ChoppingStation;
 import it.unibo.oop18.cfc.Objects.Stations.Cooker;
 import it.unibo.oop18.cfc.Objects.Stations.Counter;
 import it.unibo.oop18.cfc.Objects.Stations.DeliveryStation;
-import it.unibo.oop18.cfc.Objects.Stations.FoodStation;
+import it.unibo.oop18.cfc.Objects.Stations.LettuceStation;
+import it.unibo.oop18.cfc.Objects.Stations.MeatStation;
 import it.unibo.oop18.cfc.Objects.Stations.PlateStation;
+import it.unibo.oop18.cfc.Objects.Stations.TomatoStation;
 import it.unibo.oop18.cfc.Objects.Stations.Trashcan;
 import it.unibo.oop18.cfc.Objects.Stations.Washbasin;
 import it.unibo.oop18.cfc.Tile.TileSheet;
@@ -64,7 +67,10 @@ public class WorldImpl implements World {
     private final Set<Cooker> cookers;
     private final Set<Counter> counters;
     private final Set<DeliveryStation> deliveryStations;
-    private final Set<FoodStation> foodStations;
+    private final Set<BreadStation> breadStations;
+    private final Set<MeatStation> meatStations;
+    private final Set<TomatoStation> tomatoStations;
+    private final Set<LettuceStation> lettuceStations;
     private final Set<PlateStation> plateStations;
     private final Set<Trashcan> trashcans;
     private final Set<Washbasin> washbasins;
@@ -85,7 +91,10 @@ public class WorldImpl implements World {
         this.counters = new HashSet<>();
         this.cookers = new HashSet<>();
         this.deliveryStations = new HashSet<>();
-        this.foodStations = new HashSet<>();
+        this.breadStations = new HashSet<>();
+        this.meatStations = new HashSet<>();
+        this.tomatoStations = new HashSet<>();
+        this.lettuceStations = new HashSet<>();
         this.plateStations = new HashSet<>();
         this.trashcans = new HashSet<>();
         this.washbasins = new HashSet<>();
@@ -104,7 +113,10 @@ public class WorldImpl implements World {
         allGameObjects.addAll(this.counters);
         allGameObjects.addAll(this.cookers);
         allGameObjects.addAll(this.deliveryStations);
-        allGameObjects.addAll(this.foodStations);
+        allGameObjects.addAll(this.breadStations);
+        allGameObjects.addAll(this.meatStations);
+        allGameObjects.addAll(this.tomatoStations);
+        allGameObjects.addAll(this.lettuceStations);
         allGameObjects.addAll(this.plateStations);
         allGameObjects.addAll(this.trashcans);
         allGameObjects.addAll(this.washbasins);
@@ -160,8 +172,29 @@ public class WorldImpl implements World {
     /**
      * @return the foodStations
      */
-    public Set<FoodStation> getFoodStations() {
-        return foodStations;
+    public Set<BreadStation> getBreadStations() {
+        return breadStations;
+    }
+
+    /**
+     * @return the meatStations
+     */
+    public Set<MeatStation> getMeatStations() {
+        return meatStations;
+    }
+
+    /**
+     * @return the tomatoStations
+     */
+    public Set<TomatoStation> getTomatoStations() {
+        return tomatoStations;
+    }
+
+    /**
+     * @return the lettuceStations
+     */
+    public Set<LettuceStation> getLettuceStations() {
+        return lettuceStations;
     }
 
     /**
@@ -232,7 +265,10 @@ public class WorldImpl implements World {
         this.cookers.addAll(initializer.initializeCooker());
         this.counters.addAll(initializer.initializeCounter());
         this.deliveryStations.addAll(initializer.initializeDeliveryStation());
-        this.foodStations.addAll(initializer.initializeFoodStation());
+        this.breadStations.addAll(initializer.initializeBreadStation());
+        this.meatStations.addAll(initializer.initializeMeatStation());
+        this.tomatoStations.addAll(initializer.initializeTomatoStation());
+        this.lettuceStations.addAll(initializer.initializeLettuceStation());
         this.plateStations.addAll(initializer.initializePlateStation());
         this.trashcans.addAll(initializer.initializeTrashcan());
         this.washbasins.addAll(initializer.initializeWashbasin());

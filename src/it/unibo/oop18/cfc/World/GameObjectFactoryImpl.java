@@ -4,12 +4,15 @@ import it.unibo.oop18.cfc.Manager.SpriteManager;
 import it.unibo.oop18.cfc.Manager.TileManager;
 import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
 import it.unibo.oop18.cfc.Objects.Floors.ParquetFloor;
+import it.unibo.oop18.cfc.Objects.Stations.BreadStation;
 import it.unibo.oop18.cfc.Objects.Stations.ChoppingStation;
 import it.unibo.oop18.cfc.Objects.Stations.Cooker;
 import it.unibo.oop18.cfc.Objects.Stations.Counter;
 import it.unibo.oop18.cfc.Objects.Stations.DeliveryStation;
-import it.unibo.oop18.cfc.Objects.Stations.FoodStation;
+import it.unibo.oop18.cfc.Objects.Stations.LettuceStation;
+import it.unibo.oop18.cfc.Objects.Stations.MeatStation;
 import it.unibo.oop18.cfc.Objects.Stations.PlateStation;
+import it.unibo.oop18.cfc.Objects.Stations.TomatoStation;
 import it.unibo.oop18.cfc.Objects.Stations.Trashcan;
 import it.unibo.oop18.cfc.Objects.Stations.Washbasin;
 import it.unibo.oop18.cfc.Util.Position;
@@ -59,8 +62,23 @@ public class GameObjectFactoryImpl implements GameObjectFactory {
     }
 
     @Override
-    public FoodStation createFoodStation(final Position position) {
-        return new FoodStation(new Position(position), this.tm.getFoodStationTile());
+    public BreadStation createBreadStation(final Position position) {
+        return new BreadStation(new Position(position), this.tm.getBreadStationTile());
+    }
+
+    @Override
+    public MeatStation createMeatStation(final Position position) {
+        return new MeatStation(new Position(position), this.tm.getMeatStationTile());
+    }
+
+    @Override
+    public TomatoStation createTomatoStation(final Position position) {
+        return new TomatoStation(new Position(position), this.tm.getTomatoStationTile());
+    }
+
+    @Override
+    public LettuceStation createLettuceStation(final Position position) {
+        return new LettuceStation(new Position(position), this.tm.getLettuceStationTile());
     }
 
     @Override

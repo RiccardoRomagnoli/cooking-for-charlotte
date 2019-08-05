@@ -2,12 +2,15 @@ package it.unibo.oop18.cfc.World;
 
 import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
 import it.unibo.oop18.cfc.Objects.Floors.ParquetFloor;
+import it.unibo.oop18.cfc.Objects.Stations.BreadStation;
 import it.unibo.oop18.cfc.Objects.Stations.ChoppingStation;
 import it.unibo.oop18.cfc.Objects.Stations.Cooker;
 import it.unibo.oop18.cfc.Objects.Stations.Counter;
 import it.unibo.oop18.cfc.Objects.Stations.DeliveryStation;
-import it.unibo.oop18.cfc.Objects.Stations.FoodStation;
+import it.unibo.oop18.cfc.Objects.Stations.LettuceStation;
+import it.unibo.oop18.cfc.Objects.Stations.MeatStation;
 import it.unibo.oop18.cfc.Objects.Stations.PlateStation;
+import it.unibo.oop18.cfc.Objects.Stations.TomatoStation;
 import it.unibo.oop18.cfc.Objects.Stations.Trashcan;
 import it.unibo.oop18.cfc.Objects.Stations.Washbasin;
 import it.unibo.oop18.cfc.Util.Position;
@@ -72,8 +75,29 @@ public interface GameObjectFactory {
      * @param position block's position
      * @return a new unbreakable Block
      */
-    FoodStation createFoodStation(Position position);
+    BreadStation createBreadStation(Position position);
 
+    /**
+     * Creates an unbreakable {@link Block}.
+     * 
+     * @param position block's position
+     * @return a new unbreakable Block
+     */
+    MeatStation createMeatStation(Position position);
+    /**
+     * Creates an unbreakable {@link Block}.
+     * 
+     * @param position block's position
+     * @return a new unbreakable Block
+     */
+    LettuceStation createLettuceStation(Position position);
+    /**
+     * Creates an unbreakable {@link Block}.
+     * 
+     * @param position block's position
+     * @return a new unbreakable Block
+     */
+    TomatoStation createTomatoStation(Position position);
     /**
      * Creates an unbreakable {@link Block}.
      * 

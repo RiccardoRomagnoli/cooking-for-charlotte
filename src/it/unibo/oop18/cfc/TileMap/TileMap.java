@@ -46,8 +46,29 @@ interface TileMap {
      * 
      * @return set of position
      */
-    Set<Position> getFoodStationPosition();
+    Set<Position> getBreadStationPosition();
 
+    /**
+     * Get the set of food Station Position.
+     * 
+     * @return set of position
+     */
+    Set<Position> getMeatStationPosition();
+
+    /**
+     * Get the set of food Station Position.
+     * 
+     * @return set of position
+     */
+    Set<Position> getTomatoStationPosition();
+
+    /**
+     * Get the set of food Station Position.
+     * 
+     * @return set of position
+     */
+
+    Set<Position> getLettuceStationPosition();
     /**
      * Get the set of plate Position.
      * 

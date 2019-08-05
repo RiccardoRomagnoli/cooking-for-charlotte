@@ -105,9 +105,33 @@ public class TileMapImpl implements TileMap {
     }
 
     @Override
-    public Set<Position> getFoodStationPosition() {
+    public Set<Position> getBreadStationPosition() {
         return maps.stream()
-                .filter(p -> p.getFirst() == TileType.FOODSTATION.getPos())
+                .filter(p -> p.getFirst() == TileType.BREADSTATION.getPos())
+                .map(o -> o.getSecond())
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    public Set<Position> getMeatStationPosition() {
+        return maps.stream()
+                .filter(p -> p.getFirst() == TileType.MEATSTATION.getPos())
+                .map(o -> o.getSecond())
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    public Set<Position> getTomatoStationPosition() {
+        return maps.stream()
+                .filter(p -> p.getFirst() == TileType.TOMATOSTATION.getPos())
+                .map(o -> o.getSecond())
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    public Set<Position> getLettuceStationPosition() {
+        return maps.stream()
+                .filter(p -> p.getFirst() == TileType.LETTUCESTATION.getPos())
                 .map(o -> o.getSecond())
                 .collect(Collectors.toSet());
     }
