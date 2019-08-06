@@ -119,4 +119,5 @@ public class GameEngine extends JPanel implements Runnable {
         g2.drawImage(image, 0, 0, WIDTH * SCALE, HEIGHT3 * SCALE, null);
         g2.dispose();
     }
+    
 }

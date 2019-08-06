@@ -3,6 +3,8 @@ package it.unibo.oop18.cfc.GameState;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+
+import it.unibo.oop18.cfc.Main.GameEngine;
 import it.unibo.oop18.cfc.Manager.Content;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
 import it.unibo.oop18.cfc.Util.JukeBoxUtil;
@@ -18,7 +20,7 @@ public class MenuState extends GameState {
     // private final int height = GamePanel.HEIGHT;
     private static final int STRING_POS = 350;
     private static final int IMAGE_POS = 280;
-    private int currentOption = 0;
+    private int currentOption ;
     private final String[] options = { "START", "OPTIONS", "INFO", "QUIT" };
     private final int menuOptions = options.length;
     private final int[] dim = { 300, 360, 420, 480 };
