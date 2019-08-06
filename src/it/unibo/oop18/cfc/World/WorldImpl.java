@@ -14,6 +14,7 @@ import it.unibo.oop18.cfc.Objects.GameObject;
 import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
 import it.unibo.oop18.cfc.Objects.Floors.ParquetFloor;
 import it.unibo.oop18.cfc.Objects.Items.Item;
+import it.unibo.oop18.cfc.Objects.Items.PlateImpl;
 import it.unibo.oop18.cfc.Objects.Stations.AbstractStationObject;
 import it.unibo.oop18.cfc.Objects.Stations.BreadStation;
 import it.unibo.oop18.cfc.Objects.Stations.ChoppingStation;
@@ -23,7 +24,6 @@ import it.unibo.oop18.cfc.Objects.Stations.DeliveryStation;
 import it.unibo.oop18.cfc.Objects.Stations.LettuceStation;
 import it.unibo.oop18.cfc.Objects.Stations.MeatStation;
 import it.unibo.oop18.cfc.Objects.Stations.PlateStation;
-import it.unibo.oop18.cfc.Objects.Stations.Station;
 import it.unibo.oop18.cfc.Objects.Stations.TomatoStation;
 import it.unibo.oop18.cfc.Objects.Stations.Trashcan;
 import it.unibo.oop18.cfc.Objects.Stations.Washbasin;
@@ -255,6 +255,9 @@ public class WorldImpl implements World {
     @Override
     public <X extends Item> void removeItem(X item) {
         this.itemsInWorld.remove(item);
+        if (item instanceof PlateImpl) {
+            ((PlateImpl) item).getIngredients().forEach(ing -> this.itemsInWorld.remove(ing));
+        }
     }
 
     /**
