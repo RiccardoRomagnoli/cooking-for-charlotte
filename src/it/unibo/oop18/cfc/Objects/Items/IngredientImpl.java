@@ -1,35 +1,42 @@
 package it.unibo.oop18.cfc.Objects.Items;
 
+import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
+
+import it.unibo.oop18.cfc.Util.Position;
+
 public class IngredientImpl extends AbstractItem implements Ingredient {
 
-    private IngredientType f;
-    private boolean isCooked;
-    private boolean isCut;
+    private IngredientType type;
+    private IngredientState state;
 
-    public IngredientImpl(final IngredientType ingredientType) {
+    public IngredientImpl(final IngredientType type) {
         super();
-        this.isCut = false;
-        this.isCooked = false;
-        this.f = ingredientType;
+        this.type = type;
+        this.state = IngredientState.RAW;
     }
 
-    public IngredientType getFood() {
-        return f;
+    public IngredientType getIngredient() {
+        return this.type;
     }
-
-    public boolean isCooked() {
-        return isCooked;
+    public IngredientState getState() {
+        return this.state;
     }
-
-    public void setCooked(boolean isCooked) {
-        this.isCooked = isCooked;
+    public void changeState(IngredientState state){
+        this.state = state;
     }
-
-    public boolean isCut() {
-        return isCut;
-    }
-
-    public void setCut(boolean isCut) {
-        this.isCut = isCut;
+    public boolean isReady() {
+        if (this.state != IngredientState.RAW) {
+            if (this.state == IngredientState.CHOPPED) {
+                if (this.type.getTimeToCook() == 0) {
+                    return true;
+                }
+                return false;
+            }
+            if (this.state != IngredientState.WASTE) {
+                return true;
+            }
+        } 
+        return false;
     }
 }
