@@ -55,6 +55,13 @@ public class Counter extends AbstractStationObject {
                         plate.addDish((IngredientImpl) this.item.get());
                         this.item = Optional.empty();
                     }
+                } else if (world.getPlayer().getItemInHand().get() instanceof IngredientImpl) { // se ha un ingrediente in mano
+                    // se la station ha un piatto 
+                    //!!!!!miss check max plate size
+                    if (this.item.get() instanceof PlateImpl) {
+                        ((PlateImpl) this.item.get()).addDish((IngredientImpl)world.getPlayer().getItemInHand().get());
+                        world.getPlayer().removeItemInHand();
+                    }
                 }
             } else {// se il player non ha niente in mano
                 world.getPlayer().setItemInHand(item.get());
