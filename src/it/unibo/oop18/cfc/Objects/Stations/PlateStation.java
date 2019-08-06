@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 
 import it.unibo.oop18.cfc.Graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.Graphics.PlateStationGraphicComponent;
+import it.unibo.oop18.cfc.Objects.Items.PlateImpl;
 import it.unibo.oop18.cfc.Tile.PlateStationTile;
 import it.unibo.oop18.cfc.Util.Position;
 import it.unibo.oop18.cfc.World.World;
@@ -23,9 +24,12 @@ public class PlateStation extends AbstractStationObject{
     }
 
     @Override
-    public void doAction(World world) {
-        // TODO Auto-generated method stub
-        
+    public void doAction(final World world) {
+        if (!world.getPlayer().getItemInHand().isPresent()) {
+            final PlateImpl plate = new PlateImpl();
+            world.addItem(plate);
+            world.getPlayer().setItemInHand(plate);
+        }
     }
 
 }
