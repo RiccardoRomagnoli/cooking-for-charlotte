@@ -32,8 +32,6 @@ public class OptionState extends GameState {
     private int currentOption;
     private final int[] dim = { 300, 360, 420, 480 };
 
-    // Graphics2D x;
-
     /**
      * Class constructor.
      * 
@@ -44,7 +42,7 @@ public class OptionState extends GameState {
     }
 
     /**
-     * Init class.
+     * {@inheritDoc}.
      */
     public void init() {
         bg = Content.MENUBG[0][0];
@@ -52,21 +50,21 @@ public class OptionState extends GameState {
     }
 
     /**
-     * Update class. Nothing has to be done until it is on this menu
+     * {@inheritDoc}.
      */
     public void update() {
+
     }
 
     /**
-     * Draw elements on the option screen.
-     * 
+     * {@inheritDoc}.
      * @param g basic graphics
      */
     public void draw(final Graphics2D g) {
 
         g.drawImage(bg, 0, 0, null);
         for (int i = 0; i < numOptions; i++) {
-            Content.drawString(g, options[i].toLowerCase(), STRING_POS, dim[i]);
+            Content.drawString(g, options[i], STRING_POS, dim[i]);
         }
         g.drawImage(food, IMAGE_POS, dim[currentOption], null);
         g.drawRect(STRING_POS, dim[currentOption], FONT_HEIGTH * options[currentOption].length(), FONT_LENGTH);
@@ -126,5 +124,4 @@ public class OptionState extends GameState {
             }
         }
     }
-
 }

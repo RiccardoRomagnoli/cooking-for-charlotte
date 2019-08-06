@@ -25,14 +25,13 @@ public class KeyInput implements KeyListener {
 
     private GameState currentState;
     private final GameStateManager gsm;
-    private int nKeyPressing = 0;
+    // private int nKeyPressing = 0;
     private PlayerImpl player;
 
     HashMap<Integer, Boolean> keys;
 
     /**
      * Creates {@code KeyInput}.
-     *
      * 
      * @param gsm state manager used to set state Pause
      */
@@ -45,6 +44,11 @@ public class KeyInput implements KeyListener {
         keys.put(KeyEvent.VK_DOWN, false);
     }
 
+    /**
+     * TODO.
+     * 
+     * @param pl .
+     */
     public void setPlayer(final PlayerImpl pl) {
         this.player = pl;
     }
@@ -86,7 +90,7 @@ public class KeyInput implements KeyListener {
 
     private void optionKeyInput(final KeyEvent e) {
         gsm.setState(GameStates.OPTION);
-        OptionState option = (OptionState) currentState;
+        final OptionState option = (OptionState) currentState;
         switch (e.getKeyCode()) {
         case KeyEvent.VK_UP:
             option.goUp();
@@ -161,7 +165,7 @@ public class KeyInput implements KeyListener {
 
     // key pressed during menu state
     private void menuKeyInput(final KeyEvent e) {
-        MenuState menu = (MenuState) currentState;
+        final MenuState menu = (MenuState) currentState;
         switch (e.getKeyCode()) {
         case KeyEvent.VK_UP:
             menu.goUp();
@@ -201,7 +205,7 @@ public class KeyInput implements KeyListener {
      */
     @Override
     public void keyReleased(final KeyEvent e) {
-        if(gsm.getCurrentGameState().getGameStateName() == GameStates.PLAY) {
+        if (gsm.getCurrentGameState().getGameStateName() == GameStates.PLAY) {
             handleStopPlayer(e);
         }
     }

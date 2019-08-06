@@ -22,9 +22,9 @@ public class Content {
     public static final BufferedImage[][] load(final String s, final int w, final int h) {
         BufferedImage[][] ret;
         try {
-            BufferedImage spritesheet = ImageIO.read(Content.class.getResourceAsStream(s));
-            int width = spritesheet.getWidth() / w;
-            int height = spritesheet.getHeight() / h;
+            final BufferedImage spritesheet = ImageIO.read(Content.class.getResourceAsStream(s));
+            final int width = spritesheet.getWidth() / w;
+            final int height = spritesheet.getHeight() / h;
             ret = new BufferedImage[height][width];
             for (int i = 0; i < height; i++) {
                 for (int j = 0; j < width; j++) {
