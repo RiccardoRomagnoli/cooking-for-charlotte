@@ -86,18 +86,19 @@ public class KeyInput implements KeyListener {
 
     private void optionKeyInput(final KeyEvent e) {
         gsm.setState(GameStates.OPTION);
+        OptionState option = (OptionState) currentState;
         switch (e.getKeyCode()) {
         case KeyEvent.VK_UP:
-            OptionState.increaseVolume();
+            option.goUp();
             break;
         case KeyEvent.VK_DOWN:
-            OptionState.decreaseVolume();
+            option.goDown();
             break;
         case KeyEvent.VK_RIGHT:
-            OptionState.increaseResolution();
+            option.increase();
             break;
         case KeyEvent.VK_LEFT:
-            OptionState.decreaseVolume();
+            option.decrease();
             break;
         default:
             break;

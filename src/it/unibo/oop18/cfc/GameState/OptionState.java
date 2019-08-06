@@ -2,6 +2,10 @@ package it.unibo.oop18.cfc.GameState;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImageOp;
+import java.awt.image.ImageObserver;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,20 +17,28 @@ import it.unibo.oop18.cfc.Util.JukeBoxUtil;
 
 /**
  * Option menu manager.
- * 
- *
  */
 public class OptionState extends GameState {
 
+    private static final int STRING_POS = 80;
+    private static final int IMAGE_POS = 20;
+    private static final int FONT_HEIGTH = 50;
+    private static final int FONT_LENGTH = 50;
     private Color color;
+
+    private BufferedImage bg;
+    private BufferedImage food;
+    private final String[] options = { "volume", "resolution", "quit" };
     private static List<Integer> volume = new ArrayList<Integer>(Arrays.asList(0, 15, 30, 45, 60, 75, 90, 100));
-    private static List<String> resolution = new ArrayList<String>(Arrays.asList("1920x1080", "800*600", "1024*512"));
-    private static int initialVolume = volume.get(volume.size() - 1);
-    private static String initialResolution = resolution.get(resolution.size() - 1);
-    private static int volumeIndex = volume.size();
-    private static int resolutionIndex = resolution.size();
-    private static int actualVolume = volume.get(volume.size() - 1);
-    private static String actualResolution = resolution.get(resolution.size() - 1);
+    private int lastVolIndex;
+    private int lastResIndex;
+
+    private static List<String> resolution = new ArrayList<String>(Arrays.asList("1400x900", "800x600", "640x480"));
+    private final int numOptions = options.length;
+    private int currentOption;
+    private final int[] dim = { 300, 360, 420, 480 };
+
+    // Graphics2D x;
 
     /**
      * Class constructor.
@@ -41,7 +53,8 @@ public class OptionState extends GameState {
      * Init class.
      */
     public void init() {
-
+        bg = Content.MENUBG[0][0];
+        food = Content.FOOD[6][2];
     }
 
     /**
@@ -56,106 +69,69 @@ public class OptionState extends GameState {
      * @param g basic graphics
      */
     public void draw(final Graphics2D g) {
-        // Resolution and audio volume
-        color = new Color(164, 198, 222);
-        g.setColor(color);
-        g.fillRect(0, 0, GameEngine.WIDTH, GameEngine.HEIGHT2);
 
-        Content.drawString(g, "VOLUME", 400, 200);
+        g.drawImage(bg, 0, 0, null);
+        for (int i = 0; i < numOptions; i++) {
+            Content.drawString(g, options[i].toLowerCase(), STRING_POS, dim[i]);
+        }
+        g.drawImage(food, IMAGE_POS, dim[currentOption], null);
+        g.drawRect(STRING_POS, dim[currentOption], FONT_HEIGTH * options[currentOption].length(), FONT_LENGTH);
 
-        Content.drawString(g, Integer.toString(actualVolume), 400, 270);
-
-        Content.drawString(g, "RESOLUTION", 200, 200);
-
-        Content.drawString(g, resolution.get(resolutionIndex), 200, 270);
-
-        Content.drawString(g, "F1: return to menu", 120, 410);
-
+        Content.drawString(g, volume.get(lastVolIndex).toString(), STRING_POS * 8 - 30, dim[0]);
+        Content.drawString(g, resolution.get(lastResIndex), STRING_POS * 8 - 30, dim[1]);
     }
 
     /**
-     * When i press the right/left button i can increase/decrease the resolution
-     * When i press the up/down button i can increase/decrease the volume
-     * 
+     * Up botton pressed.
      */
 
-    /**
-     * Up botton pressed. Increase volume
-     */
-    public static void increaseVolume() {
-        JukeBoxUtil.play("menuoption");
-        if (volumeIndex < volume.size()) {
-            volumeIndex--;
-            actualVolume = volume.get(volumeIndex-1);
+    public void goUp() {
+        if (currentOption > 0) {
+            JukeBoxUtil.play("menuoption");
+            currentOption--;
         }
     }
 
     /**
-     * Down button pressed. Decrease volume
+     * Down button pressed.
      */
-    public static void decreaseVolume() {
-        JukeBoxUtil.play("menuoption");
-        if (volumeIndex > 0) {
-            volumeIndex--;
-            actualVolume = volume.get(volumeIndex-1);
+    public void goDown() {
+        if (currentOption < options.length - 1) {
+            JukeBoxUtil.play("menuoption");
+            currentOption++;
         }
     }
 
     /**
-     * Left botton pressed. Decrease resolution
+     * Right button pressed. Increase the volume / resolution
      */
-    public void decreaseResolution() {
+    public void increase() {
         JukeBoxUtil.play("menuoption");
-        if (resolutionIndex <= 0) {
-            resolutionIndex = resolution.size();
-        } else {
-            resolutionIndex--;
+        if (currentOption == 0) {
+            if (lastVolIndex < volume.size() - 1) {
+                lastVolIndex++;
+            }
+        } else if (currentOption == 1) {
+            if (lastResIndex < resolution.size() - 1) {
+                lastResIndex++;
+            }
         }
-        setActualResolution(resolution.get(resolutionIndex-1));
     }
 
     /**
-     * Rigth button pressed. Increase resolution
+     * Left button pressed. Decrease Volume/Resolution
      */
-    public static void increaseResolution() {
+    public void decrease() {
         JukeBoxUtil.play("menuoption");
-        if (resolutionIndex >= resolution.size()) {
-            resolutionIndex = 0;
-        } else {
-            resolutionIndex--;
+        if (currentOption == 0) {
+            if (lastVolIndex > 0) {
+                lastVolIndex--;
+            }
+        } else if (currentOption == 1) {
+            if (lastResIndex > 0) {
+                lastResIndex--;
+            }
         }
-        setActualResolution(resolution.get(resolutionIndex-1));
-    }
-    
-    public static List<Integer> getVolume() {
-        return volume;
     }
 
-    public static void setVolume(final List<Integer> volume) {
-        OptionState.volume = volume;
-    }
-
-    public static int getInitialVolume() {
-        return initialVolume;
-    }
-
-    public static void setInitialVolume(final int initialVolume) {
-        OptionState.initialVolume = initialVolume;
-    }
-
-    public static String getInitialResolution() {
-        return initialResolution;
-    }
-
-    public static void setInitialResolution(final String initialResolution) {
-        OptionState.initialResolution = initialResolution;
-    }
-
-    public static String getActualResolution() {
-        return actualResolution;
-    }
-
-    public static void setActualResolution(final String actualResolution) {
-        OptionState.actualResolution = actualResolution;
-    }
 }
