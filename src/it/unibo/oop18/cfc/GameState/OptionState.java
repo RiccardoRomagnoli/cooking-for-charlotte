@@ -1,16 +1,11 @@
 package it.unibo.oop18.cfc.GameState;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.awt.image.BufferedImageOp;
-import java.awt.image.ImageObserver;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import it.unibo.oop18.cfc.Main.GameEngine;
 import it.unibo.oop18.cfc.Manager.Content;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
 import it.unibo.oop18.cfc.Util.JukeBoxUtil;
@@ -24,7 +19,6 @@ public class OptionState extends GameState {
     private static final int IMAGE_POS = 20;
     private static final int FONT_HEIGTH = 50;
     private static final int FONT_LENGTH = 50;
-    private Color color;
 
     private BufferedImage bg;
     private BufferedImage food;
@@ -84,7 +78,6 @@ public class OptionState extends GameState {
     /**
      * Up botton pressed.
      */
-
     public void goUp() {
         if (currentOption > 0) {
             JukeBoxUtil.play("menuoption");

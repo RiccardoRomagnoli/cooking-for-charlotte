@@ -39,13 +39,18 @@ public class GameStateManager {
         setState(GameStates.INTRO);
     }
 
+    /**
+     * Start a new game setting the game state.
+     */
     public void newGame() {
         playState.init();
         setState(GameStates.PLAY);
     }
+
     /**
-     * TODO. remove intro case and add the code in the constructor 
-     * @param gameState ....
+     * TODO. remove intro case and add the code in the constructor
+     * 
+     * @param gameState current game state
      */
     public void setState(final GameStates gameState) {
         switch (gameState) {
@@ -79,18 +84,36 @@ public class GameStateManager {
         }
     }
 
+    /**
+     * Update the graphics.
+     */
     public void update() {
         currentState.update();
     }
 
-    public void draw(Graphics2D g) {
+    /**
+     * Draw the graphics on the panel.
+     * 
+     * @param g graphics
+     */
+    public void draw(final Graphics2D g) {
         currentState.draw(g);
     }
 
+    /**
+     * Getter for playstate.
+     * 
+     * @return current playstate
+     */
     public PlayState getPlayState() {
         return (PlayState) playState;
     }
 
+    /**
+     * Getter for current game state.
+     * 
+     * @return current state
+     */
     public GameState getCurrentGameState() {
         return currentState;
     }

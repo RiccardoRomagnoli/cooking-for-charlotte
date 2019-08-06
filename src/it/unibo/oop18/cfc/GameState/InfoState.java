@@ -2,20 +2,18 @@ package it.unibo.oop18.cfc.GameState;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 import it.unibo.oop18.cfc.Main.GameEngine;
 import it.unibo.oop18.cfc.Manager.Content;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
 
 /**
- * 
- * 
- *
+ * Info.
  */
 public class InfoState extends GameState {
 
-    private Color color;
-
+    private BufferedImage bg;
     /**
      * Class constructor.
      * 
@@ -29,7 +27,7 @@ public class InfoState extends GameState {
      * Init class.
      */
     public void init() {
-
+        bg = Content.MENUBG[0][0];
     }
 
     /**
@@ -44,9 +42,7 @@ public class InfoState extends GameState {
      * @param g basic graphics
      */
     public void draw(final Graphics2D g) {
-        color = new Color(164, 198, 222);
-        g.setColor(color);
-        g.fillRect(0, 0, GameEngine.WIDTH, GameEngine.HEIGHT2);
+        g.drawImage(bg, 0, 0, null);
         Content.drawString(g, "INFO", 400, 200);
 
         Content.drawString(g, "arrow keys : move", 120, 270);
