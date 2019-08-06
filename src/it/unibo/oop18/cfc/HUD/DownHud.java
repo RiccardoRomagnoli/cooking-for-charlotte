@@ -57,14 +57,14 @@ public class DownHud {
     }
 
     private void drawFood(final Graphics2D g, final IngredientImpl i) {
-        switch (i.getFood()) {
+        switch (i.getIngredient()) {
         case BREAD:
             g.drawRect(380, yoffset + 20, 50, 50);
             break;
         case MEAT:
             g.drawRect(440, yoffset + 20, 50, 50);
             break;
-        case LETTUCE:
+        case LATTUCE:
             g.drawRect(500, yoffset + 20, 50, 50);
             break;
         case TOMATO:
