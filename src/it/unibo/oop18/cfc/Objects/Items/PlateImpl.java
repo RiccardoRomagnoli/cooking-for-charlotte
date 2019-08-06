@@ -17,7 +17,7 @@ public class PlateImpl extends AbstractItem implements Plate {
         ingredients.add(ing);
     }
 
-    public IngredientImpl getDish(int pos) {
+    public IngredientImpl getIngredient(int pos) {
         return ingredients.get(pos);
     }
     private void updatePoints(final int points) {
@@ -36,11 +36,16 @@ public class PlateImpl extends AbstractItem implements Plate {
             updatePoints(i.getIngredient().getPoints());
             if (i.isReady()) { 
                 counter++; 
-            }    
+            }
         }
         if (counter == max) {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public ArrayList<IngredientImpl> getIngredients() {
+        return this.ingredients;
     }
 }

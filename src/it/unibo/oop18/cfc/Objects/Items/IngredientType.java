@@ -5,7 +5,7 @@ import com.sun.webkit.ThemeClient;
 public enum IngredientType {
 
     TOMATO(4, 0, 200, 2, 0),
-    LATTUCE(7, 0, 200, 2, 0),
+    LETTUCE(7, 0, 200, 2, 0),
     BREAD(3, 2, 200, 1, 0),
     MEAT(2, 5, 500, 2, 6);
 

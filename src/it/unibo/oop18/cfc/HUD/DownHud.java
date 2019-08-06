@@ -40,7 +40,7 @@ public class DownHud {
             } else if (world.getPlayer().getItemInHand().get() instanceof PlateImpl) {
                 PlateImpl p = (PlateImpl) world.getPlayer().getItemInHand().get();
                 g.drawRect(320, yoffset + 20, 50, 50);
-                p.getDishes().forEach(ing -> drawFood(g, ing));
+                p.getIngredients().forEach(ing -> drawFood(g, ing));
             }
         }
 //             // draw time
@@ -64,7 +64,7 @@ public class DownHud {
         case MEAT:
             g.drawRect(440, yoffset + 20, 50, 50);
             break;
-        case LATTUCE:
+        case LETTUCE:
             g.drawRect(500, yoffset + 20, 50, 50);
             break;
         case TOMATO:
