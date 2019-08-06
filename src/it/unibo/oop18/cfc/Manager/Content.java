@@ -15,12 +15,11 @@ public class Content {
     public static final BufferedImage[][] MENUBG = load("/HUD/menu.png", 1024, 768);
     public static final BufferedImage[][] TOPBAR = load("/HUD/topbar.png", 1024, 128);
     public static final BufferedImage[][] DOWNBAR = load("/HUD/downbar.png", 1024, 128);
-
     public static final BufferedImage[][] FOOD = load("/Sprites/Food.png", 50, 50);
 
     public static BufferedImage[][] font = load("/HUD/font.png", 50, 50);
 
-    public static final BufferedImage[][] load(String s, int w, int h) {
+    public static final BufferedImage[][] load(final String s, final int w, final int h) {
         BufferedImage[][] ret;
         try {
             BufferedImage spritesheet = ImageIO.read(Content.class.getResourceAsStream(s));

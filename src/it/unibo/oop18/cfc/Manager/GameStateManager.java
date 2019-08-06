@@ -36,7 +36,9 @@ public class GameStateManager {
         playState = new PlayState(this);
         infoState = new InfoState(this);
         optionState = new OptionState(this);
-        setState(GameStates.INTRO);
+        //setState(GameStates.INTRO);
+        currentState = introState;
+        introState.init();
     }
 
     /**
