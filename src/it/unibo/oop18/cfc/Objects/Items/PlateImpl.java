@@ -18,4 +18,8 @@ public class PlateImpl extends AbstractItem implements Plate {
     public IngredientImpl getDish(int pos) {
         return dishes.get(pos);
     }
+
+    public ArrayList<IngredientImpl> getDishes(){
+        return this.dishes;
+    }
 }

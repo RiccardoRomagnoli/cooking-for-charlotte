@@ -28,7 +28,7 @@ public class PlayState extends GameState {
         try {
             this.world = new WorldImpl();
             this.topHud = new TopHud(this);
-            this.downHud = new DownHud(this, 0);
+            this.downHud = new DownHud(world);
         } catch (IOException e) {
             e.printStackTrace();
         }
