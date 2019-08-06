@@ -6,6 +6,7 @@ import it.unibo.oop18.cfc.Graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.Graphics.PlateStationGraphicComponent;
 import it.unibo.oop18.cfc.Tile.PlateStationTile;
 import it.unibo.oop18.cfc.Util.Position;
+import it.unibo.oop18.cfc.World.World;
 
 public class PlateStation extends AbstractStationObject{
 
@@ -19,6 +20,12 @@ public class PlateStation extends AbstractStationObject{
     @Override
     public void draw(final Graphics2D g) {
         this.graphicComponent.draw(g);
+    }
+
+    @Override
+    public void doAction(World world) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

@@ -6,7 +6,7 @@ import it.unibo.oop18.cfc.Util.Position;
 /**
  *  This class models a still {@link AbstractGameObject}.
  */
-public abstract class AbstractStationObject extends AbstractGameObject {
+public abstract class AbstractStationObject extends AbstractGameObject implements Station {
 
     /**
      * Creates an {@code AbstractStationObject}.

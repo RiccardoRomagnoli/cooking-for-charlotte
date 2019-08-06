@@ -8,6 +8,7 @@ import it.unibo.oop18.cfc.Graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.Objects.Items.Item;
 import it.unibo.oop18.cfc.Tile.CounterTile;
 import it.unibo.oop18.cfc.Util.Position;
+import it.unibo.oop18.cfc.World.World;
 
 public class Counter extends AbstractStationObject {
 
@@ -31,6 +32,12 @@ public class Counter extends AbstractStationObject {
 
     public void setItem(Item item) {
         this.item = Optional.ofNullable(item);
+    }
+
+    @Override
+    public void doAction(World world) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

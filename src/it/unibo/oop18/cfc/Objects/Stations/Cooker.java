@@ -9,6 +9,7 @@ import it.unibo.oop18.cfc.Objects.Items.IngredientImpl;
 import it.unibo.oop18.cfc.Tile.CookerTile;
 import it.unibo.oop18.cfc.Util.GameTimer;
 import it.unibo.oop18.cfc.Util.Position;
+import it.unibo.oop18.cfc.World.World;
 
 public class Cooker extends AbstractStationObject {
 
@@ -54,5 +55,11 @@ public class Cooker extends AbstractStationObject {
 
     public boolean isCooked() {
         return false;
+    }
+
+    @Override
+    public void doAction(World world) {
+        // TODO Auto-generated method stub
+        
     }
 }

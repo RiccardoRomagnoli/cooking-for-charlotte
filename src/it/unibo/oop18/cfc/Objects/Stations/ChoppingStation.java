@@ -9,6 +9,7 @@ import it.unibo.oop18.cfc.Objects.Items.IngredientImpl;
 import it.unibo.oop18.cfc.Tile.ChoppingStationTile;
 import it.unibo.oop18.cfc.Util.GameTimer;
 import it.unibo.oop18.cfc.Util.Position;
+import it.unibo.oop18.cfc.World.World;
 
 public class ChoppingStation extends AbstractStationObject {
 
@@ -54,5 +55,11 @@ public class ChoppingStation extends AbstractStationObject {
 
     public boolean isCut() {
         return false;
+    }
+
+    @Override
+    public void doAction(World world) {
+        // TODO Auto-generated method stub
+        
     }
 }

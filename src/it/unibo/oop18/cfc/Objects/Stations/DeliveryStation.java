@@ -6,6 +6,7 @@ import it.unibo.oop18.cfc.Graphics.DeliveryStationGraphicComponent;
 import it.unibo.oop18.cfc.Graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.Tile.DeliveryStationTile;
 import it.unibo.oop18.cfc.Util.Position;
+import it.unibo.oop18.cfc.World.World;
 
 public class DeliveryStation extends AbstractStationObject {
 
@@ -19,6 +20,12 @@ public class DeliveryStation extends AbstractStationObject {
     @Override
     public void draw(Graphics2D g) {
         this.graphicComponent.draw(g);
+    }
+
+    @Override
+    public void doAction(World world) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

@@ -9,6 +9,7 @@ import it.unibo.oop18.cfc.Objects.Items.PlateImpl;
 import it.unibo.oop18.cfc.Tile.WashbasinTile;
 import it.unibo.oop18.cfc.Util.GameTimer;
 import it.unibo.oop18.cfc.Util.Position;
+import it.unibo.oop18.cfc.World.World;
 
 public class Washbasin extends AbstractStationObject {
 
@@ -54,6 +55,12 @@ public class Washbasin extends AbstractStationObject {
 
     public boolean isWashed() {
         return false;
+    }
+
+    @Override
+    public void doAction(World world) {
+        // TODO Auto-generated method stub
+        
     }
 }
 
