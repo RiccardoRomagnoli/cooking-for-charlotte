@@ -5,7 +5,7 @@ public interface Ingredient {
      * 
      * @return the type of the ingredient
      */
-    IngredientType getFood();
+    IngredientType getIngredient();
     /** 
      * 
      * @return the current state of the Ingredient

@@ -1,7 +1,9 @@
 package it.unibo.oop18.cfc.Objects.Items;
 
 public interface Plate {
-    public void addDish(IngredientImpl d);
+    void addDish(IngredientImpl d);
 
-    public IngredientImpl getDish(int pos);
+    IngredientImpl getDish(int pos);
+
+    boolean checkReady();
 }
