@@ -1,5 +1,7 @@
 package it.unibo.oop18.cfc.Objects.Items;
 
+import com.sun.webkit.ThemeClient;
+
 public enum IngredientType {
     TOMATO(4, 0, 200, 2, 0),
     LATTUCE(7, 0, 200, 2, 0),
@@ -12,24 +14,41 @@ public enum IngredientType {
     private int timeToCut;
     private int timeToCook;
     private IngredientState state;
-
+    /** 
+     * 
+     * @return the x value of the ingredient
+     */
     public int getX() {
         return this.x;
     }
+    /**
+     * 
+     * @return the y value of the ingredient
+     */
     public int getY() {
         return this.y;
     }
+    /**
+     * @return the value of the value of the ingredient
+     */
     public int getPoints() {
         return this.pointValue;
     }
+
+    /**
+     * 
+     * @return the time needed to cut the ingredient
+     */
     public int getTimeToCut() {
         return this.timeToCut;
     }
+
+    /**
+     * 
+     * @return the time needed to cook the ingredient
+     */
     public int getTimeToCook() {
         return this.timeToCook;
-    }
-    public IngredientState getState() {
-        return this.state;
     }
     IngredientType(final int x, final int y, final int pointValue, final int timeToCut, final int timeToCook) {
         this.x = x;
@@ -37,6 +56,5 @@ public enum IngredientType {
         this.pointValue = pointValue;
         this.timeToCut = timeToCut;
         this.timeToCook = timeToCook;
-        this.state = IngredientState.RAW;
     }
 }
