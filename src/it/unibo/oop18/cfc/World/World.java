@@ -1,13 +1,14 @@
 package it.unibo.oop18.cfc.World;
 
 import java.awt.Graphics2D;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 import it.unibo.oop18.cfc.Objects.GameObject;
 import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
 import it.unibo.oop18.cfc.Objects.Floors.ParquetFloor;
+import it.unibo.oop18.cfc.Objects.Items.Item;
+import it.unibo.oop18.cfc.Objects.Stations.AbstractStationObject;
 import it.unibo.oop18.cfc.Objects.Stations.BreadStation;
 import it.unibo.oop18.cfc.Objects.Stations.ChoppingStation;
 import it.unibo.oop18.cfc.Objects.Stations.Cooker;
@@ -19,7 +20,6 @@ import it.unibo.oop18.cfc.Objects.Stations.PlateStation;
 import it.unibo.oop18.cfc.Objects.Stations.TomatoStation;
 import it.unibo.oop18.cfc.Objects.Stations.Trashcan;
 import it.unibo.oop18.cfc.Objects.Stations.Washbasin;
-import it.unibo.oop18.cfc.Orders.Order;
 import it.unibo.oop18.cfc.Util.GameTimer;
 
 /**
@@ -35,6 +35,7 @@ public interface World {
 
     /**
      * Renders all objects' sprite.
+     * @param g the graphic element
      */
     void draw(Graphics2D g);
 
@@ -51,12 +52,34 @@ public interface World {
     List<? extends GameObject> getAllGameObjects();
 
     /**
+     * Get all station object from the world.
+     * 
+     * @return all games objects
+     */
+    List<? extends AbstractStationObject> getAllStations();
+
+    /**
      * Removes a game object from the world.
      * 
      * @param object the object to remove
      * @param <X>    object's type to remove
      */
     <X extends GameObject> void removeObject(X object);
+
+    /**
+     * Removes a game object from the world.
+     * 
+     * @param item the item to remove
+     * @param <X>    object's type to remove
+     */
+    <X extends Item> void removeItem(X item);
+
+    /**
+     * Add and ingredient or a plate.
+     * 
+     * @param item item to add
+     */
+    void addItem(Item item);
 
     /**
      * Gets the player.

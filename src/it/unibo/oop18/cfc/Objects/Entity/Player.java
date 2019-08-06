@@ -7,17 +7,21 @@ import it.unibo.oop18.cfc.Objects.Items.Item;
 
 public interface Player extends DynamicObject {
 
-    public void doAction();
-    
-    public void increasePoints();
+    void doAction();
 
-    public int numPoints();
+    void increasePoints();
 
-    public int getTotalPoints();
+    int numPoints();
 
-    public void setTotalPoints(int i);
+    int getTotalPoints();
 
-    public Optional<Item> getItemInHand();
+    void setTotalPoints(int i);
+
+    Optional<Item> getItemInHand();
+
+    void setItemInHand(Item i);
+
+    void removeItemInHand();
 
     /**
      * Gets the player's input component.

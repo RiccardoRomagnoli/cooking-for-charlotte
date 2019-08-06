@@ -13,6 +13,8 @@ import it.unibo.oop18.cfc.Manager.TileManager;
 import it.unibo.oop18.cfc.Objects.GameObject;
 import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
 import it.unibo.oop18.cfc.Objects.Floors.ParquetFloor;
+import it.unibo.oop18.cfc.Objects.Items.Item;
+import it.unibo.oop18.cfc.Objects.Stations.AbstractStationObject;
 import it.unibo.oop18.cfc.Objects.Stations.BreadStation;
 import it.unibo.oop18.cfc.Objects.Stations.ChoppingStation;
 import it.unibo.oop18.cfc.Objects.Stations.Cooker;
@@ -21,6 +23,7 @@ import it.unibo.oop18.cfc.Objects.Stations.DeliveryStation;
 import it.unibo.oop18.cfc.Objects.Stations.LettuceStation;
 import it.unibo.oop18.cfc.Objects.Stations.MeatStation;
 import it.unibo.oop18.cfc.Objects.Stations.PlateStation;
+import it.unibo.oop18.cfc.Objects.Stations.Station;
 import it.unibo.oop18.cfc.Objects.Stations.TomatoStation;
 import it.unibo.oop18.cfc.Objects.Stations.Trashcan;
 import it.unibo.oop18.cfc.Objects.Stations.Washbasin;
@@ -75,7 +78,7 @@ public class WorldImpl implements World {
     private final Set<Trashcan> trashcans;
     private final Set<Washbasin> washbasins;
     private final Set<ParquetFloor> parquetFloor;
-    //private final Set<Item> itemsInWorld;
+    private final Set<Item> itemsInWorld;
     private PlayerImpl player;
     private final GameTimer timer;
     // private final PlayerScore score;
@@ -101,6 +104,7 @@ public class WorldImpl implements World {
         this.parquetFloor = new HashSet<>();
         this.createLevel(new TileManager(TILEPATH), new SpriteManager(SPRITEPATH), MAPPATH);
         this.timer = new GameTimer();
+        this.itemsInWorld = new HashSet<>();
     }
 
     /**
@@ -123,6 +127,23 @@ public class WorldImpl implements World {
         allGameObjects.addAll(this.parquetFloor);
         allGameObjects.add(this.player);
         return Collections.unmodifiableList(allGameObjects);
+    }
+
+    @Override
+    public List<? extends AbstractStationObject> getAllStations() {
+        final List<AbstractStationObject> allStationObjects = new LinkedList<>();
+        allStationObjects.addAll(this.choppingStations);
+        allStationObjects.addAll(this.counters);
+        allStationObjects.addAll(this.cookers);
+        allStationObjects.addAll(this.deliveryStations);
+        allStationObjects.addAll(this.breadStations);
+        allStationObjects.addAll(this.meatStations);
+        allStationObjects.addAll(this.tomatoStations);
+        allStationObjects.addAll(this.lettuceStations);
+        allStationObjects.addAll(this.plateStations);
+        allStationObjects.addAll(this.trashcans);
+        allStationObjects.addAll(this.washbasins);
+        return Collections.unmodifiableList(allStationObjects);
     }
 
     /**
@@ -231,16 +252,20 @@ public class WorldImpl implements World {
     public <X extends GameObject> void removeObject(final X object) {
     }
 
+    @Override
+    public <X extends Item> void removeItem(X item) {
+        this.itemsInWorld.remove(item);
+    }
+
     /**
      * {@inheritDoc}
      */
     @Override
     public void update() {
         // music update
-        // this.enemies.forEach(e -> e.update(elapsedTime));
+
         this.player.update();
-        // this.bombs.forEach(e -> e.update(elapsedTime));
-        // this.flames.forEach(e -> e.update(elapsedTime));
+        System.out.println(this.itemsInWorld.toString());
     }
 
     /**
@@ -275,4 +300,10 @@ public class WorldImpl implements World {
         this.parquetFloor.addAll(initializer.initializeParquetFloor());
         this.player = initializer.initializePlayer(this);
     }
+
+    @Override
+    public void addItem(final Item item) {
+        this.itemsInWorld.add(item);
+    }
+
 }

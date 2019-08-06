@@ -79,13 +79,20 @@ public class PlayerImpl extends AbstractEntity implements Player {
         //this.physics.
         this.physics.move();
         // check collision with blocks in the map
-        // this.physics.checksCollisions(super.getTileMap());
+        //this.physics.checksCollisions(super.getTileMap());
     }
 
     public Optional<Item> getItemInHand(){
         return this.hand;
     }
 
+    public void setItemInHand(Item i){
+        this.hand = Optional.ofNullable(i);
+    }
+    
+    public void removeItemInHand() {
+        this.hand = Optional.empty();
+    }
     /**
      * @param g element to draw
      */
@@ -105,17 +112,18 @@ public class PlayerImpl extends AbstractEntity implements Player {
 
     @Override
     public void doAction() {
-        if (this.getItemInHand().isPresent()) {
-            if (this.getItemInHand().get() instanceof IngredientImpl) {
-                IngredientImpl ingr = (IngredientImpl) this.getItemInHand().get();
-            } else if (this.getItemInHand().get() instanceof PlateImpl) {
-
-            }
-        } else {
-            this.getWorld().getAllGameObjects().stream()
+//        if (this.getItemInHand().isPresent()) {
+//            if (this.getItemInHand().get() instanceof IngredientImpl) {
+//                IngredientImpl ingr = (IngredientImpl) this.getItemInHand().get();
+//            } else if (this.getItemInHand().get() instanceof PlateImpl) {
+//
+//            }
+//        } else {
+            this.getWorld().getAllStations().stream()
                     .filter(p -> p.getPosition().samePosition((Position.setInTile(getNextPosition()))))
-                    .forEach(System.out::println);
-        }
+                    .forEach(p -> p.doAction(getWorld()));
+//        }
+        System.out.println(this.getItemInHand());
     }
 
     private Position getNextPosition() {
