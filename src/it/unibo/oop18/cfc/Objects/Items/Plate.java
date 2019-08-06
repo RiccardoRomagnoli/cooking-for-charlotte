@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public interface Plate {
     void addDish(IngredientImpl d);
-
+    
     IngredientImpl getDish(int pos);
-
+    
     boolean checkReady();
 }

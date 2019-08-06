@@ -89,16 +89,19 @@ public class DynamicPhysicsComponentImpl implements DynamicPhysicsComponent {
 
     @Override
     public void checksCollisions(Set<Item> set) {
-//        set.forEach(wall -> {
-//            if (wall.getBounds().intersects(this.getTopBound())) {
-//                this.entity.getPosition().setY(wall.getPosition().getY() + TileSheet.TILE_SIZE_IN_GAME);
-//            } else if (wall.getBounds().intersects(this.getLowerBound())) {
-//                this.entity.getPosition().setY(wall.getPosition().getY() - TileSheet.TILE_SIZE_IN_GAME);
-//            } else if (wall.getBounds().intersects(this.getRightBound())) {
-//                this.entity.getPosition().setX(wall.getPosition().getX() - TileSheet.TILE_SIZE_IN_GAME);
-//            } else if (wall.getBounds().intersects(this.getLeftBound())) {
-//                this.entity.getPosition().setX(wall.getPosition().getX() + TileSheet.TILE_SIZE_IN_GAME);
-//            }
-//        });
+        /*
+         * set.forEach(wall -> { if (wall.getBounds().intersects(this.getTopBound())) {
+         * this.entity.getPosition().setY(wall.getPosition().getY() +
+         * TileSheet.TILE_SIZE_IN_GAME); } else if
+         * (wall.getBounds().intersects(this.getLowerBound())) {
+         * this.entity.getPosition().setY(wall.getPosition().getY() -
+         * TileSheet.TILE_SIZE_IN_GAME); } else if
+         * (wall.getBounds().intersects(this.getRightBound())) {
+         * this.entity.getPosition().setX(wall.getPosition().getX() -
+         * TileSheet.TILE_SIZE_IN_GAME); } else if
+         * (wall.getBounds().intersects(this.getLeftBound())) {
+         * this.entity.getPosition().setX(wall.getPosition().getX() +
+         * TileSheet.TILE_SIZE_IN_GAME); } });
+         */
     }
 }
