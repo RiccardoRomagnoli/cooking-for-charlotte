@@ -14,7 +14,7 @@ public class PauseState extends GameState {
 
     /**
      * Class constructor.
-     * @param gsm
+     * @param gsm gamestate
      */
     public PauseState(final GameStateManager gsm) {
         super(gsm, GameStates.PAUSE);
