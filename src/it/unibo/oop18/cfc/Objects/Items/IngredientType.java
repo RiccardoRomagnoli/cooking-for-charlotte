@@ -1,7 +1,5 @@
 package it.unibo.oop18.cfc.Objects.Items;
 
-import com.sun.webkit.ThemeClient;
-
 public enum IngredientType {
 
     TOMATO(4, 0, 200, 2, 0),

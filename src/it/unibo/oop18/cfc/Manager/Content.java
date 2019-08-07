@@ -6,7 +6,8 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 /**
- * Loads and splits all sprites on start up. The sprites can easily be accessed
+ * Loads and splits all sprites on start up. 
+ * The sprites can easily be accessed
  * as they are public and static.
  * TODO We should change class name
  */

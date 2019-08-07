@@ -3,6 +3,7 @@ package it.unibo.oop18.cfc.Input;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import it.unibo.oop18.cfc.GameState.GameState;
@@ -27,7 +28,11 @@ public class KeyInput implements KeyListener {
     private final GameStateManager gsm;
     private PlayerImpl player;
 
-    HashMap<Integer, Boolean> keys;
+    /**
+     * Pair where a direction value is assigned to a boolean value.
+     * TODO. non so cosa faccia sta roba, qualcuno aggiusti la javadoc
+     */
+    public Map<Integer, Boolean> keys;
 
     /**
      * Creates {@code KeyInput}.
@@ -200,9 +205,9 @@ public class KeyInput implements KeyListener {
     }
 
     /**
-     * It stops the player when a key button is released.
-     * If more than one key is pressed, on release the player continues 
-     * to move to the current key being pressed
+     * It stops the player when a key button is released. If more than one key is
+     * pressed, on release the player continues to move to the current key being
+     * pressed
      */
     @Override
     public void keyReleased(final KeyEvent e) {
@@ -211,11 +216,12 @@ public class KeyInput implements KeyListener {
                 keys.put(e.getKeyCode(), false);
             }
             if (keys.values().stream().filter(k -> k == true).count() == 1) {
-                keys.keySet().forEach(k->{
-                    if(keys.get(k))
+                keys.keySet().forEach(k -> {
+                    if (keys.get(k)) {
                         this.moveEntity(Optional.of(keyToDir(k)));
+                    }
                 });
-                
+
             }
             handleStopPlayer(e);
         }
@@ -223,7 +229,7 @@ public class KeyInput implements KeyListener {
 
     @Override
     public void keyTyped(final KeyEvent e) {
-        
+
     }
 
     private void launchPause() {
@@ -245,10 +251,10 @@ public class KeyInput implements KeyListener {
             this.player.getInput().stop();
         }
     }
-    
-    private Direction keyToDir(Integer k) {
+
+    private Direction keyToDir(final Integer k) {
         Direction dir = Direction.STOP;
-        switch(k) {
+        switch (k) {
         case KeyEvent.VK_DOWN:
             dir = Direction.DOWN;
             break;
@@ -263,7 +269,7 @@ public class KeyInput implements KeyListener {
             break;
         default:
             break;
-        }   
+        }
         return dir;
     }
 
