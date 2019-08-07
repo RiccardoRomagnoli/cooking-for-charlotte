@@ -26,7 +26,7 @@ public interface WorldInitializer {
      * 
      * @return a set of unbreakable blocks
      */
-    Set<ChoppingStation> initializeChoppingBoard();
+    Set<ChoppingStation> initializeChoppingBoard(World world);
 
     /**
      * Initializes initial free tiles.

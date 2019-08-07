@@ -38,9 +38,9 @@ public class WorldInitializerImpl implements WorldInitializer {
     }
 
     @Override
-    public Set<ChoppingStation> initializeChoppingBoard() {
+    public Set<ChoppingStation> initializeChoppingBoard(final World world) {
         return this.tilemap.getChoppingStationPosition().stream()
-                .map(p -> this.factory.createChoppingBoard(p))
+                .map(p -> this.factory.createChoppingBoard(p, world))
                 .collect(Collectors.toSet());
     }
 
