@@ -57,8 +57,10 @@ public class InfoState extends GameState {
         }
         //myfont.deriveFont(12F);
         g.setFont(myfont);
+        System.out.println(g.getFont());
         g.drawString("Fai attenzione a comporre il piatto con gli ingredienti giusti "
                 + "altrimenti dovrai buttare tutto nel cestino e ricominciare da capo!!", 200, 200);
+        //System.out.println("Printed");
     }
 
 }
