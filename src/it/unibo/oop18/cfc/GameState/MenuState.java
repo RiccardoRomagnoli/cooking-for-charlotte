@@ -1,10 +1,10 @@
 // The main menu GameState.
-
 package it.unibo.oop18.cfc.GameState;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import it.unibo.oop18.cfc.Main.GameEngine;
 import it.unibo.oop18.cfc.Manager.Content;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
 import it.unibo.oop18.cfc.Util.JukeBoxUtil;
@@ -20,11 +20,9 @@ public class MenuState extends GameState {
     // private final int height = GamePanel.HEIGHT;
     private static final int STRING_POS = 350;
     private static final int IMAGE_POS = 280;
-    private int currentOption = 0;
+    private int currentOption ;
     private final String[] options = { "START", "OPTIONS", "INFO", "QUIT" };
-
     private final int menuOptions = options.length;
-
     private final int[] dim = { 300, 360, 420, 480 };
 
     /**
@@ -59,14 +57,11 @@ public class MenuState extends GameState {
      * @param g is the image to be printed
      */
     public void draw(final Graphics2D g) {
-
         g.drawImage(bg, 0, 0, null);
-
         for (int i = 0; i < menuOptions; i++) {
             Content.drawString(g, options[i], STRING_POS, dim[i]);
         }
         g.drawImage(food, IMAGE_POS, dim[currentOption], null);
-
     }
 
     /**
@@ -118,5 +113,4 @@ public class MenuState extends GameState {
         JukeBoxUtil.play("collect");
         selectOption();
     }
-
 }
