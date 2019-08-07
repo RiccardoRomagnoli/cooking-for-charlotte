@@ -242,10 +242,12 @@ public class KeyInput implements KeyListener {
         if (way.isPresent()) {
             this.player.getInput().move(way.get());
         }
+        this.player.action = false;
     }
 
     private void doAction() {
         this.player.getInput().doAction();
+        this.player.action = false;
     }
 
     private void cutIngredient() {
