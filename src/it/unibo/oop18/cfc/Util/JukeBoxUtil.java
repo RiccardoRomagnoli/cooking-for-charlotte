@@ -23,7 +23,9 @@ public final class JukeBoxUtil {
 
     }
 
-    // Creates new clips HashMap.
+    /**
+     * Creates new clips HashMap.
+     */
     public static void init() {
         clips = new HashMap<String, Clip>();
         gap = 0;
@@ -31,6 +33,12 @@ public final class JukeBoxUtil {
 
     // Loads up audio located at path "s" and stores
     // it in the HashMap with key "n".
+    /**
+     * Loads up audio located at path "s" and stores
+     * it in the HashMap with key "n".
+     * @param s path
+     * @param n key
+     */
     public static void load(String s, String n) {
         if (clips.get(n) != null)
             return;
@@ -57,6 +65,7 @@ public final class JukeBoxUtil {
 
     public static void play(String s, int i) {
         Clip c = clips.get(s);
+        setVolume(s, 1);
         if (c == null)
             return;
         if (c.isRunning())
@@ -133,6 +142,7 @@ public final class JukeBoxUtil {
             return;
         FloatControl vol = (FloatControl) c.getControl(FloatControl.Type.MASTER_GAIN);
         vol.setValue(f);
+        System.out.println(f);
     }
 
     public static boolean isPlaying(String s) {
