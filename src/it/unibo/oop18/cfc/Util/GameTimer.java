@@ -24,6 +24,17 @@ public class GameTimer {
     }
 
     /**
+     * Reset the timer.
+     */
+    public void reset() {
+        this.initTime = 0;
+        this.finalTime = 0;
+        this.delay = 0;
+        this.startStop = 0;
+        this.stopped = true;
+    }
+
+    /**
      * Starts the timer.
      */
     public void start() {
