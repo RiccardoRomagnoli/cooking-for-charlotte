@@ -6,6 +6,7 @@ import java.util.HashMap;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.BooleanControl;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
@@ -188,9 +189,16 @@ public final class JukeBoxUtil {
         if (c == null) {
             return;
         }
+        BooleanControl muteControl = (BooleanControl) c.getControl(BooleanControl.Type.MUTE);
+        if(f == 0) {
+            muteControl.setValue(true);
+        }
+        else {
+            muteControl.setValue(false);
+        }
         final FloatControl vol = (FloatControl) c.getControl(FloatControl.Type.MASTER_GAIN);
         vol.setValue(f);
-        System.out.println(f);
+        //System.out.println(f);
     }
 
     public static boolean isPlaying(final String s) {
