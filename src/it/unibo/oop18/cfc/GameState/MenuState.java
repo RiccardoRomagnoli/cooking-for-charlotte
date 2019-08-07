@@ -21,7 +21,7 @@ public class MenuState extends GameState {
     // private final int height = GamePanel.HEIGHT;
     private static final int STRING_POS = 350;
     private static final int IMAGE_POS = 280;
-    private int currentOption ;
+    private int currentOption;
     private final String[] options = { "START", "OPTIONS", "INFO", "QUIT" };
     private final int menuOptions = options.length;
     private final int[] dim = { 300, 360, 420, 480 };
@@ -41,8 +41,8 @@ public class MenuState extends GameState {
     public void init() {
         bg = Content.MENUBG[0][0];
         food = Content.FOOD[6][2];
-        JukeBoxUtil.load("/SFX/collect.wav", "collect");
-        JukeBoxUtil.load("/SFX/menuoption.wav", "menuoption");
+        //JukeBoxUtil.load("/SFX/collect.wav", "collect");
+        //JukeBoxUtil.load("/SFX/menuoption.wav", "menuoption");
     }
 
     /**
