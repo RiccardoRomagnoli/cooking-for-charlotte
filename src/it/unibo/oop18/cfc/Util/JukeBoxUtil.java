@@ -3,6 +3,8 @@ package it.unibo.oop18.cfc.Util;
 import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.Map;
+
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -16,9 +18,8 @@ import javax.sound.sampled.FloatControl;
  */
 public final class JukeBoxUtil {
 
-    private static HashMap<String, Clip> clips;
+    private static Map<String, Clip> clips;
     private static int gap;
-
     private static int volume;
 
     private JukeBoxUtil() {
@@ -33,8 +34,6 @@ public final class JukeBoxUtil {
         gap = 0;
     }
 
-    // Loads up audio located at path "s" and stores
-    // it in the HashMap with key "n".
     /**
      * Loads up audio located at path "s" and stores it in the HashMap with key "n".
      * 
@@ -63,42 +62,24 @@ public final class JukeBoxUtil {
         }
     }
 
+    /**
+     * Play the clip.
+     * 
+     * @param s clip name
+     */
     public static void play(final String s) {
         play(s, gap);
     }
 
+    /**
+     * Play the clip.
+     * 
+     * @param s clip name
+     * @param i TODO
+     */
     public static void play(final String s, final int i) {
         final Clip c = clips.get(s);
         float f;
-//        switch (getVolume()) {
-//        case 0:
-//            f = 0;
-//            break;
-//        case 15:
-//            f = 15*0.06;
-//            break;
-//        case 30:
-//            f = 2;
-//            break;
-//        case 45:
-//            f = 3;
-//            break;
-//        case 60:
-//            f = 4;
-//            break;
-//        case 75:
-//            f = 5;
-//            break;
-//        case 90:
-//            f = 6;
-//            break;
-//        case 100:
-//            f = (float) 6.0206;
-//            break;
-//        default:
-//            f = (float) 6.0206;
-//            break;
-//        }
         f = (float) (getVolume() * 0.06);
         setVolume(s, f);
         if (c == null) {
@@ -113,6 +94,11 @@ public final class JukeBoxUtil {
         }
     }
 
+    /**
+     * Stop clip.
+     * 
+     * @param s clip name
+     */
     public static void stop(final String s) {
         if (clips.get(s) == null) {
             return;
@@ -122,6 +108,11 @@ public final class JukeBoxUtil {
         }
     }
 
+    /**
+     * Resume clip playing.
+     * 
+     * @param s clip name
+     */
     public static void resume(final String s) {
         if (clips.get(s).isRunning()) {
             return;
@@ -129,6 +120,11 @@ public final class JukeBoxUtil {
         clips.get(s).start();
     }
 
+    /**
+     * Restart loop.
+     * 
+     * @param s clip name
+     */
     public static void resumeLoop(final String s) {
         final Clip c = clips.get(s);
         if (c == null) {
@@ -137,18 +133,44 @@ public final class JukeBoxUtil {
         c.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
+    /**
+     * Loop the clips.
+     * 
+     * @param s clip name
+     */
     public static void loop(final String s) {
         loop(s, gap, gap, clips.get(s).getFrameLength() - 1);
     }
 
+    /**
+     * Loop the clips.
+     * 
+     * @param s     clip name
+     * @param frame number
+     */
     public static void loop(final String s, final int frame) {
         loop(s, frame, gap, clips.get(s).getFrameLength() - 1);
     }
 
+    /**
+     * Loop the clips.
+     * 
+     * @param s     clip name
+     * @param start position
+     * @param end   position
+     */
     public static void loop(final String s, final int start, final int end) {
         loop(s, gap, start, end);
     }
 
+    /**
+     * Loop the clips.
+     * 
+     * @param s     clip name
+     * @param frame number
+     * @param start position
+     * @param end   position
+     */
     public static void loop(final String s, final int frame, final int start, final int end) {
         final Clip c = clips.get(s);
         if (c == null) {
@@ -162,18 +184,41 @@ public final class JukeBoxUtil {
         c.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
+    /**
+     * Set position clip
+     * 
+     * @param s     clip name
+     * @param frame frame to be setted
+     */
     public static void setPosition(final String s, final int frame) {
         clips.get(s).setFramePosition(frame);
     }
 
+    /**
+     * Return frames.
+     * 
+     * @param s clip name
+     * @return frames length
+     */
     public static int getFrames(final String s) {
         return clips.get(s).getFrameLength();
     }
 
+    /**
+     * Return clip position.
+     * 
+     * @param s clip name
+     * @return position int
+     */
     public static int getPosition(final String s) {
         return clips.get(s).getFramePosition();
     }
 
+    /**
+     * Close clips
+     * 
+     * @param s clip name
+     */
     public static void close(final String s) {
         stop(s);
         clips.get(s).close();
@@ -190,13 +235,13 @@ public final class JukeBoxUtil {
         if (c == null) {
             return;
         }
-        BooleanControl muteControl = (BooleanControl) c.getControl(BooleanControl.Type.MUTE);
+        final BooleanControl muteControl = (BooleanControl) c.getControl(BooleanControl.Type.MUTE);
         if (f == 0) {
             muteControl.setValue(true);
         } else {
             muteControl.setValue(false);
         }
-        FloatControl gainControl = (FloatControl) c.getControl(FloatControl.Type.MASTER_GAIN);
+        final FloatControl gainControl = (FloatControl) c.getControl(FloatControl.Type.MASTER_GAIN);
         final double gain = f / 3; // number between 0 and 2 (loudest)
         final float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
         gainControl.setValue(dB);
@@ -204,6 +249,12 @@ public final class JukeBoxUtil {
         // System.out.println(dB);
     }
 
+    /**
+     * Return clip status.
+     * 
+     * @param s clip name
+     * @return boolean status
+     */
     public static boolean isPlaying(final String s) {
         final Clip c = clips.get(s);
         if (c == null) {
