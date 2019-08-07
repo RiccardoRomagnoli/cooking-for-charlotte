@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import it.unibo.oop18.cfc.Manager.Content;
+import it.unibo.oop18.cfc.Main.GameEngine;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
 import it.unibo.oop18.cfc.Util.JukeBoxUtil;
 
@@ -61,7 +62,6 @@ public class OptionState extends GameState {
      * @param g basic graphics
      */
     public void draw(final Graphics2D g) {
-
         g.drawImage(bg, 0, 0, null);
         for (int i = 0; i < numOptions; i++) {
             Content.drawString(g, options[i], STRING_POS, dim[i]);

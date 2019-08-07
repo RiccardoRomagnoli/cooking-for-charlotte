@@ -18,7 +18,7 @@ import it.unibo.oop18.cfc.Objects.Items.PlateImpl;
 import it.unibo.oop18.cfc.World.World;
 
 public class DownHud {
-    
+
     public static final String ITEMPATH = "/Sprites/itemSprite.png";
     private int yoffset;
     private final World world;
@@ -63,16 +63,20 @@ public class DownHud {
     private void drawFood(final Graphics2D g, final IngredientImpl i, final int count) {
         switch (i.getIngredient()) {
         case BREAD:
-            g.drawImage(im.getFoodSprites().getBreadSprite().get(0).getImage(), 420 + count*95, yoffset + 25, 60, 60, null);
+            g.drawImage(im.getFoodSprites().getBreadSprite().get(0).getImage(), 420 + count * 95, yoffset + 25, 60, 60,
+                    null);
             break;
         case MEAT:
-            g.drawImage(im.getFoodSprites().getMeatSprite().get(0).getImage(),420 + count*95, yoffset + 25, 60, 60, null);
+            g.drawImage(im.getFoodSprites().getMeatSprite().get(0).getImage(), 420 + count * 95, yoffset + 25, 60, 60,
+                    null);
             break;
         case LETTUCE:
-            g.drawImage(im.getFoodSprites().getLettuceSprite().get(0).getImage(),420 + count*95, yoffset + 25, 60, 60, null);
+            g.drawImage(im.getFoodSprites().getLettuceSprite().get(0).getImage(), 420 + count * 95, yoffset + 25, 60,
+                    60, null);
             break;
         case TOMATO:
-            g.drawImage(im.getFoodSprites().getTomatoSprite().get(0).getImage(),420 + count*95, yoffset + 25, 60, 60, null);
+            g.drawImage(im.getFoodSprites().getTomatoSprite().get(0).getImage(), 420 + count * 95, yoffset + 25, 60, 60,
+                    null);
             break;
         default:
             break;
@@ -80,10 +84,12 @@ public class DownHud {
 
         switch (i.getState()) {
         case CHOPPED:
-            g.drawImage(im.getFoodSprites().getItemSprite().get(0).getImage(), 420 + count*95, yoffset + 25, 60, 60, null);
+            g.drawImage(im.getFoodSprites().getItemSprite().get(0).getImage(), 420 + count * 95, yoffset + 25, 60, 60,
+                    null);
             break;
         case PERFECT:
-            g.drawImage(im.getFoodSprites().getItemSprite().get(1).getImage(), 420 + count*95, yoffset + 25, 60, 60, null);
+            g.drawImage(im.getFoodSprites().getItemSprite().get(1).getImage(), 420 + count * 95, yoffset + 25, 60, 60,
+                    null);
             break;
         default:
             break;

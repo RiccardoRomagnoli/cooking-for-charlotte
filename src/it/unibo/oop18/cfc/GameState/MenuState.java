@@ -68,17 +68,16 @@ public class MenuState extends GameState {
      * Action to be performed when a menu entry is pressed.
      */
     private void selectOption() {
+        final Graphics2D g = GameEngine.getG();
         if (currentOption == 0) {
             gsm.newGame();
         }
         if (currentOption == 1) {
             gsm.setState(GameStates.OPTION);
-            final Graphics2D g = null;
             gsm.draw(g);
         }
         if (currentOption == 2) {
             gsm.setState(GameStates.INFO);
-            final Graphics2D g = null;
             gsm.draw(g);
         }
         if (currentOption == 3) {

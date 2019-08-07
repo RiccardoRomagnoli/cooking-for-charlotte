@@ -3,6 +3,7 @@ package it.unibo.oop18.cfc.Input;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import it.unibo.oop18.cfc.GameState.GameState;
@@ -25,7 +26,11 @@ public class KeyInput implements KeyListener {
     private final GameStateManager gsm;
     private PlayerImpl player;
 
-    HashMap<Integer, Boolean> keys;
+    /**
+     * Pair where a direction value is assigned to a boolean value.
+     * TODO. non so cosa faccia sta roba, qualcuno aggiusti la javadoc
+     */
+    public Map<Integer, Boolean> keys;
 
     /**
      * Creates {@code KeyInput}.
@@ -198,9 +203,9 @@ public class KeyInput implements KeyListener {
     }
 
     /**
-     * It stops the player when a key button is released.
-     * If more than one key is pressed, on release the player continues 
-     * to move to the current key being pressed
+     * It stops the player when a key button is released. If more than one key is
+     * pressed, on release the player continues to move to the current key being
+     * pressed
      */
     @Override
     public void keyReleased(final KeyEvent e) {
