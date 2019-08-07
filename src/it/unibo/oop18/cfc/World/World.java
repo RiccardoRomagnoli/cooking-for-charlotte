@@ -4,6 +4,9 @@ import java.awt.Graphics2D;
 import java.util.List;
 import java.util.Set;
 
+import it.unibo.oop18.cfc.Manager.ItemManager;
+import it.unibo.oop18.cfc.Manager.SpriteManager;
+import it.unibo.oop18.cfc.Manager.TileManager;
 import it.unibo.oop18.cfc.Objects.GameObject;
 import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
 import it.unibo.oop18.cfc.Objects.Floors.ParquetFloor;
@@ -80,6 +83,27 @@ public interface World {
      * @param item item to add
      */
     void addItem(Item item);
+
+    /**
+     * Gets the tilemanager.
+     * 
+     * @return the player
+     */
+    TileManager getTileManager();
+
+    /**
+     * Gets the spritemanager.
+     * 
+     * @return the player
+     */
+    SpriteManager getSpriteManager();
+
+    /**
+     * Gets the itemanager.
+     * 
+     * @return the player
+     */
+    ItemManager getItemManager();
 
     /**
      * Gets the player.
