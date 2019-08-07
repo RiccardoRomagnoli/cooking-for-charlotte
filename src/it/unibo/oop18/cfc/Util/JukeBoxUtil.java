@@ -19,6 +19,8 @@ public final class JukeBoxUtil {
     private static HashMap<String, Clip> clips;
     private static int gap;
 
+    private static int volume;
+
     private JukeBoxUtil() {
 
     }
@@ -34,122 +36,188 @@ public final class JukeBoxUtil {
     // Loads up audio located at path "s" and stores
     // it in the HashMap with key "n".
     /**
-     * Loads up audio located at path "s" and stores
-     * it in the HashMap with key "n".
+     * Loads up audio located at path "s" and stores it in the HashMap with key "n".
+     * 
      * @param s path
      * @param n key
      */
-    public static void load(String s, String n) {
-        if (clips.get(n) != null)
+    public static void load(final String s, final String n) {
+        if (clips.get(n) != null) {
             return;
+        }
         Clip clip;
         try {
-            InputStream in = JukeBoxUtil.class.getResourceAsStream(s);
-            InputStream bin = new BufferedInputStream(in);
-            AudioInputStream ais = AudioSystem.getAudioInputStream(bin);
-            AudioFormat baseFormat = ais.getFormat();
-            AudioFormat decodeFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, baseFormat.getSampleRate(), 16,
-                    baseFormat.getChannels(), baseFormat.getChannels() * 2, baseFormat.getSampleRate(), false);
-            AudioInputStream dais = AudioSystem.getAudioInputStream(decodeFormat, ais);
+            final InputStream in = JukeBoxUtil.class.getResourceAsStream(s);
+            final InputStream bin = new BufferedInputStream(in);
+            final AudioInputStream ais = AudioSystem.getAudioInputStream(bin);
+            final AudioFormat baseFormat = ais.getFormat();
+            final AudioFormat decodeFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED,
+                    baseFormat.getSampleRate(), 16, baseFormat.getChannels(), baseFormat.getChannels() * 2,
+                    baseFormat.getSampleRate(), false);
+            final AudioInputStream dais = AudioSystem.getAudioInputStream(decodeFormat, ais);
             clip = AudioSystem.getClip();
             clip.open(dais);
             clips.put(n, clip);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void play(String s) {
+    public static void play(final String s) {
         play(s, gap);
     }
 
-    public static void play(String s, int i) {
-        Clip c = clips.get(s);
-        setVolume(s, 1);
-        if (c == null)
+    public static void play(final String s, final int i) {
+        final Clip c = clips.get(s);
+        float f;
+        switch (getVolume()) {
+        case 0:
+            f = 0;
+            break;
+        case 15:
+            f = 1;
+            break;
+        case 30:
+            f = 2;
+            break;
+        case 45:
+            f = 3;
+            break;
+        case 60:
+            f = 4;
+            break;
+        case 75:
+            f = 5;
+            break;
+        case 90:
+            f = 6;
+            break;
+        case 100:
+            f = (float) 6.0206;
+            break;
+        default:
+            f = (float) 6.0206;
+            break;
+        }
+        setVolume(s, f);
+        if (c == null) {
             return;
-        if (c.isRunning())
+        }
+        if (c.isRunning()) {
             c.stop();
+        }
         c.setFramePosition(i);
         while (!c.isRunning()) {
             c.start();
         }
     }
 
-    public static void stop(String s) {
-        if (clips.get(s) == null)
+    public static void stop(final String s) {
+        if (clips.get(s) == null) {
             return;
-        if (clips.get(s).isRunning())
+        }
+        if (clips.get(s).isRunning()) {
             clips.get(s).stop();
+        }
     }
 
-    public static void resume(String s) {
-        if (clips.get(s).isRunning())
+    public static void resume(final String s) {
+        if (clips.get(s).isRunning()) {
             return;
+        }
         clips.get(s).start();
     }
 
-    public static void resumeLoop(String s) {
-        Clip c = clips.get(s);
-        if (c == null)
+    public static void resumeLoop(final String s) {
+        final Clip c = clips.get(s);
+        if (c == null) {
             return;
+        }
         c.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
-    public static void loop(String s) {
+    public static void loop(final String s) {
         loop(s, gap, gap, clips.get(s).getFrameLength() - 1);
     }
 
-    public static void loop(String s, int frame) {
+    public static void loop(final String s, final int frame) {
         loop(s, frame, gap, clips.get(s).getFrameLength() - 1);
     }
 
-    public static void loop(String s, int start, int end) {
+    public static void loop(final String s, final int start, final int end) {
         loop(s, gap, start, end);
     }
 
-    public static void loop(String s, int frame, int start, int end) {
-        Clip c = clips.get(s);
-        if (c == null)
+    public static void loop(final String s, final int frame, final int start, final int end) {
+        final Clip c = clips.get(s);
+        if (c == null) {
             return;
-        if (c.isRunning())
+        }
+        if (c.isRunning()) {
             c.stop();
+        }
         c.setLoopPoints(start, end);
         c.setFramePosition(frame);
         c.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
-    public static void setPosition(String s, int frame) {
+    public static void setPosition(final String s, final int frame) {
         clips.get(s).setFramePosition(frame);
     }
 
-    public static int getFrames(String s) {
+    public static int getFrames(final String s) {
         return clips.get(s).getFrameLength();
     }
 
-    public static int getPosition(String s) {
+    public static int getPosition(final String s) {
         return clips.get(s).getFramePosition();
     }
 
-    public static void close(String s) {
+    public static void close(final String s) {
         stop(s);
         clips.get(s).close();
     }
 
-    public static void setVolume(String s, float f) {
-        Clip c = clips.get(s);
-        if (c == null)
+    /**
+     * Set volume.
+     * 
+     * @param s name clip
+     * @param f value volume
+     */
+    public static void setVolume(final String s, final float f) {
+        final Clip c = clips.get(s);
+        if (c == null) {
             return;
-        FloatControl vol = (FloatControl) c.getControl(FloatControl.Type.MASTER_GAIN);
+        }
+        final FloatControl vol = (FloatControl) c.getControl(FloatControl.Type.MASTER_GAIN);
         vol.setValue(f);
         System.out.println(f);
     }
 
-    public static boolean isPlaying(String s) {
-        Clip c = clips.get(s);
-        if (c == null)
+    public static boolean isPlaying(final String s) {
+        final Clip c = clips.get(s);
+        if (c == null) {
             return false;
+        }
         return c.isRunning();
+    }
+
+    /**
+     * Volume getter.
+     * 
+     * @return actual volume
+     */
+    public static int getVolume() {
+        return volume;
+    }
+
+    /**
+     * Volume setter
+     * 
+     * @param volume to be setted
+     */
+    public static void setVolume(int volume) {
+        JukeBoxUtil.volume = volume;
     }
 
 }

@@ -101,10 +101,12 @@ public class OptionState extends GameState {
         if (currentOption == 0) {
             if (lastVolIndex < volume.size() - 1) {
                 lastVolIndex++;
+                JukeBoxUtil.setVolume(volume.get(lastVolIndex));
             }
         } else if (currentOption == 1) {
             if (lastResIndex < resolution.size() - 1) {
                 lastResIndex++;
+                
             }
         }
     }
@@ -117,6 +119,7 @@ public class OptionState extends GameState {
         if (currentOption == 0) {
             if (lastVolIndex > 0) {
                 lastVolIndex--;
+                JukeBoxUtil.setVolume(volume.get(lastVolIndex));
             }
         } else if (currentOption == 1) {
             if (lastResIndex > 0) {

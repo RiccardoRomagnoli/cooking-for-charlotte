@@ -43,9 +43,9 @@ public class InfoState extends GameState {
      * {@inheritDoc}.
      * 
      * @param g basic graphics
-     * @throws IOException 
+     * @throws IOException
      */
-    public void draw(final Graphics2D g){
+    public void draw(final Graphics2D g) {
         g.drawImage(bg, 0, 0, null);
         Content.drawString(g, "INFO", 400, 300);
         Content.drawString(g, "arrow keys : move", 100, 370);
@@ -53,17 +53,17 @@ public class InfoState extends GameState {
         Content.drawString(g, "F1: return to menu", 100, 510);
         Font myFont = null;
         try {
-        myFont = Font.createFont(Font.TRUETYPE_FONT, InfoState.class.getResourceAsStream("/HUD/comicsans.ttf"));
-        myFont = myFont.deriveFont(30f);
-        g.setFont(myFont);
-        g.setColor(Color.orange);
-        g.drawString("Fai attenzione a comporre il piatto con gli ingredienti giusti", 50, 650);
-        g.drawString("altrimenti dovrai buttare tutto nel cestino e ricominciare da capo!!", 50, 700);
+            myFont = Font.createFont(Font.TRUETYPE_FONT, InfoState.class.getResourceAsStream("/HUD/comicsans.ttf"));
+            myFont = myFont.deriveFont(30f);
+            g.setFont(myFont);
+            g.setColor(Color.orange);
+            g.drawString("Fai attenzione a comporre il piatto con gli ingredienti giusti", 50, 650);
+            g.drawString("altrimenti dovrai buttare tutto nel cestino e ricominciare da capo!!", 50, 700);
         } catch (FontFormatException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        }
+    }
 
 }
