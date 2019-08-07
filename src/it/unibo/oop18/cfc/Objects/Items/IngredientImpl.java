@@ -1,10 +1,5 @@
 package it.unibo.oop18.cfc.Objects.Items;
 
-import java.awt.Graphics2D;
-import java.awt.geom.Rectangle2D;
-
-import it.unibo.oop18.cfc.Util.Position;
-
 public class IngredientImpl extends AbstractItem implements Ingredient {
 
     private IngredientType type;

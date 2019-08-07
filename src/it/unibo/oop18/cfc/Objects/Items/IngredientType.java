@@ -1,7 +1,5 @@
 package it.unibo.oop18.cfc.Objects.Items;
 
-import com.sun.webkit.ThemeClient;
-
 public enum IngredientType {
 
     TOMATO(4, 0, 200, 2, 0),
@@ -14,7 +12,6 @@ public enum IngredientType {
     private int pointValue;
     private int timeToCut;
     private int timeToCook;
-    private IngredientState state;
     /** 
      * 
      * @return the x value of the ingredient
