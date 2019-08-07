@@ -45,7 +45,7 @@ public class InfoState extends GameState {
      * @param g basic graphics
      * @throws IOException 
      */
-    public void draw(final Graphics2D g) throws  IOException {
+    public void draw(final Graphics2D g){
         g.drawImage(bg, 0, 0, null);
         Content.drawString(g, "INFO", 400, 300);
         Content.drawString(g, "arrow keys : move", 100, 370);

@@ -75,21 +75,11 @@ public class MenuState extends GameState {
         }
         if (currentOption == 1) {
             gsm.setState(GameStates.OPTION);
-            try {
-                gsm.draw(g);
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            gsm.draw(g);
         }
         if (currentOption == 2) {
             gsm.setState(GameStates.INFO);
-            try {
-                gsm.draw(g);
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            gsm.draw(g);
         }
         if (currentOption == 3) {
             System.exit(0);

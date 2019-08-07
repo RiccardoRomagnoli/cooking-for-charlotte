@@ -99,9 +99,8 @@ public class GameStateManager {
      * Draw the graphics on the panel.
      * 
      * @param g graphics
-     * @throws IOException 
      */
-    public void draw(final Graphics2D g) throws  IOException {
+    public void draw(final Graphics2D g) {
         currentState.draw(g);
     }
 

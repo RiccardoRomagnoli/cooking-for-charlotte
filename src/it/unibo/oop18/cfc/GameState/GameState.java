@@ -55,8 +55,7 @@ public abstract class GameState {
     /**
      * Draw the scene of the gamestate. It loops until the scene is on the screen.
      * @param g graphics to be printed on screen
-     * @throws IOException 
      */
-    public abstract void draw(Graphics2D g) throws  IOException;
+    public abstract void draw(Graphics2D g);
 
 }

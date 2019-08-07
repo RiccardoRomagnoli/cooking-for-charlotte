@@ -112,12 +112,7 @@ public class GameEngine extends JPanel implements Runnable {
 
     // draws game
     private void draw() {
-        try {
-            gsm.draw(g);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        gsm.draw(g);
     }
 
     // copy buffer to screen
