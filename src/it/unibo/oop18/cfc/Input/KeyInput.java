@@ -25,7 +25,6 @@ public class KeyInput implements KeyListener {
 
     private GameState currentState;
     private final GameStateManager gsm;
-    // private int nKeyPressing = 0;
     private PlayerImpl player;
 
     HashMap<Integer, Boolean> keys;

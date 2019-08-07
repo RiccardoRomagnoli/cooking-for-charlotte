@@ -119,9 +119,10 @@ public class PlayerImpl extends AbstractEntity implements Player {
 //
 //            }
 //        } else {
-            this.getWorld().getAllStations().stream()
-                    .filter(p -> p.getPosition().samePosition((Position.setInTile(getNextPosition()))))
-                    .forEach(p -> p.doAction(getWorld()));
+            super.getWorld().getAllStations().stream()
+                                             .filter(p -> p.getPosition()
+                                                           .samePosition((Position.setInTile(getNextPosition()))))
+                                             .forEach(p -> p.doAction(super.getWorld()));
 //        }
     }
 
