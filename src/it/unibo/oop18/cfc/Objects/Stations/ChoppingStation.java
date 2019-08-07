@@ -6,6 +6,8 @@ import java.util.Optional;
 import it.unibo.oop18.cfc.Graphics.ChoppingStationGraphicComponent;
 import it.unibo.oop18.cfc.Graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.Objects.Items.IngredientImpl;
+import it.unibo.oop18.cfc.Objects.Items.IngredientState;
+import it.unibo.oop18.cfc.Objects.Items.PlateImpl;
 import it.unibo.oop18.cfc.Tile.ChoppingStationTile;
 import it.unibo.oop18.cfc.Util.GameTimer;
 import it.unibo.oop18.cfc.Util.Position;
@@ -16,22 +18,32 @@ public class ChoppingStation extends AbstractStationObject {
     private final GraphicsComponent graphicComponent;
     private GameTimer timer;
     private Optional<IngredientImpl> food;
+    private World world;
+    private boolean isCutting;
+    private boolean letTakeIngredient;
 
     /**
      * Creates a generic {@code Station}.
      * 
-     * @param position block's position
-     * @param choppingStationTile   block's tile
+     * @param position            block's position
+     * @param choppingStationTile block's tile
      */
-    public ChoppingStation(final Position position, final ChoppingStationTile choppingStationTile) {
+    public ChoppingStation(final Position position, final ChoppingStationTile choppingStationTile, final World world) {
         super(position);
         this.food = Optional.empty();
         timer = new GameTimer();
+        this.world = world;
+        this.isCutting = false;
+        this.letTakeIngredient = false;
         this.graphicComponent = new ChoppingStationGraphicComponent(this, choppingStationTile);
     }
 
     public void draw(final Graphics2D g) {
         this.graphicComponent.draw(g);
+    }
+
+    public boolean isCut() {
+        return isCutting;
     }
 
     public Optional<IngredientImpl> getFood() {
@@ -50,16 +62,64 @@ public class ChoppingStation extends AbstractStationObject {
     };
 
     public void update() {
-
+        if (isCutting == true && timer.isStopped()) {
+            timer.start();
+        } else if (isCutting == false) {
+            timer.stop();
+            timer.reset();
+        }
+        if (food.isPresent() && food.get().getIngredient().getTimeToCut() == timer.getSeconds()) {
+            isCutting = false;
+            timer.stop();
+            timer.reset();
+            food.get().changeState(IngredientState.CHOPPED);
+        }
     }
 
-    public boolean isCut() {
-        return false;
+    // alla pressione
+    public void cutIngredient() {
+        if (food.isPresent() && food.get().getState() == IngredientState.RAW) {
+            if (!world.getPlayer().getItemInHand().isPresent()) {
+                isCutting = true;
+                letTakeIngredient = true;
+            }
+        }
     }
 
+    // al rilascio del pulsante
     @Override
     public void doAction(World world) {
-        // TODO Auto-generated method stub
-        
+        isCutting = false;
+        // se cibo presente
+        if (food.isPresent()) {
+            // se il player ha qualcosa in mano
+            if (world.getPlayer().getItemInHand().isPresent()) {
+                // se è un piatto
+                if (world.getPlayer().getItemInHand().get() instanceof PlateImpl) {
+                    // e non è pieno
+                    if (((PlateImpl) world.getPlayer().getItemInHand().get()).getIngredients().size() < 4) {
+                        // aggiungi l'ingrediente nel piatto e toglilo dalla station
+                        ((PlateImpl) world.getPlayer().getItemInHand().get()).addDish(food.get());
+                        this.food = Optional.empty();
+                    }
+                }
+            } else {
+                // se il player non ha niente in mano e l'ingrediente è tagliato
+                if (this.food.get().getState() == IngredientState.CHOPPED) {
+                    world.getPlayer().setItemInHand(this.food.get());
+                    this.food = Optional.empty();
+                }
+            }
+        } else {
+            // se non c'è cibo e ho in mano qualcosa che si un ingrediente
+            if (world.getPlayer().getItemInHand().isPresent()
+                    && world.getPlayer().getItemInHand().get() instanceof IngredientImpl) {
+                // aggiungi l'ingrediente nel piatto e toglilo dalla station
+                this.food = Optional.ofNullable((IngredientImpl) world.getPlayer().getItemInHand().get());
+                world.getPlayer().removeItemInHand();
+                letTakeIngredient = false;
+            }
+        }
+
     }
 }

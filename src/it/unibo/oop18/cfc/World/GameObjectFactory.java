@@ -35,7 +35,7 @@ public interface GameObjectFactory {
      * @param position block's position
      * @return a new unbreakable Block
      */
-    ChoppingStation createChoppingBoard(Position position);
+    ChoppingStation createChoppingBoard(Position position, World world);
 
     /**
      * Creates an unbreakable {@link Block}.

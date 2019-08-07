@@ -42,8 +42,8 @@ public class GameObjectFactoryImpl implements GameObjectFactory {
     }
 
     @Override
-    public ChoppingStation createChoppingBoard(final Position position) {
-        return new ChoppingStation(new Position(position), this.tm.getChoppingStationTile());
+    public ChoppingStation createChoppingBoard(final Position position, final World world) {
+        return new ChoppingStation(new Position(position), this.tm.getChoppingStationTile(), world);
     }
 
     @Override
