@@ -26,4 +26,6 @@ public interface PlayerInputComponent extends InputComponent {
      * @param position where to drop the bomb
      */
     void doAction();
+
+    void cutIngredient();
 }

@@ -50,6 +50,12 @@ public class PlayerInputComponentImpl extends AbstractInputComponent implements 
         super.createGenericCommand(() -> {
             this.player.doAction();
         });
+    }
 
+    @Override
+    public void cutIngredient() {
+        super.createGenericCommand(() -> {
+            this.player.cutIngredient();
+        });
     }
 }

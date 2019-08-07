@@ -10,6 +10,7 @@ import it.unibo.oop18.cfc.Input.PlayerInputComponentImpl;
 import it.unibo.oop18.cfc.Objects.Items.IngredientImpl;
 import it.unibo.oop18.cfc.Objects.Items.Item;
 import it.unibo.oop18.cfc.Objects.Items.PlateImpl;
+import it.unibo.oop18.cfc.Objects.Stations.ChoppingStation;
 import it.unibo.oop18.cfc.Physics.Direction;
 import it.unibo.oop18.cfc.Physics.DynamicPhysicsComponent;
 import it.unibo.oop18.cfc.Physics.DynamicPhysicsComponentImpl;
@@ -22,7 +23,7 @@ public class PlayerImpl extends AbstractEntity implements Player {
     // gameplay
     private int points;
     private int totalPoints;
-
+    
     // Physics, Input and Graphics
     private final DynamicPhysicsComponent physics;
     private final PlayerInputComponent input;
@@ -49,7 +50,7 @@ public class PlayerImpl extends AbstractEntity implements Player {
     public void increasePoints() {
         points++;
     }
-
+    
     /**
      *
      */
@@ -112,7 +113,7 @@ public class PlayerImpl extends AbstractEntity implements Player {
 
     @Override
     public void doAction() {
-//        if (this.getItemInHand().isPresent()) {
+//        if (this.getItemInHand().isPesent()) {
 //            if (this.getItemInHand().get() instanceof IngredientImpl) {
 //                IngredientImpl ingr = (IngredientImpl) this.getItemInHand().get();
 //            } else if (this.getItemInHand().get() instanceof PlateImpl) {
@@ -122,11 +123,23 @@ public class PlayerImpl extends AbstractEntity implements Player {
             super.getWorld().getAllStations().stream()
                                              .filter(p -> p.getPosition()
                                                            .samePosition((Position.setInTile(getNextPosition()))))
-                                             .forEach(p -> p.doAction(super.getWorld()));
+                                             .findFirst()
+                                             .ifPresent(val -> val.doAction(super.getWorld()));
 //        }
     }
 
-    private Position getNextPosition() {
+    @Override
+    public void cutIngredient() {
+        Optional<ChoppingStation> cs = super.getWorld().getChoppingStations().stream()
+                .filter(p -> p.getPosition()
+                        .samePosition((Position.setInTile(getNextPosition()))))
+          .findFirst();
+        if (cs.isPresent()) {
+            cs.get().cutIngredient();
+            }
+    }
+
+    public Position getNextPosition() {
         Position nextPosition = new Position(0, 0);
         Direction way = this.physics.getVelocity().getOldDirection();
         switch (way) {
