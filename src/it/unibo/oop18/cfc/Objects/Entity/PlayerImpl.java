@@ -123,7 +123,6 @@ public class PlayerImpl extends AbstractEntity implements Player {
                     .filter(p -> p.getPosition().samePosition((Position.setInTile(getNextPosition()))))
                     .forEach(p -> p.doAction(getWorld()));
 //        }
-        System.out.println(this.getItemInHand());
     }
 
     private Position getNextPosition() {

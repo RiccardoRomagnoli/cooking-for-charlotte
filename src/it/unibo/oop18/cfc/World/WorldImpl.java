@@ -266,9 +266,7 @@ public class WorldImpl implements World {
     @Override
     public void update() {
         // music update
-
         this.player.update();
-        System.out.println(this.itemsInWorld.toString());
     }
 
     /**
