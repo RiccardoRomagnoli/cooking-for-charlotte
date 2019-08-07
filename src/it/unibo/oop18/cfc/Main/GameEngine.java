@@ -9,6 +9,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+
 import javax.swing.JPanel;
 import it.unibo.oop18.cfc.Input.KeyInput;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
@@ -110,7 +112,12 @@ public class GameEngine extends JPanel implements Runnable {
 
     // draws game
     private void draw() {
-        gsm.draw(g);
+        try {
+            gsm.draw(g);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     // copy buffer to screen

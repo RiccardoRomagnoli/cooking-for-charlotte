@@ -6,7 +6,10 @@
 
 package it.unibo.oop18.cfc.Manager;
 
+import java.awt.FontFormatException;
 import java.awt.Graphics2D;
+import java.io.IOException;
+
 import it.unibo.oop18.cfc.GameState.*;
 import it.unibo.oop18.cfc.Util.JukeBoxUtil;
 
@@ -96,8 +99,9 @@ public class GameStateManager {
      * Draw the graphics on the panel.
      * 
      * @param g graphics
+     * @throws IOException 
      */
-    public void draw(final Graphics2D g) {
+    public void draw(final Graphics2D g) throws  IOException {
         currentState.draw(g);
     }
 

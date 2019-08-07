@@ -5,7 +5,10 @@
 
 package it.unibo.oop18.cfc.GameState;
 
+import java.awt.FontFormatException;
 import java.awt.Graphics2D;
+import java.io.IOException;
+
 import it.unibo.oop18.cfc.Manager.GameStateManager;
 
 /**
@@ -52,7 +55,8 @@ public abstract class GameState {
     /**
      * Draw the scene of the gamestate. It loops until the scene is on the screen.
      * @param g graphics to be printed on screen
+     * @throws IOException 
      */
-    public abstract void draw(Graphics2D g);
+    public abstract void draw(Graphics2D g) throws  IOException;
 
 }

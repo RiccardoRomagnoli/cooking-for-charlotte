@@ -6,10 +6,8 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 /**
- * Loads and splits all sprites on start up. 
- * The sprites can easily be accessed
- * as they are public and static.
- * TODO We should change class name
+ * Loads and splits all sprites on start up. The sprites can easily be accessed
+ * as they are public and static. TODO We should change class name
  */
 public class Content {
 
@@ -20,6 +18,14 @@ public class Content {
 
     public static BufferedImage[][] font = load("/HUD/font.png", 50, 50);
 
+    /**
+     * TODO.
+     * 
+     * @param s ..
+     * @param w ..
+     * @param h ..
+     * @return ..
+     */
     public static final BufferedImage[][] load(final String s, final int w, final int h) {
         BufferedImage[][] ret;
         try {

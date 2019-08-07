@@ -3,6 +3,7 @@ package it.unibo.oop18.cfc.GameState;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 import it.unibo.oop18.cfc.Main.GameEngine;
 import it.unibo.oop18.cfc.Manager.Content;
@@ -74,11 +75,21 @@ public class MenuState extends GameState {
         }
         if (currentOption == 1) {
             gsm.setState(GameStates.OPTION);
-            gsm.draw(g);
+            try {
+                gsm.draw(g);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
         if (currentOption == 2) {
             gsm.setState(GameStates.INFO);
-            gsm.draw(g);
+            try {
+                gsm.draw(g);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
         if (currentOption == 3) {
             System.exit(0);
