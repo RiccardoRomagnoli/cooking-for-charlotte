@@ -12,8 +12,6 @@ import it.unibo.oop18.cfc.GameState.OptionState;
 import it.unibo.oop18.cfc.GameState.PlayState;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
 import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
-import it.unibo.oop18.cfc.Objects.Items.IngredientImpl;
-import it.unibo.oop18.cfc.Objects.Items.PlateImpl;
 import it.unibo.oop18.cfc.Physics.Direction;
 import it.unibo.oop18.cfc.Util.JukeBoxUtil;
 
@@ -129,7 +127,7 @@ public class KeyInput implements KeyListener {
             way = Optional.ofNullable(Direction.UP);
             break;
         case KeyEvent.VK_SPACE:
-            this.doAction();
+            this.cutIngredient();
             way = Optional.empty();
             break;
         case KeyEvent.VK_P:
@@ -207,15 +205,20 @@ public class KeyInput implements KeyListener {
     @Override
     public void keyReleased(final KeyEvent e) {
         if (gsm.getCurrentGameState().getGameStateName() == GameStates.PLAY) {
+            if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+                this.doAction();
+            }
+
             if (keys.keySet().contains(e.getKeyCode())) {
                 keys.put(e.getKeyCode(), false);
             }
             if (keys.values().stream().filter(k -> k == true).count() == 1) {
-                keys.keySet().forEach(k->{
-                    if(keys.get(k))
+                keys.keySet().forEach(k -> {
+                    if (keys.get(k)) {
                         this.moveEntity(Optional.of(keyToDir(k)));
+                    }
                 });
-                
+
             }
             handleStopPlayer(e);
         }
@@ -223,7 +226,7 @@ public class KeyInput implements KeyListener {
 
     @Override
     public void keyTyped(final KeyEvent e) {
-        
+
     }
 
     private void launchPause() {
@@ -240,15 +243,19 @@ public class KeyInput implements KeyListener {
         this.player.getInput().doAction();
     }
 
+    private void cutIngredient() {
+        this.player.getInput().cutIngredient();
+    }
+
     private void handleStopPlayer(final KeyEvent e) {
         if (keys.values().stream().filter(k -> k == true).count() == 0 && keys.keySet().contains(e.getKeyCode())) {
             this.player.getInput().stop();
         }
     }
-    
-    private Direction keyToDir(Integer k) {
+
+    private Direction keyToDir(final Integer k) {
         Direction dir = Direction.STOP;
-        switch(k) {
+        switch (k) {
         case KeyEvent.VK_DOWN:
             dir = Direction.DOWN;
             break;
@@ -263,7 +270,7 @@ public class KeyInput implements KeyListener {
             break;
         default:
             break;
-        }   
+        }
         return dir;
     }
 
