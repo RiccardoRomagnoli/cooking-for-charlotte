@@ -15,18 +15,17 @@ import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
 
 public class TopHud {
         
-        private int yoffset;
-        private BufferedImage bar;
-        //TODO: add vector with orderds
-        public TopHud(PlayState playstate) {
-                yoffset = 0;
-                bar = Content.TOPBAR[0][0];
-        }
+    private int yoffset;
+    private BufferedImage bar;
+    //TODO: add vector with orderds
+    public TopHud(PlayState playstate) {
+        yoffset = 0;
+        bar = Content.TOPBAR[0][0];
+    }
 
-        public void draw(Graphics2D g) {
-                // draw hud
-                g.drawImage(bar, 0, yoffset, null);               
-        }
-
+    public void draw(Graphics2D g) {
+        // draw hud
+        g.drawImage(bar, 0, yoffset, null);               
+    }
 }
 
