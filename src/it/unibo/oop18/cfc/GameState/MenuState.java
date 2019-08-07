@@ -41,8 +41,8 @@ public class MenuState extends GameState {
     public void init() {
         bg = Content.MENUBG[0][0];
         food = Content.FOOD[6][2];
-        //JukeBoxUtil.load("/SFX/collect.wav", "collect");
-        //JukeBoxUtil.load("/SFX/menuoption.wav", "menuoption");
+        JukeBoxUtil.load("/SFX/collect.wav", "collect");
+        JukeBoxUtil.load("/SFX/menuoption.wav", "menuoption");
     }
 
     /**
