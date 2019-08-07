@@ -6,8 +6,6 @@ import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
-import it.unibo.oop18.cfc.Main.GameEngine;
 import it.unibo.oop18.cfc.Manager.Content;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
 
@@ -17,6 +15,7 @@ import it.unibo.oop18.cfc.Manager.GameStateManager;
 public class InfoState extends GameState {
 
     private BufferedImage bg;
+    final static int FONT_SIZE = 25;
 
     /**
      * Class constructor.
@@ -42,20 +41,29 @@ public class InfoState extends GameState {
 
     /**
      * {@inheritDoc}.
+     * 
      * @param g basic graphics
+     * @throws IOException 
      */
-    public void draw(final Graphics2D g) {
+    public void draw(final Graphics2D g){
         g.drawImage(bg, 0, 0, null);
         Content.drawString(g, "INFO", 400, 300);
         Content.drawString(g, "arrow keys : move", 100, 370);
         Content.drawString(g, "space : action", 200, 440);
         Content.drawString(g, "F1: return to menu", 100, 510);
-
-        int fontSize = 25;
-        g.setFont(new Font("Comic Sans MS", Font.PLAIN, fontSize));      
+        Font myFont = null;
+        try {
+        myFont = Font.createFont(Font.TRUETYPE_FONT, InfoState.class.getResourceAsStream("/HUD/comicsans.ttf"));
+        myFont = myFont.deriveFont(30f);
+        g.setFont(myFont);
         g.setColor(Color.orange);
-        g.drawString("Fai attenzione a comporre il piatto con gli ingredienti giusti", 50, 600);
-        g.drawString("altrimenti dovrai buttare tutto nel cestino e ricominciare da capo!!", 50, 650);
-    }
+        g.drawString("Fai attenzione a comporre il piatto con gli ingredienti giusti", 50, 650);
+        g.drawString("altrimenti dovrai buttare tutto nel cestino e ricominciare da capo!!", 50, 700);
+        } catch (FontFormatException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        }
 
 }

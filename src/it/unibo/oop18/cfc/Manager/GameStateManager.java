@@ -6,7 +6,10 @@
 
 package it.unibo.oop18.cfc.Manager;
 
+import java.awt.FontFormatException;
 import java.awt.Graphics2D;
+import java.io.IOException;
+
 import it.unibo.oop18.cfc.GameState.*;
 import it.unibo.oop18.cfc.Util.JukeBoxUtil;
 
