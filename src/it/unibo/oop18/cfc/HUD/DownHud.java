@@ -6,27 +6,31 @@ package it.unibo.oop18.cfc.HUD;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
+import java.io.IOException;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
-import it.unibo.oop18.cfc.GameState.PlayState;
 import it.unibo.oop18.cfc.Main.GameEngine;
 import it.unibo.oop18.cfc.Manager.Content;
+import it.unibo.oop18.cfc.Manager.ItemManager;
 import it.unibo.oop18.cfc.Objects.Items.IngredientImpl;
-import it.unibo.oop18.cfc.Objects.Items.IngredientType;
 import it.unibo.oop18.cfc.Objects.Items.PlateImpl;
 import it.unibo.oop18.cfc.World.World;
 
 public class DownHud {
-
+    
+    public static final String ITEMPATH = "/Sprites/itemSprite.png";
     private int yoffset;
     private final World world;
     private BufferedImage bar;
+    private ItemManager im;
 
-    public DownHud(final World world) {
+    public DownHud(final World world) throws IOException {
 
         this.yoffset = GameEngine.HEIGHT2;
         this.world = world;
         this.bar = Content.DOWNBAR[0][0];
+        im = new ItemManager(ITEMPATH);
     }
 
     public void draw(Graphics2D g) {
@@ -36,11 +40,11 @@ public class DownHud {
         if (world.getPlayer().getItemInHand().isPresent()) {
             if (world.getPlayer().getItemInHand().get() instanceof IngredientImpl) {
                 IngredientImpl i = (IngredientImpl) world.getPlayer().getItemInHand().get();
-                drawFood(g, i);
+                drawFood(g, i, 0);
             } else if (world.getPlayer().getItemInHand().get() instanceof PlateImpl) {
                 PlateImpl p = (PlateImpl) world.getPlayer().getItemInHand().get();
-                g.drawRect(320, yoffset + 20, 50, 50);
-                p.getIngredients().forEach(ing -> drawFood(g, ing));
+                g.drawImage(im.getPlateSprites().getItemSprite().get(0).getImage(), 320, yoffset + 25, 60, 60, null);
+                IntStream.range(0, p.getIngredients().size()).forEach(a -> drawFood(g, p.getIngredient(a), a));
             }
         }
 //             // draw time
@@ -56,23 +60,33 @@ public class DownHud {
 //             }
     }
 
-    private void drawFood(final Graphics2D g, final IngredientImpl i) {
+    private void drawFood(final Graphics2D g, final IngredientImpl i, final int count) {
         switch (i.getIngredient()) {
         case BREAD:
-            g.drawRect(380, yoffset + 20, 50, 50);
+            g.drawImage(im.getFoodSprites().getBreadSprite().get(0).getImage(), 420 + count*95, yoffset + 25, 60, 60, null);
             break;
         case MEAT:
-            g.drawRect(440, yoffset + 20, 50, 50);
+            g.drawImage(im.getFoodSprites().getMeatSprite().get(0).getImage(),420 + count*95, yoffset + 25, 60, 60, null);
             break;
         case LETTUCE:
-            g.drawRect(500, yoffset + 20, 50, 50);
+            g.drawImage(im.getFoodSprites().getLettuceSprite().get(0).getImage(),420 + count*95, yoffset + 25, 60, 60, null);
             break;
         case TOMATO:
-            g.drawRect(560, yoffset + 20, 50, 50);
+            g.drawImage(im.getFoodSprites().getTomatoSprite().get(0).getImage(),420 + count*95, yoffset + 25, 60, 60, null);
+            break;
+        default:
+            break;
+        }
+
+        switch (i.getState()) {
+        case CHOPPED:
+            g.drawImage(im.getFoodSprites().getItemSprite().get(0).getImage(), 420 + count*95, yoffset + 25, 60, 60, null);
+            break;
+        case PERFECT:
+            g.drawImage(im.getFoodSprites().getItemSprite().get(1).getImage(), 420 + count*95, yoffset + 25, 60, 60, null);
             break;
         default:
             break;
         }
     }
-
 }
