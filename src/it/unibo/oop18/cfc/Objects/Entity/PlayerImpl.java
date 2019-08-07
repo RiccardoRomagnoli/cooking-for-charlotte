@@ -23,7 +23,7 @@ public class PlayerImpl extends AbstractEntity implements Player {
     // gameplay
     private int points;
     private int totalPoints;
-    
+    public boolean action;
     // Physics, Input and Graphics
     private final DynamicPhysicsComponent physics;
     private final PlayerInputComponent input;
@@ -50,7 +50,7 @@ public class PlayerImpl extends AbstractEntity implements Player {
     public void increasePoints() {
         points++;
     }
-    
+
     /**
      *
      */
@@ -135,6 +135,7 @@ public class PlayerImpl extends AbstractEntity implements Player {
                         .samePosition((Position.setInTile(getNextPosition()))))
           .findFirst();
         if (cs.isPresent()) {
+            action = true;
             cs.get().cutIngredient();
             }
     }
