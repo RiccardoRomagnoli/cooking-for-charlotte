@@ -201,17 +201,29 @@ public class KeyInput implements KeyListener {
 
     /**
      * It stops the player when a key button is released.
+     * If more than one key is pressed, on release the player continues 
+     * to move to the current key being pressed
      */
     @Override
     public void keyReleased(final KeyEvent e) {
         if (gsm.getCurrentGameState().getGameStateName() == GameStates.PLAY) {
+            if (keys.keySet().contains(e.getKeyCode())) {
+                keys.put(e.getKeyCode(), false);
+            }
+            if (keys.values().stream().filter(k -> k == true).count() == 1) {
+                keys.keySet().forEach(k->{
+                    if(keys.get(k))
+                        this.moveEntity(Optional.of(keyToDir(k)));
+                });
+                
+            }
             handleStopPlayer(e);
         }
     }
 
     @Override
     public void keyTyped(final KeyEvent e) {
-
+        
     }
 
     private void launchPause() {
@@ -229,12 +241,30 @@ public class KeyInput implements KeyListener {
     }
 
     private void handleStopPlayer(final KeyEvent e) {
-        if (keys.keySet().contains(e.getKeyCode())) {
-            keys.put(e.getKeyCode(), false);
-        }
         if (keys.values().stream().filter(k -> k == true).count() == 0 && keys.keySet().contains(e.getKeyCode())) {
             this.player.getInput().stop();
         }
+    }
+    
+    private Direction keyToDir(Integer k) {
+        Direction dir = Direction.STOP;
+        switch(k) {
+        case KeyEvent.VK_DOWN:
+            dir = Direction.DOWN;
+            break;
+        case KeyEvent.VK_UP:
+            dir = Direction.UP;
+            break;
+        case KeyEvent.VK_LEFT:
+            dir = Direction.LEFT;
+            break;
+        case KeyEvent.VK_RIGHT:
+            dir = Direction.RIGHT;
+            break;
+        default:
+            break;
+        }   
+        return dir;
     }
 
 }
