@@ -70,35 +70,36 @@ public final class JukeBoxUtil {
     public static void play(final String s, final int i) {
         final Clip c = clips.get(s);
         float f;
-        switch (getVolume()) {
-        case 0:
-            f = 0;
-            break;
-        case 15:
-            f = 1;
-            break;
-        case 30:
-            f = 2;
-            break;
-        case 45:
-            f = 3;
-            break;
-        case 60:
-            f = 4;
-            break;
-        case 75:
-            f = 5;
-            break;
-        case 90:
-            f = 6;
-            break;
-        case 100:
-            f = (float) 6.0206;
-            break;
-        default:
-            f = (float) 6.0206;
-            break;
-        }
+//        switch (getVolume()) {
+//        case 0:
+//            f = 0;
+//            break;
+//        case 15:
+//            f = 15*0.06;
+//            break;
+//        case 30:
+//            f = 2;
+//            break;
+//        case 45:
+//            f = 3;
+//            break;
+//        case 60:
+//            f = 4;
+//            break;
+//        case 75:
+//            f = 5;
+//            break;
+//        case 90:
+//            f = 6;
+//            break;
+//        case 100:
+//            f = (float) 6.0206;
+//            break;
+//        default:
+//            f = (float) 6.0206;
+//            break;
+//        }
+        f = (float) (getVolume() * 0.06);
         setVolume(s, f);
         if (c == null) {
             return;
@@ -190,15 +191,17 @@ public final class JukeBoxUtil {
             return;
         }
         BooleanControl muteControl = (BooleanControl) c.getControl(BooleanControl.Type.MUTE);
-        if(f == 0) {
+        if (f == 0) {
             muteControl.setValue(true);
-        }
-        else {
+        } else {
             muteControl.setValue(false);
         }
-        final FloatControl vol = (FloatControl) c.getControl(FloatControl.Type.MASTER_GAIN);
-        vol.setValue(f);
-        //System.out.println(f);
+        FloatControl gainControl = (FloatControl) c.getControl(FloatControl.Type.MASTER_GAIN);
+        final double gain = f / 3; // number between 0 and 2 (loudest)
+        final float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
+        gainControl.setValue(dB);
+
+        // System.out.println(dB);
     }
 
     public static boolean isPlaying(final String s) {
