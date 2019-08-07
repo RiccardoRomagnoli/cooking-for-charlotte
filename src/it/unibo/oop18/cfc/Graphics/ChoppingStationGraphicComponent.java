@@ -3,14 +3,20 @@ package it.unibo.oop18.cfc.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
+import it.unibo.oop18.cfc.Main.GameEngine;
 import it.unibo.oop18.cfc.Objects.Stations.ChoppingStation;
 import it.unibo.oop18.cfc.Tile.ChoppingStationTile;
 
 
 public class ChoppingStationGraphicComponent implements GraphicsComponent {
+    
+    private static final int DIVISION_BY_ZERO_PROTECTION = 1;
+    private static final int FRAME_DELAY = Math.round(GameEngine.FPS / 15) + DIVISION_BY_ZERO_PROTECTION;
+
     private final ChoppingStation choppingStation;
     private final ChoppingStationTile choppingStationTile;
-
+    private int frame;
+    private int updateFrame;
     /**
      * Creates a {@code DoorGraphicComponent}.
      * 
@@ -20,6 +26,8 @@ public class ChoppingStationGraphicComponent implements GraphicsComponent {
     public ChoppingStationGraphicComponent(final ChoppingStation choppingStation, final ChoppingStationTile choppingStationTile) {
         this.choppingStation = choppingStation;
         this.choppingStationTile = choppingStationTile;
+        this.frame = 0;
+        this.updateFrame = 0;
     }
 
     /**
@@ -28,7 +36,8 @@ public class ChoppingStationGraphicComponent implements GraphicsComponent {
     @Override
     public void draw(final Graphics2D g) {
         if (this.choppingStation.isCut()) {
-            g.drawImage(this.choppingStationTile.getTiles().get(1).getImage(),
+            this.nextFrame();
+            g.drawImage(this.choppingStationTile.getTiles().get(this.frame).getImage(),
                     AffineTransform.getTranslateInstance(this.choppingStation.getPosition().getX(), this.choppingStation.getPosition().getY()),
                     null);
         } else {
@@ -37,4 +46,14 @@ public class ChoppingStationGraphicComponent implements GraphicsComponent {
                     null);
         }
     }
+    
+    private void nextFrame() {
+        this.updateFrame++;
+        if (this.updateFrame % FRAME_DELAY == 0) {
+            this.frame++;
+            this.updateFrame = 0;
+            this.frame = this.frame >= this.choppingStationTile.getTilesNumber() ? 0 : this.frame;
+        }
+    }
+
 }
