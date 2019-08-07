@@ -267,6 +267,7 @@ public class WorldImpl implements World {
     public void update() {
         // music update
         this.player.update();
+        this.getChoppingStations().forEach(c -> c.update());
     }
 
     /**
@@ -287,7 +288,7 @@ public class WorldImpl implements World {
 
     private void createLevel(final TileManager tm, final SpriteManager sm, final String mapPath) {
         final WorldInitializer initializer = new WorldInitializerImpl(tm, sm, mapPath);
-        this.choppingStations.addAll(initializer.initializeChoppingBoard());
+        this.choppingStations.addAll(initializer.initializeChoppingBoard(this));
         this.cookers.addAll(initializer.initializeCooker());
         this.counters.addAll(initializer.initializeCounter());
         this.deliveryStations.addAll(initializer.initializeDeliveryStation());
