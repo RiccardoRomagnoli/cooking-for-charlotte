@@ -40,7 +40,7 @@ public class GameEngine extends JPanel implements Runnable {
 
     // drawing stuff
     private BufferedImage image;
-    private Graphics2D g;
+    private static Graphics2D g;
 
     // game state manager
     private GameStateManager gsm;
@@ -119,5 +119,9 @@ public class GameEngine extends JPanel implements Runnable {
         g2.drawImage(image, 0, 0, WIDTH * SCALE, HEIGHT3 * SCALE, null);
         g2.dispose();
     }
-    
+
+    public static Graphics2D getG() {
+        return g;
+    }
+
 }
