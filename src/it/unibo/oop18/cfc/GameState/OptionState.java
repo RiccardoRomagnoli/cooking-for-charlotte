@@ -48,6 +48,7 @@ public class OptionState extends GameState {
     public void init() {
         bg = Content.MENUBG[0][0];
         food = Content.FOOD[6][2];
+        MenuState.menuIsPlaying=3;
     }
 
     /**

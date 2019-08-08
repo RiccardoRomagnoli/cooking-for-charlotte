@@ -48,6 +48,9 @@ public class MenuState extends GameState {
         if (menuIsPlaying == 0) {
             JukeBoxUtil.play("menuSong");
         }
+        else if (menuIsPlaying == 3){
+            JukeBoxUtil.play("menuSong");
+        }
     }
 
     /**
@@ -82,7 +85,8 @@ public class MenuState extends GameState {
         if (currentOption == 1) {
             gsm.setState(GameStates.OPTION);
             gsm.draw(g);
-            menuIsPlaying = 1;
+            JukeBoxUtil.stop("menuSong");
+            //menuIsPlaying = 1;
         }
         if (currentOption == 2) {
             gsm.setState(GameStates.INFO);
