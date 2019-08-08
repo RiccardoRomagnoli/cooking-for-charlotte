@@ -8,6 +8,7 @@ import org.junit.Test;
 import it.unibo.oop18.cfc.Main.GameEngine;
 import it.unibo.oop18.cfc.Manager.ItemManager;
 import it.unibo.oop18.cfc.Objects.Entity.Player;
+import it.unibo.oop18.cfc.Objects.Items.IngredientType;
 import it.unibo.oop18.cfc.Physics.Direction;
 import it.unibo.oop18.cfc.Sprite.SpriteSheet;
 import it.unibo.oop18.cfc.Util.Position;
@@ -111,6 +112,6 @@ public class TestPlayer {
     @Test(expected = IndexOutOfBoundsException.class)
     public void testSprites() throws IOException {
         final ItemManager itemManager = new ItemManager(ITEMPATH);
-        itemManager.getFoodSprites().getBreadSprite().get(Y_LOCATION_MOVE_UP);
+        itemManager.getFoodSprites().getIngredientSprite().get(IngredientType.BREAD.getX()).get(Y_LOCATION_MOVE_UP);
     }
 }
