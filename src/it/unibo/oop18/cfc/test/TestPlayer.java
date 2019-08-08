@@ -95,8 +95,6 @@ public class TestPlayer {
         player.getInput().createDirectionCommand(Direction.RIGHT, PIXEL_PER_SECOND);
         player.update();
         //Checks if player is moved from his starting position
-        System.out.println(player.getPosition().toString());
-        System.out.println(INITIAL_POSITION.toString());
         Assert.assertFalse(player.getPosition().equals(INITIAL_POSITION));
         //Simulates another input command
         player.getInput().createDirectionCommand(Direction.LEFT, PIXEL_PER_SECOND);
