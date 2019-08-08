@@ -70,21 +70,6 @@ public interface World {
     <X extends GameObject> void removeObject(X object);
 
     /**
-     * Removes a game object from the world.
-     * 
-     * @param item the item to remove
-     * @param <X>    object's type to remove
-     */
-    <X extends Item> void removeItem(X item);
-
-    /**
-     * Add and ingredient or a plate.
-     * 
-     * @param item item to add
-     */
-    void addItem(Item item);
-
-    /**
      * Gets the tilemanager.
      * 
      * @return the player

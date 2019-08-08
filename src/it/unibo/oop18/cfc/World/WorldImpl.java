@@ -82,7 +82,6 @@ public class WorldImpl implements World {
     private final Set<Trashcan> trashcans;
     private final Set<Washbasin> washbasins;
     private final Set<ParquetFloor> parquetFloor;
-    private final Set<Item> itemsInWorld;
 
     private PlayerImpl player;
     private final GameTimer timer;
@@ -115,7 +114,6 @@ public class WorldImpl implements World {
         this.spriteManager = new SpriteManager(SPRITEPATH);
         this.itemManager = new ItemManager(ITEMPATH);
         this.createLevel(tileManager, spriteManager, MAPPATH);
-        this.itemsInWorld = new HashSet<>();
     }
 
     /**
@@ -284,14 +282,6 @@ public class WorldImpl implements World {
     public <X extends GameObject> void removeObject(final X object) {
     }
 
-    @Override
-    public <X extends Item> void removeItem(X item) {
-        this.itemsInWorld.remove(item);
-        if (item instanceof PlateImpl) {
-            ((PlateImpl) item).getIngredients().forEach(ing -> this.itemsInWorld.remove(ing));
-        }
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -337,13 +327,8 @@ public class WorldImpl implements World {
     }
 
     @Override
-    public void addItem(final Item item) {
-        this.itemsInWorld.add(item);
-    }
-
-    @Override
     public void lifeLoss() {
-        
+
     }
 
 }

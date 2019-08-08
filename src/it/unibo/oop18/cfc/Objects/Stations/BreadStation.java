@@ -36,7 +36,6 @@ public class BreadStation extends AbstractStationObject {
     public void doAction(final World world) {
         if (!world.getPlayer().getItemInHand().isPresent()) {
             final IngredientImpl bread = new IngredientImpl(world.getItemManager(), IngredientType.BREAD);
-            world.addItem(bread);
             world.getPlayer().setItemInHand(bread);
         }
     }

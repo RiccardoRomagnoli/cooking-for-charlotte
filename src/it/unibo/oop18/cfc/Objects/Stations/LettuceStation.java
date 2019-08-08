@@ -36,7 +36,6 @@ public class LettuceStation extends AbstractStationObject {
     public void doAction(final World world) {
         if (!world.getPlayer().getItemInHand().isPresent()) {
             final IngredientImpl lettuce = new IngredientImpl(world.getItemManager(), IngredientType.LETTUCE);
-            world.addItem(lettuce);
             world.getPlayer().setItemInHand(lettuce);
         }
     }

@@ -54,7 +54,7 @@ public class Cooker extends AbstractStationObject {
     };
 
     public void update() {
-        if(isCooking == true) {
+        if(isCooking == true && this.food.isPresent()) {
             if (this.food.get().getState() == IngredientState.CHOPPED &&
                     timer.getSeconds() >= this.food.get().getIngredient().getTimeToCook()) {
                 this.food.get().changeState(IngredientState.PERFECT);
@@ -64,7 +64,6 @@ public class Cooker extends AbstractStationObject {
             } else if(this.food.get().getState() == IngredientState.BURNED &&
                     timer.getSeconds() >= this.food.get().getIngredient().getTimeToCook() + 10) {
                 this.food.get().changeState(IngredientState.WASTE);
-                this.world.removeItem(this.food.get());
                 this.food = Optional.empty();
                 this.isCooking = false;
                 this.timer.reset();

@@ -36,9 +36,7 @@ public class TomatoStation extends AbstractStationObject {
     public void doAction(final World world) {
         if (!world.getPlayer().getItemInHand().isPresent()) {
             final IngredientImpl tomato = new IngredientImpl(world.getItemManager(), IngredientType.TOMATO);
-            world.addItem(tomato);
             world.getPlayer().setItemInHand(tomato);
         }
     }
-
 }
