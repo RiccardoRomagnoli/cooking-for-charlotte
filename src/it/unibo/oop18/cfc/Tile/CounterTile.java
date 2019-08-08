@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 public class CounterTile extends AbstractStationTile {
 
     private static final int Y_LOCATION = 3;
-    private static final int N_TILES = 6;
+    private static final int N_TILES = 3;
 
     /**
      * Creates a {@code CookerTile} container.
