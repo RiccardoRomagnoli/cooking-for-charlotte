@@ -20,7 +20,7 @@ public final class JukeBoxUtil {
 
     private static Map<String, Clip> clips;
     private static int gap;
-    private static int volume;
+    private static int volume = 15;
 
     private JukeBoxUtil() {
 

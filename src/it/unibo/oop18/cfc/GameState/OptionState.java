@@ -25,7 +25,7 @@ public class OptionState extends GameState {
     private BufferedImage food;
     private final String[] options = { "volume", "resolution", "quit" };
     private static List<Integer> volume = new ArrayList<Integer>(Arrays.asList(0, 15, 30, 45, 60, 75, 90, 100));
-    private int lastVolIndex;
+    private int lastVolIndex = 1;
     private int lastResIndex;
 
     private static List<String> resolution = new ArrayList<String>(Arrays.asList("1400x900", "800x600", "640x480"));
