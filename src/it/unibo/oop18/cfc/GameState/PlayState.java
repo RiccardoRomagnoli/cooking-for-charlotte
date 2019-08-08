@@ -47,6 +47,9 @@ public class PlayState extends GameState {
             e.printStackTrace();
         }
         JukeBoxUtil.load("/SFX/themeSong.wav", "themeSong");
+        MenuState.menuIsPlaying = 0;
+        
+        
     }
 
     /**

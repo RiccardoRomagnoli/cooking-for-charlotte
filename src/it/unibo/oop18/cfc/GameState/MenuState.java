@@ -25,6 +25,7 @@ public class MenuState extends GameState {
     private final String[] options = { "START", "OPTIONS", "INFO", "QUIT" };
     private final int menuOptions = options.length;
     private final int[] dim = { 300, 360, 420, 480 };
+    public static int menuIsPlaying;
 
     /**
      * Menu state init.
@@ -43,6 +44,12 @@ public class MenuState extends GameState {
         food = Content.FOOD[6][2];
         JukeBoxUtil.load("/SFX/collect.wav", "collect");
         JukeBoxUtil.load("/SFX/menuoption.wav", "menuoption");
+        JukeBoxUtil.load("/SFX/menuSong.wav", "menuSong");
+        if (menuIsPlaying == 0) {
+            JukeBoxUtil.play("menuSong");
+        }else {
+            //JukeBoxUtil.resume("menuSong");
+        }
     }
 
     /**
@@ -72,16 +79,20 @@ public class MenuState extends GameState {
         final Graphics2D g = GameEngine.getG();
         if (currentOption == 0) {
             gsm.newGame();
+            JukeBoxUtil.stop("menuSong");
         }
         if (currentOption == 1) {
             gsm.setState(GameStates.OPTION);
             gsm.draw(g);
+            menuIsPlaying=1;
         }
         if (currentOption == 2) {
             gsm.setState(GameStates.INFO);
             gsm.draw(g);
+            menuIsPlaying=1;
         }
         if (currentOption == 3) {
+            JukeBoxUtil.stop("menuSong");
             System.exit(0);
         }
     }
