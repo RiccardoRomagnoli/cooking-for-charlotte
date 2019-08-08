@@ -43,9 +43,32 @@ public class IngredientImpl extends AbstractItem implements Ingredient {
     }
 
     @Override
-    public void draw(Graphics2D g, Position p) {
-        g.drawImage(super.getItemManager().getFoodSprites().getIngredientSprite().get(type.getX()).get(state.getX()).getImage()
-            .getScaledInstance(20, 20, Image.SCALE_SMOOTH),
-            AffineTransform.getTranslateInstance(p.getX() + 20, p.getY() + 5), null);
+    public void draw(final Graphics2D g, final Position p) {
+        g.drawImage(super.getItemManager().getFoodSprites().getIngredientSprite().get(type.getX()).get(state.getX()).getImage(),
+            AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
+    }
+
+    @Override
+    public void draw(final Graphics2D g, final Position p, final int width, final int height) {
+        g.drawImage(
+                super.getItemManager().getFoodSprites().getIngredientSprite().get(type.getX()).get(state.getX())
+                        .getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH),
+                AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
+    }
+
+    @Override
+    public void drawState(final Graphics2D g, final Position p) {
+        switch (state) {
+        case CHOPPED:
+            g.drawImage(super.getItemManager().getFoodSprites().getItemSprite().get(0).getImage(),
+                    AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
+            break;
+        case PERFECT:
+            g.drawImage(super.getItemManager().getFoodSprites().getItemSprite().get(1).getImage(),
+                    AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
+            break;
+        default:
+            break;
+        }
     }
 }

@@ -1,6 +1,7 @@
 package it.unibo.oop18.cfc.Objects.Items;
 
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 
@@ -58,5 +59,11 @@ public class PlateImpl extends AbstractItem implements Plate {
     public void draw(Graphics2D g, Position p) {
         g.drawImage(super.getItemManager().getPlateSprites().getItemSprite().get(0).getImage(),AffineTransform
                 .getTranslateInstance(p.getX(), p.getY()), null);
+    }
+
+    @Override
+    public void draw(Graphics2D g, Position p, int width, int height) {
+        g.drawImage(super.getItemManager().getPlateSprites().getItemSprite().get(0).getImage().getScaledInstance(width,
+                height, Image.SCALE_SMOOTH), AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
     }
 }
