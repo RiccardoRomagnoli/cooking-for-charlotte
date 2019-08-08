@@ -57,13 +57,13 @@ public class PlateImpl extends AbstractItem implements Plate {
 
     @Override
     public void draw(Graphics2D g, Position p) {
-        g.drawImage(super.getItemManager().getPlateSprites().getItemSprite().get(0).getImage(),AffineTransform
+        g.drawImage(super.getItemManager().getPlateSprites().getPlateSprite().get(0).getImage(),AffineTransform
                 .getTranslateInstance(p.getX(), p.getY()), null);
     }
 
     @Override
     public void draw(Graphics2D g, Position p, int width, int height) {
-        g.drawImage(super.getItemManager().getPlateSprites().getItemSprite().get(0).getImage().getScaledInstance(width,
+        g.drawImage(super.getItemManager().getPlateSprites().getPlateSprite().get(0).getImage().getScaledInstance(width,
                 height, Image.SCALE_SMOOTH), AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
     }
 }

@@ -20,6 +20,7 @@ public class IngredientSprite extends AbstractItemSprite {
     private final List<ItemSprite> meatSprite;
     private final List<ItemSprite> lettuceSprite;
     private final List<ItemSprite> tomatoSprite;
+    private final List<ItemSprite> stateSprite;
 
     public IngredientSprite(final ItemSpriteSheet sheet) {
         super();
@@ -27,8 +28,9 @@ public class IngredientSprite extends AbstractItemSprite {
         this.meatSprite = new ArrayList<>();
         this.lettuceSprite = new ArrayList<>();
         this.tomatoSprite = new ArrayList<>();
-        IntStream.range(X_LOCATION_STATE_INGREDIENT, INGREDIENT_STATE_SPRITES).mapToObj(a -> new ItemSprite(sheet, a, Y_LOCATION_STATE_INGREDIENT)).collect(Collectors.toList())
-        .forEach(a -> super.getItemSprite().add(a));
+        this.stateSprite = new ArrayList<>();
+        IntStream.rangeClosed(X_LOCATION_STATE_INGREDIENT, INGREDIENT_STATE_SPRITES).mapToObj(a -> new ItemSprite(sheet, a, Y_LOCATION_STATE_INGREDIENT)).collect(Collectors.toList())
+        .forEach(a -> stateSprite.add(a));
         IntStream.range(0, FOOD_SPRITES).mapToObj(a -> new ItemSprite(sheet, a, Y_LOCATION_BREAD)).collect(Collectors.toList())
         .forEach(a -> breadSprite.add(a));
         IntStream.range(0, FOOD_SPRITES).mapToObj(a -> new ItemSprite(sheet, a, Y_LOCATION_MEAT)).collect(Collectors.toList())
@@ -49,35 +51,14 @@ public class IngredientSprite extends AbstractItemSprite {
         return FOOD_SPRITES;
         }
 
-    /**
-     * @return the breadSprite
-     */
-    public List<ItemSprite> getBreadSprite() {
-        return breadSprite;
-    }
-
     public List<List<ItemSprite>> getIngredientSprite() {
         return ingredients;
     }
 
     /**
-     * @return the meatSprite
+     * @return the stateSprite
      */
-    public List<ItemSprite> getMeatSprite() {
-        return meatSprite;
-    }
-
-    /**
-     * @return the lettuceSprite
-     */
-    public List<ItemSprite> getLettuceSprite() {
-        return lettuceSprite;
-    }
-
-    /**
-     * @return the tomatoSprite
-     */
-    public List<ItemSprite> getTomatoSprite() {
-        return tomatoSprite;
+    public List<ItemSprite> getStateSprite() {
+        return stateSprite;
     }
 }

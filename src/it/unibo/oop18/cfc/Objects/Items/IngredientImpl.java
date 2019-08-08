@@ -60,11 +60,11 @@ public class IngredientImpl extends AbstractItem implements Ingredient {
     public void drawState(final Graphics2D g, final Position p) {
         switch (state) {
         case CHOPPED:
-            g.drawImage(super.getItemManager().getFoodSprites().getItemSprite().get(0).getImage(),
+            g.drawImage(super.getItemManager().getFoodSprites().getStateSprite().get(0).getImage(),
                     AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
             break;
         case PERFECT:
-            g.drawImage(super.getItemManager().getFoodSprites().getItemSprite().get(1).getImage(),
+            g.drawImage(super.getItemManager().getFoodSprites().getStateSprite().get(1).getImage(),
                     AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
             break;
         default:
