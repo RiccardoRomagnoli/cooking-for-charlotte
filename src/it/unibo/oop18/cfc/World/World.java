@@ -210,4 +210,9 @@ public interface World {
      * @return all this stations
      */
     Set<ParquetFloor> getParquetFloor();
+
+    /**
+     * Remove a life from Player.
+     */
+    void lifeLoss();
 }
