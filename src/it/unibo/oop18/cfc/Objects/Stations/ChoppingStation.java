@@ -64,12 +64,10 @@ public class ChoppingStation extends AbstractStationObject {
             timer.start();
         } else if (isCutting == false || world.getPlayer().action == false) {
             isCutting = false;
-            timer.stop();
             timer.reset();
         }
         if (food.isPresent() && food.get().getIngredient().getTimeToCut() == timer.getSeconds()) {
             isCutting = false;
-            timer.stop();
             timer.reset();
             food.get().changeState(IngredientState.CHOPPED);
         }
