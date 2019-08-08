@@ -9,7 +9,7 @@ import it.unibo.oop18.cfc.Tile.ChoppingStationTile;
 
 
 public class ChoppingStationGraphicComponent implements GraphicsComponent {
-    
+
     private static final int DIVISION_BY_ZERO_PROTECTION = 1;
     private static final int FRAME_DELAY = Math.round(GameEngine.FPS / 15) + DIVISION_BY_ZERO_PROTECTION;
 
@@ -46,13 +46,13 @@ public class ChoppingStationGraphicComponent implements GraphicsComponent {
                     null);
         }
     }
-    
+
     private void nextFrame() {
         this.updateFrame++;
         if (this.updateFrame % FRAME_DELAY == 0) {
             this.frame++;
             this.updateFrame = 0;
-            this.frame = this.frame >= this.choppingStationTile.getTilesNumber() ? 0 : this.frame;
+            this.frame = this.frame >= this.choppingStationTile.getTilesNumber() ? 1 : this.frame;
         }
     }
 
