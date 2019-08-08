@@ -69,8 +69,8 @@ public class ChoppingStation extends AbstractStationObject {
         } else if (isCutting == false || world.getPlayer().action == false) {
             isCutting = false;
             timer.reset();
-            //isSoundPlaying = 2;
-            //JukeBoxUtil.stop("cuttingSound");
+            // isSoundPlaying = 2;
+            // JukeBoxUtil.stop("cuttingSound");
         }
         if (food.isPresent() && food.get().getIngredient().getTimeToCut() == timer.getSeconds()) {
             isCutting = false;
@@ -81,7 +81,9 @@ public class ChoppingStation extends AbstractStationObject {
         }
     }
 
-    // alla pressione
+    /**
+     * Spacebar pressed.
+     */
     public void cutIngredient() {
         if (food.isPresent() && food.get().getState() == IngredientState.RAW) {
             if (!world.getPlayer().getItemInHand().isPresent()) {
@@ -95,9 +97,12 @@ public class ChoppingStation extends AbstractStationObject {
 
     }
 
-    // al rilascio del pulsante
-    @Override
-    public void doAction(World world) {
+    /**
+     * Spacebar released.
+     * 
+     * @param world world
+     */
+    public void doAction(final World world) {
         // se cibo presente
         if (food.isPresent()) {
             // se il player ha qualcosa in mano
