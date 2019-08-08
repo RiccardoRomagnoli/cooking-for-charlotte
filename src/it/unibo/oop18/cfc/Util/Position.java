@@ -1,5 +1,8 @@
 package it.unibo.oop18.cfc.Util;
 
+import java.util.Optional;
+
+import it.unibo.oop18.cfc.Sprite.SpriteSheet;
 import it.unibo.oop18.cfc.Tile.TileSheet;
 
 /**
@@ -67,9 +70,6 @@ public class Position {
         this.y = y;
     }
 
-    /*
-     * @see java.lang.Object#hashCode()
-     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -113,6 +113,17 @@ public class Position {
     @Override
     public String toString() {
         return "Position [x=" + x + ", y=" + y + "]";
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        Optional<Position> other = Optional.empty();
+        final int sprDim = SpriteSheet.SPRITE_SIZE_IN_GAME;
+        if (obj != null && this.getClass().equals(obj.getClass())) {
+            other = Optional.of((Position) obj);
+        }
+        return (other.isPresent()) ? Math.round(this.getX() / sprDim) == Math.round(other.get().getX() / sprDim)
+                && Math.round(this.getY() / sprDim) == Math.round(other.get().getY() / sprDim) : false;
     }
 
 }
