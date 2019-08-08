@@ -1,14 +1,19 @@
 package it.unibo.oop18.cfc.Objects.Items;
 
+import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
+
+import it.unibo.oop18.cfc.Manager.ItemManager;
+import it.unibo.oop18.cfc.Util.Position;
 
 public class PlateImpl extends AbstractItem implements Plate {
 
     private ArrayList<IngredientImpl> ingredients;
     private int points;
 
-    public PlateImpl() {
-        super();
+    public PlateImpl(final ItemManager itemManager) {
+        super(itemManager);
         ingredients = new ArrayList<IngredientImpl>();
         this.points = 0;
     }
@@ -47,5 +52,11 @@ public class PlateImpl extends AbstractItem implements Plate {
     @Override
     public ArrayList<IngredientImpl> getIngredients() {
         return this.ingredients;
+    }
+
+    @Override
+    public void draw(Graphics2D g, Position p) {
+        g.drawImage(super.getItemManager().getPlateSprites().getItemSprite().get(0).getImage(),AffineTransform
+                .getTranslateInstance(p.getX(), p.getY()), null);
     }
 }

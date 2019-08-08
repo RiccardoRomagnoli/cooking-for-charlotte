@@ -14,8 +14,8 @@ public class IngredientSprite extends AbstractItemSprite {
     private static final int Y_LOCATION_TOMATO = 3;
     private static final int Y_LOCATION_STATE_INGREDIENT = 0;
     private static final int X_LOCATION_STATE_INGREDIENT = 1;
-    private static final int STATE_SPRITES = 2;
-
+    private static final int INGREDIENT_STATE_SPRITES = 2;
+    private final List<List<ItemSprite>> ingredients;
     private final List<ItemSprite> breadSprite;
     private final List<ItemSprite> meatSprite;
     private final List<ItemSprite> lettuceSprite;
@@ -27,8 +27,7 @@ public class IngredientSprite extends AbstractItemSprite {
         this.meatSprite = new ArrayList<>();
         this.lettuceSprite = new ArrayList<>();
         this.tomatoSprite = new ArrayList<>();
-
-        IntStream.range(X_LOCATION_STATE_INGREDIENT, STATE_SPRITES).mapToObj(a -> new ItemSprite(sheet, a, Y_LOCATION_STATE_INGREDIENT)).collect(Collectors.toList())
+        IntStream.range(X_LOCATION_STATE_INGREDIENT, INGREDIENT_STATE_SPRITES).mapToObj(a -> new ItemSprite(sheet, a, Y_LOCATION_STATE_INGREDIENT)).collect(Collectors.toList())
         .forEach(a -> super.getItemSprite().add(a));
         IntStream.range(0, FOOD_SPRITES).mapToObj(a -> new ItemSprite(sheet, a, Y_LOCATION_BREAD)).collect(Collectors.toList())
         .forEach(a -> breadSprite.add(a));
@@ -38,6 +37,11 @@ public class IngredientSprite extends AbstractItemSprite {
         .forEach(a -> lettuceSprite.add(a));
         IntStream.range(0, FOOD_SPRITES).mapToObj(a -> new ItemSprite(sheet, a, Y_LOCATION_TOMATO)).collect(Collectors.toList())
         .forEach(a -> tomatoSprite.add(a));
+        this.ingredients = new ArrayList<List<ItemSprite>>();
+        ingredients.add(breadSprite);
+        ingredients.add(meatSprite);
+        ingredients.add(lettuceSprite);
+        ingredients.add(tomatoSprite);
     }
 
     @Override
@@ -50,6 +54,10 @@ public class IngredientSprite extends AbstractItemSprite {
      */
     public List<ItemSprite> getBreadSprite() {
         return breadSprite;
+    }
+
+    public List<List<ItemSprite>> getIngredientSprite() {
+        return ingredients;
     }
 
     /**
