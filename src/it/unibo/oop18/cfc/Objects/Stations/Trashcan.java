@@ -26,7 +26,6 @@ public class Trashcan extends AbstractStationObject{
     @Override
     public void doAction(World world) {
         if (world.getPlayer().getItemInHand().isPresent()) {
-            Item i = world.getPlayer().getItemInHand().get();
             world.getPlayer().removeItemInHand();
         }
     }
