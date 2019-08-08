@@ -11,25 +11,26 @@ import it.unibo.oop18.cfc.World.World;
 public class OrdersManagerImpl implements OrdersManager {
 
     private static final long INTERVAL_MILLISECONDS = 30000;
-    // world timer?
     private final ArrayList<Order> currentOrders;
     private final ArrayList<Order> finishedOrders;
     private GameTimer gameTimer;
     private final OrderGenerator generator;
+    private final World world;
 
     public OrdersManagerImpl(World world) {
+        this.world = world;
         currentOrders = new ArrayList<>();
         finishedOrders = new ArrayList<>();
         gameTimer = world.getGameTimer();
-        generator = new OrderGeneratorImpl();
+        generator = new OrderGeneratorImpl(this);
         generator.startGeneration(INTERVAL_MILLISECONDS);
     }   
     
     @Override
     public boolean deliveryPlate(Plate plate) {
-    Optional<Order> order = checkOrder(plate);
+        Optional<Order> order = checkOrder(plate);
         if (order.isPresent()) {
-            updateOrder(order.get());
+            orderSucceed(order.get());
         }
         return order.isPresent();
     }
@@ -43,8 +44,9 @@ public class OrdersManagerImpl implements OrdersManager {
     @Override
     public void update() {
         updateDifficulty();
+        checkZeroOrders();
     }
-	
+
     @Override
     public void addOrder(Order o) {
         this.currentOrders.add(o);
@@ -53,6 +55,13 @@ public class OrdersManagerImpl implements OrdersManager {
     @Override
     public int getOrderQuantity() {
         return currentOrders.size();
+    }
+    
+    @Override
+    public void orderFailed(Order order) {
+        currentOrders.remove(order);
+        finishedOrders.add(order);
+        this.world.lifeLoss();
     }
 
     private Optional<Order> checkOrder(Plate plate) {
@@ -64,8 +73,9 @@ public class OrdersManagerImpl implements OrdersManager {
         return returnOrder;
     }   
     
-    private void updateOrder(Order order) {
-        
+    private void orderSucceed(Order order) {
+        currentOrders.remove(order);
+        finishedOrders.add(order);
     }
 
     private void updateDifficulty() {
@@ -82,5 +92,11 @@ public class OrdersManagerImpl implements OrdersManager {
             currentDifficulty = OrderDifficulty.EXTREME;
         }
 	generator.setDifficulty(currentDifficulty);
+    }
+    
+    private void checkZeroOrders() {
+        if(currentOrders.size() == 0) {
+            generator.generateNewOrder();
+        }
     }
 }

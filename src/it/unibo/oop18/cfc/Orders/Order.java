@@ -1,6 +1,9 @@
 package it.unibo.oop18.cfc.Orders;
 
 import it.unibo.oop18.cfc.Objects.Items.IngredientType;
+
+import java.awt.Graphics2D;
+
 import it.unibo.oop18.cfc.Objects.Items.IngredientState;
 import it.unibo.oop18.cfc.Objects.Items.Plate;
 
@@ -15,7 +18,11 @@ public interface Order{
      */
     public boolean checkOrder(Plate plate);
     
+    public void draw(Graphics2D g);
+    
     public int getPoints();
+    
+    public void startOrder();
     
     public int getOrderIngredientQuantity();
     

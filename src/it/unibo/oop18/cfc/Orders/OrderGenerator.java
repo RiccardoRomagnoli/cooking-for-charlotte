@@ -5,4 +5,6 @@ public interface OrderGenerator {
 	public void setDifficulty(OrderDifficulty currentDifficulty);
 	
 	public void startGeneration(long intervalMilliseconds);
+	
+	public void generateNewOrder();
 }
