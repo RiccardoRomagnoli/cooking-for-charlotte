@@ -4,7 +4,6 @@ import java.awt.Graphics2D;
 
 import it.unibo.oop18.cfc.Graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.Graphics.TrashcanGraphicComponent;
-import it.unibo.oop18.cfc.Objects.Items.Item;
 import it.unibo.oop18.cfc.Tile.TrashcanTile;
 import it.unibo.oop18.cfc.Util.Position;
 import it.unibo.oop18.cfc.World.World;

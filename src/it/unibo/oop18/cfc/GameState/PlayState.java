@@ -69,9 +69,9 @@ public class PlayState extends GameState {
             JukeBoxUtil.resume("themeSong");
             themeIsPlaying = 1;
         }
-        world.draw(g);
         topHud.draw(g);
         downHud.draw(g);
+        world.draw(g);
     }
 
     /**
