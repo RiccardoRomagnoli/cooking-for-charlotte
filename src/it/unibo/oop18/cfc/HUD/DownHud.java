@@ -30,7 +30,7 @@ public class DownHud {
         this.yoffset = GameEngine.HEIGHT2;
         this.world = world;
         this.bar = Content.DOWNBAR[0][0];
-        im = new ItemManager(ITEMPATH);
+        im = world.getItemManager();
     }
 
     public void draw(Graphics2D g) {
