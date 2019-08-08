@@ -6,6 +6,7 @@ package it.unibo.oop18.cfc.GameState;
 import java.awt.Graphics2D;
 import it.unibo.oop18.cfc.Manager.Content;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
+import it.unibo.oop18.cfc.Util.JukeBoxUtil;
 
 /**
  * Managing the pause screen. Display several info during the pause
@@ -24,6 +25,7 @@ public class PauseState extends GameState {
      * Init class.
      */
     public void init() {
+        
     }
 
     /**
@@ -38,7 +40,9 @@ public class PauseState extends GameState {
      * @param g basic graphics
      */
     public void draw(final Graphics2D g) {
-
+        if(PlayState.themeIsPlaying) {
+            JukeBoxUtil.stop("themeSong"); 
+        }
         Content.drawString(g, "pause", 400, 200);
 
         Content.drawString(g, "arrow keys : move", 120, 270);

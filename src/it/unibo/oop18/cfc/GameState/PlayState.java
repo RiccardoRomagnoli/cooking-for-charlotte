@@ -11,20 +11,29 @@ import java.io.IOException;
 import it.unibo.oop18.cfc.HUD.DownHud;
 import it.unibo.oop18.cfc.HUD.TopHud;
 import it.unibo.oop18.cfc.Manager.GameStateManager;
+import it.unibo.oop18.cfc.Util.JukeBoxUtil;
 import it.unibo.oop18.cfc.World.World;
 import it.unibo.oop18.cfc.World.WorldImpl;
-
 
 public class PlayState extends GameState {
 
     private World world;
     private TopHud topHud;
     private DownHud downHud;
+    public static boolean themeIsPlaying = true;
+
+    /**
+     * Constructor.
+     * @param gsm state manager
+     */
     public PlayState(final GameStateManager gsm) {
         super(gsm, GameStates.PLAY);
     }
 
-    public void init(){
+    /**
+     * {@inheritDoc}
+     */
+    public void init() {
         try {
             this.world = new WorldImpl();
             this.topHud = new TopHud(world);
@@ -33,18 +42,33 @@ public class PlayState extends GameState {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+        JukeBoxUtil.load("/SFX/themeSong.wav", "themeSong");
+        JukeBoxUtil.play("themeSong");
+    }   
 
+    /**
+     * {@inheritDoc}
+     */
     public void update() {
         world.update();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void draw(final Graphics2D g) {
+        if (!themeIsPlaying) {
+            JukeBoxUtil.resume("themeSong");
+        }
         world.draw(g);
         topHud.draw(g);
         downHud.draw(g);
     }
 
+    /**
+     * Return the created world.
+     * @return world
+     */
     public World getWorld() {
         return this.world;
     }
