@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import it.unibo.oop18.cfc.GameState.GameState;
 import it.unibo.oop18.cfc.GameState.GameStates;
@@ -40,10 +41,7 @@ public class KeyInput implements KeyListener {
     public KeyInput(final GameStateManager gsm) {
         this.gsm = gsm;
         keys = new HashMap<>();
-        keys.put(KeyEvent.VK_LEFT, false);
-        keys.put(KeyEvent.VK_RIGHT, false);
-        keys.put(KeyEvent.VK_UP, false);
-        keys.put(KeyEvent.VK_DOWN, false);
+        resetKeys();
     }
 
     /**
@@ -187,8 +185,7 @@ public class KeyInput implements KeyListener {
         switch (e.getKeyCode()) {
         case KeyEvent.VK_ESCAPE:
         case KeyEvent.VK_P:
-            gsm.setState(GameStates.PLAY);
-            JukeBoxUtil.resumeLoop("music1");
+            resumePlayState();
             break;
         case KeyEvent.VK_F1:
             gsm.setState(GameStates.MENU);
@@ -236,6 +233,7 @@ public class KeyInput implements KeyListener {
 
     private void launchPause() {
         this.gsm.setState(GameStates.PAUSE);
+        this.gsm.getPlayState().getWorld().getGameTimer().stop();
     }
 
     private void moveEntity(final Optional<Direction> way) {
@@ -258,6 +256,21 @@ public class KeyInput implements KeyListener {
         if (keys.values().stream().filter(k -> k == true).count() == 0 && keys.keySet().contains(e.getKeyCode())) {
             this.player.getInput().stop();
         }
+    }
+
+    private void resumePlayState() {
+        gsm.setState(GameStates.PLAY);
+        gsm.getPlayState().getWorld().getGameTimer().start();
+        resetKeys();
+        this.player.getInput().stop();
+        JukeBoxUtil.resumeLoop("music1");
+    }
+
+    private void resetKeys() {
+        this.keys.put(KeyEvent.VK_LEFT, false);
+        this.keys.put(KeyEvent.VK_RIGHT, false);
+        this.keys.put(KeyEvent.VK_UP, false);
+        this.keys.put(KeyEvent.VK_DOWN, false);
     }
 
     private Direction keyToDir(final Integer k) {

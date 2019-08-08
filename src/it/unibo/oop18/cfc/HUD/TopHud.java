@@ -12,13 +12,16 @@ import java.util.ArrayList;
 import it.unibo.oop18.cfc.GameState.PlayState;
 import it.unibo.oop18.cfc.Manager.Content;
 import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
+import it.unibo.oop18.cfc.World.World;
 
 public class TopHud {
         
     private int yoffset;
     private BufferedImage bar;
-    //TODO: add vector with orderds
-    public TopHud(PlayState playstate) {
+    private final World world;
+    
+    public TopHud(World world) {
+        this.world = world;
         yoffset = 0;
         bar = Content.TOPBAR[0][0];
     }

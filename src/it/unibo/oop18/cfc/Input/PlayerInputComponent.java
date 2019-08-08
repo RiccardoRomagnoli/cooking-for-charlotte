@@ -21,9 +21,7 @@ public interface PlayerInputComponent extends InputComponent {
     void stop();
 
     /**
-     * Drops the bomb in a specific {@link Position}.
-     *
-     * @param position where to drop the bomb
+     * Do action on a specific Station
      */
     void doAction();
 

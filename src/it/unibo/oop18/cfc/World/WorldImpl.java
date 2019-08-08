@@ -333,7 +333,6 @@ public class WorldImpl implements World {
         this.washbasins.addAll(initializer.initializeWashbasin());
         this.parquetFloor.addAll(initializer.initializeParquetFloor());
         this.player = initializer.initializePlayer(this);
-        this.timer.start();
     }
 
     @Override

@@ -45,7 +45,6 @@ public class GameStateManager {
      */
     public void newGame() {
         playState.init();
-        
         setState(GameStates.PLAY);
     }
 
