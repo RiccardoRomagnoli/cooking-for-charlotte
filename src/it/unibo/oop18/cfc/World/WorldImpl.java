@@ -90,6 +90,7 @@ public class WorldImpl implements World {
      *
      */
     public WorldImpl() throws IOException {
+        this.timer = new GameTimer();
         this.choppingStations = new HashSet<>();
         this.counters = new HashSet<>();
         this.cookers = new HashSet<>();
@@ -103,7 +104,6 @@ public class WorldImpl implements World {
         this.washbasins = new HashSet<>();
         this.parquetFloor = new HashSet<>();
         this.createLevel(new TileManager(TILEPATH), new SpriteManager(SPRITEPATH), MAPPATH);
-        this.timer = new GameTimer();
         this.itemsInWorld = new HashSet<>();
     }
 
@@ -301,6 +301,7 @@ public class WorldImpl implements World {
         this.washbasins.addAll(initializer.initializeWashbasin());
         this.parquetFloor.addAll(initializer.initializeParquetFloor());
         this.player = initializer.initializePlayer(this);
+        this.timer.start();
     }
 
     @Override

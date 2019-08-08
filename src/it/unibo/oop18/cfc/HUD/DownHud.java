@@ -47,17 +47,17 @@ public class DownHud {
                 IntStream.range(0, p.getIngredients().size()).forEach(a -> drawFood(g, p.getIngredient(a), a));
             }
         }
-//             // draw time
-//             int minutes = (int) (playstate.getTicks() / 1800);
-//             int seconds = (int) ((playstate.getTicks() / 30) % 60);
-//             if(minutes < 10) {
-//                     if(seconds < 10) Content.drawString(g, "0" + minutes + ":0" + seconds, 17, 704);
-//                     else Content.drawString(g, "0" + minutes + ":" + seconds, 17, 704);
-//             }
-//             else {
-//                     if(seconds < 10) Content.drawString(g, minutes + ":0" + seconds, 17, 704);
-//                     else Content.drawString(g, minutes + ":" + seconds, 17, 704);
-//             }
+             // draw time
+             int minutes = (int) world.getGameTimer().getMinutes();
+             int seconds = (int) world.getGameTimer().getSeconds();
+             if(minutes < 10) {
+                     if(seconds < 10) Content.drawString(g, "0" + minutes + ":0" + seconds, 17, 704);
+                     else Content.drawString(g, "0" + minutes + ":" + seconds, 17, 704);
+             }
+             else {
+                     if(seconds < 10) Content.drawString(g, minutes + ":0" + seconds, 17, 704);
+                     else Content.drawString(g, minutes + ":" + seconds, 17, 704);
+             }
     }
 
     private void drawFood(final Graphics2D g, final IngredientImpl i, final int count) {
