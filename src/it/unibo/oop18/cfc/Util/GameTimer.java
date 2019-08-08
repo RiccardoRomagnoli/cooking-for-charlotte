@@ -27,6 +27,7 @@ public class GameTimer {
      * Reset the timer.
      */
     public void reset() {
+        this.stop();
         this.initTime = 0;
         this.finalTime = 0;
         this.delay = 0;
