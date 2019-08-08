@@ -10,6 +10,7 @@ import it.unibo.oop18.cfc.Objects.Items.IngredientState;
 import it.unibo.oop18.cfc.Objects.Items.PlateImpl;
 import it.unibo.oop18.cfc.Tile.ChoppingStationTile;
 import it.unibo.oop18.cfc.Util.GameTimer;
+import it.unibo.oop18.cfc.Util.JukeBoxUtil;
 import it.unibo.oop18.cfc.Util.Position;
 import it.unibo.oop18.cfc.World.World;
 
@@ -20,6 +21,7 @@ public class ChoppingStation extends AbstractStationObject {
     private Optional<IngredientImpl> food;
     private World world;
     private boolean isCutting;
+    int isSoundPlaying = 0;
 
     /**
      * Creates a generic {@code Station}.
@@ -62,13 +64,19 @@ public class ChoppingStation extends AbstractStationObject {
     public void update() {
         if (isCutting == true && world.getPlayer().action == true && timer.isStopped()) {
             timer.start();
+            isSoundPlaying = 1;
+            JukeBoxUtil.loop("cuttingSound");
         } else if (isCutting == false || world.getPlayer().action == false) {
             isCutting = false;
             timer.reset();
+            //isSoundPlaying = 2;
+            //JukeBoxUtil.stop("cuttingSound");
         }
         if (food.isPresent() && food.get().getIngredient().getTimeToCut() == timer.getSeconds()) {
             isCutting = false;
             timer.reset();
+            isSoundPlaying = 2;
+            JukeBoxUtil.stop("cuttingSound");
             food.get().changeState(IngredientState.CHOPPED);
         }
     }
@@ -78,8 +86,13 @@ public class ChoppingStation extends AbstractStationObject {
         if (food.isPresent() && food.get().getState() == IngredientState.RAW) {
             if (!world.getPlayer().getItemInHand().isPresent()) {
                 isCutting = true;
+                if (isSoundPlaying != 1) {
+                    JukeBoxUtil.loop("cuttingSound");
+                    isSoundPlaying = 1;
+                }
             }
         }
+
     }
 
     // al rilascio del pulsante
@@ -109,12 +122,14 @@ public class ChoppingStation extends AbstractStationObject {
             // se non c'è cibo e ho in mano qualcosa che si un ingrediente
             if (world.getPlayer().getItemInHand().isPresent()
                     && world.getPlayer().getItemInHand().get() instanceof IngredientImpl
-                    && ((IngredientImpl)world.getPlayer().getItemInHand().get()).getState() == IngredientState.RAW) {
+                    && ((IngredientImpl) world.getPlayer().getItemInHand().get()).getState() == IngredientState.RAW) {
                 // aggiungi l'ingrediente nella station e toglilo dalla mano
                 this.food = Optional.ofNullable((IngredientImpl) world.getPlayer().getItemInHand().get());
                 world.getPlayer().removeItemInHand();
             }
         }
         isCutting = false;
+        isSoundPlaying = 2;
+        JukeBoxUtil.stop("cuttingSound");
     }
 }
