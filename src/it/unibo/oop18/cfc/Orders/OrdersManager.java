@@ -21,4 +21,6 @@ public interface OrdersManager {
 	public void addOrder(Order o);
 	
 	public int getOrderQuantity();
+	
+	public void orderFailed(Order o);
 }

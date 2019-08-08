@@ -340,4 +340,9 @@ public class WorldImpl implements World {
         this.itemsInWorld.add(item);
     }
 
+    @Override
+    public void lifeLoss() {
+        
+    }
+
 }

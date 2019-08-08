@@ -17,8 +17,10 @@ public class OrderGeneratorImpl extends TimerTask implements OrderGenerator {
     private OrderDifficulty currentDifficulty;
     private final List<Pair<IngredientType, IngredientState>> orderIngredientsAvaiable;
     private final Random random;
+    private final OrdersManager ordersManager;
     
-    public OrderGeneratorImpl() {
+    public OrderGeneratorImpl(OrdersManager ordersManager) {
+        this.ordersManager = ordersManager;
         timer = new Timer();
         orderIngredientsAvaiable = new ArrayList<>();
         random = new Random();
@@ -27,12 +29,14 @@ public class OrderGeneratorImpl extends TimerTask implements OrderGenerator {
 
     @Override
     public void startGeneration(long intervalMilliseconds){
-        timer.schedule(new OrderGeneratorImpl(), 0, intervalMilliseconds);
+        timer.schedule(this, 0, intervalMilliseconds);
     }
     
     @Override
     public void run() {
-        generateNewOrder();
+        if(ordersManager.getOrderQuantity()!=4) {
+            generateNewOrder();
+        }
     }
 
     @Override
@@ -45,8 +49,8 @@ public class OrderGeneratorImpl extends TimerTask implements OrderGenerator {
      * 
      * @return Order generated
      */
-    private Order generateNewOrder() {
-        Order o = new OrderImpl();
+    public void generateNewOrder() {
+        Order o = new OrderImpl(ordersManager);
         if(getRandomRecipe().equals(Recipes.BURGER)) {
             o.addIngredient(IngredientType.BREAD, IngredientState.RAW);
         }
@@ -56,7 +60,8 @@ public class OrderGeneratorImpl extends TimerTask implements OrderGenerator {
                             orderIngredientsAvaiable.get(randIng).getSecond());
         }
         o.setCountDownTimer(currentDifficulty.getSecondsOfConutDown()*1000);
-        return o;
+        o.startOrder();
+        ordersManager.addOrder(o);
     }
     
     private Recipes getRandomRecipe() {
