@@ -15,6 +15,7 @@ import it.unibo.oop18.cfc.Manager.Content;
 import it.unibo.oop18.cfc.Manager.ItemManager;
 import it.unibo.oop18.cfc.Objects.Items.IngredientImpl;
 import it.unibo.oop18.cfc.Objects.Items.PlateImpl;
+import it.unibo.oop18.cfc.Util.Position;
 import it.unibo.oop18.cfc.World.World;
 
 public class DownHud {
@@ -38,61 +39,33 @@ public class DownHud {
         // draw hud
         g.drawImage(bar, 0, yoffset, null);
         if (world.getPlayer().getItemInHand().isPresent()) {
-            if (world.getPlayer().getItemInHand().get() instanceof IngredientImpl) {
-                IngredientImpl i = (IngredientImpl) world.getPlayer().getItemInHand().get();
-                drawFood(g, i, 0);
-            } else if (world.getPlayer().getItemInHand().get() instanceof PlateImpl) {
-                PlateImpl p = (PlateImpl) world.getPlayer().getItemInHand().get();
-                g.drawImage(im.getPlateSprites().getItemSprite().get(0).getImage(), 320, yoffset + 25, 60, 60, null);
-                IntStream.range(0, p.getIngredients().size()).forEach(a -> drawFood(g, p.getIngredient(a), a));
+            if (world.getPlayer().getItemInHand().get() instanceof PlateImpl) {
+                PlateImpl p = ((PlateImpl) world.getPlayer().getItemInHand().get());
+                p.draw(g, new Position(320, yoffset + 25), 60, 60);
+                IntStream.range(0, p.getIngredients().size())
+                        .forEach(a -> { 
+                            p.getIngredient(a).draw(g, new Position(420 + a * 100, yoffset + 25), 150, 150);
+                            p.getIngredient(a).drawState(g, new Position(425 + a * 100, yoffset + 95));
+                        });
+            } else {
+                world.getPlayer().getItemInHand().get().draw(g, new Position(420, yoffset + 25), 150, 150);
             }
         }
-             // draw time
-             int minutes = (int) world.getGameTimer().getMinutes();
-             int seconds = (int) world.getGameTimer().getSeconds();
-             if(minutes < 10) {
-                     if(seconds < 10) Content.drawString(g, "0" + minutes + ":0" + seconds, 17, 704);
-                     else Content.drawString(g, "0" + minutes + ":" + seconds, 17, 704);
-             }
-             else {
-                     if(seconds < 10) Content.drawString(g, minutes + ":0" + seconds, 17, 704);
-                     else Content.drawString(g, minutes + ":" + seconds, 17, 704);
-             }
-    }
-
-    private void drawFood(final Graphics2D g, final IngredientImpl i, final int count) {
-        switch (i.getIngredient()) {
-        case BREAD:
-            g.drawImage(im.getFoodSprites().getBreadSprite().get(0).getImage(), 420 + count * 100, yoffset + 25, 60, 60,
-                    null);
-            break;
-        case MEAT:
-            g.drawImage(im.getFoodSprites().getMeatSprite().get(0).getImage(), 420 + count * 100, yoffset + 25, 60, 60,
-                    null);
-            break;
-        case LETTUCE:
-            g.drawImage(im.getFoodSprites().getLettuceSprite().get(0).getImage(), 420 + count * 100, yoffset + 25, 60,
-                    60, null);
-            break;
-        case TOMATO:
-            g.drawImage(im.getFoodSprites().getTomatoSprite().get(0).getImage(), 420 + count * 100, yoffset + 25, 60, 60,
-                    null);
-            break;
-        default:
-            break;
-        }
-
-        switch (i.getState()) {
-        case CHOPPED:
-            g.drawImage(im.getFoodSprites().getItemSprite().get(0).getImage(), 425 + count * 100, yoffset + 95, 20, 20,
-                    null);
-            break;
-        case PERFECT:
-            g.drawImage(im.getFoodSprites().getItemSprite().get(1).getImage(), 445 + count * 100, yoffset + 95, 20, 20,
-                    null);
-            break;
-        default:
-            break;
+        // draw time
+        int minutes = (int) world.getGameTimer().getMinutes();
+        int seconds = (int) world.getGameTimer().getSeconds();
+        if (minutes < 10) {
+            if (seconds < 10) {
+                Content.drawString(g, "0" + minutes + ":0" + seconds, 17, 704);
+            } else {
+                Content.drawString(g, "0" + minutes + ":" + seconds, 17, 704);
+            }
+        } else {
+            if (seconds < 10) {
+                Content.drawString(g, minutes + ":0" + seconds, 17, 704);
+            } else {
+                Content.drawString(g, minutes + ":" + seconds, 17, 704);
+            }
         }
     }
 }
