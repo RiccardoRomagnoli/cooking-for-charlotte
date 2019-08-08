@@ -15,6 +15,7 @@ public class PauseState extends GameState {
 
     /**
      * Class constructor.
+     * 
      * @param gsm gamestate
      */
     public PauseState(final GameStateManager gsm) {
@@ -25,7 +26,7 @@ public class PauseState extends GameState {
      * Init class.
      */
     public void init() {
-        
+
     }
 
     /**
@@ -40,9 +41,11 @@ public class PauseState extends GameState {
      * @param g basic graphics
      */
     public void draw(final Graphics2D g) {
-        if(PlayState.themeIsPlaying) {
-            JukeBoxUtil.stop("themeSong"); 
+        if (PlayState.themeIsPlaying == 1) {
+            JukeBoxUtil.stop("themeSong");
+            PlayState.themeIsPlaying = 2;
         }
+
         Content.drawString(g, "pause", 400, 200);
 
         Content.drawString(g, "arrow keys : move", 120, 270);

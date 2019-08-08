@@ -20,10 +20,14 @@ public class PlayState extends GameState {
     private World world;
     private TopHud topHud;
     private DownHud downHud;
-    public static boolean themeIsPlaying = true;
+    /**
+     * 0 - not playing (never started) / 1 - playing / 2 - not playing (paused).
+     */
+    public static int themeIsPlaying;
 
     /**
      * Constructor.
+     * 
      * @param gsm state manager
      */
     public PlayState(final GameStateManager gsm) {
@@ -43,8 +47,7 @@ public class PlayState extends GameState {
             e.printStackTrace();
         }
         JukeBoxUtil.load("/SFX/themeSong.wav", "themeSong");
-        JukeBoxUtil.play("themeSong");
-    }   
+    }
 
     /**
      * {@inheritDoc}
@@ -57,8 +60,12 @@ public class PlayState extends GameState {
      * {@inheritDoc}
      */
     public void draw(final Graphics2D g) {
-        if (!themeIsPlaying) {
+        if (themeIsPlaying == 0) {
+            JukeBoxUtil.play("themeSong");
+            themeIsPlaying = 1;
+        } else if (themeIsPlaying == 2) {
             JukeBoxUtil.resume("themeSong");
+            themeIsPlaying = 1;
         }
         world.draw(g);
         topHud.draw(g);
@@ -67,6 +74,7 @@ public class PlayState extends GameState {
 
     /**
      * Return the created world.
+     * 
      * @return world
      */
     public World getWorld() {
