@@ -26,7 +26,7 @@ public class PlateStation extends AbstractStationObject{
     @Override
     public void doAction(final World world) {
         if (!world.getPlayer().getItemInHand().isPresent()) {
-            final PlateImpl plate = new PlateImpl();
+            final PlateImpl plate = new PlateImpl(world.getItemManager());
             world.addItem(plate);
             world.getPlayer().setItemInHand(plate);
         }

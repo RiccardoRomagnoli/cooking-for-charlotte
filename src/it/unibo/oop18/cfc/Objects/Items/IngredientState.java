@@ -5,25 +5,36 @@ public enum IngredientState {
     /**
      * the ingredient as you pick it up.
      */
-    RAW,
+    RAW(0),
 
     /**
      * the ingredient after being chopped.
      */
-    CHOPPED,
+    CHOPPED(1),
 
     /**
      * the ingredient perfectly cooked.
      */
-    PERFECT,
+    PERFECT(2),
 
     /**
      * the ingredient is overcooked, so burned but still edible.
      */
-    BURNED,
+    BURNED(3),
 
     /**
      * the ingredient is dangerous to eat, unusable.
      */
-    WASTE;
+    WASTE(4);
+
+    private int x;
+
+    private IngredientState(int x) {
+        this.x = x;
+    }
+
+    public int getX() {
+        return this.x;
+    }
+
 }

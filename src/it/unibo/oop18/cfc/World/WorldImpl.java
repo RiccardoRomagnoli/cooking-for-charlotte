@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import it.unibo.oop18.cfc.Manager.ItemManager;
 import it.unibo.oop18.cfc.Manager.SpriteManager;
 import it.unibo.oop18.cfc.Manager.TileManager;
 import it.unibo.oop18.cfc.Objects.GameObject;
@@ -56,7 +57,6 @@ public class WorldImpl implements World {
      * Path to map.
      */
     public static final String MAPPATH = "/Maps/testmap1.map";
-
     /**
      * Path to tilesheet.
      */
@@ -65,6 +65,10 @@ public class WorldImpl implements World {
      * Path to player Sprite.
      */
     public static final String SPRITEPATH = "/Sprites/baker.png";
+    /**
+     * Path to player Sprite.
+     */
+    public static final String ITEMPATH = "/Sprites/itemSprite.png";
 
     private final Set<ChoppingStation> choppingStations;
     private final Set<Cooker> cookers;
@@ -79,10 +83,14 @@ public class WorldImpl implements World {
     private final Set<Washbasin> washbasins;
     private final Set<ParquetFloor> parquetFloor;
     private final Set<Item> itemsInWorld;
+
     private PlayerImpl player;
     private final GameTimer timer;
     // private final PlayerScore score;
 
+    private final TileManager tileManager;
+    private final SpriteManager spriteManager;
+    private final ItemManager itemManager;
     /**
      * Creates a {@code WorldImpl}.
      * 
@@ -103,8 +111,32 @@ public class WorldImpl implements World {
         this.trashcans = new HashSet<>();
         this.washbasins = new HashSet<>();
         this.parquetFloor = new HashSet<>();
-        this.createLevel(new TileManager(TILEPATH), new SpriteManager(SPRITEPATH), MAPPATH);
+        this.tileManager = new TileManager(TILEPATH);
+        this.spriteManager = new SpriteManager(SPRITEPATH);
+        this.itemManager = new ItemManager(ITEMPATH);
+        this.createLevel(tileManager, spriteManager, MAPPATH);
         this.itemsInWorld = new HashSet<>();
+    }
+
+    /**
+     * @return the tileManager
+     */
+    public TileManager getTileManager() {
+        return tileManager;
+    }
+
+    /**
+     * @return the spriteManager
+     */
+    public SpriteManager getSpriteManager() {
+        return spriteManager;
+    }
+
+    /**
+     * @return the itemManager
+     */
+    public ItemManager getItemManager() {
+        return itemManager;
     }
 
     /**

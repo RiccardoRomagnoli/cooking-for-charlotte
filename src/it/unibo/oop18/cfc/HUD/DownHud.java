@@ -63,19 +63,19 @@ public class DownHud {
     private void drawFood(final Graphics2D g, final IngredientImpl i, final int count) {
         switch (i.getIngredient()) {
         case BREAD:
-            g.drawImage(im.getFoodSprites().getBreadSprite().get(0).getImage(), 420 + count * 95, yoffset + 25, 60, 60,
+            g.drawImage(im.getFoodSprites().getBreadSprite().get(0).getImage(), 420 + count * 100, yoffset + 25, 60, 60,
                     null);
             break;
         case MEAT:
-            g.drawImage(im.getFoodSprites().getMeatSprite().get(0).getImage(), 420 + count * 95, yoffset + 25, 60, 60,
+            g.drawImage(im.getFoodSprites().getMeatSprite().get(0).getImage(), 420 + count * 100, yoffset + 25, 60, 60,
                     null);
             break;
         case LETTUCE:
-            g.drawImage(im.getFoodSprites().getLettuceSprite().get(0).getImage(), 420 + count * 95, yoffset + 25, 60,
+            g.drawImage(im.getFoodSprites().getLettuceSprite().get(0).getImage(), 420 + count * 100, yoffset + 25, 60,
                     60, null);
             break;
         case TOMATO:
-            g.drawImage(im.getFoodSprites().getTomatoSprite().get(0).getImage(), 420 + count * 95, yoffset + 25, 60, 60,
+            g.drawImage(im.getFoodSprites().getTomatoSprite().get(0).getImage(), 420 + count * 100, yoffset + 25, 60, 60,
                     null);
             break;
         default:
@@ -84,11 +84,11 @@ public class DownHud {
 
         switch (i.getState()) {
         case CHOPPED:
-            g.drawImage(im.getFoodSprites().getItemSprite().get(0).getImage(), 420 + count * 95, yoffset + 25, 60, 60,
+            g.drawImage(im.getFoodSprites().getItemSprite().get(0).getImage(), 425 + count * 100, yoffset + 95, 20, 20,
                     null);
             break;
         case PERFECT:
-            g.drawImage(im.getFoodSprites().getItemSprite().get(1).getImage(), 420 + count * 95, yoffset + 25, 60, 60,
+            g.drawImage(im.getFoodSprites().getItemSprite().get(1).getImage(), 445 + count * 100, yoffset + 95, 20, 20,
                     null);
             break;
         default:

@@ -35,7 +35,7 @@ public class MeatStation extends AbstractStationObject {
     @Override
     public void doAction(final World world) {
         if (!world.getPlayer().getItemInHand().isPresent()) {
-            final IngredientImpl meat = new IngredientImpl(IngredientType.MEAT);
+            final IngredientImpl meat = new IngredientImpl(world.getItemManager(), IngredientType.MEAT);
             world.addItem(meat);
             world.getPlayer().setItemInHand(meat);
         }

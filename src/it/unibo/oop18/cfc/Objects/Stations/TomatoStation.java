@@ -35,7 +35,7 @@ public class TomatoStation extends AbstractStationObject {
     @Override
     public void doAction(final World world) {
         if (!world.getPlayer().getItemInHand().isPresent()) {
-            final IngredientImpl tomato = new IngredientImpl(IngredientType.TOMATO);
+            final IngredientImpl tomato = new IngredientImpl(world.getItemManager(), IngredientType.TOMATO);
             world.addItem(tomato);
             world.getPlayer().setItemInHand(tomato);
         }
