@@ -82,11 +82,11 @@ public class IngredientImpl extends AbstractItem implements Ingredient, OrderIng
     @Override
     public CheckStatus checkIngredient(Ingredient ingredient) {
         CheckStatus returnStatus = CheckStatus.NOT_ACCEPTABLE;
-        if(ingredient.getIngredient().equals(this.type)) {
-            returnStatus = CheckStatus.ACCEPTABLE_WITH_ERROR;
-        }else if(ingredient.getIngredient().equals(this.type) && 
+        if(ingredient.getIngredient().equals(this.type) && 
                  ingredient.getState().equals(this.state)) {
             returnStatus = CheckStatus.ACCEPTABLE_WITHOUT_ERROR;
+        } else if(ingredient.getIngredient().equals(this.type)) {
+            returnStatus = CheckStatus.ACCEPTABLE_WITH_ERROR;
         }
         return returnStatus;
     }

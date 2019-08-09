@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import it.unibo.oop18.cfc.Manager.ItemManager;
 import it.unibo.oop18.cfc.Util.CheckStatus;
@@ -70,14 +71,26 @@ public class PlateImpl extends AbstractItem implements Plate {
     
     @Override
     public boolean checkIngredients(ArrayList<OrderIngredient> ingredientsList) {
+        ArrayList<IngredientImpl> cloneIngredients = (ArrayList<IngredientImpl>) ingredients.clone();
         boolean ret = true;
-        
+        boolean found = false;
+        int cont = 0;
         for(OrderIngredient orderIngredient : ingredientsList) {
-            for(Ingredient plateIngredient : this.ingredients) {
-                if(orderIngredient.checkIngredient(plateIngredient).equals(CheckStatus.NOT_ACCEPTABLE)) {
+            while(!found && cloneIngredients.size()>0) {
+                Ingredient plateIngredient = cloneIngredients.get(cont);
+                CheckStatus status = orderIngredient.checkIngredient(plateIngredient);
+                if(status.equals(CheckStatus.NOT_ACCEPTABLE)) {
                     ret = false;
+                    cont++;
+                }
+                if(status.equals(CheckStatus.ACCEPTABLE_WITH_ERROR) || 
+                   status.equals(CheckStatus.ACCEPTABLE_WITHOUT_ERROR)) {
+                    found = true;
+                    cloneIngredients.remove(cont);
                 }
             }
+            found = false;
+            cont = 0;
         }
         return ret;
     }

@@ -59,6 +59,11 @@ public class OrderImpl implements Order {
     public int getOrderIngredientQuantity() {
         return ingredientsList.size();
     }
+    
+    @Override
+    public ArrayList<OrderIngredient> getIngredientsList() {
+        return ingredientsList;
+    }
 
     @Override
     public void draw(Graphics2D g) {
@@ -68,6 +73,7 @@ public class OrderImpl implements Order {
 
     @Override
     public void startOrder() {
+        this.countDownTimer = new Timer();
         countDownTimer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -78,6 +84,12 @@ public class OrderImpl implements Order {
                 }
             }
         }, 0, TIMER_PERIOD);
+    }
+    
+    @Override
+    public void stopOrder() {
+        countDownTimer.cancel();
+        countDownTimer.purge();
     }
 
 }
