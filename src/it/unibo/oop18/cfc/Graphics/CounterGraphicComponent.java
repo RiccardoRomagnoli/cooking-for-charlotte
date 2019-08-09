@@ -13,11 +13,11 @@ public class CounterGraphicComponent implements GraphicsComponent {
     private final Counter counter;
     private final CounterTile counterTile;
 
-    private static final int POSITION_X_ITEM = 8;
+    private static final int POSITION_X_ITEM = 18;
     private static final int POSITION_Y_ITEM = -2;
     private static final int HEIGHT_ITEM = 30;
     private static final int WIDTH_ITEM = 30;
-    private static final int POSITION_X_ITEM1 = 5;
+    private static final int POSITION_X_ITEM1 = 15;
     private static final int POSITION_Y_ITEM1 = 13;
 
     /** 
