@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import it.unibo.oop18.cfc.Graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.Graphics.TrashcanGraphicComponent;
 import it.unibo.oop18.cfc.Tile.TrashcanTile;
+import it.unibo.oop18.cfc.Util.JukeBoxUtil;
 import it.unibo.oop18.cfc.Util.Position;
 import it.unibo.oop18.cfc.World.World;
 
@@ -26,6 +27,7 @@ public class Trashcan extends AbstractStationObject{
     public void doAction(World world) {
         if (world.getPlayer().getItemInHand().isPresent()) {
             world.getPlayer().removeItemInHand();
+            JukeBoxUtil.play("trash.wav");
         }
     }
 }
