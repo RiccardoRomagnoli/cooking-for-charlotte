@@ -9,5 +9,7 @@ public interface Plate {
 
     ArrayList<IngredientImpl> getIngredients();
 
-    boolean checkReady();
+    public boolean checkReady();
+
+    public boolean checkIngredients(ArrayList<OrderIngredient> ingredientsList);
 }

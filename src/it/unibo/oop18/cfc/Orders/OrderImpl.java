@@ -16,7 +16,7 @@ public class OrderImpl implements Order {
     
     private final static int TIMER_PERIOD = 1000;
 	
-    private final ArrayList<OrderIngredient> plate;
+    private final ArrayList<OrderIngredient> ingredientsList;
     private int points;
     private int slot; // 1 2 3 4
     private int countDownTime;
@@ -28,13 +28,12 @@ public class OrderImpl implements Order {
         thisOrder = this;
         this.ordersManager = ordersManager;
         this.countDownTimer = new Timer();
-	plate = new ArrayList<>();
+	ingredientsList = new ArrayList<>();
     }
 
     @Override
     public boolean checkOrder(Plate plate) {
-        // TODO Auto-generated method stub
-	return false;
+        return plate.checkIngredients(this.ingredientsList);
     }
     
     public int getPoints() {
@@ -42,9 +41,9 @@ public class OrderImpl implements Order {
     }
     
     public void addIngredient(IngredientType ingredientType, IngredientState ingredientState) {
-        if(plate.size()==4)
+        if(ingredientsList.size()==4)
             throw new IllegalStateException();
-        plate.add(new IngredientImpl(this.ordersManager.getWorld().getItemManager(), ingredientType, ingredientState));
+        ingredientsList.add(new IngredientImpl(this.ordersManager.getWorld().getItemManager(), ingredientType, ingredientState));
     }
     
     public void setSlot(int slot) {
@@ -58,7 +57,7 @@ public class OrderImpl implements Order {
 
     @Override
     public int getOrderIngredientQuantity() {
-        return plate.size();
+        return ingredientsList.size();
     }
 
     @Override

@@ -6,6 +6,7 @@ import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 
 import it.unibo.oop18.cfc.Manager.ItemManager;
+import it.unibo.oop18.cfc.Util.CheckStatus;
 import it.unibo.oop18.cfc.Util.Position;
 
 public class PlateImpl extends AbstractItem implements Plate {
@@ -65,5 +66,19 @@ public class PlateImpl extends AbstractItem implements Plate {
     public void draw(Graphics2D g, Position p, int width, int height) {
         g.drawImage(super.getItemManager().getPlateSprites().getPlateSprite().get(0).getImage().getScaledInstance(width,
                 height, Image.SCALE_SMOOTH), AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
+    }
+    
+    @Override
+    public boolean checkIngredients(ArrayList<OrderIngredient> ingredientsList) {
+        boolean ret = true;
+        
+        for(OrderIngredient orderIngredient : ingredientsList) {
+            for(Ingredient plateIngredient : this.ingredients) {
+                if(orderIngredient.checkIngredient(plateIngredient).equals(CheckStatus.NOT_ACCEPTABLE)) {
+                    ret = false;
+                }
+            }
+        }
+        return ret;
     }
 }
