@@ -18,7 +18,6 @@ public class Cooker extends AbstractStationObject {
     private final GraphicsComponent graphicComponent;
     private GameTimer timer;
     private Optional<IngredientImpl> food;
-    private World world;
     private boolean isCooking;
     /**
      * Creates a generic {@code Station}.
@@ -36,6 +35,10 @@ public class Cooker extends AbstractStationObject {
 
     public void draw(final Graphics2D g) {
         this.graphicComponent.draw(g);
+    }
+
+    public GameTimer getCookerTimer() {
+        return this.timer;
     }
 
     public Optional<IngredientImpl> getFood() {
@@ -88,7 +91,7 @@ public class Cooker extends AbstractStationObject {
                         // aggiungi l'ingrediente nel piatto e toglilo dalla station
                         ((PlateImpl) world.getPlayer().getItemInHand().get()).addDish(food.get());
                         this.food = Optional.empty();
-                        this.timer.stop();
+                        this.timer.reset();
                         this.isCooking = false;
                     }
                 }
@@ -97,7 +100,7 @@ public class Cooker extends AbstractStationObject {
                 if (this.food.get().getState() == IngredientState.PERFECT) {
                     world.getPlayer().setItemInHand(this.food.get());
                     this.food = Optional.empty();
-                    this.timer.stop();
+                    this.timer.reset();
                     this.isCooking = false;
                 }
             }
