@@ -5,9 +5,10 @@ import java.awt.Image;
 import java.awt.geom.AffineTransform;
 
 import it.unibo.oop18.cfc.Manager.ItemManager;
+import it.unibo.oop18.cfc.Util.CheckStatus;
 import it.unibo.oop18.cfc.Util.Position;
 
-public class IngredientImpl extends AbstractItem implements Ingredient {
+public class IngredientImpl extends AbstractItem implements Ingredient, OrderIngredient {
 
     private IngredientType type;
     private IngredientState state;
@@ -16,6 +17,12 @@ public class IngredientImpl extends AbstractItem implements Ingredient {
         super(itemManager);
         this.type = type;
         this.state = IngredientState.RAW;
+    }
+    
+    public IngredientImpl(final ItemManager itemManager, final IngredientType type, final IngredientState state) {
+        super(itemManager);
+        this.type = type;
+        this.state = state;
     }
 
     public IngredientType getIngredient() {
@@ -70,5 +77,17 @@ public class IngredientImpl extends AbstractItem implements Ingredient {
         default:
             break;
         }
+    }
+
+    @Override
+    public CheckStatus checkIngredient(Ingredient ingredient) {
+        CheckStatus returnStatus = CheckStatus.NOT_ACCEPTABLE;
+        if(ingredient.getIngredient().equals(this.type)) {
+            returnStatus = CheckStatus.ACCEPTABLE_WITH_ERROR;
+        }else if(ingredient.getIngredient().equals(this.type) && 
+                 ingredient.getState().equals(this.state)) {
+            returnStatus = CheckStatus.ACCEPTABLE_WITHOUT_ERROR;
+        }
+        return returnStatus;
     }
 }
