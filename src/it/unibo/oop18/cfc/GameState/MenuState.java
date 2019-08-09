@@ -97,6 +97,7 @@ public class MenuState extends GameState {
         }
         if (currentOption == 3) {
             JukeBoxUtil.stop("menuSong");
+            JukeBoxUtil.closeResource();
             System.exit(0);
         }
     }

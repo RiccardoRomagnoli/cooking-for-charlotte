@@ -1,6 +1,7 @@
 package it.unibo.oop18.cfc.Util;
 
 import java.io.BufferedInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +21,17 @@ public final class JukeBoxUtil {
     private static Map<String, Clip> clips;
     private static int gap;
     private static int volume = 15;
-
+    private static float gain;
+    private static float dB;
+    private static InputStream in;
+    private static InputStream bin;
+    private static AudioInputStream ais;
+    private static AudioFormat baseFormat;
+    private static AudioFormat decodeFormat;
+    private static AudioInputStream dais;
+    private static FloatControl gainControl;
+    private static BooleanControl muteControl;
+    
     private JukeBoxUtil() {
 
     }
@@ -45,17 +56,17 @@ public final class JukeBoxUtil {
         }
         Clip clip;
         try {
-            final InputStream in = JukeBoxUtil.class.getResourceAsStream(s);
-            final InputStream bin = new BufferedInputStream(in);
-            final AudioInputStream ais = AudioSystem.getAudioInputStream(bin);
-            final AudioFormat baseFormat = ais.getFormat();
-            final AudioFormat decodeFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED,
-                    baseFormat.getSampleRate(), 16, baseFormat.getChannels(), baseFormat.getChannels() * 2,
-                    baseFormat.getSampleRate(), false);
-            final AudioInputStream dais = AudioSystem.getAudioInputStream(decodeFormat, ais);
+            in = JukeBoxUtil.class.getResourceAsStream(s);
+            bin = new BufferedInputStream(in);
+            ais = AudioSystem.getAudioInputStream(bin);
+            baseFormat = ais.getFormat();
+            decodeFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, baseFormat.getSampleRate(), 16,
+                    baseFormat.getChannels(), baseFormat.getChannels() * 2, baseFormat.getSampleRate(), false);
+            dais = AudioSystem.getAudioInputStream(decodeFormat, ais);
             clip = AudioSystem.getClip();
             clip.open(dais);
             clips.put(n, clip);
+
         } catch (final Exception e) {
             e.printStackTrace();
         }
@@ -78,8 +89,7 @@ public final class JukeBoxUtil {
      */
     public static void play(final String s, final int i) {
         final Clip c = clips.get(s);
-        float f;
-        f = (float) (getVolume() * 0.06);
+        final float f = (float) (getVolume() * 0.06);
         setVolume(s, f);
         if (c == null) {
             return;
@@ -113,7 +123,7 @@ public final class JukeBoxUtil {
      * @param s clip name
      */
     public static void resume(final String s) {
-        float f =  (float) (getVolume() * 0.06);
+        final float f = (float) (getVolume() * 0.06);
         setVolume(s, f);
         if (clips.get(s).isRunning()) {
             return;
@@ -186,7 +196,7 @@ public final class JukeBoxUtil {
     }
 
     /**
-     * Set position clip
+     * Set position clip.
      * 
      * @param s     clip name
      * @param frame frame to be setted
@@ -236,18 +246,16 @@ public final class JukeBoxUtil {
         if (c == null) {
             return;
         }
-        final BooleanControl muteControl = (BooleanControl) c.getControl(BooleanControl.Type.MUTE);
+        muteControl = (BooleanControl) c.getControl(BooleanControl.Type.MUTE);
         if (f == 0) {
             muteControl.setValue(true);
         } else {
             muteControl.setValue(false);
         }
-        final FloatControl gainControl = (FloatControl) c.getControl(FloatControl.Type.MASTER_GAIN);
-        final double gain = f / 3; // number between 0 and 2 (loudest)
-        final float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
+        gainControl = (FloatControl) c.getControl(FloatControl.Type.MASTER_GAIN);
+        gain = f / 3; // number between 0 and 2 (loudest)
+        dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
         gainControl.setValue(dB);
-
-        // System.out.println(dB);
     }
 
     /**
@@ -274,12 +282,28 @@ public final class JukeBoxUtil {
     }
 
     /**
-     * Volume setter
+     * Volume setter.
      * 
      * @param volume to be setted
      */
-    public static void setVolume(int volume) {
+    public static void setVolume(final int volume) {
         JukeBoxUtil.volume = volume;
+    }
+
+    /**
+     * Close all the open resources ( audio stream ).
+     * 
+     * @throws IOException if stream are not open
+     */
+    public static void closeResource() {
+        try {
+            in.close();
+            bin.close();
+            ais.close();
+            dais.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
