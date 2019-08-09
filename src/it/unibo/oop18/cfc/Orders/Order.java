@@ -26,7 +26,7 @@ public interface Order{
     
     public int getOrderIngredientQuantity();
     
-    public void addIngredient(IngredientType food, IngredientState ingredientState);
+    public void addIngredient(IngredientType ingredientType, IngredientState ingredientState);
     
-    public void setCountDownTimer(int timeInMillis);
+    public void setCountDownTimer(int timeInSeconds);
 }

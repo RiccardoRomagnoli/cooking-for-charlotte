@@ -13,7 +13,7 @@ import it.unibo.oop18.cfc.Util.Pair;
 
 public class OrderGeneratorImpl extends TimerTask implements OrderGenerator {
 
-    private final Timer timer;
+    private Timer timer;
     private OrderDifficulty currentDifficulty;
     private final List<Pair<IngredientType, IngredientState>> orderIngredientsAvaiable;
     private final Random random;
@@ -21,15 +21,23 @@ public class OrderGeneratorImpl extends TimerTask implements OrderGenerator {
     
     public OrderGeneratorImpl(OrdersManager ordersManager) {
         this.ordersManager = ordersManager;
-        timer = new Timer();
-        orderIngredientsAvaiable = new ArrayList<>();
-        random = new Random();
+        this.timer = new Timer();
+        this.orderIngredientsAvaiable = new ArrayList<>();
+        this.random = new Random();
+        this.currentDifficulty = OrderDifficulty.EASY;
         initList();
     }
 
     @Override
     public void startGeneration(long intervalMilliseconds){
+        this.timer = new Timer();
         timer.schedule(this, 0, intervalMilliseconds);
+    }
+    
+    @Override
+    public void stopGeneration() {
+        this.timer.cancel();
+        this.timer.purge();
     }
     
     @Override
@@ -50,18 +58,20 @@ public class OrderGeneratorImpl extends TimerTask implements OrderGenerator {
      * @return Order generated
      */
     public void generateNewOrder() {
-        Order o = new OrderImpl(ordersManager);
-        if(getRandomRecipe().equals(Recipes.BURGER)) {
-            o.addIngredient(IngredientType.BREAD, IngredientState.RAW);
+        if(ordersManager.getOrderQuantity()!=4) {
+            Order o = new OrderImpl(ordersManager);
+            if(getRandomRecipe().equals(Recipes.BURGER)) {
+                o.addIngredient(IngredientType.BREAD, IngredientState.CHOPPED);
+            }
+            while(o.getOrderIngredientQuantity() - currentDifficulty.getNumberOfIngredients() != 0) {
+                int randIng = random.nextInt(orderIngredientsAvaiable.size());
+                o.addIngredient(orderIngredientsAvaiable.get(randIng).getFirst(), 
+                                orderIngredientsAvaiable.get(randIng).getSecond());
+            }
+            o.setCountDownTimer(currentDifficulty.getSecondsOfConutDown());
+            o.startOrder();
+            ordersManager.addOrder(o);
         }
-        while(o.getOrderIngredientQuantity() - currentDifficulty.getNumberOfIngredients() == 0) {
-            int randIng = random.nextInt(orderIngredientsAvaiable.size());
-            o.addIngredient(orderIngredientsAvaiable.get(randIng).getFirst(), 
-                            orderIngredientsAvaiable.get(randIng).getSecond());
-        }
-        o.setCountDownTimer(currentDifficulty.getSecondsOfConutDown()*1000);
-        o.startOrder();
-        ordersManager.addOrder(o);
     }
     
     private Recipes getRandomRecipe() {

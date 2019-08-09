@@ -23,9 +23,12 @@ public class OrdersManagerImpl implements OrdersManager {
         finishedOrders = new ArrayList<>();
         gameTimer = world.getGameTimer();
         generator = new OrderGeneratorImpl(this);
-        generator.startGeneration(INTERVAL_MILLISECONDS);
     }   
     
+    public World getWorld() {
+        return world;
+    }
+
     @Override
     public boolean deliveryPlate(Plate plate) {
         Optional<Order> order = checkOrder(plate);
@@ -62,6 +65,26 @@ public class OrdersManagerImpl implements OrdersManager {
         currentOrders.remove(order);
         finishedOrders.add(order);
         this.world.lifeLoss();
+    }
+    
+    @Override
+    public ArrayList<Order> getCurrentOrders() {
+        return currentOrders;
+    }
+
+    @Override
+    public ArrayList<Order> getFinishedOrders() {
+        return finishedOrders;
+    }
+    
+    @Override
+    public void startGeneration() {
+        generator.startGeneration(INTERVAL_MILLISECONDS);
+    }
+    
+    @Override
+    public void stopGeneration() {
+        generator.stopGeneration();;
     }
 
     private Optional<Order> checkOrder(Plate plate) {

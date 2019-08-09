@@ -6,6 +6,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import it.unibo.oop18.cfc.Objects.Items.IngredientType;
+import it.unibo.oop18.cfc.Objects.Items.OrderIngredient;
+import it.unibo.oop18.cfc.Objects.Items.IngredientImpl;
 import it.unibo.oop18.cfc.Objects.Items.IngredientState;
 import it.unibo.oop18.cfc.Objects.Items.Plate;
 import it.unibo.oop18.cfc.Util.Pair;
@@ -14,7 +16,7 @@ public class OrderImpl implements Order {
     
     private final static int TIMER_PERIOD = 1000;
 	
-    private final ArrayList<Pair<IngredientType, IngredientState>> plate;
+    private final ArrayList<OrderIngredient> plate;
     private int points;
     private int slot; // 1 2 3 4
     private int countDownTime;
@@ -25,6 +27,7 @@ public class OrderImpl implements Order {
     public OrderImpl(final OrdersManager ordersManager) {
         thisOrder = this;
         this.ordersManager = ordersManager;
+        this.countDownTimer = new Timer();
 	plate = new ArrayList<>();
     }
 
@@ -38,10 +41,10 @@ public class OrderImpl implements Order {
         return points;
     }
     
-    public void addIngredient(IngredientType food, IngredientState ingredientState) {
-        if(plate.size()>4)
+    public void addIngredient(IngredientType ingredientType, IngredientState ingredientState) {
+        if(plate.size()==4)
             throw new IllegalStateException();
-        plate.add(new Pair<IngredientType, IngredientState>(food, ingredientState));
+        plate.add(new IngredientImpl(this.ordersManager.getWorld().getItemManager(), ingredientType, ingredientState));
     }
     
     public void setSlot(int slot) {
@@ -49,8 +52,8 @@ public class OrderImpl implements Order {
     }
 
     @Override
-    public void setCountDownTimer(int timeInMillis) {
-
+    public void setCountDownTimer(int timeInSeconds) {
+        this.countDownTime = timeInSeconds;
     }
 
     @Override
