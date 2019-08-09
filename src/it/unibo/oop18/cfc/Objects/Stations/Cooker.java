@@ -8,6 +8,7 @@ import it.unibo.oop18.cfc.Graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.Objects.Items.IngredientImpl;
 import it.unibo.oop18.cfc.Objects.Items.IngredientState;
 import it.unibo.oop18.cfc.Objects.Items.PlateImpl;
+import it.unibo.oop18.cfc.Sprite.LoadingSprite;
 import it.unibo.oop18.cfc.Tile.CookerTile;
 import it.unibo.oop18.cfc.Util.GameTimer;
 import it.unibo.oop18.cfc.Util.Position;
@@ -25,12 +26,12 @@ public class Cooker extends AbstractStationObject {
      * @param position block's position
      * @param cookerTile   block's tile
      */
-    public Cooker(final Position position, final CookerTile cookerTile) {
+    public Cooker(final Position position, final CookerTile cookerTile, final LoadingSprite loadingSprite) {
         super(position);
         this.food = Optional.empty();
         this.timer = new GameTimer();
         this.isCooking = false;
-        this.graphicComponent = new CookerGraphicComponent(this, cookerTile);
+        this.graphicComponent = new CookerGraphicComponent(this, cookerTile, loadingSprite);
     }
 
     public void draw(final Graphics2D g) {

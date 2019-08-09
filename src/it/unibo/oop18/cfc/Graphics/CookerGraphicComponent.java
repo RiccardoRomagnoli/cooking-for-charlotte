@@ -6,6 +6,7 @@ import java.awt.geom.AffineTransform;
 import it.unibo.oop18.cfc.Main.GameEngine;
 import it.unibo.oop18.cfc.Objects.Items.IngredientState;
 import it.unibo.oop18.cfc.Objects.Stations.Cooker;
+import it.unibo.oop18.cfc.Sprite.LoadingSprite;
 import it.unibo.oop18.cfc.Tile.CookerTile;
 import it.unibo.oop18.cfc.Tile.TileSheet;
 import it.unibo.oop18.cfc.Util.Position;
@@ -19,12 +20,13 @@ public class CookerGraphicComponent implements GraphicsComponent {
     private static final int POSITION_Y_INGREDIENT = 3;
     private static final int DIM_INGREDIENT = 20;
     private static final int POSITION_X_BAR = 19;
-    private static final int POSITION_Y_BAR = 47;
-    private static final double DIM_BAR = 28.0;
+    private static final int POSITION_Y_BAR = 46;
+    private static final double WIDTH_BAR = 28.0;
     private static final int HEIGHT_BAR = 6;
 
     private final Cooker cooker;
     private final CookerTile cookerTile;
+    private final LoadingSprite loadingSprite;
     private int frame;
     private int updateFrame;
     /**
@@ -33,9 +35,10 @@ public class CookerGraphicComponent implements GraphicsComponent {
      * @param cooker the logic of the door
      * @param cookerTile door's sprite
      */
-    public CookerGraphicComponent(final Cooker cooker, final CookerTile cookerTile) {
+    public CookerGraphicComponent(final Cooker cooker, final CookerTile cookerTile, final LoadingSprite loadingSprite) {
         this.cooker = cooker;
         this.cookerTile = cookerTile;
+        this.loadingSprite = loadingSprite;
         this.frame = 0;
         this.updateFrame = 0;
     }
@@ -61,20 +64,26 @@ public class CookerGraphicComponent implements GraphicsComponent {
         }
         if (this.cooker.getFood().isPresent() && this.cooker.isCooked()) {
             if (this.cooker.getFood().get().getState() == IngredientState.CHOPPED) {
-                g.drawRect((int) this.cooker.getPosition().getX() + POSITION_X_BAR, (int) this.cooker.getPosition().getY() + POSITION_Y_BAR,
-                        (int) ((DIM_BAR / (this.cooker.getFood().get().getIngredient().getTimeToCook() * 1000))
+                g.drawImage(loadingSprite.getLoadingSprite().get(1).getImage(),
+                        (int) this.cooker.getPosition().getX() + POSITION_X_BAR,
+                        (int) this.cooker.getPosition().getY() + POSITION_Y_BAR,
+                        (int) ((WIDTH_BAR / (this.cooker.getFood().get().getIngredient().getTimeToCook() * 1000))
                                 * this.cooker.getCookerTimer().getTimeMillis()),
-                        HEIGHT_BAR);
+                        HEIGHT_BAR, null);
             } else if (this.cooker.getFood().get().getState() == IngredientState.PERFECT) {
-                g.drawRect((int) this.cooker.getPosition().getX() + POSITION_X_BAR, (int) this.cooker.getPosition().getY() + POSITION_Y_BAR,
-                        (int) ((DIM_BAR / (5 * 1000))
-                                * (this.cooker.getCookerTimer().getTimeMillis() - (this.cooker.getFood().get().getIngredient().getTimeToCook() * 1000))),
-                        HEIGHT_BAR);
-            } else if (this.cooker.getFood().get().getState() == IngredientState.BURNED){
-                g.drawRect((int) this.cooker.getPosition().getX() + POSITION_X_BAR, (int) this.cooker.getPosition().getY() + POSITION_Y_BAR,
-                        (int) ((DIM_BAR / (5 * 1000))
-                                * (this.cooker.getCookerTimer().getTimeMillis() - (this.cooker.getFood().get().getIngredient().getTimeToCook() * 1000) - 5000)),
-                        HEIGHT_BAR);
+                g.drawImage(loadingSprite.getLoadingSprite().get(2).getImage(),
+                        (int) this.cooker.getPosition().getX() + POSITION_X_BAR,
+                        (int) this.cooker.getPosition().getY() + POSITION_Y_BAR,
+                        (int) ((WIDTH_BAR / (5 * 1000)) * (this.cooker.getCookerTimer().getTimeMillis()
+                                - (this.cooker.getFood().get().getIngredient().getTimeToCook() * 1000))),
+                        HEIGHT_BAR, null);
+            } else if (this.cooker.getFood().get().getState() == IngredientState.BURNED) {
+                g.drawImage(loadingSprite.getLoadingSprite().get(3).getImage(),
+                        (int) this.cooker.getPosition().getX() + POSITION_X_BAR,
+                        (int) this.cooker.getPosition().getY() + POSITION_Y_BAR,
+                        (int) ((WIDTH_BAR / (5 * 1000)) * (this.cooker.getCookerTimer().getTimeMillis()
+                                - (this.cooker.getFood().get().getIngredient().getTimeToCook() * 1000) - 5000)),
+                        HEIGHT_BAR, null);
             }
         }
     }

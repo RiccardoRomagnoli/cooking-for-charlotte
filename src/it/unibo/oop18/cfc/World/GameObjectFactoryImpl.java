@@ -52,7 +52,7 @@ public class GameObjectFactoryImpl implements GameObjectFactory {
 
     @Override
     public Cooker createCooker(final Position position) {
-        return new Cooker(new Position(position), this.tm.getCookerTile());
+        return new Cooker(new Position(position), this.tm.getCookerTile(), this.im.getLoadingSprites());
     }
 
     @Override
