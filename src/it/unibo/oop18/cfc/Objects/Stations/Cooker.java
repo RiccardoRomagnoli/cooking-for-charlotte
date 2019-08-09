@@ -97,7 +97,8 @@ public class Cooker extends AbstractStationObject {
                 }
             } else {
                 // se il player non ha niente in mano e l'ingrediente è cotto
-                if (this.food.get().getState() == IngredientState.PERFECT) {
+                if (this.food.get().getState() == IngredientState.PERFECT
+                        || this.food.get().getState() == IngredientState.BURNED) {
                     world.getPlayer().setItemInHand(this.food.get());
                     this.food = Optional.empty();
                     this.timer.reset();
@@ -108,8 +109,9 @@ public class Cooker extends AbstractStationObject {
             // se non c'è cibo e ho in mano qualcosa che sia un ingrediente tagliato
             if (world.getPlayer().getItemInHand().isPresent()
                     && world.getPlayer().getItemInHand().get() instanceof IngredientImpl
-                    && ((IngredientImpl)world.getPlayer().getItemInHand().get()).getState() == IngredientState.CHOPPED 
-                    && ((IngredientImpl)world.getPlayer().getItemInHand().get()).getIngredient().getTimeToCook() != 0) {
+                    && ((IngredientImpl) world.getPlayer().getItemInHand().get()).getState() == IngredientState.CHOPPED
+                    && ((IngredientImpl) world.getPlayer().getItemInHand().get()).getIngredient()
+                            .getTimeToCook() != 0) {
                 // aggiungi l'ingrediente nella station e toglilo dalla mano
                 this.food = Optional.ofNullable((IngredientImpl) world.getPlayer().getItemInHand().get());
                 world.getPlayer().removeItemInHand();
