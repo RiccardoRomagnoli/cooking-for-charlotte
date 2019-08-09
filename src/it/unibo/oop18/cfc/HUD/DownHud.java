@@ -21,17 +21,24 @@ import it.unibo.oop18.cfc.World.World;
 public class DownHud {
 
     public static final String ITEMPATH = "/Sprites/itemSprite.png";
+    private static final int POSITION_X_PLATE = 320;
+    private static final int POSITION_Y_ITEM = 25;
+    private static final int POSITION_Y_STATE = 95;
+    private static final int DIM_ITEM = 60;
+    private static final int POSITION_X_FOOD = 412;
+    private static final int POSITION_X_STATE = 425;
+    private static final int DISTANCE_BETWEEN_FOOD = 100;
+    
+
     private int yoffset;
     private final World world;
     private BufferedImage bar;
-    private ItemManager im;
 
     public DownHud(final World world) throws IOException {
 
         this.yoffset = GameEngine.HEIGHT2;
         this.world = world;
         this.bar = Content.DOWNBAR[0][0];
-        im = world.getItemManager();
     }
 
     public void draw(Graphics2D g) {
@@ -41,14 +48,14 @@ public class DownHud {
         if (world.getPlayer().getItemInHand().isPresent()) {
             if (world.getPlayer().getItemInHand().get() instanceof PlateImpl) {
                 PlateImpl p = ((PlateImpl) world.getPlayer().getItemInHand().get());
-                p.draw(g, new Position(320, yoffset + 25), 60, 60);
-                IntStream.range(0, p.getIngredients().size())
-                        .forEach(a -> { 
-                            p.getIngredient(a).draw(g, new Position(420 + a * 100, yoffset + 25), 50, 50);
-                            p.getIngredient(a).drawState(g, new Position(425 + a * 100, yoffset + 95));
-                        });
+
+                p.draw(g, new Position(POSITION_X_PLATE, yoffset + POSITION_Y_ITEM), DIM_ITEM, DIM_ITEM);
+                IntStream.range(0, p.getIngredients().size()).forEach(a -> {
+                    p.getIngredient(a).draw(g, new Position(POSITION_X_FOOD + a * DISTANCE_BETWEEN_FOOD, yoffset + POSITION_Y_ITEM), 70, DIM_ITEM);
+                    p.getIngredient(a).drawState(g, new Position(POSITION_X_STATE + a * DISTANCE_BETWEEN_FOOD, yoffset + POSITION_Y_STATE));
+                });
             } else {
-                world.getPlayer().getItemInHand().get().draw(g, new Position(420, yoffset + 25), 50, 50);
+                world.getPlayer().getItemInHand().get().draw(g, new Position(POSITION_X_FOOD, yoffset + POSITION_Y_ITEM), 80, DIM_ITEM);
             }
         }
         // draw time
