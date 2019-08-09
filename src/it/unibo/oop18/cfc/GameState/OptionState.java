@@ -48,7 +48,7 @@ public class OptionState extends GameState {
     public void init() {
         bg = Content.MENUBG[0][0];
         food = Content.FOOD[6][2];
-        MenuState.menuIsPlaying=3;
+        //MenuState.menuIsPlaying=3;
     }
 
     /**
@@ -99,6 +99,7 @@ public class OptionState extends GameState {
      */
     public void increase() {
         JukeBoxUtil.play("menuoption");
+        JukeBoxUtil.stop("menuSong");
         if (currentOption == 0) {
             if (lastVolIndex < volume.size() - 1) {
                 lastVolIndex++;
@@ -110,6 +111,7 @@ public class OptionState extends GameState {
                 
             }
         }
+        JukeBoxUtil.resume("menuSong");
     }
 
     /**
@@ -117,6 +119,7 @@ public class OptionState extends GameState {
      */
     public void decrease() {
         JukeBoxUtil.play("menuoption");
+        JukeBoxUtil.stop("menuSong");
         if (currentOption == 0) {
             if (lastVolIndex > 0) {
                 lastVolIndex--;
@@ -127,5 +130,6 @@ public class OptionState extends GameState {
                 lastResIndex--;
             }
         }
+        JukeBoxUtil.resume("menuSong");
     }
 }

@@ -47,9 +47,11 @@ public class MenuState extends GameState {
         JukeBoxUtil.load("/SFX/menuresized.wav", "menuSong");
         if (menuIsPlaying == 0) {
             JukeBoxUtil.play("menuSong");
-        }
-        else if (menuIsPlaying == 3){
+        } else if (menuIsPlaying == 3){
             JukeBoxUtil.play("menuSong");
+        }
+        else if (menuIsPlaying == 2){
+            JukeBoxUtil.resume("menuSong");
         }
     }
 
@@ -85,8 +87,8 @@ public class MenuState extends GameState {
         if (currentOption == 1) {
             gsm.setState(GameStates.OPTION);
             gsm.draw(g);
-            JukeBoxUtil.stop("menuSong");
-            //menuIsPlaying = 1;
+            //JukeBoxUtil.stop("menuSong");
+            menuIsPlaying = 2;
         }
         if (currentOption == 2) {
             gsm.setState(GameStates.INFO);

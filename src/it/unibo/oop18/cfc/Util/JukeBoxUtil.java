@@ -4,7 +4,6 @@ import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -114,6 +113,8 @@ public final class JukeBoxUtil {
      * @param s clip name
      */
     public static void resume(final String s) {
+        float f =  (float) (getVolume() * 0.06);
+        setVolume(s, f);
         if (clips.get(s).isRunning()) {
             return;
         }
