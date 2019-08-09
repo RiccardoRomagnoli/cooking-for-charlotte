@@ -8,8 +8,13 @@ import org.junit.Test;
 import it.unibo.oop18.cfc.Main.GameEngine;
 import it.unibo.oop18.cfc.Manager.ItemManager;
 import it.unibo.oop18.cfc.Objects.Entity.Player;
+import it.unibo.oop18.cfc.Objects.Items.Ingredient;
+import it.unibo.oop18.cfc.Objects.Items.IngredientImpl;
 import it.unibo.oop18.cfc.Objects.Items.IngredientState;
 import it.unibo.oop18.cfc.Objects.Items.IngredientType;
+import it.unibo.oop18.cfc.Objects.Items.OrderIngredient;
+import it.unibo.oop18.cfc.Objects.Items.Plate;
+import it.unibo.oop18.cfc.Objects.Items.PlateImpl;
 import it.unibo.oop18.cfc.Orders.Order;
 import it.unibo.oop18.cfc.Orders.OrderGenerator;
 import it.unibo.oop18.cfc.Orders.OrderGeneratorImpl;
@@ -58,7 +63,7 @@ public class TestOrders {
     }
 
     /**
-     * Test the submission of a plate to the order checker
+     * Test the submission of plates to the order manager
      *
      * @throws IOException 
      */
@@ -66,6 +71,32 @@ public class TestOrders {
     public void testDeliveryAction() throws IOException {
         //World's initialization
         this.world = new WorldImpl();
+        Order o;
+        Plate correctPlate;
+        Plate wrongPlate;
+        correctPlate = new PlateImpl(world.getItemManager());
+        wrongPlate = new PlateImpl(world.getItemManager());
+        OrdersManager ordersMan = new OrdersManagerImpl(world);
+        OrderGenerator orderGen = new OrderGeneratorImpl(ordersMan);
+        //Generate an order
+        orderGen.generateNewOrder();
+        orderGen.generateNewOrder();
+        o = ordersMan.getCurrentOrders().get(0);
+        o.stopOrder();
+        //Generate a Correct plate
+        for(OrderIngredient orderIngredient : o.getIngredientsList()) {
+            correctPlate.addDish(new IngredientImpl(world.getItemManager(), orderIngredient.getIngredient(), orderIngredient.getState()));
+        }
+        o = ordersMan.getCurrentOrders().get(1);
+        o.stopOrder();
+        //Generate a Wrong plate
+        for(OrderIngredient orderIngredient : o.getIngredientsList()) {
+            wrongPlate.addDish(new IngredientImpl(world.getItemManager(), IngredientType.BREAD, orderIngredient.getState()));
+        }
+        //Test correct Delivery
+        Assert.assertTrue(ordersMan.deliveryPlate(correctPlate));
+        //Test wrong Delivery
+        Assert.assertFalse(ordersMan.deliveryPlate(wrongPlate));
     }
 
     /**
@@ -76,14 +107,15 @@ public class TestOrders {
      */
     @Test
     public void testOrdersListUpdating() throws IOException {
-        //Classic initialization
+        //Initialization
         this.world = new WorldImpl();
         OrdersManager ordersMan = new OrdersManagerImpl(world);
         OrderGenerator orderGen = new OrderGeneratorImpl(ordersMan);
-        //Test Order Timer CountDown
+        //Generate an Order
         orderGen.generateNewOrder();
         Order o = ordersMan.getCurrentOrders().get(0);
         Assert.assertTrue(ordersMan.getOrderQuantity()==1);
+        //Test Order Timer CountDown
         o.setCountDownTimer(1);
         try {
             Thread.sleep(2000);
