@@ -59,16 +59,27 @@ public class PlateImpl extends AbstractItem implements Plate {
 
     @Override
     public void draw(Graphics2D g, Position p) {
-        g.drawImage(super.getItemManager().getPlateSprites().getPlateSprite().get(0).getImage(),AffineTransform
-                .getTranslateInstance(p.getX(), p.getY()), null);
+        if (this.ingredients.size() == 0) {
+            g.drawImage(super.getItemManager().getPlateSprites().getPlateSprite().get(0).getImage(),AffineTransform
+                    .getTranslateInstance(p.getX(), p.getY()), null);
+        } else {
+            g.drawImage(super.getItemManager().getPlateSprites().getPlateSprite().get(1).getImage(),AffineTransform
+                    .getTranslateInstance(p.getX(), p.getY()), null);
+        }
+
     }
 
     @Override
     public void draw(Graphics2D g, Position p, int width, int height) {
-        g.drawImage(super.getItemManager().getPlateSprites().getPlateSprite().get(0).getImage().getScaledInstance(width,
-                height, Image.SCALE_SMOOTH), AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
+        if (this.ingredients.size() == 0) {
+            g.drawImage(super.getItemManager().getPlateSprites().getPlateSprite().get(0).getImage().getScaledInstance(width,
+                    height, Image.SCALE_SMOOTH), AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
+        } else {
+            g.drawImage(super.getItemManager().getPlateSprites().getPlateSprite().get(1).getImage().getScaledInstance(width,
+                    height, Image.SCALE_SMOOTH), AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
+        }
     }
-    
+
     @Override
     public boolean checkIngredients(ArrayList<OrderIngredient> ingredientsList) {
         ArrayList<IngredientImpl> cloneIngredients = (ArrayList<IngredientImpl>) ingredients.clone();
