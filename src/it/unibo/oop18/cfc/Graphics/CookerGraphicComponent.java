@@ -20,7 +20,7 @@ public class CookerGraphicComponent implements GraphicsComponent {
     private static final int DIM_INGREDIENT = 20;
     private static final int POSITION_X_BAR = 19;
     private static final int POSITION_Y_BAR = 47;
-    private static final double DIM_BAR = 28;
+    private static final double DIM_BAR = 28.0;
     private static final int HEIGHT_BAR = 6;
 
     private final Cooker cooker;
