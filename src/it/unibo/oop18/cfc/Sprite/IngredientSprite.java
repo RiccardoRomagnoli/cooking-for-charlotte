@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 
 public class IngredientSprite extends AbstractItemSprite {
 
-    private static final int FOOD_SPRITES = 3;
+    private static final int FOOD_SPRITES = 4;
     private static final int Y_LOCATION_BREAD = 1;
     private static final int Y_LOCATION_MEAT = 2;
     private static final int Y_LOCATION_LETTUCE = 4;

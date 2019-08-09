@@ -287,9 +287,8 @@ public class WorldImpl implements World {
      */
     @Override
     public void update() {
-        // music update
         this.player.update();
-        this.getChoppingStations().forEach(c -> c.update());
+        this.choppingStations.forEach(c -> c.update());
         this.cookers.forEach(c -> c.update());
     }
 

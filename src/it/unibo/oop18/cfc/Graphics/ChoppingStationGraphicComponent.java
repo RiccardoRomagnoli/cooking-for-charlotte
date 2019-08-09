@@ -6,6 +6,8 @@ import java.awt.geom.AffineTransform;
 import it.unibo.oop18.cfc.Main.GameEngine;
 import it.unibo.oop18.cfc.Objects.Stations.ChoppingStation;
 import it.unibo.oop18.cfc.Tile.ChoppingStationTile;
+import it.unibo.oop18.cfc.Tile.TileSheet;
+import it.unibo.oop18.cfc.Util.Position;
 
 
 public class ChoppingStationGraphicComponent implements GraphicsComponent {
@@ -44,6 +46,12 @@ public class ChoppingStationGraphicComponent implements GraphicsComponent {
             g.drawImage(this.choppingStationTile.getTiles().get(0).getImage(),
                     AffineTransform.getTranslateInstance(this.choppingStation.getPosition().getX(), this.choppingStation.getPosition().getY()),
                     null);
+        }
+        if (this.choppingStation.getFood().isPresent()) {
+            this.choppingStation.getFood().get().draw(g,
+                    new Position(choppingStation.getPosition().getX() + TileSheet.TILE_SIZE_IN_GAME / 4,
+                            choppingStation.getPosition().getY() + 28/2 - 25/2),
+                    25, 25);
         }
     }
 

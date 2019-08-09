@@ -3,8 +3,8 @@ package it.unibo.oop18.cfc.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
-import it.unibo.oop18.cfc.Objects.Items.IngredientImpl;
-import it.unibo.oop18.cfc.Objects.Items.PlateImpl;
+import it.unibo.oop18.cfc.Tile.TileSheet;
+import it.unibo.oop18.cfc.Util.Position;
 import it.unibo.oop18.cfc.Objects.Stations.Counter;
 import it.unibo.oop18.cfc.Tile.CounterTile;
 
@@ -32,17 +32,23 @@ public class CounterGraphicComponent implements GraphicsComponent {
             if (this.counter.getPosition().getY() == 576) {
                 g.drawImage(this.counterTile.getTiles().get(2).getImage(), AffineTransform.getTranslateInstance(
                         this.counter.getPosition().getX(), this.counter.getPosition().getY()), null);
+
             } else {
                 g.drawImage(this.counterTile.getTiles().get(1).getImage(), AffineTransform.getTranslateInstance(
                         this.counter.getPosition().getX(), this.counter.getPosition().getY()), null);
+                if (this.counter.getItem().isPresent()) {
+                    this.counter.getItem().get().draw(g, this.counter.getPosition());
+                }
             }
         } else {
             g.drawImage(this.counterTile.getTiles().get(0).getImage(), AffineTransform
                     .getTranslateInstance(this.counter.getPosition().getX(), this.counter.getPosition().getY()), null);
-        }
-
-        if (this.counter.getItem().isPresent()) {
-            this.counter.getItem().get().draw(g, this.counter.getPosition());
+            if (this.counter.getItem().isPresent()) {
+                this.counter.getItem().get().draw(g,
+                        new Position(counter.getPosition().getX() + TileSheet.TILE_SIZE_IN_GAME / 2 - 30/2,
+                                counter.getPosition().getY() + 28/2 - 30/2),
+                        30, 30);
+            }
         }
     }
 }

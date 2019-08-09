@@ -20,7 +20,7 @@ public enum IngredientState {
     /**
      * the ingredient is overcooked, so burned but still edible.
      */
-    BURNED(2),
+    BURNED(3),
 
     /**
      * the ingredient is dangerous to eat, unusable.

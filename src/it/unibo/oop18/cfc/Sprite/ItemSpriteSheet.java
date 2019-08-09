@@ -13,7 +13,8 @@ public class ItemSpriteSheet {
     /**
      * It sets the sprite size used in game.
      */
-    public static final int ITEM_SPRITE_SIZE_IN_GAME = 50;
+    public static final int ITEM_SPRITE_WIDTH_IN_GAME = 30;
+    public static final int ITEM_SPRITE_HEIGHT_IN_GAME = 20;
     private final BufferedImage sheet;
 
     /**
@@ -34,9 +35,9 @@ public class ItemSpriteSheet {
      * @return a buffered image of the {@link Sprite}
      */
     public BufferedImage getSingleItemSprite(final int x, final int y) {
-        return this.sheet.getSubimage(x * ITEM_SPRITE_SIZE_IN_GAME,
-                                      y * ITEM_SPRITE_SIZE_IN_GAME,
-                                      ITEM_SPRITE_SIZE_IN_GAME, ITEM_SPRITE_SIZE_IN_GAME);
+        return this.sheet.getSubimage(x * ITEM_SPRITE_WIDTH_IN_GAME,
+                                      y * ITEM_SPRITE_HEIGHT_IN_GAME,
+                                      ITEM_SPRITE_WIDTH_IN_GAME, ITEM_SPRITE_HEIGHT_IN_GAME);
     }
 
 }

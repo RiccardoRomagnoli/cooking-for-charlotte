@@ -44,11 +44,11 @@ public class DownHud {
                 p.draw(g, new Position(320, yoffset + 25), 60, 60);
                 IntStream.range(0, p.getIngredients().size())
                         .forEach(a -> { 
-                            p.getIngredient(a).draw(g, new Position(420 + a * 100, yoffset + 25), 150, 150);
+                            p.getIngredient(a).draw(g, new Position(420 + a * 100, yoffset + 25), 50, 50);
                             p.getIngredient(a).drawState(g, new Position(425 + a * 100, yoffset + 95));
                         });
             } else {
-                world.getPlayer().getItemInHand().get().draw(g, new Position(420, yoffset + 25), 150, 150);
+                world.getPlayer().getItemInHand().get().draw(g, new Position(420, yoffset + 25), 50, 50);
             }
         }
         // draw time

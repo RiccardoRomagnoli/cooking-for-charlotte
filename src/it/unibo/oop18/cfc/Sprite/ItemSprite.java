@@ -13,8 +13,8 @@ public class ItemSprite {
      * @param y coordinate to select the sprite
      */
     public ItemSprite(final ItemSpriteSheet sheet, final int x, final int y) {
-        this.image = sheet.getSingleItemSprite(x, y).getScaledInstance(ItemSpriteSheet.ITEM_SPRITE_SIZE_IN_GAME,
-                                                                   ItemSpriteSheet.ITEM_SPRITE_SIZE_IN_GAME,
+        this.image = sheet.getSingleItemSprite(x, y).getScaledInstance(ItemSpriteSheet.ITEM_SPRITE_WIDTH_IN_GAME,
+                                                                   ItemSpriteSheet.ITEM_SPRITE_HEIGHT_IN_GAME,
                                                                    Image.SCALE_SMOOTH);
     }
 
