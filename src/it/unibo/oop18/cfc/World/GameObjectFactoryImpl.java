@@ -1,5 +1,6 @@
 package it.unibo.oop18.cfc.World;
 
+import it.unibo.oop18.cfc.Manager.ItemManager;
 import it.unibo.oop18.cfc.Manager.SpriteManager;
 import it.unibo.oop18.cfc.Manager.TileManager;
 import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
@@ -24,13 +25,16 @@ public class GameObjectFactoryImpl implements GameObjectFactory {
 
     private SpriteManager sm;
     private TileManager tm;
+    private ItemManager im;
+    
     /**
      * Creates a {@code GameObjectFactoryImpl}.
      * @param tm tilemanager
      */
-    public GameObjectFactoryImpl(final TileManager tm, final SpriteManager sm) {
+    public GameObjectFactoryImpl(final TileManager tm, final SpriteManager sm, final ItemManager im) {
         this.tm = tm;
         this.sm = sm;
+        this.im = im;
     }
 
     /**
@@ -43,7 +47,7 @@ public class GameObjectFactoryImpl implements GameObjectFactory {
 
     @Override
     public ChoppingStation createChoppingBoard(final Position position, final World world) {
-        return new ChoppingStation(new Position(position), this.tm.getChoppingStationTile(), world);
+        return new ChoppingStation(new Position(position), this.tm.getChoppingStationTile(), this.im.getLoadingSprites(), world);
     }
 
     @Override

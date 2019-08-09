@@ -117,7 +117,7 @@ public class WorldImpl implements World {
         this.tileManager = new TileManager(TILEPATH);
         this.spriteManager = new SpriteManager(SPRITEPATH);
         this.itemManager = new ItemManager(ITEMPATH);
-        this.createLevel(tileManager, spriteManager, MAPPATH);
+        this.createLevel();
     }
 
     /**
@@ -319,8 +319,8 @@ public class WorldImpl implements World {
         // this.player.processInput();
     }
 
-    private void createLevel(final TileManager tm, final SpriteManager sm, final String mapPath) {
-        final WorldInitializer initializer = new WorldInitializerImpl(tm, sm, mapPath);
+    private void createLevel() {
+        final WorldInitializer initializer = new WorldInitializerImpl(tileManager, spriteManager, itemManager, MAPPATH);
         this.choppingStations.addAll(initializer.initializeChoppingBoard(this));
         this.cookers.addAll(initializer.initializeCooker());
         this.counters.addAll(initializer.initializeCounter());

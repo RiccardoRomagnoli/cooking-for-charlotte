@@ -8,6 +8,7 @@ import it.unibo.oop18.cfc.Graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.Objects.Items.IngredientImpl;
 import it.unibo.oop18.cfc.Objects.Items.IngredientState;
 import it.unibo.oop18.cfc.Objects.Items.PlateImpl;
+import it.unibo.oop18.cfc.Sprite.LoadingSprite;
 import it.unibo.oop18.cfc.Tile.ChoppingStationTile;
 import it.unibo.oop18.cfc.Util.GameTimer;
 import it.unibo.oop18.cfc.Util.JukeBoxUtil;
@@ -29,13 +30,13 @@ public class ChoppingStation extends AbstractStationObject {
      * @param position            block's position
      * @param choppingStationTile block's tile
      */
-    public ChoppingStation(final Position position, final ChoppingStationTile choppingStationTile, final World world) {
+    public ChoppingStation(final Position position, final ChoppingStationTile choppingStationTile, final LoadingSprite loadingSprite, final World world) {
         super(position);
         this.food = Optional.empty();
         timer = new GameTimer();
         this.world = world;
         this.isCutting = false;
-        this.graphicComponent = new ChoppingStationGraphicComponent(this, choppingStationTile);
+        this.graphicComponent = new ChoppingStationGraphicComponent(this, choppingStationTile, loadingSprite);
     }
 
     public GameTimer getChoppingStationTimer() {
