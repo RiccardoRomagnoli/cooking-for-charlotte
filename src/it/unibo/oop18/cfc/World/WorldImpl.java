@@ -28,6 +28,8 @@ import it.unibo.oop18.cfc.Objects.Stations.PlateStation;
 import it.unibo.oop18.cfc.Objects.Stations.TomatoStation;
 import it.unibo.oop18.cfc.Objects.Stations.Trashcan;
 import it.unibo.oop18.cfc.Objects.Stations.Washbasin;
+import it.unibo.oop18.cfc.Orders.OrdersManager;
+import it.unibo.oop18.cfc.Orders.OrdersManagerImpl;
 import it.unibo.oop18.cfc.Tile.TileSheet;
 import it.unibo.oop18.cfc.Util.GameTimer;
 
@@ -90,6 +92,7 @@ public class WorldImpl implements World {
     private final TileManager tileManager;
     private final SpriteManager spriteManager;
     private final ItemManager itemManager;
+    private final OrdersManager ordersManager;
     /**
      * Creates a {@code WorldImpl}.
      * 
@@ -97,6 +100,7 @@ public class WorldImpl implements World {
      *
      */
     public WorldImpl() throws IOException {
+        this.ordersManager = new OrdersManagerImpl(this);
         this.timer = new GameTimer();
         this.choppingStations = new HashSet<>();
         this.counters = new HashSet<>();
@@ -135,6 +139,13 @@ public class WorldImpl implements World {
      */
     public ItemManager getItemManager() {
         return itemManager;
+    }
+    
+    /**
+     * @return the ordersManager
+     */
+    public OrdersManager getOrdersManager() {
+        return ordersManager;
     }
 
     /**
