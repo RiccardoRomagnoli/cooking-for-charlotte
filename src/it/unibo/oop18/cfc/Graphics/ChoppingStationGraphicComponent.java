@@ -15,6 +15,10 @@ public class ChoppingStationGraphicComponent implements GraphicsComponent {
     private static final int DIVISION_BY_ZERO_PROTECTION = 1;
     private static final int FRAME_DELAY = Math.round(GameEngine.FPS / 15) + DIVISION_BY_ZERO_PROTECTION;
 
+    private static final int POSITION_X_INGREDIENT = 16;
+    private static final int POSITION_Y_INGREDIENT = 2;
+    private static final int DIM_INGREDIENT = 25;
+    
     private final ChoppingStation choppingStation;
     private final ChoppingStationTile choppingStationTile;
     private int frame;
@@ -49,9 +53,15 @@ public class ChoppingStationGraphicComponent implements GraphicsComponent {
         }
         if (this.choppingStation.getFood().isPresent()) {
             this.choppingStation.getFood().get().draw(g,
-                    new Position(choppingStation.getPosition().getX() + TileSheet.TILE_SIZE_IN_GAME / 4,
-                            choppingStation.getPosition().getY() + 28/2 - 25/2),
-                    25, 25);
+                    new Position(choppingStation.getPosition().getX() + POSITION_X_INGREDIENT,
+                            choppingStation.getPosition().getY() + POSITION_Y_INGREDIENT),
+                    DIM_INGREDIENT, DIM_INGREDIENT);
+        }
+        if (this.choppingStation.getFood().isPresent() && this.choppingStation.isCut()) {
+            g.drawRect(815, 680,
+                    (int) ((160.0 / (this.choppingStation.getFood().get().getIngredient().getTimeToCut() * 1000))
+                            * this.choppingStation.getChoppingStationTimer().getTimeMillis()),
+                    24);
         }
     }
 

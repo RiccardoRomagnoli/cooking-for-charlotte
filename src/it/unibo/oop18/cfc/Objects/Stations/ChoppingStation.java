@@ -38,11 +38,12 @@ public class ChoppingStation extends AbstractStationObject {
         this.graphicComponent = new ChoppingStationGraphicComponent(this, choppingStationTile);
     }
 
+    public GameTimer getChoppingStationTimer() {
+        return timer;
+    }
+
     public void draw(final Graphics2D g) {
         this.graphicComponent.draw(g);
-        if(this.food.isPresent() && isCutting == true) {
-            g.drawRect(815, 680, (int)((160.0 / (this.food.get().getIngredient().getTimeToCut() * 1000)) * timer.getTimeMillis()), 24);
-        }
     }
 
     public boolean isCut() {
