@@ -8,6 +8,7 @@ import it.unibo.oop18.cfc.Graphics.WashbasinGraphicComponent;
 import it.unibo.oop18.cfc.Objects.Items.PlateImpl;
 import it.unibo.oop18.cfc.Tile.WashbasinTile;
 import it.unibo.oop18.cfc.Util.GameTimer;
+import it.unibo.oop18.cfc.Util.JukeBoxUtil;
 import it.unibo.oop18.cfc.Util.Position;
 import it.unibo.oop18.cfc.World.World;
 
@@ -57,10 +58,12 @@ public class Washbasin extends AbstractStationObject {
         return false;
     }
 
-    @Override
     public void doAction(World world) {
-        // TODO Auto-generated method stub
-        
+        if (world.getPlayer().getItemInHand().isPresent() &&
+                world.getPlayer().getItemInHand().get() instanceof PlateImpl) {
+            ((PlateImpl) world.getPlayer().getItemInHand().get()).wash();
+            JukeBoxUtil.play("trash.wav");
+        }
     }
 }
 
