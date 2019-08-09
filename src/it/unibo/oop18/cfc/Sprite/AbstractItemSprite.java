@@ -25,7 +25,7 @@ public abstract class AbstractItemSprite {
     }
 
     /**
-     * Gets the number of tiles for the state of food.
+     * Gets the number of sprites.
      *
      * @return the size of the {@link Tile} list
      */

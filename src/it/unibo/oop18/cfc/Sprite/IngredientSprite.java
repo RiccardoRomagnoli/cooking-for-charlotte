@@ -12,8 +12,7 @@ public class IngredientSprite extends AbstractItemSprite {
     private static final int Y_LOCATION_MEAT = 2;
     private static final int Y_LOCATION_LETTUCE = 4;
     private static final int Y_LOCATION_TOMATO = 3;
-    private static final int Y_LOCATION_STATE_INGREDIENT = 0;
-    private static final int X_LOCATION_STATE_INGREDIENT = 1;
+    private static final int Y_LOCATION_STATE_INGREDIENT = 5;
     private static final int INGREDIENT_STATE_SPRITES = 2;
     private final List<List<ItemSprite>> ingredients;
     private final List<ItemSprite> breadSprite;
@@ -29,7 +28,7 @@ public class IngredientSprite extends AbstractItemSprite {
         this.lettuceSprite = new ArrayList<>();
         this.tomatoSprite = new ArrayList<>();
         this.stateSprite = new ArrayList<>();
-        IntStream.rangeClosed(X_LOCATION_STATE_INGREDIENT, INGREDIENT_STATE_SPRITES).mapToObj(a -> new ItemSprite(sheet, a, Y_LOCATION_STATE_INGREDIENT)).collect(Collectors.toList())
+        IntStream.rangeClosed(0, INGREDIENT_STATE_SPRITES).mapToObj(a -> new ItemSprite(sheet, a, Y_LOCATION_STATE_INGREDIENT)).collect(Collectors.toList())
         .forEach(a -> stateSprite.add(a));
         IntStream.range(0, FOOD_SPRITES).mapToObj(a -> new ItemSprite(sheet, a, Y_LOCATION_BREAD)).collect(Collectors.toList())
         .forEach(a -> breadSprite.add(a));
@@ -49,7 +48,11 @@ public class IngredientSprite extends AbstractItemSprite {
     @Override
     public int getItemSpriteNumber() {
         return FOOD_SPRITES;
-        }
+    }
+
+    public int getStateSpriteNumber() {
+        return INGREDIENT_STATE_SPRITES;
+    }
 
     public List<List<ItemSprite>> getIngredientSprite() {
         return ingredients;
