@@ -94,4 +94,8 @@ public class PlateImpl extends AbstractItem implements Plate {
         }
         return ret;
     }
+
+    public void wash() {
+        this.ingredients.clear();
+    }
 }
