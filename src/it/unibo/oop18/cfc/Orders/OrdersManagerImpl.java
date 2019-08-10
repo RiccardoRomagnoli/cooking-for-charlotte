@@ -53,6 +53,7 @@ public class OrdersManagerImpl implements OrdersManager {
     @Override
     public void addOrder(Order o) {
         this.currentOrders.add(o);
+        this.currentOrders.sort((o1, o2) -> o1.getCountDownTime() - o2.getCountDownTime());
     }
 	
     @Override

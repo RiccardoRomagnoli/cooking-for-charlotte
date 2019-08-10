@@ -35,4 +35,6 @@ public interface Order{
     public ArrayList<OrderIngredient> getIngredientsList();
 
     public void stopOrder();
+
+    public int getCountDownTime();
 }

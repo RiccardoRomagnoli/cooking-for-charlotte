@@ -53,6 +53,12 @@ public class OrderImpl implements Order {
     @Override
     public void setCountDownTimer(int timeInSeconds) {
         this.countDownTime = timeInSeconds;
+        this.ordersManager.getCurrentOrders().sort((o1, o2) -> o1.getCountDownTime() - o2.getCountDownTime());
+    }
+    
+    @Override
+    public int getCountDownTime() {
+        return countDownTime;
     }
 
     @Override
