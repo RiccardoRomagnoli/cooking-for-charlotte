@@ -80,30 +80,38 @@ public class PlateImpl extends AbstractItem implements Plate {
         }
     }
 
+    /**
+     * Matches each order Ingredient to each plate ingredient 
+     * if found a match removes the ingredients matched in the plate
+     * if there is no match for just an order ingredient it fails directly
+     * 
+     * @param ingredientsList List of order ingredients
+     */
     @Override
     public boolean checkIngredients(ArrayList<OrderIngredient> ingredientsList) {
         ArrayList<IngredientImpl> cloneIngredients = (ArrayList<IngredientImpl>) ingredients.clone();
-        boolean ret = true;
-        boolean found = false;
-        int cont = 0;
+        boolean found=false;
+        int index = 0;
+        int indexFound = 0;
+        
         for(OrderIngredient orderIngredient : ingredientsList) {
-            while(!found && cloneIngredients.size()>0) {
-                Ingredient plateIngredient = cloneIngredients.get(cont);
+            found=false;
+            index = 0;
+            indexFound = 0;
+            for(Ingredient plateIngredient : cloneIngredients) {
                 CheckStatus status = orderIngredient.checkIngredient(plateIngredient);
-                if(status.equals(CheckStatus.NOT_ACCEPTABLE)) {
-                    ret = false;
-                    cont++;
-                }
                 if(status.equals(CheckStatus.ACCEPTABLE_WITH_ERROR) || 
                    status.equals(CheckStatus.ACCEPTABLE_WITHOUT_ERROR)) {
                     found = true;
-                    cloneIngredients.remove(cont);
+                    indexFound = index;
                 }
+                index++;
             }
-            found = false;
-            cont = 0;
+            cloneIngredients.remove(indexFound);
+            if(!found)
+                return false;
         }
-        return ret;
+        return true;
     }
 
     public void wash() {

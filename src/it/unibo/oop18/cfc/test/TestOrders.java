@@ -74,11 +74,14 @@ public class TestOrders {
         Order o;
         Plate correctPlate;
         Plate wrongPlate;
+        Plate correctPlateNotOrdered;
         correctPlate = new PlateImpl(world.getItemManager());
         wrongPlate = new PlateImpl(world.getItemManager());
+        correctPlateNotOrdered = new PlateImpl(world.getItemManager());
         OrdersManager ordersMan = new OrdersManagerImpl(world);
         OrderGenerator orderGen = new OrderGeneratorImpl(ordersMan);
         //Generate an order
+        orderGen.generateNewOrder();
         orderGen.generateNewOrder();
         orderGen.generateNewOrder();
         o = ordersMan.getCurrentOrders().get(0);
@@ -93,10 +96,20 @@ public class TestOrders {
         for(OrderIngredient orderIngredient : o.getIngredientsList()) {
             wrongPlate.addDish(new IngredientImpl(world.getItemManager(), IngredientType.BREAD, orderIngredient.getState()));
         }
+        o = ordersMan.getCurrentOrders().get(2);
+        o.stopOrder();
+        //Generate a Correct plate in different ingredient order
+        for (int i = o.getIngredientsList().size()-1; i >= 0; i--) {
+            OrderIngredient orderIngredient = o.getIngredientsList().get(i);
+            correctPlateNotOrdered.addDish(
+                    new IngredientImpl(world.getItemManager(), orderIngredient.getIngredient(), orderIngredient.getState()));
+        }
         //Test correct Delivery
         Assert.assertTrue(ordersMan.deliveryPlate(correctPlate));
         //Test wrong Delivery
         Assert.assertFalse(ordersMan.deliveryPlate(wrongPlate));
+        //Test correct Delivery in casual ingredient position
+        Assert.assertTrue(ordersMan.deliveryPlate(correctPlateNotOrdered));
     }
 
     /**

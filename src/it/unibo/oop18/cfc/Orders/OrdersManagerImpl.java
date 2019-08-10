@@ -87,13 +87,17 @@ public class OrdersManagerImpl implements OrdersManager {
         generator.stopGeneration();;
     }
 
+    /**
+     * Just need the first correct order that matches
+     * @param plate submitted
+     * @return
+     */
     private Optional<Order> checkOrder(Plate plate) {
-        Optional<Order> returnOrder = Optional.empty();
         for (Order order : currentOrders) {
             if (order.checkOrder(plate))
-                returnOrder = Optional.ofNullable(order);
+                return Optional.ofNullable(order);
         }
-        return returnOrder;
+        return Optional.empty();
     }   
     
     private void orderSucceed(Order order) {
