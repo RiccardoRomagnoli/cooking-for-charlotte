@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.util.List;
 import java.util.Set;
 
+import it.unibo.oop18.cfc.Manager.GameStateManager;
 import it.unibo.oop18.cfc.Manager.ItemManager;
 import it.unibo.oop18.cfc.Manager.SpriteManager;
 import it.unibo.oop18.cfc.Manager.TileManager;
@@ -199,5 +200,5 @@ public interface World {
     /**
      * Remove a life from Player.
      */
-    void lifeLoss();
+    void lifeLoss(GameStateManager gsm);
 }

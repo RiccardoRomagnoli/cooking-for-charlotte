@@ -18,7 +18,7 @@ public class IngredientImpl extends AbstractItem implements Ingredient, OrderIng
         this.type = type;
         this.state = IngredientState.RAW;
     }
-    
+
     public IngredientImpl(final ItemManager itemManager, final IngredientType type, final IngredientState state) {
         super(itemManager);
         this.type = type;

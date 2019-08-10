@@ -3,11 +3,15 @@ package it.unibo.oop18.cfc.World;
 import java.awt.Graphics2D;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Currency;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import it.unibo.oop18.cfc.GameState.GameState;
+import it.unibo.oop18.cfc.GameState.GameStates;
+import it.unibo.oop18.cfc.Manager.GameStateManager;
 import it.unibo.oop18.cfc.Manager.ItemManager;
 import it.unibo.oop18.cfc.Manager.SpriteManager;
 import it.unibo.oop18.cfc.Manager.TileManager;
@@ -140,7 +144,7 @@ public class WorldImpl implements World {
     public ItemManager getItemManager() {
         return itemManager;
     }
-    
+
     /**
      * @return the ordersManager
      */
@@ -337,8 +341,11 @@ public class WorldImpl implements World {
     }
 
     @Override
-    public void lifeLoss() {
-
+    public void lifeLoss(GameStateManager gsm) {
+        this.player.decLifes();
+        if (this.player.getLifes() <= 0) {
+           gsm.setState(GameStates.GAMEOVER);
+        }
     }
 
 }

@@ -28,6 +28,10 @@ public interface Player extends DynamicObject {
 
     Position getNextPosition();
 
+    int getLifes();
+
+    void decLifes();
+
     /**
      * Gets the player's input component.
      *

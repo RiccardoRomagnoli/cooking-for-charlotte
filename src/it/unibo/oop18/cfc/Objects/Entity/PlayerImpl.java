@@ -24,6 +24,7 @@ public class PlayerImpl extends AbstractEntity implements Player {
     private int points;
     private int totalPoints;
     public boolean action;
+    private int lifes;
     // Physics, Input and Graphics
     private final DynamicPhysicsComponent physics;
     private final PlayerInputComponent input;
@@ -42,6 +43,7 @@ public class PlayerImpl extends AbstractEntity implements Player {
         this.physics = new DynamicPhysicsComponentImpl(this);
         this.input = new PlayerInputComponentImpl(this);
         this.gfx = new DynamicPlayerGraphicsComponent(this, playerSprites);
+        this.lifes = 3;
     }
 
     /**
@@ -164,5 +166,15 @@ public class PlayerImpl extends AbstractEntity implements Player {
             break;
         }
         return nextPosition;
+    }
+
+    @Override
+    public int getLifes() {
+        return this.lifes;
+    }
+
+    @Override
+    public void decLifes() {
+       this.lifes--;
     }
 }
