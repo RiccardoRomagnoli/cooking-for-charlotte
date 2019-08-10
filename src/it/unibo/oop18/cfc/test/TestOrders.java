@@ -156,4 +156,35 @@ public class TestOrders {
         o.addIngredient(IngredientType.TOMATO, IngredientState.CHOPPED);
         o.addIngredient(IngredientType.MEAT, IngredientState.BURNED);
     }
+    
+    /**
+     * Tests if orders are placed in order of their time of expire
+     * 
+     * @throws IOException
+     */
+    @Test
+    public void testOrdersListOrdering() throws IOException {
+        //Initialization
+        this.world = new WorldImpl();
+        OrdersManager ordersMan = new OrdersManagerImpl(world);
+        OrderGenerator orderGen = new OrderGeneratorImpl(ordersMan);
+        //Generate an Order
+        orderGen.generateNewOrder();
+        orderGen.generateNewOrder();
+        orderGen.generateNewOrder();
+        Order o1 = ordersMan.getCurrentOrders().get(0);
+        o1.stopOrder();
+        Order o2 = ordersMan.getCurrentOrders().get(1);
+        o2.stopOrder();
+        Order o3 = ordersMan.getCurrentOrders().get(2);
+        o3.stopOrder();
+        //Test Order Timer CountDown
+        o1.setCountDownTimer(60);
+        o2.setCountDownTimer(40);
+        o3.setCountDownTimer(20);
+        Assert.assertTrue(ordersMan.getCurrentOrders().get(0) == o3);
+        Assert.assertTrue(ordersMan.getCurrentOrders().get(1) == o2);
+        Assert.assertTrue(ordersMan.getCurrentOrders().get(2) == o1);
+
+    }
 }
