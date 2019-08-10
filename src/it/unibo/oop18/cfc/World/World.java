@@ -4,14 +4,12 @@ import java.awt.Graphics2D;
 import java.util.List;
 import java.util.Set;
 
-import it.unibo.oop18.cfc.Manager.GameStateManager;
 import it.unibo.oop18.cfc.Manager.ItemManager;
 import it.unibo.oop18.cfc.Manager.SpriteManager;
 import it.unibo.oop18.cfc.Manager.TileManager;
 import it.unibo.oop18.cfc.Objects.GameObject;
 import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
 import it.unibo.oop18.cfc.Objects.Floors.ParquetFloor;
-import it.unibo.oop18.cfc.Objects.Items.Item;
 import it.unibo.oop18.cfc.Objects.Stations.AbstractStationObject;
 import it.unibo.oop18.cfc.Objects.Stations.BreadStation;
 import it.unibo.oop18.cfc.Objects.Stations.ChoppingStation;
@@ -24,6 +22,7 @@ import it.unibo.oop18.cfc.Objects.Stations.PlateStation;
 import it.unibo.oop18.cfc.Objects.Stations.TomatoStation;
 import it.unibo.oop18.cfc.Objects.Stations.Trashcan;
 import it.unibo.oop18.cfc.Objects.Stations.Washbasin;
+import it.unibo.oop18.cfc.Orders.OrdersManager;
 import it.unibo.oop18.cfc.Util.GameTimer;
 
 /**
@@ -91,6 +90,13 @@ public interface World {
      */
     ItemManager getItemManager();
 
+    /**
+     * Gets the ordermanager.
+     * 
+     * @return the player
+     */
+    OrdersManager getOrdersManager();
+    
     /**
      * Gets the player.
      * 
@@ -197,8 +203,4 @@ public interface World {
      */
     Set<ParquetFloor> getParquetFloor();
 
-    /**
-     * Remove a life from Player.
-     */
-    void lifeLoss(GameStateManager gsm);
 }
