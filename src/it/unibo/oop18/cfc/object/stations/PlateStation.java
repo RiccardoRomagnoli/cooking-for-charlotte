@@ -2,7 +2,6 @@ package it.unibo.oop18.cfc.object.stations;
 
 import java.awt.Graphics2D;
 
-import it.unibo.oop18.cfc.cookingstuff.Ingredient;
 import it.unibo.oop18.cfc.graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.graphics.PlateStationGraphicComponent;
 import it.unibo.oop18.cfc.object.items.IngredientImpl;
@@ -34,8 +33,7 @@ public class PlateStation extends AbstractStationObject{
             final PlateImpl plate = new PlateImpl(world.getItemManager());
             plate.addDish((IngredientImpl) world.getPlayer().getItemInHand().get());
             world.getPlayer().removeItemInHand();
-            world.getPlayer().setItemInHand(plate);
-            
+            world.getPlayer().setItemInHand(plate);  
         }
     }
 
