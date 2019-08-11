@@ -3,7 +3,7 @@ package it.unibo.oop18.cfc.orders;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
-import it.unibo.oop18.cfc.object.Items.Plate;
+import it.unibo.oop18.cfc.object.items.Plate;
 import it.unibo.oop18.cfc.world.World;
 
 public interface OrdersManager {

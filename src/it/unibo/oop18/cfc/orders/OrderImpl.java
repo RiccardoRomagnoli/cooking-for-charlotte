@@ -7,11 +7,11 @@ import java.util.TimerTask;
 
 import it.unibo.oop18.cfc.graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.graphics.OrderGraphicComponent;
-import it.unibo.oop18.cfc.object.Items.IngredientImpl;
-import it.unibo.oop18.cfc.object.Items.IngredientState;
-import it.unibo.oop18.cfc.object.Items.IngredientType;
-import it.unibo.oop18.cfc.object.Items.OrderIngredient;
-import it.unibo.oop18.cfc.object.Items.Plate;
+import it.unibo.oop18.cfc.object.items.IngredientImpl;
+import it.unibo.oop18.cfc.object.items.IngredientState;
+import it.unibo.oop18.cfc.object.items.IngredientType;
+import it.unibo.oop18.cfc.object.items.OrderIngredient;
+import it.unibo.oop18.cfc.object.items.Plate;
 import it.unibo.oop18.cfc.util.Pair;
 
 public class OrderImpl implements Order {

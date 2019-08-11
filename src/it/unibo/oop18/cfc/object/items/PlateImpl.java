@@ -1,4 +1,4 @@
-package it.unibo.oop18.cfc.object.Items;
+package it.unibo.oop18.cfc.object.items;
 
 import java.awt.Graphics2D;
 import java.awt.Image;

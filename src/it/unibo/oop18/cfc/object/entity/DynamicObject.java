@@ -1,4 +1,4 @@
-package it.unibo.oop18.cfc.object.Entity;
+package it.unibo.oop18.cfc.object.entity;
 
 import java.awt.Graphics2D;
 

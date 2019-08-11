@@ -1,9 +1,9 @@
 package it.unibo.oop18.cfc.input;
 
 
-import it.unibo.oop18.cfc.object.Entity.PlayerImpl;
-import it.unibo.oop18.cfc.object.Items.IngredientImpl;
-import it.unibo.oop18.cfc.object.Items.PlateImpl;
+import it.unibo.oop18.cfc.object.entity.PlayerImpl;
+import it.unibo.oop18.cfc.object.items.IngredientImpl;
+import it.unibo.oop18.cfc.object.items.PlateImpl;
 import it.unibo.oop18.cfc.physics.Direction;
 import it.unibo.oop18.cfc.util.Position;
 import it.unibo.oop18.cfc.world.World;

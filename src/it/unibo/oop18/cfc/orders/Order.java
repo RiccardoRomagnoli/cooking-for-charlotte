@@ -3,10 +3,10 @@ package it.unibo.oop18.cfc.orders;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
-import it.unibo.oop18.cfc.object.Items.IngredientState;
-import it.unibo.oop18.cfc.object.Items.IngredientType;
-import it.unibo.oop18.cfc.object.Items.OrderIngredient;
-import it.unibo.oop18.cfc.object.Items.Plate;
+import it.unibo.oop18.cfc.object.items.IngredientState;
+import it.unibo.oop18.cfc.object.items.IngredientType;
+import it.unibo.oop18.cfc.object.items.OrderIngredient;
+import it.unibo.oop18.cfc.object.items.Plate;
 
 public interface Order {
 

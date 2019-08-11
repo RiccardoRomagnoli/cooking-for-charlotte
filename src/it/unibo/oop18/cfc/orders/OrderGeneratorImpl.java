@@ -6,8 +6,8 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import it.unibo.oop18.cfc.object.Items.IngredientState;
-import it.unibo.oop18.cfc.object.Items.IngredientType;
+import it.unibo.oop18.cfc.object.items.IngredientState;
+import it.unibo.oop18.cfc.object.items.IngredientType;
 import it.unibo.oop18.cfc.recipes.Recipes;
 import it.unibo.oop18.cfc.util.Pair;
 

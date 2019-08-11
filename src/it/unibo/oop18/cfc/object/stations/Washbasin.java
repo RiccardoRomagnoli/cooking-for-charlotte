@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import it.unibo.oop18.cfc.graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.graphics.WashbasinGraphicComponent;
-import it.unibo.oop18.cfc.object.Items.PlateImpl;
+import it.unibo.oop18.cfc.object.items.PlateImpl;
 import it.unibo.oop18.cfc.tile.WashbasinTile;
 import it.unibo.oop18.cfc.util.GameTimer;
 import it.unibo.oop18.cfc.util.JukeBoxUtil;

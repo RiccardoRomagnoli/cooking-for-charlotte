@@ -13,8 +13,8 @@ import java.util.stream.Stream;
 import it.unibo.oop18.cfc.main.GameEngine;
 import it.unibo.oop18.cfc.manager.Content;
 import it.unibo.oop18.cfc.manager.ItemManager;
-import it.unibo.oop18.cfc.object.Items.IngredientImpl;
-import it.unibo.oop18.cfc.object.Items.PlateImpl;
+import it.unibo.oop18.cfc.object.items.IngredientImpl;
+import it.unibo.oop18.cfc.object.items.PlateImpl;
 import it.unibo.oop18.cfc.util.Position;
 import it.unibo.oop18.cfc.world.World;
 

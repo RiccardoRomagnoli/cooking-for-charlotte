@@ -3,7 +3,7 @@ package it.unibo.oop18.cfc.graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
-import it.unibo.oop18.cfc.object.Floors.ParquetFloor;
+import it.unibo.oop18.cfc.object.floors.ParquetFloor;
 import it.unibo.oop18.cfc.tile.ParquetFloorTile;
 
 /**

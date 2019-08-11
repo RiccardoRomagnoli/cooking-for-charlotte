@@ -3,7 +3,7 @@ package it.unibo.oop18.cfc.cookingstuff;
 import java.util.LinkedList;
 import java.util.List;
 
-import it.unibo.oop18.cfc.object.Items.IngredientState;
+import it.unibo.oop18.cfc.object.items.IngredientState;
 /**
  * a cookware used to cook more then one ingredient.
  */

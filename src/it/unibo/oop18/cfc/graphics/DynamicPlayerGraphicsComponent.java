@@ -4,7 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
 import it.unibo.oop18.cfc.main.GameEngine;
-import it.unibo.oop18.cfc.object.Entity.AbstractEntity;
+import it.unibo.oop18.cfc.object.entity.AbstractEntity;
 import it.unibo.oop18.cfc.physics.Direction;
 import it.unibo.oop18.cfc.sprite.PlayerSprites;
 

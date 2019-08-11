@@ -4,7 +4,7 @@ import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.stream.IntStream;
 
-import it.unibo.oop18.cfc.object.Entity.DynamicObject;
+import it.unibo.oop18.cfc.object.entity.DynamicObject;
 import it.unibo.oop18.cfc.physics.Direction;
 
 

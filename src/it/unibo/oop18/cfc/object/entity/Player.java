@@ -1,9 +1,9 @@
-package it.unibo.oop18.cfc.object.Entity;
+package it.unibo.oop18.cfc.object.entity;
 
 import java.util.Optional;
 
 import it.unibo.oop18.cfc.input.PlayerInputComponent;
-import it.unibo.oop18.cfc.object.Items.Item;
+import it.unibo.oop18.cfc.object.items.Item;
 import it.unibo.oop18.cfc.util.Position;
 
 public interface Player extends DynamicObject {

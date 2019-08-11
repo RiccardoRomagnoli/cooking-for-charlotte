@@ -7,8 +7,8 @@ import org.junit.Test;
 
 import it.unibo.oop18.cfc.main.GameEngine;
 import it.unibo.oop18.cfc.manager.ItemManager;
-import it.unibo.oop18.cfc.object.Entity.Player;
-import it.unibo.oop18.cfc.object.Items.IngredientType;
+import it.unibo.oop18.cfc.object.entity.Player;
+import it.unibo.oop18.cfc.object.items.IngredientType;
 import it.unibo.oop18.cfc.physics.Direction;
 import it.unibo.oop18.cfc.sprite.SpriteSheet;
 import it.unibo.oop18.cfc.util.Position;

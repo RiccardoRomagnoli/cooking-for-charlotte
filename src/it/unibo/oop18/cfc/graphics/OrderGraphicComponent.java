@@ -3,7 +3,7 @@ package it.unibo.oop18.cfc.graphics;
 import java.awt.Graphics2D;
 
 import it.unibo.oop18.cfc.manager.Content;
-import it.unibo.oop18.cfc.object.Items.OrderIngredient;
+import it.unibo.oop18.cfc.object.items.OrderIngredient;
 import it.unibo.oop18.cfc.orders.Order;
 import it.unibo.oop18.cfc.orders.OrderImpl;
 import it.unibo.oop18.cfc.util.Position;

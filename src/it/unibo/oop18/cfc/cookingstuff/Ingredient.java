@@ -1,6 +1,6 @@
 package it.unibo.oop18.cfc.cookingstuff;
 
-import it.unibo.oop18.cfc.object.Items.IngredientState;
+import it.unibo.oop18.cfc.object.items.IngredientState;
 
 /*import java.util.Timer;
 import java.util.TimerTask;

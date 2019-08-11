@@ -3,7 +3,7 @@ package it.unibo.oop18.cfc.physics;
 import java.awt.geom.Rectangle2D;
 import java.util.Set;
 
-import it.unibo.oop18.cfc.object.Items.Item;
+import it.unibo.oop18.cfc.object.items.Item;
 import it.unibo.oop18.cfc.tilemap.TileType;
 import it.unibo.oop18.cfc.util.Position;
 import it.unibo.oop18.cfc.util.Velocity;

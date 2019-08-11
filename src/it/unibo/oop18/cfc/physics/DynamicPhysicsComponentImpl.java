@@ -4,8 +4,8 @@ import java.awt.geom.Rectangle2D;
 import java.util.Set;
 
 import it.unibo.oop18.cfc.main.GameEngine;
-import it.unibo.oop18.cfc.object.Entity.DynamicObject;
-import it.unibo.oop18.cfc.object.Items.Item;
+import it.unibo.oop18.cfc.object.entity.DynamicObject;
+import it.unibo.oop18.cfc.object.items.Item;
 import it.unibo.oop18.cfc.tile.TileSheet;
 import it.unibo.oop18.cfc.util.Pair;
 import it.unibo.oop18.cfc.util.Position;

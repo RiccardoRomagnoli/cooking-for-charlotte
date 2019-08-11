@@ -1,4 +1,4 @@
-package it.unibo.oop18.cfc.object.Floors;
+package it.unibo.oop18.cfc.object.floors;
 
 import it.unibo.oop18.cfc.object.AbstractGameObject;
 import it.unibo.oop18.cfc.util.Position;

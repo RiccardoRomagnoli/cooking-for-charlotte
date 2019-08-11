@@ -13,7 +13,7 @@ import it.unibo.oop18.cfc.gamestate.MenuState;
 import it.unibo.oop18.cfc.gamestate.OptionState;
 import it.unibo.oop18.cfc.gamestate.PlayState;
 import it.unibo.oop18.cfc.manager.GameStateManager;
-import it.unibo.oop18.cfc.object.Entity.PlayerImpl;
+import it.unibo.oop18.cfc.object.entity.PlayerImpl;
 import it.unibo.oop18.cfc.physics.Direction;
 import it.unibo.oop18.cfc.util.JukeBoxUtil;
 

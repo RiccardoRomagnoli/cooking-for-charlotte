@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import it.unibo.oop18.cfc.gamestate.PlayState;
 import it.unibo.oop18.cfc.manager.Content;
-import it.unibo.oop18.cfc.object.Entity.PlayerImpl;
+import it.unibo.oop18.cfc.object.entity.PlayerImpl;
 import it.unibo.oop18.cfc.world.World;
 
 public class TopHud {

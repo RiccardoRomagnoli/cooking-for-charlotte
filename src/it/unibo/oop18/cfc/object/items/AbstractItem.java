@@ -1,4 +1,4 @@
-package it.unibo.oop18.cfc.object.Items;
+package it.unibo.oop18.cfc.object.items;
 
 import it.unibo.oop18.cfc.manager.ItemManager;
 

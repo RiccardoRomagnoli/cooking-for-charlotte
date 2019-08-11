@@ -4,8 +4,8 @@ import java.awt.Graphics2D;
 
 import it.unibo.oop18.cfc.graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.graphics.MeatStationGraphicComponent;
-import it.unibo.oop18.cfc.object.Items.IngredientImpl;
-import it.unibo.oop18.cfc.object.Items.IngredientType;
+import it.unibo.oop18.cfc.object.items.IngredientImpl;
+import it.unibo.oop18.cfc.object.items.IngredientType;
 import it.unibo.oop18.cfc.tile.MeatStationTile;
 import it.unibo.oop18.cfc.util.Position;
 import it.unibo.oop18.cfc.world.World;

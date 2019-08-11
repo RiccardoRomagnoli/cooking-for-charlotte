@@ -1,11 +1,10 @@
-package it.unibo.oop18.cfc.object.Items;
+package it.unibo.oop18.cfc.object.items;
 
 import java.awt.Graphics2D;
 
-import it.unibo.oop18.cfc.util.CheckStatus;
 import it.unibo.oop18.cfc.util.Position;
 
-public interface OrderIngredient {
+public interface Ingredient {
     /**
      * 
      * @return the type of the ingredient
@@ -16,9 +15,11 @@ public interface OrderIngredient {
      * @return the current state of the Ingredient
      */
     IngredientState getState();
-    
-    CheckStatus checkIngredient(Ingredient ingredient);
+    /**
+     * 
+     * @param state: the state in which the ingredient will be changed
+     */
+    void changeState(IngredientState state);
 
     void drawState(final Graphics2D g, final Position p);
-    void drawState(Graphics2D g, Position p, int width, int height);
 }

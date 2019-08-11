@@ -5,9 +5,9 @@ import java.util.Optional;
 
 import it.unibo.oop18.cfc.graphics.CookerGraphicComponent;
 import it.unibo.oop18.cfc.graphics.GraphicsComponent;
-import it.unibo.oop18.cfc.object.Items.IngredientImpl;
-import it.unibo.oop18.cfc.object.Items.IngredientState;
-import it.unibo.oop18.cfc.object.Items.PlateImpl;
+import it.unibo.oop18.cfc.object.items.IngredientImpl;
+import it.unibo.oop18.cfc.object.items.IngredientState;
+import it.unibo.oop18.cfc.object.items.PlateImpl;
 import it.unibo.oop18.cfc.sprite.LoadingSprite;
 import it.unibo.oop18.cfc.tile.CookerTile;
 import it.unibo.oop18.cfc.util.GameTimer;

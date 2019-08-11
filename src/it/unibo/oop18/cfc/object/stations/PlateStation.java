@@ -4,7 +4,7 @@ import java.awt.Graphics2D;
 
 import it.unibo.oop18.cfc.graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.graphics.PlateStationGraphicComponent;
-import it.unibo.oop18.cfc.object.Items.PlateImpl;
+import it.unibo.oop18.cfc.object.items.PlateImpl;
 import it.unibo.oop18.cfc.tile.PlateStationTile;
 import it.unibo.oop18.cfc.util.Position;
 import it.unibo.oop18.cfc.world.World;

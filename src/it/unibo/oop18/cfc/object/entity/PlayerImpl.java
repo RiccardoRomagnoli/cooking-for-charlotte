@@ -1,4 +1,4 @@
-package it.unibo.oop18.cfc.object.Entity;
+package it.unibo.oop18.cfc.object.entity;
 
 import java.awt.Graphics2D;
 import java.util.Optional;
@@ -7,9 +7,9 @@ import it.unibo.oop18.cfc.graphics.DynamicPlayerGraphicsComponent;
 import it.unibo.oop18.cfc.graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.input.PlayerInputComponent;
 import it.unibo.oop18.cfc.input.PlayerInputComponentImpl;
-import it.unibo.oop18.cfc.object.Items.IngredientImpl;
-import it.unibo.oop18.cfc.object.Items.Item;
-import it.unibo.oop18.cfc.object.Items.PlateImpl;
+import it.unibo.oop18.cfc.object.items.IngredientImpl;
+import it.unibo.oop18.cfc.object.items.Item;
+import it.unibo.oop18.cfc.object.items.PlateImpl;
 import it.unibo.oop18.cfc.object.stations.ChoppingStation;
 import it.unibo.oop18.cfc.physics.Direction;
 import it.unibo.oop18.cfc.physics.DynamicPhysicsComponent;

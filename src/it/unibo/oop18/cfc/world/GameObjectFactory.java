@@ -1,7 +1,7 @@
 package it.unibo.oop18.cfc.world;
 
-import it.unibo.oop18.cfc.object.Entity.PlayerImpl;
-import it.unibo.oop18.cfc.object.Floors.ParquetFloor;
+import it.unibo.oop18.cfc.object.entity.PlayerImpl;
+import it.unibo.oop18.cfc.object.floors.ParquetFloor;
 import it.unibo.oop18.cfc.object.stations.BreadStation;
 import it.unibo.oop18.cfc.object.stations.ChoppingStation;
 import it.unibo.oop18.cfc.object.stations.Cooker;

@@ -1,11 +1,11 @@
-package it.unibo.oop18.cfc.object.Floors;
+package it.unibo.oop18.cfc.object.floors;
 
 import java.awt.Graphics2D;
 import java.util.Optional;
 
 import it.unibo.oop18.cfc.graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.graphics.ParquetFloorGraphicComponent;
-import it.unibo.oop18.cfc.object.Items.Item;
+import it.unibo.oop18.cfc.object.items.Item;
 import it.unibo.oop18.cfc.tile.ParquetFloorTile;
 import it.unibo.oop18.cfc.util.Position;
 
