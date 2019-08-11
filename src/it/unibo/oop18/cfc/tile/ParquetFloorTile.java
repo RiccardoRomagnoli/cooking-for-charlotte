@@ -3,12 +3,13 @@ package it.unibo.oop18.cfc.tile;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import it.unibo.oop18.cfc.tilemap.TileType;
+
 /**
  * The Class ParquetFloorTile.
  */
 public class ParquetFloorTile extends AbstractFloorTile{
 
-    private static final int Y_LOCATION = 0;
     private static final int N_TILES = 2;
 
     /**
@@ -18,7 +19,7 @@ public class ParquetFloorTile extends AbstractFloorTile{
      */
     public ParquetFloorTile(final TileSheet sheet) {
         super();
-        IntStream.range(0, N_TILES).mapToObj(a -> new Tile(sheet, a, Y_LOCATION)).collect(Collectors.toList())
+        IntStream.range(0, N_TILES).mapToObj(a -> new Tile(sheet, a, TileType.PARQUETLEFTFLOOR.getPosY())).collect(Collectors.toList())
                 .forEach(a -> super.getTiles().add(a));
     }
 

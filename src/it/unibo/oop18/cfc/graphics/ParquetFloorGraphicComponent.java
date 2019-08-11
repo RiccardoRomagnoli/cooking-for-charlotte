@@ -5,6 +5,9 @@ import java.awt.geom.AffineTransform;
 
 import it.unibo.oop18.cfc.object.floors.ParquetFloor;
 import it.unibo.oop18.cfc.tile.ParquetFloorTile;
+import it.unibo.oop18.cfc.tile.TileSheet;
+import it.unibo.oop18.cfc.tilemap.TileMapImpl;
+import it.unibo.oop18.cfc.tilemap.TileType;
 
 /**
  * The Class ParquetFloorGraphicComponent.
@@ -32,14 +35,13 @@ public class ParquetFloorGraphicComponent implements GraphicsComponent {
      * @param g the g
      */
     public void draw(final Graphics2D g) {
-        if(this.parquetFloor.isLeftFloor()) {
-            g.drawImage(this.parquetFloorTile.getTiles().get(0).getImage(), AffineTransform
+        if (this.parquetFloor.getPosition().getX() % (TileSheet.TILE_SIZE_IN_GAME * 2) == 0) {
+            g.drawImage(this.parquetFloorTile.getTiles().get(TileType.PARQUETRIGHTFLOOR.getPosX()).getImage(), AffineTransform
                     .getTranslateInstance(this.parquetFloor.getPosition().getX(), this.parquetFloor.getPosition().getY()), null);
 
-        }else {
-            g.drawImage(this.parquetFloorTile.getTiles().get(1).getImage(), AffineTransform
+        } else {
+            g.drawImage(this.parquetFloorTile.getTiles().get(TileType.PARQUETLEFTFLOOR.getPosX()).getImage(), AffineTransform
                     .getTranslateInstance(this.parquetFloor.getPosition().getX(), this.parquetFloor.getPosition().getY()), null);
-
         }
     }
 }

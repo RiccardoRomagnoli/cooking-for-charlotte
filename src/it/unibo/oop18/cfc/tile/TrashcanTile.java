@@ -3,14 +3,15 @@ package it.unibo.oop18.cfc.tile;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import it.unibo.oop18.cfc.tilemap.TileType;
+
 
 /**
  * The Class TrashcanTile.
  */
 public class TrashcanTile extends AbstractStationTile{
      
-    private static final int Y_LOCATION = 6;
-    private static final int N_TILES = 3;
+    private static final int N_TILES = 1;
 
     /**
      * Instantiates a new trashcan tile.
@@ -19,7 +20,7 @@ public class TrashcanTile extends AbstractStationTile{
      */
     public TrashcanTile(final TileSheet sheet) {
         super();
-        IntStream.range(0, N_TILES).mapToObj(a -> new Tile(sheet, a, Y_LOCATION))
+        IntStream.range(0, N_TILES).mapToObj(a -> new Tile(sheet, a, TileType.TRASHCAN.getPosY()))
                                      .collect(Collectors.toList())
                                      .forEach(a -> super.getTiles().add(a));
     }

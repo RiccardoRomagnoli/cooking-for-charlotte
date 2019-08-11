@@ -125,6 +125,6 @@ public interface GameObjectFactory {
      * @param leftParquet the left parquet
      * @return the {@link ParquetFloor}
      */
-    ParquetFloor createParquetFloor(Position position, boolean leftParquet);
+    ParquetFloor createParquetFloor(Position position);
 
 }

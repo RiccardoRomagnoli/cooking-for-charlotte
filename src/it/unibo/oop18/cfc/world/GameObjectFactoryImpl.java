@@ -130,8 +130,8 @@ public class GameObjectFactoryImpl implements GameObjectFactory {
     /**
     * {@inheritDoc}
     */
-    public ParquetFloor createParquetFloor(final Position position, final boolean leftFloor) {
-        return new ParquetFloor(new Position(position), this.tm.getParquetFloorTile(), leftFloor);
+    public ParquetFloor createParquetFloor(final Position position) {
+        return new ParquetFloor(new Position(position), this.tm.getParquetFloorTile());
     }
 
 }

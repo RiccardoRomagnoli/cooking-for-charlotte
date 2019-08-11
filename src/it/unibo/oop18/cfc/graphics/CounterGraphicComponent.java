@@ -7,6 +7,7 @@ import it.unibo.oop18.cfc.main.GameEngine;
 import it.unibo.oop18.cfc.object.stations.Counter;
 import it.unibo.oop18.cfc.tile.CounterTile;
 import it.unibo.oop18.cfc.tile.TileSheet;
+import it.unibo.oop18.cfc.tilemap.TileType;
 import it.unibo.oop18.cfc.util.Position;
 
 /**
@@ -42,11 +43,11 @@ public class CounterGraphicComponent implements GraphicsComponent {
     public void draw(final Graphics2D g) {
         if (this.counter.getPosition().getX() == 0 || this.counter.getPosition().getX() == GameEngine.WIDTH - TileSheet.TILE_SIZE_IN_GAME) {
             if (this.counter.getPosition().getY() == GameEngine.HEIGHT2 - TileSheet.TILE_SIZE_IN_GAME) {
-                g.drawImage(this.counterTile.getTiles().get(2).getImage(), AffineTransform.getTranslateInstance(
+                g.drawImage(this.counterTile.getTiles().get(TileType.EDGECOUNTER.getPosX()).getImage(), AffineTransform.getTranslateInstance(
                         this.counter.getPosition().getX(), this.counter.getPosition().getY()), null);
 
             } else {
-                g.drawImage(this.counterTile.getTiles().get(1).getImage(), AffineTransform.getTranslateInstance(
+                g.drawImage(this.counterTile.getTiles().get(TileType.BOARDERCOUNTER.getPosX()).getImage(), AffineTransform.getTranslateInstance(
                         this.counter.getPosition().getX(), this.counter.getPosition().getY()), null);
                 if (this.counter.getItem().isPresent()) {
                     this.counter.getItem().get().draw(g,
@@ -56,7 +57,7 @@ public class CounterGraphicComponent implements GraphicsComponent {
                 }
             }
         } else {
-            g.drawImage(this.counterTile.getTiles().get(0).getImage(), AffineTransform
+            g.drawImage(this.counterTile.getTiles().get(TileType.COUNTER.getPosX()).getImage(), AffineTransform
                     .getTranslateInstance(this.counter.getPosition().getX(), this.counter.getPosition().getY()), null);
             if (this.counter.getItem().isPresent()) {
                 this.counter.getItem().get().draw(g,

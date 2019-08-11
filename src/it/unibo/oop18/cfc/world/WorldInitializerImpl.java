@@ -123,7 +123,7 @@ public class WorldInitializerImpl implements WorldInitializer {
     */
     public Set<ParquetFloor> initializeParquetFloor() {
         return this.tilemap.getParquetFloorPosition().stream()
-                .map(p -> this.factory.createParquetFloor(p, p.getX() / 64 % 2 == 0 ? true : false))
+                .map(p -> this.factory.createParquetFloor(p))
                 .collect(Collectors.toSet());
     }
 

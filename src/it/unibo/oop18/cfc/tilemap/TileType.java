@@ -1,35 +1,83 @@
 package it.unibo.oop18.cfc.tilemap;
 
+/**
+ * The Enum TileType.
+ */
 public enum TileType {
-    // tile Station
-    CHOPPINGSTATION(1, 0), COOKER(2, 0), COUNTER(3, 0), DELIVERYSTATION(4, 0), BREADSTATION(5, 0),
-    MEATSTATION(9, 0), LETTUCESTATION(10, 0), TOMATOSTATION(11, 0), PLATESTATION(8, 0), TRASHCAN(6, 0), WASHBASIN(7, 0),
+    
+    /** The parquetfloor. */
+    PARQUETLEFTFLOOR(0, 0),
+    
+    /** The parquetrightfloor. */
+    PARQUETRIGHTFLOOR(1, 0), 
+    
+    /** The choppingstation. */
+    CHOPPINGSTATION(0, 1),
+    
+    /** The cooker. */
+    COOKER(0, 2),
+    
+    /** The counter. */
+    COUNTER(0, 3),
+    
+    /** The boardercounter. */
+    BOARDERCOUNTER(1, 3),    
+    
+    /** The edgecounter. */
+    EDGECOUNTER(2, 3),
+    
+    /** The deliverystation. */    
+    DELIVERYSTATION(0, 4),
+    
+    /** The breadstation. */
+    BREADSTATION(0, 5),
+    
+    /** The meatstation. */
+    MEATSTATION(0, 6),
+    
+    /** The lettucestation. */
+    LETTUCESTATION(0, 7),
+    
+    /** The tomatostation. */
+    TOMATOSTATION(0, 8),
+    
+    /** The trashcan. */
+    TRASHCAN(0, 9),
+    
+    /** The washbasin. */
+    WASHBASIN(0, 10),
+    
+    /** The platestation. */
+    PLATESTATION(0, 11);
 
-    //tile Floor
-    PARQUETFLOOR(0, 1);
-
-    private int pos;
-    private int type;
-
-    private TileType(final int pos, final int type) {
-        this.pos = pos;
-        this.type = type;
+    private int posY;
+    private int posX;
+    /**
+     * Instantiates a new tile type.
+     *
+     * @param pos the pos
+     */
+    TileType(final int posX, final int posY) {
+        this.posX = posX;
+        this.posY = posY;
     }
 
-    public int getPos() {
-        return pos;
+    /**
+     * Gets the pos.
+     *
+     * @return the pos
+     */
+    public int getPosX() {
+        return this.posX;
+    }
+    
+    /**
+     * Gets the pos.
+     *
+     * @return the pos
+     */
+    public int getPosY() {
+        return this.posY;
     }
 
-    public int getType() {
-        return type;
-    }
-
-    public static TileType getTileType(int pos) {
-        for (TileType t : values()) {
-            if (t.getPos() == pos) {
-                return t;
-            }
-        }
-        return null;
-    }
 }
