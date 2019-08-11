@@ -5,15 +5,15 @@ import java.io.IOException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import it.unibo.oop18.cfc.Main.GameEngine;
-import it.unibo.oop18.cfc.Manager.ItemManager;
-import it.unibo.oop18.cfc.Objects.Entity.Player;
-import it.unibo.oop18.cfc.Objects.Items.IngredientType;
-import it.unibo.oop18.cfc.Physics.Direction;
-import it.unibo.oop18.cfc.Sprite.SpriteSheet;
-import it.unibo.oop18.cfc.Util.Position;
-import it.unibo.oop18.cfc.World.World;
-import it.unibo.oop18.cfc.World.WorldImpl;
+import it.unibo.oop18.cfc.main.GameEngine;
+import it.unibo.oop18.cfc.manager.ItemManager;
+import it.unibo.oop18.cfc.object.Entity.Player;
+import it.unibo.oop18.cfc.object.Items.IngredientType;
+import it.unibo.oop18.cfc.physics.Direction;
+import it.unibo.oop18.cfc.sprite.SpriteSheet;
+import it.unibo.oop18.cfc.util.Position;
+import it.unibo.oop18.cfc.world.World;
+import it.unibo.oop18.cfc.world.WorldImpl;
 
 /**
  * This class test some player features like input, movement and key/door collision.
