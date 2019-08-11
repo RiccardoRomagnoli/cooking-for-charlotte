@@ -40,7 +40,6 @@ public class DynamicPlayerGraphicsComponent implements GraphicsComponent {
     /**
      * {@inheritDoc}
      */
-    @Override
     public void draw(final Graphics2D g) {
         this.nextFrame();
         Direction dir = this.entity.getPhysics().getVelocity().getDirection();

@@ -7,34 +7,35 @@ import it.unibo.oop18.cfc.main.GameEngine;
 import it.unibo.oop18.cfc.object.Stations.ChoppingStation;
 import it.unibo.oop18.cfc.sprite.LoadingSprite;
 import it.unibo.oop18.cfc.tile.ChoppingStationTile;
-import it.unibo.oop18.cfc.tile.TileSheet;
 import it.unibo.oop18.cfc.util.Position;
 
 
+/**
+ * The Class ChoppingStationGraphicComponent.
+ */
 public class ChoppingStationGraphicComponent implements GraphicsComponent {
 
     private static final int DIVISION_BY_ZERO_PROTECTION = 1;
     private static final int FRAME_DELAY = Math.round(GameEngine.FPS / 15) + DIVISION_BY_ZERO_PROTECTION;
-
     private static final int POSITION_X_INGREDIENT = 16;
     private static final int POSITION_Y_INGREDIENT = 2;
     private static final int DIM_INGREDIENT = 25;
-
     private static final int POSITION_X_BAR = 815;
     private static final int POSITION_Y_BAR = 680;
     private static final double WIDTH_BAR = 160.0;
     private static final int HEIGHT_BAR = 24;
-
     private final ChoppingStation choppingStation;
     private final ChoppingStationTile choppingStationTile;
     private final LoadingSprite loadingSprite;
     private int frame;
     private int updateFrame;
+
     /**
-     * Creates a {@code DoorGraphicComponent}.
-     * 
-     * @param choppingStation the logic of the door
-     * @param choppingStationTile door's sprite
+     * Instantiates a new chopping station graphic component.
+     *
+     * @param choppingStation the chopping station
+     * @param choppingStationTile the chopping station tile
+     * @param loadingSprite the loading sprite
      */
     public ChoppingStationGraphicComponent(final ChoppingStation choppingStation, final ChoppingStationTile choppingStationTile, final LoadingSprite loadingSprite) {
         this.choppingStation = choppingStation;
@@ -47,7 +48,6 @@ public class ChoppingStationGraphicComponent implements GraphicsComponent {
     /**
      * {@inheritDoc}
      */
-    @Override
     public void draw(final Graphics2D g) {
         if (this.choppingStation.isCut()) {
             this.nextFrame();

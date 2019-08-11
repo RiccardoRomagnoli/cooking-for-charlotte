@@ -8,9 +8,11 @@ import it.unibo.oop18.cfc.object.Items.IngredientState;
 import it.unibo.oop18.cfc.object.Stations.Cooker;
 import it.unibo.oop18.cfc.sprite.LoadingSprite;
 import it.unibo.oop18.cfc.tile.CookerTile;
-import it.unibo.oop18.cfc.tile.TileSheet;
 import it.unibo.oop18.cfc.util.Position;
 
+/**
+ * The Class CookerGraphicComponent.
+ */
 public class CookerGraphicComponent implements GraphicsComponent {
 
     private static final int DIVISION_BY_ZERO_PROTECTION = 1;
@@ -29,11 +31,13 @@ public class CookerGraphicComponent implements GraphicsComponent {
     private final LoadingSprite loadingSprite;
     private int frame;
     private int updateFrame;
+
     /**
-     * Creates a {@code DoorGraphicComponent}.
-     * 
-     * @param cooker the logic of the door
-     * @param cookerTile door's sprite
+     * Instantiates a new cooker graphic component.
+     *
+     * @param cooker the cooker
+     * @param cookerTile the cooker tile
+     * @param loadingSprite the loading sprite
      */
     public CookerGraphicComponent(final Cooker cooker, final CookerTile cookerTile, final LoadingSprite loadingSprite) {
         this.cooker = cooker;
@@ -46,7 +50,6 @@ public class CookerGraphicComponent implements GraphicsComponent {
     /**
      * {@inheritDoc}
      */
-    @Override
     public void draw(final Graphics2D g) {
         if (this.cooker.isCooked()) {
             this.nextFrame();

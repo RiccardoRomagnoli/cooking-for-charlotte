@@ -6,29 +6,30 @@ import java.awt.geom.AffineTransform;
 import it.unibo.oop18.cfc.object.Stations.PlateStation;
 import it.unibo.oop18.cfc.tile.PlateStationTile;
 
+
 /**
- * This class represents still object's graphic component and models
- * {@link GraphicsComponent}.
+ * The Class PlateStationGraphicComponent.
  */
 public class PlateStationGraphicComponent implements GraphicsComponent {
     private final PlateStation plateStation;
     private final PlateStationTile plateStationTile;
 
+
     /**
-     * Creates a {@code DoorGraphicComponent}.
-     * 
-     * @param plateStation     the logic of the door
-     * @param plateStationTile door's sprite
+     * Instantiates a new plate station graphic component.
+     *
+     * @param plateStation the plate station
+     * @param plateStationTile the plate station tile
      */
     public PlateStationGraphicComponent(final PlateStation plateStation, final PlateStationTile plateStationTile) {
         this.plateStation = plateStation;
         this.plateStationTile = plateStationTile;
     }
 
+
     /**
-     * {@inheritDoc}
+     * {@inheritDoc}.
      */
-    @Override
     public void draw(final Graphics2D g) {
         g.drawImage(this.plateStationTile.getTiles().get(0).getImage(), AffineTransform.getTranslateInstance(
                 this.plateStation.getPosition().getX(), this.plateStation.getPosition().getY()), null);

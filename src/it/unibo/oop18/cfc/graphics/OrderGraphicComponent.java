@@ -8,6 +8,9 @@ import it.unibo.oop18.cfc.orders.Order;
 import it.unibo.oop18.cfc.orders.OrderImpl;
 import it.unibo.oop18.cfc.util.Position;
 
+/**
+ * The Class OrderGraphicComponent.
+ */
 public class OrderGraphicComponent implements GraphicsComponent {
     
     private static final int DISTANCE_BETWEEN_INGREDIENT = 12;
@@ -25,11 +28,19 @@ public class OrderGraphicComponent implements GraphicsComponent {
     
     private final Order order;
 
+    /**
+     * Instantiates a new order graphic component.
+     *
+     * @param order the order
+     */
     public OrderGraphicComponent(Order order) {
         this.order = order;
     }
 
-    @Override
+
+    /**
+     * {@inheritDoc}.
+     */
     public void draw(Graphics2D g) {
         this.order.getIngredientsList().forEach(i->i.drawState(g, new Position(
                       OFFSET + WIDTH_SLOT_GRAPHIC + X_FIRST_INGREDIENT + SLOT_DIMENSION * order.getSlot(), 

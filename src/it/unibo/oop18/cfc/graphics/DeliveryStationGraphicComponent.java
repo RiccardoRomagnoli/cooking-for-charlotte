@@ -6,15 +6,19 @@ import java.awt.geom.AffineTransform;
 import it.unibo.oop18.cfc.object.Stations.DeliveryStation;
 import it.unibo.oop18.cfc.tile.DeliveryStationTile;
 
+/**
+ * The Class DeliveryStationGraphicComponent.
+ */
 public class DeliveryStationGraphicComponent implements GraphicsComponent {
     private final DeliveryStation deliveryStation;
     private final DeliveryStationTile deliveryStationTile;
 
+
     /**
-     * Creates a {@code DoorGraphicComponent}.
-     * 
-     * @param deliveryStation       the logic of the door
-     * @param deliveryStationTile door's sprite
+     * Instantiates a new delivery station graphic component.
+     *
+     * @param deliveryStation the delivery station
+     * @param deliveryStationTile the delivery station tile
      */
     public DeliveryStationGraphicComponent(final DeliveryStation deliveryStation,
             final DeliveryStationTile deliveryStationTile) {
@@ -25,7 +29,6 @@ public class DeliveryStationGraphicComponent implements GraphicsComponent {
     /**
      * {@inheritDoc}
      */
-    @Override
     public void draw(final Graphics2D g) {
         g.drawImage(this.deliveryStationTile.getTiles().get(0).getImage(), AffineTransform.getTranslateInstance(
                 this.deliveryStation.getPosition().getX(), this.deliveryStation.getPosition().getY()), null);

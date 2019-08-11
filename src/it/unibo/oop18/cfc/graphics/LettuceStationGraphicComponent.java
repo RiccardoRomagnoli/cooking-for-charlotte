@@ -6,16 +6,19 @@ import java.awt.geom.AffineTransform;
 import it.unibo.oop18.cfc.object.Stations.LettuceStation;
 import it.unibo.oop18.cfc.tile.LettuceStationTile;
 
+/**
+ * The Class LettuceStationGraphicComponent.
+ */
 public class LettuceStationGraphicComponent implements GraphicsComponent {
 
     private final LettuceStation lettuceStation;
     private final LettuceStationTile lettuceStationTile;
 
     /**
-     * Creates a {@code DoorGraphicComponent}.
-     * 
-     * @param lettuceStation       the logic of the door
-     * @param lettuceStationTile door's sprite
+     * Instantiates a new lettuce station graphic component.
+     *
+     * @param lettuceStation the lettuce station
+     * @param lettuceStationTile the lettuce station tile
      */
     public LettuceStationGraphicComponent(final LettuceStation lettuceStation, final LettuceStationTile lettuceStationTile) {
         this.lettuceStation = lettuceStation;
@@ -25,7 +28,6 @@ public class LettuceStationGraphicComponent implements GraphicsComponent {
     /**
      * {@inheritDoc}
      */
-    @Override
     public void draw(final Graphics2D g) {
         g.drawImage(this.lettuceStationTile.getTiles().get(0).getImage(), AffineTransform.getTranslateInstance(
                 this.lettuceStation.getPosition().getX(), this.lettuceStation.getPosition().getY()), null);

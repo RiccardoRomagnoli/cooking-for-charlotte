@@ -9,6 +9,9 @@ import it.unibo.oop18.cfc.tile.CounterTile;
 import it.unibo.oop18.cfc.tile.TileSheet;
 import it.unibo.oop18.cfc.util.Position;
 
+/**
+ * The Class CounterGraphicComponent.
+ */
 public class CounterGraphicComponent implements GraphicsComponent {
     private final Counter counter;
     private final CounterTile counterTile;
@@ -20,11 +23,12 @@ public class CounterGraphicComponent implements GraphicsComponent {
     private static final int POSITION_X_ITEM1 = 15;
     private static final int POSITION_Y_ITEM1 = 13;
 
-    /** 
-     * Creates a CounterGraphicComponent.
-     * 
-     * @param counter Object Station
-     * @param counterTile Tile of the Station
+
+    /**
+     * Instantiates a new counter graphic component.
+     *
+     * @param counter the counter
+     * @param counterTile the counter tile
      */
     public CounterGraphicComponent(final Counter counter, final CounterTile counterTile) {
         this.counter = counter;
