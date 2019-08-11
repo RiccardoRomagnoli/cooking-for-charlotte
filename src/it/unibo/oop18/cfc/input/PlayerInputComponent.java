@@ -24,6 +24,4 @@ public interface PlayerInputComponent extends InputComponent {
      * Do action on a specific Station
      */
     void doAction();
-
-    void cutIngredient();
 }

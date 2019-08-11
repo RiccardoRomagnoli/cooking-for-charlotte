@@ -78,6 +78,10 @@ public abstract class AbstractInputComponent implements InputComponent {
     public void createGenericCommand(final Command command) {
         this.commandQueue.add(command);
     }
+    
+    public void resetCommands() {
+        this.commandQueue.clear();
+    }
 
     /**
      * {@inheritDoc}

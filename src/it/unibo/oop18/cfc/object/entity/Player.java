@@ -7,35 +7,40 @@ import it.unibo.oop18.cfc.object.items.Item;
 import it.unibo.oop18.cfc.util.Position;
 
 public interface Player extends DynamicObject {
-
-    void doAction();
-
-    void cutIngredient();
-
+    
     void increasePoints();
 
-    int numPoints();
-
+    int getPoints();
+    
     int getTotalPoints();
-
+    
     void setTotalPoints(int i);
+    
+    int getLifes();
 
+    void decLifes();
+    
     Optional<Item> getItemInHand();
 
     void setItemInHand(Item i);
 
     void removeItemInHand();
-
-    Position getNextPosition();
-
-    int getLifes();
-
-    void decLifes();
-
+    
+    boolean isCutting();
+    
+    void setCutAction(boolean b);
+    
     /**
      * Gets the player's input component.
      *
      * @return {@link PlayerInputComponent}
      */
     PlayerInputComponent getInput();
+    
+    void doAction();
+
+    void cutIngredient();
+
+    Position getNextPosition();
+
 }

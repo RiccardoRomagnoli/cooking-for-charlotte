@@ -21,13 +21,13 @@ import it.unibo.oop18.cfc.world.World;
 public class ChoppingStation extends AbstractStationObject {
 
     private final GraphicsComponent graphicComponent;
-    private GameTimer timer;
+    private final GameTimer timer;
     private Optional<IngredientImpl> food;
-    private World world;
+    private final World world;
     private boolean isCutting;
     
     /** The is sound playing. */
-    public int isSoundPlaying = 0;
+    public int isSoundPlaying;
 
 
     /**
@@ -41,6 +41,7 @@ public class ChoppingStation extends AbstractStationObject {
     public ChoppingStation(final Position position, final ChoppingStationTile choppingStationTile, final LoadingSprite loadingSprite, final World world) {
         super(position);
         this.food = Optional.empty();
+        this.isSoundPlaying = 0;
         timer = new GameTimer();
         this.world = world;
         this.isCutting = false;
@@ -97,7 +98,7 @@ public class ChoppingStation extends AbstractStationObject {
      *
      * @param f the new item
      */
-    public void setItem(IngredientImpl f) {
+    public void setItem(final IngredientImpl f) {
         this.food = Optional.ofNullable(f);
         this.timer.start();
     };
@@ -106,21 +107,13 @@ public class ChoppingStation extends AbstractStationObject {
      * Update.
      */
     public void update() {
-        if (isCutting == true && world.getPlayer().action == true && timer.isStopped()) {
-            timer.start();
-            isSoundPlaying = 1;
-            JukeBoxUtil.loop("cuttingSound");
-        } else if (isCutting == false || world.getPlayer().action == false) {
-            isCutting = false;
-            timer.reset();
-            // isSoundPlaying = 2;
-            // JukeBoxUtil.stop("cuttingSound");
-        }
-        if (food.isPresent() && food.get().getIngredient().getTimeToCut() == timer.getSeconds()) {
+        if (!world.getPlayer().isCutting() || (food.isPresent() && food.get().getState() == IngredientState.CHOPPED)) {
             isCutting = false;
             timer.reset();
             isSoundPlaying = 2;
             JukeBoxUtil.stop("cuttingSound");
+        }
+        if (food.isPresent() && food.get().getIngredient().getTimeToCut() == timer.getSeconds()) {
             food.get().changeState(IngredientState.CHOPPED);
         }
     }
@@ -129,13 +122,15 @@ public class ChoppingStation extends AbstractStationObject {
      * Spacebar pressed.
      */
     public void cutIngredient() {
-        if (food.isPresent() && food.get().getState() == IngredientState.RAW) {
-            if (!world.getPlayer().getItemInHand().isPresent()) {
-                isCutting = true;
-                if (isSoundPlaying != 1) {
-                    JukeBoxUtil.loop("cuttingSound");
-                    isSoundPlaying = 1;
-                }
+
+        if (this.timer.isStopped() && food.isPresent() && food.get().getState() == IngredientState.RAW
+                && !world.getPlayer().getItemInHand().isPresent()) {
+            isCutting = true;
+            timer.start();
+            if (isSoundPlaying != 1) {
+                JukeBoxUtil.loop("cuttingSound");
+                isSoundPlaying = 1;
+
             }
         }
 
@@ -177,8 +172,5 @@ public class ChoppingStation extends AbstractStationObject {
                 world.getPlayer().removeItemInHand();
             }
         }
-        isCutting = false;
-        isSoundPlaying = 2;
-        JukeBoxUtil.stop("cuttingSound");
     }
 }

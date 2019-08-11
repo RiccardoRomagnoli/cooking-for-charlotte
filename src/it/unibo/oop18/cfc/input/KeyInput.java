@@ -5,15 +5,12 @@ import java.awt.event.KeyListener;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import it.unibo.oop18.cfc.gamestate.GameState;
 import it.unibo.oop18.cfc.gamestate.GameStates;
 import it.unibo.oop18.cfc.gamestate.MenuState;
 import it.unibo.oop18.cfc.gamestate.OptionState;
-import it.unibo.oop18.cfc.gamestate.PlayState;
 import it.unibo.oop18.cfc.manager.GameStateManager;
-import it.unibo.oop18.cfc.object.entity.PlayerImpl;
 import it.unibo.oop18.cfc.physics.Direction;
 import it.unibo.oop18.cfc.util.JukeBoxUtil;
 
@@ -25,11 +22,9 @@ public class KeyInput implements KeyListener {
 
     private GameState currentState;
     private final GameStateManager gsm;
-    private PlayerImpl player;
 
     /**
      * Pair where a direction value is assigned to a boolean value.
-     * TODO. non so cosa faccia sta roba, qualcuno aggiusti la javadoc
      */
     public Map<Integer, Boolean> keys;
 
@@ -45,15 +40,6 @@ public class KeyInput implements KeyListener {
     }
 
     /**
-     * TODO.
-     * 
-     * @param pl .
-     */
-    public void setPlayer(final PlayerImpl pl) {
-        this.player = pl;
-    }
-
-    /**
      * It generates a {@link Direction} when specific key is pressed and call
      * specific method on specific Game State.
      */
@@ -62,7 +48,6 @@ public class KeyInput implements KeyListener {
         currentState = gsm.getCurrentGameState();
         switch (currentState.getGameStateName()) {
         case PLAY:
-            this.player = ((PlayState) currentState).getWorld().getPlayer();
             playKeyInput(e);
             break;
         case INTRO:
@@ -130,7 +115,7 @@ public class KeyInput implements KeyListener {
             way = Optional.ofNullable(Direction.UP);
             break;
         case KeyEvent.VK_SPACE:
-            this.cutIngredient();
+            this.gsm.getPlayState().getWorld().getPlayer().setCutAction(true);
             way = Optional.empty();
             break;
         case KeyEvent.VK_P:
@@ -207,10 +192,10 @@ public class KeyInput implements KeyListener {
     @Override
     public void keyReleased(final KeyEvent e) {
         if (gsm.getCurrentGameState().getGameStateName() == GameStates.PLAY) {
-            if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+            if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                this.gsm.getPlayState().getWorld().getPlayer().setCutAction(false);
                 this.doAction();
             }
-
             if (keys.keySet().contains(e.getKeyCode())) {
                 keys.put(e.getKeyCode(), false);
             }
@@ -220,7 +205,6 @@ public class KeyInput implements KeyListener {
                         this.moveEntity(Optional.of(keyToDir(k)));
                     }
                 });
-
             }
             handleStopPlayer(e);
         }
@@ -238,23 +222,17 @@ public class KeyInput implements KeyListener {
 
     private void moveEntity(final Optional<Direction> way) {
         if (way.isPresent()) {
-            this.player.getInput().move(way.get());
+            this.gsm.getPlayState().getWorld().getPlayer().getInput().move(way.get());
         }
-        this.player.action = false;
     }
 
     private void doAction() {
-        this.player.getInput().doAction();
-        this.player.action = false;
-    }
-
-    private void cutIngredient() {
-        this.player.getInput().cutIngredient();
+        this.gsm.getPlayState().getWorld().getPlayer().getInput().doAction();
     }
 
     private void handleStopPlayer(final KeyEvent e) {
         if (keys.values().stream().filter(k -> k == true).count() == 0 && keys.keySet().contains(e.getKeyCode())) {
-            this.player.getInput().stop();
+            this.gsm.getPlayState().getWorld().getPlayer().getInput().stop();
         }
     }
 
@@ -262,7 +240,7 @@ public class KeyInput implements KeyListener {
         gsm.setState(GameStates.PLAY);
         gsm.getPlayState().getWorld().getGameTimer().start();
         resetKeys();
-        this.player.getInput().stop();
+        this.gsm.getPlayState().getWorld().getPlayer().getInput().stop();
         JukeBoxUtil.resumeLoop("music1");
     }
 
@@ -271,6 +249,7 @@ public class KeyInput implements KeyListener {
         this.keys.put(KeyEvent.VK_RIGHT, false);
         this.keys.put(KeyEvent.VK_UP, false);
         this.keys.put(KeyEvent.VK_DOWN, false);
+        this.keys.put(KeyEvent.VK_SPACE, false);
     }
 
     private Direction keyToDir(final Integer k) {

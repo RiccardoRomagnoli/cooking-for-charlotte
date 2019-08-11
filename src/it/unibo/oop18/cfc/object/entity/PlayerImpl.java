@@ -7,9 +7,7 @@ import it.unibo.oop18.cfc.graphics.DynamicPlayerGraphicsComponent;
 import it.unibo.oop18.cfc.graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.input.PlayerInputComponent;
 import it.unibo.oop18.cfc.input.PlayerInputComponentImpl;
-import it.unibo.oop18.cfc.object.items.IngredientImpl;
 import it.unibo.oop18.cfc.object.items.Item;
-import it.unibo.oop18.cfc.object.items.PlateImpl;
 import it.unibo.oop18.cfc.object.stations.ChoppingStation;
 import it.unibo.oop18.cfc.physics.Direction;
 import it.unibo.oop18.cfc.physics.DynamicPhysicsComponent;
@@ -23,27 +21,26 @@ public class PlayerImpl extends AbstractEntity implements Player {
     // gameplay
     private int points;
     private int totalPoints;
-    public boolean action;
     private int lifes;
+    private Optional<Item> hand;
+    private boolean actionCut;
     // Physics, Input and Graphics
     private final DynamicPhysicsComponent physics;
     private final PlayerInputComponent input;
     private final GraphicsComponent gfx;
-
-    //Plate and dishes
-    private Optional<Item> hand;
 
     /**
      * @param tm
      */
     public PlayerImpl(final Position position, final PlayerSprites playerSprites, final World world) {
         super(position, world);
-        points = 0;
-        hand = Optional.empty();
+        this.points = 0;
+        this.actionCut = false;
+        this.hand = Optional.empty();
+        this.lifes = 3;
         this.physics = new DynamicPhysicsComponentImpl(this);
         this.input = new PlayerInputComponentImpl(this);
         this.gfx = new DynamicPlayerGraphicsComponent(this, playerSprites);
-        this.lifes = 3;
     }
 
     /**
@@ -56,7 +53,7 @@ public class PlayerImpl extends AbstractEntity implements Player {
     /**
      *
      */
-    public int numPoints() {
+    public int getPoints() {
         return points;
     }
 
@@ -66,12 +63,48 @@ public class PlayerImpl extends AbstractEntity implements Player {
     public int getTotalPoints() {
         return totalPoints;
     }
-
+    
     /**
      * @param i total point to reach
      */
     public void setTotalPoints(final int i) {
         totalPoints = i;
+    }
+    
+    public int getLifes() {
+        return this.lifes;
+    }
+
+    public void decLifes() {
+       this.lifes--;
+    }
+    
+    public Optional<Item> getItemInHand(){
+        return this.hand;
+    }
+
+    public void setItemInHand(final Item i){
+        this.hand = Optional.ofNullable(i);
+    }
+    
+    public void removeItemInHand() {
+        this.hand = Optional.empty();
+    }
+    
+    public boolean isCutting() {
+        return actionCut;
+    }
+
+    public void setCutAction(final boolean b) {
+        this.actionCut = b;
+    }
+    
+    public DynamicPhysicsComponent getPhysics() {
+        return physics;
+    }
+
+    public PlayerInputComponent getInput() {
+        return input;
     }
 
     /**
@@ -79,23 +112,12 @@ public class PlayerImpl extends AbstractEntity implements Player {
      */
     public void update() {
         this.input.processInput();
-        //this.physics.
         this.physics.move();
-        // check collision with blocks in the map
-        //this.physics.checksCollisions(super.getTileMap());
+        if(this.actionCut) {
+            cutIngredient();
+        }
     }
 
-    public Optional<Item> getItemInHand(){
-        return this.hand;
-    }
-
-    public void setItemInHand(Item i){
-        this.hand = Optional.ofNullable(i);
-    }
-    
-    public void removeItemInHand() {
-        this.hand = Optional.empty();
-    }
     /**
      * @param g element to draw
      */
@@ -104,47 +126,28 @@ public class PlayerImpl extends AbstractEntity implements Player {
     }
 
     @Override
-    public DynamicPhysicsComponent getPhysics() {
-        return physics;
-    }
-
-    @Override
-    public PlayerInputComponent getInput() {
-        return input;
-    }
-
-    @Override
     public void doAction() {
-//        if (this.getItemInHand().isPesent()) {
-//            if (this.getItemInHand().get() instanceof IngredientImpl) {
-//                IngredientImpl ingr = (IngredientImpl) this.getItemInHand().get();
-//            } else if (this.getItemInHand().get() instanceof PlateImpl) {
-//
-//            }
-//        } else {
-            super.getWorld().getAllStations().stream()
-                                             .filter(p -> p.getPosition()
-                                                           .samePosition((Position.setInTile(getNextPosition()))))
-                                             .findFirst()
-                                             .ifPresent(val -> val.doAction(super.getWorld()));
-//        }
+        super.getWorld().getAllStations().stream()
+                .filter(p -> p.getPosition().samePosition((Position.setInTile(getNextPosition())))).findFirst()
+                .ifPresent(val -> val.doAction(super.getWorld()));
     }
 
     @Override
     public void cutIngredient() {
-        Optional<ChoppingStation> cs = super.getWorld().getChoppingStations().stream()
+        final Optional<ChoppingStation> cs = super.getWorld().getChoppingStations().stream()
                 .filter(p -> p.getPosition()
                         .samePosition((Position.setInTile(getNextPosition()))))
           .findFirst();
         if (cs.isPresent()) {
-            action = true;
             cs.get().cutIngredient();
-            }
+        } else {
+            this.actionCut = false;
+        }
     }
 
     public Position getNextPosition() {
-        Position nextPosition = new Position(0, 0);
-        Direction way = this.physics.getVelocity().getOldDirection();
+        final Position nextPosition = new Position(0, 0);
+        final Direction way = this.physics.getVelocity().getOldDirection();
         switch (way) {
         case UP:
             nextPosition.setX(this.getPosition().getX() + 32);
@@ -168,13 +171,4 @@ public class PlayerImpl extends AbstractEntity implements Player {
         return nextPosition;
     }
 
-    @Override
-    public int getLifes() {
-        return this.lifes;
-    }
-
-    @Override
-    public void decLifes() {
-       this.lifes--;
-    }
 }
