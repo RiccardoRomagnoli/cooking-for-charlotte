@@ -42,7 +42,7 @@ public class OrderGraphicComponent implements GraphicsComponent {
      * {@inheritDoc}.
      */
     public void draw(Graphics2D g) {
-        this.order.getIngredientsList().forEach(i->i.drawState(g, new Position(
+        this.order.getIngredientsList().forEach(i->i.draw(g, new Position(
                       OFFSET + WIDTH_SLOT_GRAPHIC + X_FIRST_INGREDIENT + SLOT_DIMENSION * order.getSlot(), 
                       Y_INGREDIENTS), 
                       INGREDIENT_WIDTH_HEIGHT, INGREDIENT_WIDTH_HEIGHT));

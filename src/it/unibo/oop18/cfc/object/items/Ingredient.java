@@ -22,4 +22,6 @@ public interface Ingredient {
     void changeState(IngredientState state);
 
     void drawState(final Graphics2D g, final Position p);
+    
+    void drawState(Graphics2D g, Position p, int width, int height);
 }
