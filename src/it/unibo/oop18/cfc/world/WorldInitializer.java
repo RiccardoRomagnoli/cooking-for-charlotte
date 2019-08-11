@@ -16,99 +16,102 @@ import it.unibo.oop18.cfc.object.stations.TomatoStation;
 import it.unibo.oop18.cfc.object.stations.Trashcan;
 import it.unibo.oop18.cfc.object.stations.Washbasin;
 
+
 /**
- * This interface declares a world initializer.
+ * The Interface WorldInitializer.
  */
 public interface WorldInitializer {
 
     /**
-     * Initializes all unbreakable blocks.
-     * 
-     * @return a set of unbreakable blocks
+     * Initialize chopping board.
+     *
+     * @param world the {@link World}
+     * @return the sets of {@link ChoppingStation}
      */
     Set<ChoppingStation> initializeChoppingBoard(World world);
 
     /**
-     * Initializes initial free tiles.
-     * 
-     * @return free tiles
+     * Initialize cooker.
+     *
+     * @return the sets of {@link Cooker}
      */
     Set<Cooker> initializeCooker();
 
     /**
-     * Initializes initial free tiles.
-     * 
-     * @return free tiles
+     * Initialize counter.
+     *
+     * @return the sets of {@link Counter}
      */
     Set<Counter> initializeCounter();
 
     /**
-     * Initializes initial free tiles.
-     * 
-     * @return free tiles
+     * Initialize delivery station.
+     *
+     * @return the sets of {@link DeliveryStation}
      */
     Set<DeliveryStation> initializeDeliveryStation();
 
     /**
-     * Initializes initial free tiles.
-     * 
-     * @return free tiles
+     * Initialize bread station.
+     *
+     * @return the sets of {@link BreadStation}
      */
     Set<BreadStation> initializeBreadStation();
 
     /**
-     * Initializes initial free tiles.
-     * 
-     * @return free tiles
+     * Initialize meat station.
+     *
+     * @return the sets of {@link MeatStation}
      */
     Set<MeatStation> initializeMeatStation();
-
+    
     /**
-     * Initializes initial free tiles.
-     * 
-     * @return free tiles
+     * Initialize tomato station.
+     *
+     * @return the sets of {@link TomatoStation}
      */
     Set<TomatoStation> initializeTomatoStation();
 
     /**
-     * Initializes initial free tiles.
-     * 
-     * @return free tiles
+     * Initialize lettuce station.
+     *
+     * @return the sets of {@link LettuceStation}
      */
     Set<LettuceStation> initializeLettuceStation();
+
     /**
-     * Initializes initial free tiles.
-     * 
-     * @return free tiles
+     * Initialize trashcan.
+     *
+     * @return the sets of {@link Trashcan}
      */
     Set<Trashcan> initializeTrashcan();
 
     /**
-     * Initializes initial free tiles.
-     * 
-     * @return free tiles
+     * Initialize washbasin.
+     *
+     * @return the sets of {@link Washbasin}
      */
     Set<Washbasin> initializeWashbasin();
 
     /**
-     * Initializes initial free tiles.
-     * 
-     * @return free tiles
+     * Initialize plate station.
+     *
+     * @return the sets of {@link PlateStation}
      */
     Set<PlateStation> initializePlateStation();
 
     /**
-     * Initializes initial free tiles.
-     * 
-     * @return free tiles
+     * Initialize parquet floor.
+     *
+     * @return the sets of {@link ParquetFloor}
      */
     Set<ParquetFloor> initializeParquetFloor();
 
     /**
-     * Initializes the player.
-     * 
-     * @param world where to add the player
-     * @return the player
+     * Initialize player.
+     *
+     * @param world the {@link World}
+     * @return the player impl
      */
     PlayerImpl initializePlayer(World world); 
 }
