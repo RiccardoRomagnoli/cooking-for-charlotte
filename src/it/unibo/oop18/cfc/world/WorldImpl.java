@@ -97,6 +97,7 @@ public class WorldImpl implements World {
     private final SpriteManager spriteManager;
     private final ItemManager itemManager;
     private final OrdersManager ordersManager;
+
     /**
      * Creates a {@code WorldImpl}.
      * 
@@ -292,6 +293,7 @@ public class WorldImpl implements World {
     public Set<ParquetFloor> getParquetFloor() {
         return parquetFloor;
     }
+
     /**
      * {@inheritDoc}
      */
