@@ -9,32 +9,35 @@ import java.util.ArrayList;
 import it.unibo.oop18.cfc.Objects.Items.IngredientState;
 import it.unibo.oop18.cfc.Objects.Items.Plate;
 
+public interface Order {
 
-public interface Order{
-    
     /**
-     * Checks is the plate submitted is the same of the order plate
+     * Checks is the plate submitted is the same of the order plate.
      * 
      * @param plate Plate submitted
      * @return True if they are the same
      */
-    public boolean checkOrder(Plate plate);
-    
-    public void draw(Graphics2D g);
-    
-    public int getPoints();
-    
-    public void startOrder();
-    
-    public int getOrderIngredientQuantity();
-    
-    public void addIngredient(IngredientType ingredientType, IngredientState ingredientState);
-    
-    public void setCountDownTimer(int timeInSeconds);
+    boolean checkOrder(Plate plate);
 
-    public ArrayList<OrderIngredient> getIngredientsList();
+    void draw(Graphics2D g);
 
-    public void stopOrder();
+    int getPoints();
 
-    public int getCountDownTime();
+    int getSlot();
+
+    void setSlot(int slot);
+
+    void startOrder();
+
+    int getOrderIngredientQuantity();
+
+    void addIngredient(IngredientType ingredientType, IngredientState ingredientState);
+
+    void setCountDownTimer(int timeInSeconds);
+
+    ArrayList<OrderIngredient> getIngredientsList();
+
+    void stopOrder();
+
+    int getCountDownTime();
 }

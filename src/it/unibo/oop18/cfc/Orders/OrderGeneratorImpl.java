@@ -60,6 +60,7 @@ public class OrderGeneratorImpl extends TimerTask implements OrderGenerator {
     public void generateNewOrder() {
         if(ordersManager.getOrderQuantity()!=4) {
             Order o = new OrderImpl(ordersManager);
+            o.setSlot(ordersManager.getOrderQuantity());
             if(getRandomRecipe().equals(Recipes.BURGER)) {
                 o.addIngredient(IngredientType.BREAD, IngredientState.CHOPPED);
             }
