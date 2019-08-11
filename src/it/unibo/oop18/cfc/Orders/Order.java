@@ -37,7 +37,7 @@ public interface Order {
     
     public int getSlot();
 
-    ArrayList<OrderIngredient> getIngredientsList();
+    public ArrayList<OrderIngredient> getIngredientsList();
 
-    void stopOrder();
+    public void stopOrder();
 }

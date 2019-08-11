@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import it.unibo.oop18.cfc.Graphics.GraphicsComponent;
+import it.unibo.oop18.cfc.Graphics.OrderGraphicComponent;
 import it.unibo.oop18.cfc.Objects.Items.Plate;
 import it.unibo.oop18.cfc.Util.GameTimer;
 import it.unibo.oop18.cfc.World.World;
@@ -44,9 +46,10 @@ public class OrdersManagerImpl implements OrdersManager {
      */
     @Override
     public void draw(Graphics2D g) {
-        currentOrders.stream().peek(o->o.setSlot(currentOrders.indexOf(o)+1))
-                              .peek(o->o.draw(g));
-        //currentOrders.forEach(o -> g.drawString("Order " + Integer.toString(o.getSlot()), 20 + 260 * o.getSlot(), 20));
+        currentOrders.stream().forEach(o->{
+            o.setSlot(currentOrders.indexOf(o));
+            o.draw(g);
+        });
     }
     
     @Override

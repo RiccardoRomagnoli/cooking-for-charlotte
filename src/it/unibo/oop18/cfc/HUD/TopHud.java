@@ -27,8 +27,8 @@ public class TopHud {
     }
 
     public void draw(Graphics2D g) {
-        this.world.getOrdersManager().draw(g);
         g.drawImage(bar, 0, yoffset, null);               
+        this.world.getOrdersManager().draw(g);
     }
 }
 

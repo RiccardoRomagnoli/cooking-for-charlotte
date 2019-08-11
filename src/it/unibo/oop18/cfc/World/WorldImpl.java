@@ -105,7 +105,6 @@ public class WorldImpl implements World {
      */
     public WorldImpl() throws IOException {
         this.timer = new GameTimer();
-        this.ordersManager = new OrdersManagerImpl(this);
         this.choppingStations = new HashSet<>();
         this.counters = new HashSet<>();
         this.cookers = new HashSet<>();
@@ -121,6 +120,7 @@ public class WorldImpl implements World {
         this.tileManager = new TileManager(TILEPATH);
         this.spriteManager = new SpriteManager(SPRITEPATH);
         this.itemManager = new ItemManager(ITEMPATH);
+        this.ordersManager = new OrdersManagerImpl(this);
         this.createLevel();
     }
 
@@ -306,7 +306,7 @@ public class WorldImpl implements World {
         this.player.update();
         this.choppingStations.forEach(c -> c.update());
         this.cookers.forEach(c -> c.update());
-        //this.ordersManager.update();
+        this.ordersManager.update();
     }
 
     /**
@@ -315,7 +315,6 @@ public class WorldImpl implements World {
     @Override
     public void draw(final Graphics2D g) {
         this.getAllGameObjects().forEach(o -> o.draw(g));
-        this.ordersManager.draw(g);
     }
 
     /**
@@ -341,6 +340,7 @@ public class WorldImpl implements World {
         this.washbasins.addAll(initializer.initializeWashbasin());
         this.parquetFloor.addAll(initializer.initializeParquetFloor());
         this.player = initializer.initializePlayer(this);
+        this.ordersManager.startGeneration();
     }
 
 }
