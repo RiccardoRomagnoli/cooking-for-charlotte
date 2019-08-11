@@ -6,7 +6,6 @@ import java.awt.geom.AffineTransform;
 import it.unibo.oop18.cfc.object.floors.ParquetFloor;
 import it.unibo.oop18.cfc.tile.ParquetFloorTile;
 import it.unibo.oop18.cfc.tile.TileSheet;
-import it.unibo.oop18.cfc.tilemap.TileMapImpl;
 import it.unibo.oop18.cfc.tilemap.TileType;
 
 /**
