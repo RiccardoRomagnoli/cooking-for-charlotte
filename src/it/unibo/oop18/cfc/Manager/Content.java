@@ -77,5 +77,28 @@ public class Content {
             g.drawImage(font[row][col], x + 50 * i, y, null);
         }
     }
+        
+    public static void drawString(final Graphics2D g, final String str, final int x, final int y, final int width, final int height) {
+        final String s = str.toUpperCase();
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            // if(c == 47) c = 36; // slash
+            if (c == 58) {
+                c = 26; // colon
+            }
+            if (c == 32) {
+                c = 28; // space
+            }
+            if (c >= 48 && c <= 57) {
+                c -= 32; // numbers
+            }
+            if (c >= 65 && c <= 90) {
+                c -= 32; // letters
+            }
+            final int row = c / font[0].length;
+            final int col = c % font[0].length;
+            g.drawImage(font[row][col], x + width * i, y, width, height, null);
+        }
+    }
 
 }
