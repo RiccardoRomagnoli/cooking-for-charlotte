@@ -8,7 +8,6 @@ import java.util.TimerTask;
 
 import it.unibo.oop18.cfc.object.items.IngredientState;
 import it.unibo.oop18.cfc.object.items.IngredientType;
-import it.unibo.oop18.cfc.recipes.Recipes;
 import it.unibo.oop18.cfc.util.Pair;
 
 public class OrderGeneratorImpl extends TimerTask implements OrderGenerator {
