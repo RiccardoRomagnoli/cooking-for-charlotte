@@ -48,7 +48,6 @@ public class OptionState extends GameState {
     public void init() {
         bg = Content.MENUBG[0][0];
         food = Content.FOOD[6][2];
-        //MenuState.menuIsPlaying=3;
     }
 
     /**
@@ -60,6 +59,7 @@ public class OptionState extends GameState {
 
     /**
      * {@inheritDoc}.
+     * 
      * @param g basic graphics
      */
     public void draw(final Graphics2D g) {
@@ -100,16 +100,11 @@ public class OptionState extends GameState {
     public void increase() {
         JukeBoxUtil.play("menuoption");
         JukeBoxUtil.stop("menuSong");
-        if (currentOption == 0) {
-            if (lastVolIndex < volume.size() - 1) {
-                lastVolIndex++;
-                JukeBoxUtil.setVolume(volume.get(lastVolIndex));
-            }
-        } else if (currentOption == 1) {
-            if (lastResIndex < resolution.size() - 1) {
-                lastResIndex++;
-                
-            }
+        if (currentOption == 0 && lastVolIndex < volume.size() - 1) {
+            lastVolIndex++;
+            JukeBoxUtil.setVolume(volume.get(lastVolIndex));
+        } else if (currentOption == 1 && lastResIndex < resolution.size() - 1) {
+            lastResIndex++;
         }
         JukeBoxUtil.resume("menuSong");
     }
@@ -120,15 +115,11 @@ public class OptionState extends GameState {
     public void decrease() {
         JukeBoxUtil.play("menuoption");
         JukeBoxUtil.stop("menuSong");
-        if (currentOption == 0) {
-            if (lastVolIndex > 0) {
-                lastVolIndex--;
-                JukeBoxUtil.setVolume(volume.get(lastVolIndex));
-            }
-        } else if (currentOption == 1) {
-            if (lastResIndex > 0) {
-                lastResIndex--;
-            }
+        if (currentOption == 0 && lastVolIndex > 0) {
+            lastVolIndex--;
+            JukeBoxUtil.setVolume(volume.get(lastVolIndex));
+        } else if (currentOption == 1 && lastResIndex > 0) {
+            lastResIndex--;
         }
         JukeBoxUtil.resume("menuSong");
     }

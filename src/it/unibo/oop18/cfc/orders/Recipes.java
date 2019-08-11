@@ -1,4 +1,4 @@
-package it.unibo.oop18.cfc.recipes;
+package it.unibo.oop18.cfc.orders;
 
 public enum Recipes {
     SIMPLE_PLATE,

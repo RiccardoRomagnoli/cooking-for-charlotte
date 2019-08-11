@@ -68,6 +68,9 @@ public class KeyInput implements KeyListener {
         case OPTION:
             optionKeyInput(e);
             break;
+        case RANKING:
+            rankingKeyInput(e);
+            break;
         default:
             break;
         }
@@ -178,6 +181,10 @@ public class KeyInput implements KeyListener {
         default:
             break;
         }
+    }
+
+    private void rankingKeyInput(final KeyEvent e) {
+        gsm.setState(GameStates.MENU);
     }
 
     private void infoKeyInput(final KeyEvent e) {

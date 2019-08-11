@@ -16,7 +16,7 @@ import it.unibo.oop18.cfc.manager.GameStateManager;
 public class InfoState extends GameState {
 
     private BufferedImage bg;
-    public final static int FONT_SIZE = 25;
+    public static final int FONT_SIZE = 25;
 
     /**
      * Class constructor.

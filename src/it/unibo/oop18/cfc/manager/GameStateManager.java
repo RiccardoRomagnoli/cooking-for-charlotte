@@ -11,6 +11,7 @@ import it.unibo.oop18.cfc.gamestate.MenuState;
 import it.unibo.oop18.cfc.gamestate.OptionState;
 import it.unibo.oop18.cfc.gamestate.PauseState;
 import it.unibo.oop18.cfc.gamestate.PlayState;
+import it.unibo.oop18.cfc.gamestate.RankState;
 import it.unibo.oop18.cfc.util.JukeBoxUtil;
 
 /**
@@ -26,16 +27,15 @@ public class GameStateManager {
     private final GameState pauseState;
     private final GameState infoState;
     private final GameState optionState;
+    private final GameState rankingState;
 
     /** The current state. */
     private GameState currentState;
 
     /**
-     * The GameStateManager does exactly what its
-     * name says. It contains a list of GameStates.
-     * It decides which GameState to update() and
-     * draw() and handles switching between different
-     * GameStates.
+     * The GameStateManager does exactly what its name says. It contains a list of
+     * GameStates. It decides which GameState to update() and draw() and handles
+     * switching between different GameStates.
      */
     public GameStateManager() {
         JukeBoxUtil.init();
@@ -46,6 +46,7 @@ public class GameStateManager {
         playState = new PlayState(this);
         infoState = new InfoState(this);
         optionState = new OptionState(this);
+        rankingState = new RankState(this);
         currentState = introState;
         introState.init();
     }
@@ -90,6 +91,11 @@ public class GameStateManager {
         case OPTION:
             currentState = optionState;
             optionState.init();
+            break;
+        case RANKING:
+            currentState = rankingState;
+            rankingState.init();
+            break;
         default:
             break;
         }
