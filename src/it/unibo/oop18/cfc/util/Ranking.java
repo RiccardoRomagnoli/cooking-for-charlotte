@@ -19,21 +19,10 @@ public interface Ranking {
     void addPlacement(String player, int points);
 
     /**
-     * Print on the screen the first.
-     */
-    void printOnScreen();
-
-    /**
      * Save rank on a csv formatted file.
      * 
      * @throws IOException
      */
     void saveRanking() throws IOException;
 
-    /**
-     * Load the rank from a csv formatted file.
-     * 
-     * @throws IOException
-     */
-    void loadRanking() throws IOException;
 }

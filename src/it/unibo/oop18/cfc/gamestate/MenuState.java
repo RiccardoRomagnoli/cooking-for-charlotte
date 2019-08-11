@@ -2,11 +2,11 @@ package it.unibo.oop18.cfc.gamestate;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-
 import it.unibo.oop18.cfc.main.GameEngine;
 import it.unibo.oop18.cfc.manager.Content;
 import it.unibo.oop18.cfc.manager.GameStateManager;
 import it.unibo.oop18.cfc.util.JukeBoxUtil;
+import it.unibo.oop18.cfc.util.RankingImpl;
 
 /**
  * Menu manager class. Provide methods to manage the selection of options and
@@ -14,17 +14,18 @@ import it.unibo.oop18.cfc.util.JukeBoxUtil;
  */
 public class MenuState extends GameState {
 
-    private BufferedImage bg;  
+    private BufferedImage bg;
     private BufferedImage food;
     private static final int STRING_POS = 350;
     private static final int IMAGE_POS = 280;
     private int currentOption;
-    private final String[] options = { "START", "OPTIONS", "INFO", "QUIT" };
+    private final String[] options = { "START", "OPTIONS", "INFO", "RANKING NOOO", "QUIT" };
     private final int menuOptions = options.length;
-    private final int[] dim = { 300, 360, 420, 480 };
-    
+    private final int[] dim = { 300, 360, 420, 480, 540 };
+    private int rankingOption;
+
     /** Control if menu is playing. */
-    public static int menuIsPlaying;
+    private static int menuIsPlaying;
 
     /**
      * Menu state init.
@@ -53,7 +54,6 @@ public class MenuState extends GameState {
         }
     }
 
-
     /**
      * {@inheritDoc}.
      */
@@ -61,18 +61,22 @@ public class MenuState extends GameState {
         // handleInput();
     }
 
-
     /**
      * {@inheritDoc}..
      *
      * @param g the g
      */
     public void draw(final Graphics2D g) {
-        g.drawImage(bg, 0, 0, null);
-        for (int i = 0; i < menuOptions; i++) {
-            Content.drawString(g, options[i], STRING_POS, dim[i]);
+        if (rankingOption == 0) {
+            g.drawImage(bg, 0, 0, null);
+            for (int i = 0; i < menuOptions; i++) {
+                Content.drawString(g, options[i], STRING_POS, dim[i]);
+            }
+            g.drawImage(food, IMAGE_POS, dim[currentOption], null);
+        } else {
+            g.drawImage(bg, 0, 0, null);
+            RankingImpl.printOnScreen();
         }
-        g.drawImage(food, IMAGE_POS, dim[currentOption], null);
     }
 
     /**
@@ -87,7 +91,7 @@ public class MenuState extends GameState {
         if (currentOption == 1) {
             gsm.setState(GameStates.OPTION);
             gsm.draw(g);
-            //JukeBoxUtil.stop("menuSong");
+            // JukeBoxUtil.stop("menuSong");
             menuIsPlaying = 2;
         }
         if (currentOption == 2) {
@@ -96,10 +100,16 @@ public class MenuState extends GameState {
             menuIsPlaying = 1;
         }
         if (currentOption == 3) {
+            rankingOption = 1;
+        } else {
+            rankingOption = 0;
+        }
+        if (currentOption == 4) {
             JukeBoxUtil.stop("menuSong");
             JukeBoxUtil.closeResource();
-            System.exit(0);
+            System.exit(0); // TODO. trovare un metodo meno brutale
         }
+
     }
 
     /**
@@ -129,4 +139,18 @@ public class MenuState extends GameState {
         JukeBoxUtil.play("collect");
         selectOption();
     }
+
+    /**
+     * Get menu sound state.
+     * 
+     * @return state of menu music
+     */
+    public static int getMenuIsPlaying() {
+        return menuIsPlaying;
+    }
+
+    public static void setMenuIsPlaying(int menuIsPlaying) {
+        MenuState.menuIsPlaying = menuIsPlaying;
+    }
+
 }

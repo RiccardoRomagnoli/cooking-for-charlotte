@@ -2,9 +2,11 @@ package it.unibo.oop18.cfc.util;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -20,8 +22,10 @@ import static java.util.Map.Entry.comparingByValue;
  */
 public class RankingImpl implements Ranking {
 
-    private Map<String, Integer> ranked = new HashMap<>();
+    private static Map<String, Integer> ranked = new HashMap<>();
     final private int rowNumber;
+
+    final private static String RANK_PATH = "/HUD/rank.txt";
 
     /**
      * Constructor.
@@ -48,9 +52,9 @@ public class RankingImpl implements Ranking {
     /**
      * Print point on screen.
      */
-    @Override
-    public void printOnScreen() {
+    public static void printOnScreen() {
         int count = 1;
+        loadRanking();
         for (final HashMap.Entry<String, Integer> entry : ranked.entrySet()) {
             final String key = entry.getKey();
             final Integer value = entry.getValue();
@@ -67,7 +71,7 @@ public class RankingImpl implements Ranking {
         FileWriter w;
         BufferedWriter b;
         try {
-            w = new FileWriter("prova.txt");
+            w = new FileWriter(RANK_PATH);
             b = new BufferedWriter(w);
             for (final HashMap.Entry<String, Integer> entry : ranked.entrySet()) {
                 final String key = entry.getKey();
@@ -85,14 +89,16 @@ public class RankingImpl implements Ranking {
     /**
      * Read the ranking from the CSV file.
      * 
-     * @throws IOException
-     *
      */
-    @Override
-    public final void loadRanking() throws IOException {
+    public static final void loadRanking() {
         final BufferedReader csvReader;
         try {
-            csvReader = new BufferedReader(new FileReader("prova.txt"));
+            System.out.println(new File("/rank.txt").exists());
+            System.out.println(new File("/rank.txt").isDirectory());
+            System.out.println(new File("/rank.txt").canRead());
+            System.out.println(new File(".").getAbsolutePath());
+            System.out.println("The path is '" + RANK_PATH + "'");
+            csvReader = new BufferedReader(new FileReader(new File("rank.txt")));
             String row;
             while ((row = csvReader.readLine()) != null) {
                 final String[] data = row.split(";");
