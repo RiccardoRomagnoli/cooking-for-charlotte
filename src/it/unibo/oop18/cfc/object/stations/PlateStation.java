@@ -2,8 +2,10 @@ package it.unibo.oop18.cfc.object.stations;
 
 import java.awt.Graphics2D;
 
+import it.unibo.oop18.cfc.cookingstuff.Ingredient;
 import it.unibo.oop18.cfc.graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.graphics.PlateStationGraphicComponent;
+import it.unibo.oop18.cfc.object.items.IngredientImpl;
 import it.unibo.oop18.cfc.object.items.PlateImpl;
 import it.unibo.oop18.cfc.tile.PlateStationTile;
 import it.unibo.oop18.cfc.util.Position;
@@ -28,6 +30,12 @@ public class PlateStation extends AbstractStationObject{
         if (!world.getPlayer().getItemInHand().isPresent()) {
             final PlateImpl plate = new PlateImpl(world.getItemManager());
             world.getPlayer().setItemInHand(plate);
+        } else if(world.getPlayer().getItemInHand().isPresent() && world.getPlayer().getItemInHand().get() instanceof IngredientImpl) {
+            final PlateImpl plate = new PlateImpl(world.getItemManager());
+            plate.addDish((IngredientImpl) world.getPlayer().getItemInHand().get());
+            world.getPlayer().removeItemInHand();
+            world.getPlayer().setItemInHand(plate);
+            
         }
     }
 
