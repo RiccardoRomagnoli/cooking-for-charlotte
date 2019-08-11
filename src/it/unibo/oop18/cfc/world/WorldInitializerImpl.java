@@ -34,7 +34,7 @@ public class WorldInitializerImpl implements WorldInitializer {
     private final TileMapImpl tilemap;
 
     /**
-     * Instantiates a new world initializer impl.
+     * Instantiates a new {@link WorldInitializerImpl}.
      *
      * @param tm the {@link TileManager}
      * @param sm the {@link SpriteManager}

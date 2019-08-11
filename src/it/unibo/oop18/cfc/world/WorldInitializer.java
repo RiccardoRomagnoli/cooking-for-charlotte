@@ -16,14 +16,13 @@ import it.unibo.oop18.cfc.object.stations.TomatoStation;
 import it.unibo.oop18.cfc.object.stations.Trashcan;
 import it.unibo.oop18.cfc.object.stations.Washbasin;
 
-
 /**
- * The Interface WorldInitializer.
+ * This interface declares the method of a {@link WorldInitializer}.
  */
 public interface WorldInitializer {
 
     /**
-     * Initialize chopping board.
+     * Initialize {@link ChoppingStation}.
      *
      * @param world the {@link World}
      * @return the sets of {@link ChoppingStation}
@@ -31,87 +30,87 @@ public interface WorldInitializer {
     Set<ChoppingStation> initializeChoppingBoard(World world);
 
     /**
-     * Initialize cooker.
+     * Initialize {@link Cooker}.
      *
      * @return the sets of {@link Cooker}
      */
     Set<Cooker> initializeCooker();
 
     /**
-     * Initialize counter.
+     * Initialize {@link Counter}.
      *
      * @return the sets of {@link Counter}
      */
     Set<Counter> initializeCounter();
 
     /**
-     * Initialize delivery station.
+     * Initialize {@link DeliveryStation}.
      *
      * @return the sets of {@link DeliveryStation}
      */
     Set<DeliveryStation> initializeDeliveryStation();
 
     /**
-     * Initialize bread station.
+     * Initialize {@link BreadStation}.
      *
      * @return the sets of {@link BreadStation}
      */
     Set<BreadStation> initializeBreadStation();
 
     /**
-     * Initialize meat station.
+     * Initialize {@link MeatStation}.
      *
      * @return the sets of {@link MeatStation}
      */
     Set<MeatStation> initializeMeatStation();
     
     /**
-     * Initialize tomato station.
+     * Initialize {@link TomatoStation}.
      *
      * @return the sets of {@link TomatoStation}
      */
     Set<TomatoStation> initializeTomatoStation();
 
     /**
-     * Initialize lettuce station.
+     * Initialize {@link LettuceStation}.
      *
      * @return the sets of {@link LettuceStation}
      */
     Set<LettuceStation> initializeLettuceStation();
 
     /**
-     * Initialize trashcan.
+     * Initialize {@link Trashcan}.
      *
      * @return the sets of {@link Trashcan}
      */
     Set<Trashcan> initializeTrashcan();
 
     /**
-     * Initialize washbasin.
+     * Initialize {@link Washbasin}.
      *
      * @return the sets of {@link Washbasin}
      */
     Set<Washbasin> initializeWashbasin();
 
     /**
-     * Initialize plate station.
+     * Initialize {@link PlateStation}.
      *
      * @return the sets of {@link PlateStation}
      */
     Set<PlateStation> initializePlateStation();
 
     /**
-     * Initialize parquet floor.
+     * Initialize {@link ParquetFloor}.
      *
      * @return the sets of {@link ParquetFloor}
      */
     Set<ParquetFloor> initializeParquetFloor();
 
     /**
-     * Initialize player.
+     * Initialize {@link Player}.
      *
      * @param world the {@link World}
-     * @return the player impl
+     * @return the {@link Player}
      */
     PlayerImpl initializePlayer(World world); 
 }

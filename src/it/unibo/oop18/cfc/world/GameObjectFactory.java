@@ -16,118 +16,115 @@ import it.unibo.oop18.cfc.object.stations.Washbasin;
 import it.unibo.oop18.cfc.util.Position;
 
 /**
- * This interface declares the method of a GameObjectFactory.
+ * This interface declares the method of a {@link GameObjectFactory}.
  */
 public interface GameObjectFactory {
 
     /**
-     * Creates a {@link PlayerImpl}.
-     * 
-     * @param position player's position.
-     * @param world    the world where to add the player
-     * @return a new player
+     * Creates a new {@link PlayerImpl}.
+     *
+     * @param position the {@link Position}
+     * @param world the {@link World}
+     * @return the {@link PlayerImpl}
      */
     PlayerImpl createPlayer(Position position, World world);
 
     /**
-     * Creates an unbreakable {@link Block}.
-     * 
-     * @param position block's position
-     * @return a new unbreakable Block
+     * Creates a new {@link ChoppingStation}.
+     *
+     * @param position the {@link Position}
+     * @param world the {@link World}
+     * @return the {@link ChoppingStation}
      */
     ChoppingStation createChoppingBoard(Position position, World world);
 
     /**
-     * Creates an unbreakable {@link Block}.
-     * 
-     * @param position block's position
-     * @return a new unbreakable Block
+     * Creates a new {@link Cooker}.
+     *
+     * @param position the {@link Position}
+     * @return the {@link Cooker}
      */
     Cooker createCooker(Position position);
 
     /**
-     * Creates an unbreakable {@link Block}.
-     * 
-     * @param position block's position
-     * @return a new unbreakable Block
+     * Creates a new {@link Counter}.
+     *
+     * @param position the {@link Position}
+     * @return the {@link Counter}
      */
     Counter createCounter(Position position);
 
     /**
-     * Creates an unbreakable {@link Block}.
-     * 
-     * @param position block's position
-     * @return a new unbreakable Block
+     * Creates a new {@link DeliveryStation}.
+     *
+     * @param position the {@link Position}
+     * @return the {@link DeliveryStation}
      */
     DeliveryStation createDeliveryStation(Position position);
 
     /**
-     * Creates an unbreakable {@link Block}.
-     * 
-     * @param position block's position
-     * @return a new unbreakable Block
+     * Creates a new {@link PlateStation}.
+     *
+     * @param position the {@link Position}
+     * @return the {@link PlateStation}
      */
     PlateStation createPlateStation(Position position);
 
     /**
-     * Creates an unbreakable {@link Block}.
-     * 
-     * @param position block's position
-     * @return a new unbreakable Block
+     * Creates a new {@link BreadStation}.
+     *
+     * @param position the {@link Position}
+     * @return the {@link BreadStation}
      */
     BreadStation createBreadStation(Position position);
 
     /**
-     * Creates an unbreakable {@link Block}.
-     * 
-     * @param position block's position
-     * @return a new unbreakable Block
+     * Creates a new {@link MeatStation}.
+     *
+     * @param position the {@link Position}
+     * @return the {@link MeatStation}
      */
     MeatStation createMeatStation(Position position);
+
     /**
-     * Creates an unbreakable {@link Block}.
-     * 
-     * @param position block's position
-     * @return a new unbreakable Block
+     * Creates a new {@link LettuceStation}.
+     *
+     * @param position the {@link Position}
+     * @return the {@link LettuceStation}
      */
     LettuceStation createLettuceStation(Position position);
+
     /**
-     * Creates an unbreakable {@link Block}.
-     * 
-     * @param position block's position
-     * @return a new unbreakable Block
+     * Creates a new {@link TomatoStation}.
+     *
+     * @param position the {@link Position}
+     * @return the {@link TomatoStation}
      */
     TomatoStation createTomatoStation(Position position);
+
     /**
-     * Creates an unbreakable {@link Block}.
-     * 
-     * @param position block's position
-     * @return a new unbreakable Block
+     * Creates a new {@link Trashcan}.
+     *
+     * @param position the {@link Position}
+     * @return the {@link Trashcan}
      */
     Trashcan createTrashcan(Position position);
 
     /**
-     * Creates an unbreakable {@link Block}.
-     * 
-     * @param position block's position
-     * @return a new unbreakable Block
+     * Creates a new {@link Washbasin}.
+     *
+     * @param position the {@link Position}
+     * @return the {@link Washbasin}
      */
     Washbasin createWashbasin(Position position);
 
     /**
-     * Creates an unbreakable {@link Block}.
-     * 
-     * @param position block's position
-     * @return a new unbreakable Block
+     * Creates a new {@link ParquetFloor}.
+     *
+     * @param position the {@link Position}
+     * @param leftParquet the left parquet
+     * @return the {@link ParquetFloor}
      */
     ParquetFloor createParquetFloor(Position position, boolean leftParquet);
-
-    /**
-     * Creates an unbreakable {@link Block}.
-     * 
-     * @param position block's position
-     * @return a new unbreakable Block
-     */
-    // Floor createFloor(Position position);
 
 }
