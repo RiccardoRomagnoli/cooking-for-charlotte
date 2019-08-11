@@ -8,7 +8,7 @@ import it.unibo.oop18.cfc.manager.ItemManager;
 import it.unibo.oop18.cfc.manager.SpriteManager;
 import it.unibo.oop18.cfc.manager.TileManager;
 import it.unibo.oop18.cfc.object.GameObject;
-import it.unibo.oop18.cfc.object.entity.PlayerImpl;
+import it.unibo.oop18.cfc.object.entity.Player;
 import it.unibo.oop18.cfc.object.floors.ParquetFloor;
 import it.unibo.oop18.cfc.object.stations.AbstractStationObject;
 import it.unibo.oop18.cfc.object.stations.BreadStation;
@@ -26,7 +26,7 @@ import it.unibo.oop18.cfc.orders.OrdersManager;
 import it.unibo.oop18.cfc.util.GameTimer;
 
 /**
- * This interface declares the methods of a world.
+ * This interface declares a set of methods of a world.
  */
 public interface World {
 
@@ -37,169 +37,164 @@ public interface World {
     void update();
 
     /**
-     * Renders all object' sprite.
-     * @param g the graphic element
+     * Renders all object sprite and tile.
+     * @param g a set of graphic element
      */
     void draw(Graphics2D g);
 
     /**
-     * Does the process input of any alive object.
-     */
-    void processInput();
-
-    /**
-     * Get all game object from the world.
+     * Get all game object from a set of world.
      * 
      * @return all games object
      */
     List<? extends GameObject> getAllGameObjects();
 
     /**
-     * Get all station object from the world.
+     * Get all station object from a set of world.
      * 
      * @return all games object
      */
     List<? extends AbstractStationObject> getAllStations();
 
     /**
-     * Removes a game object from the world.
+     * Removes a game object from a set of world's objects.
      * 
-     * @param object the object to remove
+     * @param object a set of object to remove
      * @param <X>    object's type to remove
      */
     <X extends GameObject> void removeObject(X object);
 
     /**
-     * Gets the tilemanager.
+     * Gets the {@link TileManager}.
      * 
-     * @return the player
+     * @return the {@link TileManager}
      */
     TileManager getTileManager();
 
     /**
-     * Gets the spritemanager.
+     * Gets the {@link SpriteManager}.
      * 
-     * @return the player
+     * @return the {@link SpriteManager}
      */
     SpriteManager getSpriteManager();
 
     /**
-     * Gets the itemanager.
+     * Gets the {@link ItemManager}.
      * 
-     * @return the player
+     * @return the {@link ItemManager}
      */
     ItemManager getItemManager();
 
     /**
-     * Gets the ordermanager.
+     * Gets the {@link OrdersManager}.
      * 
-     * @return the player
+     * @return the {@link OrdersManager}
      */
     OrdersManager getOrdersManager();
     
     /**
-     * Gets the player.
+     * Gets the {@link Player}.
      * 
-     * @return the player
+     * @return the {@link Player}
      */
-    PlayerImpl getPlayer();
+    Player getPlayer();
 
     /**
-     * Gets the game timer.
+     * Gets the {@link GameTimer}.
      * 
-     * @return world's timer
+     * @return world's {@link GameTimer}
      */
     GameTimer getGameTimer();
 
     /**
-     * Gets the Chopping Stations object.
+     * Gets a set of {@link ChoppingStation}.
      * 
-     * @return all this stations
+     * @return all this {@link ChoppingStation}
      */
     Set<ChoppingStation> getChoppingStations();
 
     /**
-     * Gets the Cooker Stations object.
+     * Gets a set of {@link Cooker}.
      * 
-     * @return all this stations
+     * @return all this {@link Cooker}
      */
 
     Set<Cooker> getCookers();
 
     /**
-     * Gets the Counters Stations object.
+     * Gets a set of {@link Counter}.
      * 
-     * @return all this stations
+     * @return all this {@link Counter}
      */
 
     Set<Counter> getCounters();
 
     /**
-     * Gets the Delivery Stations object.
+     * Gets a set of {@link DeliveryStation}.
      * 
-     * @return all this stations
+     * @return all this {@link DeliveryStation}
      */
 
     Set<DeliveryStation> getDeliveryStations();
 
     /**
-     * Gets the Food Stations object.
+     * Gets a set of {@link BreadStation}.
      * 
-     * @return all this stations
+     * @return all this {@link BreadStation}
      */
 
     Set<BreadStation> getBreadStations();
 
     /**
-     * Gets the Food Stations object.
+     * Gets a set of {@link MeatStation}.
      * 
-     * @return all this stations
+     * @return all this {@link MeatStation}
      */
 
     Set<MeatStation> getMeatStations();
 
     /**
-     * Gets the Food Stations object.
+     * Gets a set of {@link TomatoStation}.
      * 
-     * @return all this stations
+     * @return all this {@link TomatoStation}
      */
 
     Set<TomatoStation> getTomatoStations();
 
     /**
-     * Gets the Food Stations object.
+     * Gets a set of {@link LettuceStation}.
      * 
-     * @return all this stations
+     * @return all this {@link LettuceStation}
      */
 
     Set<LettuceStation> getLettuceStations();
 
     /**
-     * Gets the Plate Stations object.
+     * Gets a set of {@link PlateStation}.
      * 
-     * @return all this stations
+     * @return all this {@link PlateStation}
      */
 
     Set<PlateStation> getPlateStations();
 
     /**
-     * Gets the TrashCans Stations object.
+     * Gets a set of {@link Trashcan}.
      * 
-     * @return all this stations
+     * @return all this {@link Trashcan}
      */
     Set<Trashcan> getTrashcans();
 
     /**
-     * Gets the WashBasin Stations object.
+     * Gets a set of {@link Washbasin}.
      * 
-     * @return all this stations
+     * @return all this {@link Washbasin}
      */
     Set<Washbasin> getWashbasins();
 
     /**
-     * Gets the WashBasin Stations object.
+     * Gets a set of {@link ParquetFloor}.
      * 
-     * @return all this stations
+     * @return all this {@link ParquetFloor}
      */
     Set<ParquetFloor> getParquetFloor();
 }

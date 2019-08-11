@@ -106,7 +106,7 @@ public class Position {
                 Math.floor(position.getY() / dimTile) * dimTile);
     }
 
-    public boolean samePosition(Position p) {
+    public boolean samePosition(final Position p) {
         return p.x == this.x && p.y == this.y;
     }
 

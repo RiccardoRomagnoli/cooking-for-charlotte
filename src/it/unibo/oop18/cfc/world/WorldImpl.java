@@ -3,23 +3,16 @@ package it.unibo.oop18.cfc.world;
 import java.awt.Graphics2D;
 import java.io.IOException;
 import java.util.Collections;
-import java.util.Currency;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-
-import it.unibo.oop18.cfc.gamestate.GameState;
-import it.unibo.oop18.cfc.gamestate.GameStates;
-import it.unibo.oop18.cfc.manager.GameStateManager;
 import it.unibo.oop18.cfc.manager.ItemManager;
 import it.unibo.oop18.cfc.manager.SpriteManager;
 import it.unibo.oop18.cfc.manager.TileManager;
 import it.unibo.oop18.cfc.object.GameObject;
 import it.unibo.oop18.cfc.object.entity.PlayerImpl;
 import it.unibo.oop18.cfc.object.floors.ParquetFloor;
-import it.unibo.oop18.cfc.object.items.Item;
-import it.unibo.oop18.cfc.object.items.PlateImpl;
 import it.unibo.oop18.cfc.object.stations.AbstractStationObject;
 import it.unibo.oop18.cfc.object.stations.BreadStation;
 import it.unibo.oop18.cfc.object.stations.ChoppingStation;
@@ -101,7 +94,7 @@ public class WorldImpl implements World {
     /**
      * Creates a {@code WorldImpl}.
      * 
-     * @throws IOException on tilemanager error
+     * @throws IOException on tilemanager, spritemanager or itemmanager
      *
      */
     public WorldImpl() throws IOException {
@@ -197,7 +190,6 @@ public class WorldImpl implements World {
     /**
      * {@inheritDoc}
      */
-    @Override
     public PlayerImpl getPlayer() {
         return this.player;
     }
@@ -205,90 +197,89 @@ public class WorldImpl implements World {
     /**
      * {@inheritDoc}
      */
-    @Override
     public GameTimer getGameTimer() {
         return this.timer;
     }
 
     /**
-     * @return the choppingStations
+     * {@inheritDoc}
      */
     public Set<ChoppingStation> getChoppingStations() {
         return choppingStations;
     }
 
     /**
-     * @return the cookers
+     * {@inheritDoc}
      */
     public Set<Cooker> getCookers() {
         return cookers;
     }
 
     /**
-     * @return the counters
+     * {@inheritDoc}
      */
     public Set<Counter> getCounters() {
         return counters;
     }
 
     /**
-     * @return the deliveryStations
+     * {@inheritDoc}
      */
     public Set<DeliveryStation> getDeliveryStations() {
         return deliveryStations;
     }
 
     /**
-     * @return the foodStations
+     * {@inheritDoc}
      */
     public Set<BreadStation> getBreadStations() {
         return breadStations;
     }
 
     /**
-     * @return the meatStations
+     * {@inheritDoc}
      */
     public Set<MeatStation> getMeatStations() {
         return meatStations;
     }
 
     /**
-     * @return the tomatoStations
+     * {@inheritDoc}
      */
     public Set<TomatoStation> getTomatoStations() {
         return tomatoStations;
     }
 
     /**
-     * @return the lettuceStations
+     * {@inheritDoc}
      */
     public Set<LettuceStation> getLettuceStations() {
         return lettuceStations;
     }
 
     /**
-     * @return the plateStations
+     * {@inheritDoc}
      */
     public Set<PlateStation> getPlateStations() {
         return plateStations;
     }
 
     /**
-     * @return the trashcans
+     * {@inheritDoc}
      */
     public Set<Trashcan> getTrashcans() {
         return trashcans;
     }
 
     /**
-     * @return the washbasins
+     * {@inheritDoc}
      */
     public Set<Washbasin> getWashbasins() {
         return washbasins;
     }
 
     /**
-     * @return the washbasins
+     * {@inheritDoc}
      */
     public Set<ParquetFloor> getParquetFloor() {
         return parquetFloor;
@@ -297,14 +288,12 @@ public class WorldImpl implements World {
     /**
      * {@inheritDoc}
      */
-    @Override
     public <X extends GameObject> void removeObject(final X object) {
     }
 
     /**
      * {@inheritDoc}
      */
-    @Override
     public void update() {
         this.player.update();
         this.choppingStations.forEach(c -> c.update());
@@ -315,17 +304,8 @@ public class WorldImpl implements World {
     /**
      * {@inheritDoc}
      */
-    @Override
     public void draw(final Graphics2D g) {
         this.getAllGameObjects().forEach(o -> o.draw(g));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void processInput() {
-        // this.player.processInput();
     }
 
     private void createLevel() {

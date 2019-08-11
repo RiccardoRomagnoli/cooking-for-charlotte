@@ -6,7 +6,7 @@ package it.unibo.oop18.cfc.util;
 public class GameScoreImpl implements GameScore {
 
     private static final int START = 0;
-    private int score = 0;
+    private int score;
 
     /**
      * Constructor of gamescore class.
