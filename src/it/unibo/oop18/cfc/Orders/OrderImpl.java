@@ -7,6 +7,8 @@ import java.util.TimerTask;
 
 import it.unibo.oop18.cfc.Objects.Items.IngredientType;
 import it.unibo.oop18.cfc.Objects.Items.OrderIngredient;
+import it.unibo.oop18.cfc.Graphics.GraphicsComponent;
+import it.unibo.oop18.cfc.Graphics.OrderGraphicComponent;
 import it.unibo.oop18.cfc.Objects.Items.IngredientImpl;
 import it.unibo.oop18.cfc.Objects.Items.IngredientState;
 import it.unibo.oop18.cfc.Objects.Items.Plate;
@@ -23,12 +25,14 @@ public class OrderImpl implements Order {
     private Timer countDownTimer;
     private final OrdersManager ordersManager;
     private final Order thisOrder;
+    private final GraphicsComponent graphicComponent;
 	
     public OrderImpl(final OrdersManager ordersManager) {
         thisOrder = this;
         this.ordersManager = ordersManager;
         this.countDownTimer = new Timer();
-	ingredientsList = new ArrayList<>();
+	this.ingredientsList = new ArrayList<>();
+	this.graphicComponent = new OrderGraphicComponent(this);
     }
 
     @Override
@@ -46,6 +50,7 @@ public class OrderImpl implements Order {
         ingredientsList.add(new IngredientImpl(this.ordersManager.getWorld().getItemManager(), ingredientType, ingredientState));
     }
     
+    @Override
     public void setSlot(int slot) {
         this.slot = slot;
     }
@@ -72,12 +77,6 @@ public class OrderImpl implements Order {
     }
 
     @Override
-    public void draw(Graphics2D g) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
     public void startOrder() {
         this.countDownTimer = new Timer();
         countDownTimer.schedule(new TimerTask() {
@@ -96,6 +95,11 @@ public class OrderImpl implements Order {
     public void stopOrder() {
         countDownTimer.cancel();
         countDownTimer.purge();
+    }
+
+    @Override
+    public void draw(Graphics2D g) {
+        this.graphicComponent.draw(g);
     }
 
 }

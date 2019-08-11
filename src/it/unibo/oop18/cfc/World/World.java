@@ -23,6 +23,7 @@ import it.unibo.oop18.cfc.Objects.Stations.PlateStation;
 import it.unibo.oop18.cfc.Objects.Stations.TomatoStation;
 import it.unibo.oop18.cfc.Objects.Stations.Trashcan;
 import it.unibo.oop18.cfc.Objects.Stations.Washbasin;
+import it.unibo.oop18.cfc.Orders.OrdersManager;
 import it.unibo.oop18.cfc.Util.GameTimer;
 
 /**
@@ -200,4 +201,10 @@ public interface World {
      * Remove a life from Player.
      */
     void lifeLoss();
+
+    /**
+     * Gets the orders manager
+     * @return
+     */
+    OrdersManager getOrdersManager();
 }

@@ -20,8 +20,6 @@ public interface Order{
      */
     public boolean checkOrder(Plate plate);
     
-    public void draw(Graphics2D g);
-    
     public int getPoints();
     
     public void startOrder();
@@ -37,4 +35,8 @@ public interface Order{
     public void stopOrder();
 
     public int getCountDownTime();
+
+    public void setSlot(int slot);
+    
+    public void draw(Graphics2D g);
 }

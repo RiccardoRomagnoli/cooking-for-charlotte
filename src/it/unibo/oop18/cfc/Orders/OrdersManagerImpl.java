@@ -38,10 +38,14 @@ public class OrdersManagerImpl implements OrdersManager {
         return order.isPresent();
     }
 
+    /**
+     * delegates draw of each order by setting them their slot
+     * which is the index of order list
+     */
     @Override
     public void draw(Graphics2D g) {
-        // delega il draw a tutti gli ordini settandogli lo slot = index della lista
-        // ordinata per tempo dell'ordine
+        currentOrders.stream().peek(o->o.setSlot(currentOrders.indexOf(o)+1))
+                              .peek(o->o.draw(g));
     }
     
     @Override
