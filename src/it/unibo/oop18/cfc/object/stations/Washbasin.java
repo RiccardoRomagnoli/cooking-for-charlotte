@@ -62,7 +62,6 @@ public class Washbasin extends AbstractStationObject {
         if (world.getPlayer().getItemInHand().isPresent() &&
                 world.getPlayer().getItemInHand().get() instanceof PlateImpl) {
             ((PlateImpl) world.getPlayer().getItemInHand().get()).wash();
-            JukeBoxUtil.play("trash.wav");
         }
     }
 }
