@@ -28,7 +28,7 @@ public class DownHud {
     private static final int POSITION_X_FOOD = 412;
     private static final int POSITION_X_STATE = 425;
     private static final int DISTANCE_BETWEEN_FOOD = 100;
-    
+
 
     private int yoffset;
     private final World world;
@@ -74,5 +74,13 @@ public class DownHud {
                 Content.drawString(g, minutes + ":" + seconds, 17, 704);
             }
         }
+        //draw lifes
+        Integer lifes = world.getPlayer().getLifes();
+        if (lifes <= 10) {
+            Content.drawString(g, "hp:0" + lifes.toString(), 17, 654);
+        } else {
+            Content.drawString(g, "hp: " + lifes.toString(), 17, 654);
+        }
+
     }
 }

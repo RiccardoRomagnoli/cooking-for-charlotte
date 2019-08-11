@@ -10,7 +10,6 @@ import it.unibo.oop18.cfc.Manager.TileManager;
 import it.unibo.oop18.cfc.Objects.GameObject;
 import it.unibo.oop18.cfc.Objects.Entity.PlayerImpl;
 import it.unibo.oop18.cfc.Objects.Floors.ParquetFloor;
-import it.unibo.oop18.cfc.Objects.Items.Item;
 import it.unibo.oop18.cfc.Objects.Stations.AbstractStationObject;
 import it.unibo.oop18.cfc.Objects.Stations.BreadStation;
 import it.unibo.oop18.cfc.Objects.Stations.ChoppingStation;
@@ -91,6 +90,13 @@ public interface World {
      */
     ItemManager getItemManager();
 
+    /**
+     * Gets the ordermanager.
+     * 
+     * @return the player
+     */
+    OrdersManager getOrdersManager();
+    
     /**
      * Gets the player.
      * 
@@ -196,15 +202,4 @@ public interface World {
      * @return all this stations
      */
     Set<ParquetFloor> getParquetFloor();
-
-    /**
-     * Remove a life from Player.
-     */
-    void lifeLoss();
-
-    /**
-     * Gets the orders manager
-     * @return
-     */
-    OrdersManager getOrdersManager();
 }

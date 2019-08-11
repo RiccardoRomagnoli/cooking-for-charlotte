@@ -14,7 +14,7 @@ public class OrdersManagerImpl implements OrdersManager {
     private final ArrayList<Order> currentOrders;
     private final ArrayList<Order> finishedOrders;
     private GameTimer gameTimer;
-    private final OrderGenerator generator;
+    private final OrderGeneratorImpl generator;
     private final World world;
 
     public OrdersManagerImpl(World world) {
@@ -24,7 +24,7 @@ public class OrdersManagerImpl implements OrdersManager {
         gameTimer = world.getGameTimer();
         generator = new OrderGeneratorImpl(this);
     }   
-    
+
     public World getWorld() {
         return world;
     }
@@ -46,10 +46,14 @@ public class OrdersManagerImpl implements OrdersManager {
     public void draw(Graphics2D g) {
         currentOrders.stream().peek(o->o.setSlot(currentOrders.indexOf(o)+1))
                               .peek(o->o.draw(g));
+        //currentOrders.forEach(o -> g.drawString("Order " + Integer.toString(o.getSlot()), 20 + 260 * o.getSlot(), 20));
     }
     
     @Override
     public void update() {
+        //generator(timertask) work with timers that call run
+        //this is the alternative solution call every time in update
+        //generator.run();
         updateDifficulty();
         checkZeroOrders();
     }
@@ -69,7 +73,7 @@ public class OrdersManagerImpl implements OrdersManager {
     public void orderFailed(Order order) {
         currentOrders.remove(order);
         finishedOrders.add(order);
-        this.world.lifeLoss();
+        this.world.getPlayer().decLifes();
     }
     
     @Override
@@ -103,8 +107,8 @@ public class OrdersManagerImpl implements OrdersManager {
                 return Optional.ofNullable(order);
         }
         return Optional.empty();
-    }   
-    
+    }
+
     private void orderSucceed(Order order) {
         currentOrders.remove(order);
         finishedOrders.add(order);
@@ -113,7 +117,7 @@ public class OrdersManagerImpl implements OrdersManager {
     private void updateDifficulty() {
         int currentMinute = (int) gameTimer.getMinutes();
         OrderDifficulty currentDifficulty = OrderDifficulty.EASY;
-        
+
         if (currentMinute > 2) {
             currentDifficulty = OrderDifficulty.MEDIUM;
         }
@@ -125,9 +129,9 @@ public class OrdersManagerImpl implements OrdersManager {
         }
 	generator.setDifficulty(currentDifficulty);
     }
-    
+
     private void checkZeroOrders() {
-        if(currentOrders.size() == 0) {
+        if (currentOrders.size() == 0) {
             generator.generateNewOrder();
         }
     }

@@ -15,9 +15,9 @@ import it.unibo.oop18.cfc.Objects.Items.Plate;
 import it.unibo.oop18.cfc.Util.Pair;
 
 public class OrderImpl implements Order {
-    
+
     private final static int TIMER_PERIOD = 1000;
-	
+
     private final ArrayList<OrderIngredient> ingredientsList;
     private int points;
     private int slot; // 1 2 3 4
@@ -55,6 +55,10 @@ public class OrderImpl implements Order {
         this.slot = slot;
     }
 
+    public int getSlot() {
+        return this.slot;
+    }
+    
     @Override
     public void setCountDownTimer(int timeInSeconds) {
         this.countDownTime = timeInSeconds;

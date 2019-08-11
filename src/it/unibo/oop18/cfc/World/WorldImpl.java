@@ -3,11 +3,15 @@ package it.unibo.oop18.cfc.World;
 import java.awt.Graphics2D;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Currency;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import it.unibo.oop18.cfc.GameState.GameState;
+import it.unibo.oop18.cfc.GameState.GameStates;
+import it.unibo.oop18.cfc.Manager.GameStateManager;
 import it.unibo.oop18.cfc.Manager.ItemManager;
 import it.unibo.oop18.cfc.Manager.SpriteManager;
 import it.unibo.oop18.cfc.Manager.TileManager;
@@ -100,8 +104,8 @@ public class WorldImpl implements World {
      *
      */
     public WorldImpl() throws IOException {
-        this.ordersManager = new OrdersManagerImpl(this);
         this.timer = new GameTimer();
+        this.ordersManager = new OrdersManagerImpl(this);
         this.choppingStations = new HashSet<>();
         this.counters = new HashSet<>();
         this.cookers = new HashSet<>();
@@ -140,7 +144,7 @@ public class WorldImpl implements World {
     public ItemManager getItemManager() {
         return itemManager;
     }
-    
+
     /**
      * @return the ordersManager
      */
@@ -302,6 +306,7 @@ public class WorldImpl implements World {
         this.player.update();
         this.choppingStations.forEach(c -> c.update());
         this.cookers.forEach(c -> c.update());
+        //this.ordersManager.update();
     }
 
     /**
@@ -310,6 +315,7 @@ public class WorldImpl implements World {
     @Override
     public void draw(final Graphics2D g) {
         this.getAllGameObjects().forEach(o -> o.draw(g));
+        this.ordersManager.draw(g);
     }
 
     /**
@@ -335,11 +341,6 @@ public class WorldImpl implements World {
         this.washbasins.addAll(initializer.initializeWashbasin());
         this.parquetFloor.addAll(initializer.initializeParquetFloor());
         this.player = initializer.initializePlayer(this);
-    }
-
-    @Override
-    public void lifeLoss() {
-
     }
 
 }

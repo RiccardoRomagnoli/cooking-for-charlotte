@@ -47,10 +47,9 @@ public class MenuState extends GameState {
         JukeBoxUtil.load("/SFX/menuresized.wav", "menuSong");
         if (menuIsPlaying == 0) {
             JukeBoxUtil.play("menuSong");
-        } else if (menuIsPlaying == 3){
+        } else if (menuIsPlaying == 3) {
             JukeBoxUtil.play("menuSong");
-        }
-        else if (menuIsPlaying == 2){
+        } else if (menuIsPlaying == 2) {
             JukeBoxUtil.resume("menuSong");
         }
     }

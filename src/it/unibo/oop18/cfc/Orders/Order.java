@@ -9,11 +9,10 @@ import java.util.ArrayList;
 import it.unibo.oop18.cfc.Objects.Items.IngredientState;
 import it.unibo.oop18.cfc.Objects.Items.Plate;
 
+public interface Order {
 
-public interface Order{
-    
     /**
-     * Checks is the plate submitted is the same of the order plate
+     * Checks is the plate submitted is the same of the order plate.
      * 
      * @param plate Plate submitted
      * @return True if they are the same
@@ -30,13 +29,15 @@ public interface Order{
     
     public void setCountDownTimer(int timeInSeconds);
 
-    public ArrayList<OrderIngredient> getIngredientsList();
-
-    public void stopOrder();
-
     public int getCountDownTime();
 
     public void setSlot(int slot);
     
     public void draw(Graphics2D g);
+    
+    public int getSlot();
+
+    ArrayList<OrderIngredient> getIngredientsList();
+
+    void stopOrder();
 }
