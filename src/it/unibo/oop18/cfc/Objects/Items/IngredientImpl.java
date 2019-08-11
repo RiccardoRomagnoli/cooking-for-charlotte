@@ -78,6 +78,24 @@ public class IngredientImpl extends AbstractItem implements Ingredient, OrderIng
             break;
         }
     }
+    
+    @Override
+    public void drawState(final Graphics2D g, final Position p, final int width, final int height) {
+        switch (state) {
+        case CHOPPED:
+            g.drawImage(super.getItemManager().getFoodSprites().getStateSprite().get(0).getImage()
+                             .getScaledInstance(width, height, Image.SCALE_SMOOTH),
+                    AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
+            break;
+        case PERFECT:
+            g.drawImage(super.getItemManager().getFoodSprites().getStateSprite().get(1).getImage()
+                             .getScaledInstance(width, height, Image.SCALE_SMOOTH),
+                    AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
+            break;
+        default:
+            break;
+        }
+    }
 
     @Override
     public CheckStatus checkIngredient(Ingredient ingredient) {
