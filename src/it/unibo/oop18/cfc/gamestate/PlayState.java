@@ -46,7 +46,7 @@ public class PlayState extends GameState {
         JukeBoxUtil.load("/SFX/themeSong.wav", "themeSong");
         JukeBoxUtil.load("/SFX/cuttingSound.wav", "cuttingSound");
         JukeBoxUtil.load("/SFX/trashed.wav", "trash.wav");
-        MenuState.menuIsPlaying = 0;
+        MenuState.setMenuIsPlaying(0);
     }
 
     /**
