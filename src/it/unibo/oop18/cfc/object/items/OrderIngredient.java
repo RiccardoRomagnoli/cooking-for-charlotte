@@ -19,6 +19,7 @@ public interface OrderIngredient {
     
     CheckStatus checkIngredient(Ingredient ingredient);
 
-    void drawState(final Graphics2D g, final Position p);
-    void drawState(Graphics2D g, Position p, int width, int height);
+    void draw(final Graphics2D g, final Position p);
+    
+    void draw(Graphics2D g, Position p, int width, int height);
 }
