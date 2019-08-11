@@ -2,18 +2,14 @@ package it.unibo.oop18.cfc.input;
 
 
 import it.unibo.oop18.cfc.object.entity.PlayerImpl;
-import it.unibo.oop18.cfc.object.items.IngredientImpl;
-import it.unibo.oop18.cfc.object.items.PlateImpl;
 import it.unibo.oop18.cfc.physics.Direction;
-import it.unibo.oop18.cfc.util.Position;
-import it.unibo.oop18.cfc.world.World;
 
 /**
  * Input component for the player. It implements {@link PlayerInputComponent}.
  */
 public class PlayerInputComponentImpl extends AbstractInputComponent implements PlayerInputComponent {
 
-    private static final int PIXEL_PER_SECOND = 4;
+    private static final int PIXEL_PER_SECOND = 8;
 
     private final PlayerImpl player;
     /**
