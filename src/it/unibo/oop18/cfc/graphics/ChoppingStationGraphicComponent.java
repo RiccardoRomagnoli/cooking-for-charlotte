@@ -4,7 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
 import it.unibo.oop18.cfc.main.GameEngine;
-import it.unibo.oop18.cfc.object.Stations.ChoppingStation;
+import it.unibo.oop18.cfc.object.stations.ChoppingStation;
 import it.unibo.oop18.cfc.sprite.LoadingSprite;
 import it.unibo.oop18.cfc.tile.ChoppingStationTile;
 import it.unibo.oop18.cfc.util.Position;

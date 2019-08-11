@@ -4,15 +4,18 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 
+/**
+ * The Class PlateStationTile.
+ */
 public class PlateStationTile extends AbstractStationTile{
 
-     
     private static final int Y_LOCATION = 8;
     private static final int N_TILES = 3;
+
     /**
-     * Creates a {@code CookerTile} container.
+     * Instantiates a new plate station tile.
      *
-     * @param sheet {@link TileSheet} where to take the {@link Tile}
+     * @param sheet the sheet
      */
     public PlateStationTile(final TileSheet sheet) {
         super();
@@ -22,9 +25,8 @@ public class PlateStationTile extends AbstractStationTile{
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
+    * {@inheritDoc}
+    */
     public int getTilesNumber() {
         return N_TILES;
     }

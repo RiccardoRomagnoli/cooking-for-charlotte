@@ -10,7 +10,7 @@ import it.unibo.oop18.cfc.input.PlayerInputComponentImpl;
 import it.unibo.oop18.cfc.object.Items.IngredientImpl;
 import it.unibo.oop18.cfc.object.Items.Item;
 import it.unibo.oop18.cfc.object.Items.PlateImpl;
-import it.unibo.oop18.cfc.object.Stations.ChoppingStation;
+import it.unibo.oop18.cfc.object.stations.ChoppingStation;
 import it.unibo.oop18.cfc.physics.Direction;
 import it.unibo.oop18.cfc.physics.DynamicPhysicsComponent;
 import it.unibo.oop18.cfc.physics.DynamicPhysicsComponentImpl;

@@ -3,6 +3,9 @@ package it.unibo.oop18.cfc.tile;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * The Class TomatoStationTile.
+ */
 public class TomatoStationTile extends AbstractStationTile {
 
     private static final int Y_LOCATION = 5;
@@ -10,9 +13,9 @@ public class TomatoStationTile extends AbstractStationTile {
     private static final int N_TILES = 1;
 
     /**
-     * Creates a {@code CookerTile} container.
+     * Instantiates a new tomato station tile.
      *
-     * @param sheet {@link TileSheet} where to take the {@link Tile}
+     * @param sheet the sheet
      */
     public TomatoStationTile(final TileSheet sheet) {
         super();
@@ -21,9 +24,8 @@ public class TomatoStationTile extends AbstractStationTile {
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
+    * {@inheritDoc}
+    */
     public int getTilesNumber() {
         return N_TILES;
     }

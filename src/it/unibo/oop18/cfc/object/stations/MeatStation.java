@@ -1,12 +1,12 @@
-package it.unibo.oop18.cfc.object.Stations;
+package it.unibo.oop18.cfc.object.stations;
 
 import java.awt.Graphics2D;
 
 import it.unibo.oop18.cfc.graphics.GraphicsComponent;
-import it.unibo.oop18.cfc.graphics.TomatoStationGraphicComponent;
+import it.unibo.oop18.cfc.graphics.MeatStationGraphicComponent;
 import it.unibo.oop18.cfc.object.Items.IngredientImpl;
 import it.unibo.oop18.cfc.object.Items.IngredientType;
-import it.unibo.oop18.cfc.tile.TomatoStationTile;
+import it.unibo.oop18.cfc.tile.MeatStationTile;
 import it.unibo.oop18.cfc.util.Position;
 import it.unibo.oop18.cfc.world.World;
 
@@ -14,17 +14,17 @@ import it.unibo.oop18.cfc.world.World;
  * Managing of the place where food is processed.
  *
  */
-public class TomatoStation extends AbstractStationObject {
+public class MeatStation extends AbstractStationObject {
 
     private final GraphicsComponent graphicComponent;
     /**
      * Constructor method.
      * @param position entity
-     * @param tomatoStationTile image
+     * @param meatStationTile image
      */
-    public TomatoStation(final Position position, final TomatoStationTile tomatoStationTile) {
+    public MeatStation(final Position position, final MeatStationTile meatStationTile) {
         super(position);
-        this.graphicComponent = new TomatoStationGraphicComponent(this, tomatoStationTile);
+        this.graphicComponent = new MeatStationGraphicComponent(this, meatStationTile);
     }
 
     @Override
@@ -35,8 +35,8 @@ public class TomatoStation extends AbstractStationObject {
     @Override
     public void doAction(final World world) {
         if (!world.getPlayer().getItemInHand().isPresent()) {
-            final IngredientImpl tomato = new IngredientImpl(world.getItemManager(), IngredientType.TOMATO);
-            world.getPlayer().setItemInHand(tomato);
+            final IngredientImpl meat = new IngredientImpl(world.getItemManager(), IngredientType.MEAT);
+            world.getPlayer().setItemInHand(meat);
         }
-    }
+   }
 }

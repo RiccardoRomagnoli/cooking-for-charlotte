@@ -5,34 +5,31 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-
 /**
- * Class that loads and stores a sprite sheet from a path.
+ * The Class TileSheet.
  */
 public class TileSheet {
 
-    /**
-     * It sets the sprite size used in game.
-     */
+    /** The size of the tiles in game. */
     public static final int TILE_SIZE_IN_GAME = 64;
     private final BufferedImage sheet;
 
     /**
-     * Creates {@code SpriteSheet}.
+     * Instantiates a new tile sheet.
      *
-     * @param path to load the sprite sheet
-     * @throws IOException launched while loading
+     * @param path the path
+     * @throws IOException Signals that an I/O exception has occurred.
      */
     public TileSheet(final String path) throws IOException {
         this.sheet = ImageIO.read(getClass().getResource(path));
     }
 
     /**
-     * Gets a single sprite taken from sheet.
+     * Gets the single tile.
      *
-     * @param x coordinate to select the {@link Sprite}
-     * @param y coordinate to select the {@link Sprite}
-     * @return a buffered image of the {@link Sprite}
+     * @param x the x
+     * @param y the y
+     * @return the single tile
      */
     public BufferedImage getSingleTile(final int x, final int y) {
         return this.sheet.getSubimage(x * TILE_SIZE_IN_GAME,

@@ -5,7 +5,7 @@ import java.awt.geom.AffineTransform;
 
 import it.unibo.oop18.cfc.main.GameEngine;
 import it.unibo.oop18.cfc.object.Items.IngredientState;
-import it.unibo.oop18.cfc.object.Stations.Cooker;
+import it.unibo.oop18.cfc.object.stations.Cooker;
 import it.unibo.oop18.cfc.sprite.LoadingSprite;
 import it.unibo.oop18.cfc.tile.CookerTile;
 import it.unibo.oop18.cfc.util.Position;

@@ -3,17 +3,18 @@ package it.unibo.oop18.cfc.tile;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-
+/**
+ * The Class WashbasinTile.
+ */
 public class WashbasinTile extends AbstractStationTile{
-
      
     private static final int Y_LOCATION = 7;
     private static final int N_TILES = 3;
 
     /**
-     * Creates a {@code CookerTile} container.
+     * Instantiates a new washbasin tile.
      *
-     * @param sheet {@link TileSheet} where to take the {@link Tile}
+     * @param sheet the sheet
      */
     public WashbasinTile(final TileSheet sheet) {
         super();
@@ -23,9 +24,8 @@ public class WashbasinTile extends AbstractStationTile{
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
+    * {@inheritDoc}
+    */
     public int getTilesNumber() {
         return N_TILES;
     }

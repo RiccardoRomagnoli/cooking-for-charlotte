@@ -1,4 +1,4 @@
-package it.unibo.oop18.cfc.object.Stations;
+package it.unibo.oop18.cfc.object.stations;
 
 import java.awt.Graphics2D;
 import java.util.Optional;
@@ -15,6 +15,9 @@ import it.unibo.oop18.cfc.util.JukeBoxUtil;
 import it.unibo.oop18.cfc.util.Position;
 import it.unibo.oop18.cfc.world.World;
 
+/**
+ * The Class ChoppingStation.
+ */
 public class ChoppingStation extends AbstractStationObject {
 
     private final GraphicsComponent graphicComponent;
@@ -22,13 +25,18 @@ public class ChoppingStation extends AbstractStationObject {
     private Optional<IngredientImpl> food;
     private World world;
     private boolean isCutting;
-    int isSoundPlaying = 0;
+    
+    /** The is sound playing. */
+    public int isSoundPlaying = 0;
+
 
     /**
-     * Creates a generic {@code Station}.
-     * 
-     * @param position            block's position
-     * @param choppingStationTile block's tile
+     * Instantiates a new chopping station.
+     *
+     * @param position the position
+     * @param choppingStationTile the chopping station tile
+     * @param loadingSprite the loading sprite
+     * @param world the world
      */
     public ChoppingStation(final Position position, final ChoppingStationTile choppingStationTile, final LoadingSprite loadingSprite, final World world) {
         super(position);
@@ -39,33 +47,64 @@ public class ChoppingStation extends AbstractStationObject {
         this.graphicComponent = new ChoppingStationGraphicComponent(this, choppingStationTile, loadingSprite);
     }
 
+    /**
+     * Gets the chopping station timer.
+     *
+     * @return the chopping station timer
+     */
     public GameTimer getChoppingStationTimer() {
         return timer;
     }
 
+    /**
+     * {@inheritDoc}.
+     */
     public void draw(final Graphics2D g) {
         this.graphicComponent.draw(g);
     }
 
+    /**
+     * Checks if is cut.
+     *
+     * @return true, if is cut
+     */
     public boolean isCut() {
         return isCutting;
     }
 
+    /**
+     * Gets the food.
+     *
+     * @return the food
+     */
     public Optional<IngredientImpl> getFood() {
         return this.food;
     }
 
+    /**
+     * Take item.
+     *
+     * @return the optional
+     */
     public Optional<IngredientImpl> takeItem() {
         final Optional<IngredientImpl> f = food;
         this.food = Optional.empty();
         return f;
     };
 
+    /**
+     * Sets the item.
+     *
+     * @param f the new item
+     */
     public void setItem(IngredientImpl f) {
         this.food = Optional.ofNullable(f);
         this.timer.start();
     };
 
+    /**
+     * Update.
+     */
     public void update() {
         if (isCutting == true && world.getPlayer().action == true && timer.isStopped()) {
             timer.start();

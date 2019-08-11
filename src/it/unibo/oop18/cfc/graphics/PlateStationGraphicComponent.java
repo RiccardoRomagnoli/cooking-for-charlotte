@@ -3,7 +3,7 @@ package it.unibo.oop18.cfc.graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
-import it.unibo.oop18.cfc.object.Stations.PlateStation;
+import it.unibo.oop18.cfc.object.stations.PlateStation;
 import it.unibo.oop18.cfc.tile.PlateStationTile;
 
 

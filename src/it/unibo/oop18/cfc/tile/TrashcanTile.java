@@ -4,16 +4,18 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 
+/**
+ * The Class TrashcanTile.
+ */
 public class TrashcanTile extends AbstractStationTile{
-
      
     private static final int Y_LOCATION = 6;
     private static final int N_TILES = 3;
 
     /**
-     * Creates a {@code CookerTile} container.
+     * Instantiates a new trashcan tile.
      *
-     * @param sheet {@link TileSheet} where to take the {@link Tile}
+     * @param sheet the sheet
      */
     public TrashcanTile(final TileSheet sheet) {
         super();
@@ -23,9 +25,8 @@ public class TrashcanTile extends AbstractStationTile{
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
+    * {@inheritDoc}
+    */
     public int getTilesNumber() {
         return N_TILES;
     }

@@ -2,17 +2,17 @@ package it.unibo.oop18.cfc.world;
 
 import it.unibo.oop18.cfc.object.Entity.PlayerImpl;
 import it.unibo.oop18.cfc.object.Floors.ParquetFloor;
-import it.unibo.oop18.cfc.object.Stations.BreadStation;
-import it.unibo.oop18.cfc.object.Stations.ChoppingStation;
-import it.unibo.oop18.cfc.object.Stations.Cooker;
-import it.unibo.oop18.cfc.object.Stations.Counter;
-import it.unibo.oop18.cfc.object.Stations.DeliveryStation;
-import it.unibo.oop18.cfc.object.Stations.LettuceStation;
-import it.unibo.oop18.cfc.object.Stations.MeatStation;
-import it.unibo.oop18.cfc.object.Stations.PlateStation;
-import it.unibo.oop18.cfc.object.Stations.TomatoStation;
-import it.unibo.oop18.cfc.object.Stations.Trashcan;
-import it.unibo.oop18.cfc.object.Stations.Washbasin;
+import it.unibo.oop18.cfc.object.stations.BreadStation;
+import it.unibo.oop18.cfc.object.stations.ChoppingStation;
+import it.unibo.oop18.cfc.object.stations.Cooker;
+import it.unibo.oop18.cfc.object.stations.Counter;
+import it.unibo.oop18.cfc.object.stations.DeliveryStation;
+import it.unibo.oop18.cfc.object.stations.LettuceStation;
+import it.unibo.oop18.cfc.object.stations.MeatStation;
+import it.unibo.oop18.cfc.object.stations.PlateStation;
+import it.unibo.oop18.cfc.object.stations.TomatoStation;
+import it.unibo.oop18.cfc.object.stations.Trashcan;
+import it.unibo.oop18.cfc.object.stations.Washbasin;
 import it.unibo.oop18.cfc.util.Position;
 
 /**

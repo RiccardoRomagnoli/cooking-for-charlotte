@@ -1,12 +1,12 @@
-package it.unibo.oop18.cfc.object.Stations;
+package it.unibo.oop18.cfc.object.stations;
 
 import java.awt.Graphics2D;
 
 import it.unibo.oop18.cfc.graphics.GraphicsComponent;
-import it.unibo.oop18.cfc.graphics.LettuceStationGraphicComponent;
+import it.unibo.oop18.cfc.graphics.TomatoStationGraphicComponent;
 import it.unibo.oop18.cfc.object.Items.IngredientImpl;
 import it.unibo.oop18.cfc.object.Items.IngredientType;
-import it.unibo.oop18.cfc.tile.LettuceStationTile;
+import it.unibo.oop18.cfc.tile.TomatoStationTile;
 import it.unibo.oop18.cfc.util.Position;
 import it.unibo.oop18.cfc.world.World;
 
@@ -14,17 +14,17 @@ import it.unibo.oop18.cfc.world.World;
  * Managing of the place where food is processed.
  *
  */
-public class LettuceStation extends AbstractStationObject {
+public class TomatoStation extends AbstractStationObject {
 
     private final GraphicsComponent graphicComponent;
     /**
      * Constructor method.
      * @param position entity
-     * @param lettuceStationTile image
+     * @param tomatoStationTile image
      */
-    public LettuceStation(final Position position, final LettuceStationTile lettuceStationTile) {
+    public TomatoStation(final Position position, final TomatoStationTile tomatoStationTile) {
         super(position);
-        this.graphicComponent = new LettuceStationGraphicComponent(this, lettuceStationTile);
+        this.graphicComponent = new TomatoStationGraphicComponent(this, tomatoStationTile);
     }
 
     @Override
@@ -35,9 +35,8 @@ public class LettuceStation extends AbstractStationObject {
     @Override
     public void doAction(final World world) {
         if (!world.getPlayer().getItemInHand().isPresent()) {
-            final IngredientImpl lettuce = new IngredientImpl(world.getItemManager(), IngredientType.LETTUCE);
-            world.getPlayer().setItemInHand(lettuce);
+            final IngredientImpl tomato = new IngredientImpl(world.getItemManager(), IngredientType.TOMATO);
+            world.getPlayer().setItemInHand(tomato);
         }
     }
-
 }

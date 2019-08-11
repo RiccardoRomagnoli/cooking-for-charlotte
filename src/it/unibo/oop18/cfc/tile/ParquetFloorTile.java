@@ -3,15 +3,18 @@ package it.unibo.oop18.cfc.tile;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * The Class ParquetFloorTile.
+ */
 public class ParquetFloorTile extends AbstractFloorTile{
 
     private static final int Y_LOCATION = 0;
     private static final int N_TILES = 2;
 
     /**
-     * Creates a {@code CookerTile} container.
+     * Instantiates a new parquet floor tile.
      *
-     * @param sheet {@link TileSheet} where to take the {@link Tile}
+     * @param sheet the sheet
      */
     public ParquetFloorTile(final TileSheet sheet) {
         super();
@@ -20,9 +23,8 @@ public class ParquetFloorTile extends AbstractFloorTile{
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
+    * {@inheritDoc}
+    */
     public int getTilesNumber() {
         return N_TILES;
     }

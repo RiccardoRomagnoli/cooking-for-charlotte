@@ -1,4 +1,4 @@
-package it.unibo.oop18.cfc.object.Stations;
+package it.unibo.oop18.cfc.object.stations;
 
 import java.awt.Graphics2D;
 import java.util.Optional;
@@ -14,17 +14,22 @@ import it.unibo.oop18.cfc.util.GameTimer;
 import it.unibo.oop18.cfc.util.Position;
 import it.unibo.oop18.cfc.world.World;
 
+/**
+ * The Class Cooker.
+ */
 public class Cooker extends AbstractStationObject {
 
     private final GraphicsComponent graphicComponent;
     private GameTimer timer;
     private Optional<IngredientImpl> food;
     private boolean isCooking;
+
     /**
-     * Creates a generic {@code Station}.
-     * 
-     * @param position block's position
-     * @param cookerTile   block's tile
+     * Instantiates a new cooker.
+     *
+     * @param position the position
+     * @param cookerTile the cooker tile
+     * @param loadingSprite the loading sprite
      */
     public Cooker(final Position position, final CookerTile cookerTile, final LoadingSprite loadingSprite) {
         super(position);
@@ -34,29 +39,55 @@ public class Cooker extends AbstractStationObject {
         this.graphicComponent = new CookerGraphicComponent(this, cookerTile, loadingSprite);
     }
 
+    /**
+    * {@inheritDoc}
+    */
     public void draw(final Graphics2D g) {
         this.graphicComponent.draw(g);
     }
 
+    /**
+     * Gets the cooker timer.
+     *
+     * @return the cooker timer
+     */
     public GameTimer getCookerTimer() {
         return this.timer;
     }
 
+    /**
+     * Gets the food.
+     *
+     * @return the food
+     */
     public Optional<IngredientImpl> getFood() {
         return this.food;
     }
 
+    /**
+     * Take item.
+     *
+     * @return the optional
+     */
     public Optional<IngredientImpl> takeItem() {
         final Optional<IngredientImpl> f = food;
         this.food = Optional.empty();
         return f;
     };
 
+    /**
+     * Sets the item.
+     *
+     * @param f the new item
+     */
     public void setItem(IngredientImpl f) {
         this.food = Optional.ofNullable(f);
         this.timer.start();
     };
 
+    /**
+     * Update.
+     */
     public void update() {
         if(isCooking == true && this.food.isPresent()) {
             if (this.food.get().getState() == IngredientState.CHOPPED &&
@@ -75,11 +106,19 @@ public class Cooker extends AbstractStationObject {
         }
     }
 
+    /**
+     * Checks if is cooked.
+     *
+     * @return true, if is cooked
+     */
     public boolean isCooked() {
         return isCooking;
     }
 
-    @Override
+
+    /**
+    * {@inheritDoc}
+    */
     public void doAction(World world) {
         // se cibo presente
         if (food.isPresent()) {

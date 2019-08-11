@@ -1,4 +1,4 @@
-package it.unibo.oop18.cfc.object.Stations;
+package it.unibo.oop18.cfc.object.stations;
 
 import java.awt.Graphics2D;
 
@@ -17,22 +17,28 @@ import it.unibo.oop18.cfc.world.World;
 public class BreadStation extends AbstractStationObject {
 
     private final GraphicsComponent graphicComponent;
+
     /**
-     * Constructor method.
-     * @param position entity
-     * @param breadStationTile image
+     * Instantiates a new bread station.
+     *
+     * @param position the position
+     * @param breadStationTile the bread station tile
      */
     public BreadStation(final Position position, final BreadStationTile breadStationTile) {
         super(position);
         this.graphicComponent = new BreadStationGraphicComponent(this, breadStationTile);
     }
 
-    @Override
+    /**
+     * {@inheritDoc}.
+     */
     public void draw(final Graphics2D g) {
         this.graphicComponent.draw(g);
     }
 
-    @Override
+    /**
+     * {@inheritDoc}.
+     */
     public void doAction(final World world) {
         if (!world.getPlayer().getItemInHand().isPresent()) {
             final IngredientImpl bread = new IngredientImpl(world.getItemManager(), IngredientType.BREAD);

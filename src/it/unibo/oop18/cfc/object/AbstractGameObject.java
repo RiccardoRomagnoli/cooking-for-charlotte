@@ -2,7 +2,6 @@ package it.unibo.oop18.cfc.object;
 
 import java.awt.geom.Rectangle2D;
 
-import it.unibo.oop18.cfc.tile.Tile;
 import it.unibo.oop18.cfc.tile.TileSheet;
 import it.unibo.oop18.cfc.util.Position;
 
@@ -25,7 +24,6 @@ public abstract class AbstractGameObject implements GameObject {
     /**
      * {@inheritDoc}
      */
-    @Override
     public Position getPosition() {
         return this.position;
     }

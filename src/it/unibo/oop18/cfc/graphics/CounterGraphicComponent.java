@@ -4,7 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
 import it.unibo.oop18.cfc.main.GameEngine;
-import it.unibo.oop18.cfc.object.Stations.Counter;
+import it.unibo.oop18.cfc.object.stations.Counter;
 import it.unibo.oop18.cfc.tile.CounterTile;
 import it.unibo.oop18.cfc.tile.TileSheet;
 import it.unibo.oop18.cfc.util.Position;

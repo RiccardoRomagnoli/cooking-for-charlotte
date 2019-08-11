@@ -10,20 +10,20 @@ public class Tile {
     private final Image image;
 
     /**
-     * Creates {@code Sprite}.
+     * Instantiates a new tile.
      *
-     * @param sheet where to take the single sprite
-     * @param x coordinate to select the sprite
-     * @param y coordinate to select the sprite
+     * @param sheet the sheet
+     * @param x the x
+     * @param y the y
      */
     public Tile(final TileSheet sheet, final int x, final int y) {
         this.image = sheet.getSingleTile(x, y);
     }
 
     /**
-     * Gets the sprite image.
+     * Gets the image.
      *
-     * @return the sprite {@link Image}
+     * @return the image
      */
     public Image getImage() {
         return this.image;

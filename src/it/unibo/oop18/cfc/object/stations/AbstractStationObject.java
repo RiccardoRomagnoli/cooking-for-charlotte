@@ -1,26 +1,27 @@
-package it.unibo.oop18.cfc.object.Stations;
+package it.unibo.oop18.cfc.object.stations;
 
 import it.unibo.oop18.cfc.object.AbstractGameObject;
 import it.unibo.oop18.cfc.util.Position;
 
 /**
- *  This class models a still {@link AbstractGameObject}.
+ * The Class AbstractStationObject.
  */
 public abstract class AbstractStationObject extends AbstractGameObject implements Station {
 
     /**
-     * Creates an {@code AbstractStationObject}.
-     * 
-     * @param position object's position
+     * Instantiates a new abstract station object.
+     *
+     * @param position the position
      */
     public AbstractStationObject(final Position position) {
         super(position);
     }
 
     /**
-     * {@inheritDoc}
+     * Gets the position.
+     *
+     * @return the position
      */
-    @Override
     public Position getPosition() {
         return new Position(super.getPosition());
     }

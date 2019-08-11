@@ -3,31 +3,36 @@ package it.unibo.oop18.cfc.tile;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * The Class AbstractStationTile.
+ */
 public abstract class AbstractStationTile {
 
     private final List<Tile> tiles;
 
+
     /**
-     * Creates an {@code AbstractStationTile}.
+     * Instantiates a new abstract station tile.
      */
     public AbstractStationTile() {
         this.tiles = new ArrayList<>();
     }
 
+
     /**
-     * Gets the sprite about the single animation.
+     * Gets the tiles.
      *
-     * @return a list of {@link Tile}
+     * @return the tiles
      */
     public List<Tile> getTiles() {
         return this.tiles;
     }
 
+
     /**
-     * Gets the number of tiles for the animation.
+     * Gets the tiles number.
      *
-     * @return the size of the {@link Tile} list
+     * @return the tiles number
      */
     public abstract int getTilesNumber();
 
