@@ -9,7 +9,7 @@ import it.unibo.oop18.cfc.util.JukeBoxUtil;
 import it.unibo.oop18.cfc.util.Position;
 import it.unibo.oop18.cfc.world.World;
 
-public class Trashcan extends AbstractStationObject{
+public class Trashcan extends AbstractStationObject {
 
     private final GraphicsComponent graphicComponent;
 

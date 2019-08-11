@@ -34,9 +34,8 @@ public class SpriteSheet {
      * @return a buffered image of the {@link Sprite}
      */
     public BufferedImage getSingleSprite(final int x, final int y) {
-        return this.sheet.getSubimage(x * SPRITE_SIZE_IN_GAME,
-                                      y * SPRITE_SIZE_IN_GAME,
-                                      SPRITE_SIZE_IN_GAME, SPRITE_SIZE_IN_GAME);
+        return this.sheet.getSubimage(x * SPRITE_SIZE_IN_GAME, y * SPRITE_SIZE_IN_GAME, SPRITE_SIZE_IN_GAME,
+                SPRITE_SIZE_IN_GAME);
     }
 
 }

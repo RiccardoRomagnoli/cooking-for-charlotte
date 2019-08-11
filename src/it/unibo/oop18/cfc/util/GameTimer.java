@@ -80,7 +80,7 @@ public class GameTimer {
     }
 
     /**
-     * Gets elapsed minutes. 
+     * Gets elapsed minutes.
      * 
      * @return elapsed minutes
      */

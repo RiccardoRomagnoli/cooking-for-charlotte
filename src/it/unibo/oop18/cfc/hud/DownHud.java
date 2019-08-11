@@ -29,7 +29,6 @@ public class DownHud {
     private static final int POSITION_X_STATE = 425;
     private static final int DISTANCE_BETWEEN_FOOD = 100;
 
-
     private int yoffset;
     private final World world;
     private BufferedImage bar;
@@ -51,11 +50,15 @@ public class DownHud {
 
                 p.draw(g, new Position(POSITION_X_PLATE, yoffset + POSITION_Y_ITEM), DIM_ITEM, DIM_ITEM);
                 IntStream.range(0, p.getIngredients().size()).forEach(a -> {
-                    p.getIngredient(a).draw(g, new Position(POSITION_X_FOOD + a * DISTANCE_BETWEEN_FOOD, yoffset + POSITION_Y_ITEM), 70, DIM_ITEM);
-                    p.getIngredient(a).drawState(g, new Position(POSITION_X_STATE + a * DISTANCE_BETWEEN_FOOD, yoffset + POSITION_Y_STATE));
+                    p.getIngredient(a).draw(g,
+                            new Position(POSITION_X_FOOD + a * DISTANCE_BETWEEN_FOOD, yoffset + POSITION_Y_ITEM), 70,
+                            DIM_ITEM);
+                    p.getIngredient(a).drawState(g,
+                            new Position(POSITION_X_STATE + a * DISTANCE_BETWEEN_FOOD, yoffset + POSITION_Y_STATE));
                 });
             } else {
-                world.getPlayer().getItemInHand().get().draw(g, new Position(POSITION_X_FOOD, yoffset + POSITION_Y_ITEM), 80, DIM_ITEM);
+                world.getPlayer().getItemInHand().get().draw(g,
+                        new Position(POSITION_X_FOOD, yoffset + POSITION_Y_ITEM), 80, DIM_ITEM);
             }
         }
         // draw time
@@ -74,7 +77,7 @@ public class DownHud {
                 Content.drawString(g, minutes + ":" + seconds, 17, 704);
             }
         }
-        //draw lifes
+        // draw lifes
         Integer lifes = world.getPlayer().getLifes();
         if (lifes <= 10) {
             Content.drawString(g, "hp:0" + lifes.toString(), 17, 654);

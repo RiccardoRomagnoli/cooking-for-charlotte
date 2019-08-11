@@ -24,7 +24,7 @@ public interface GameObjectFactory {
      * Creates a new {@link PlayerImpl}.
      *
      * @param position the {@link Position}
-     * @param world the {@link World}
+     * @param world    the {@link World}
      * @return the {@link PlayerImpl}
      */
     PlayerImpl createPlayer(Position position, World world);
@@ -33,7 +33,7 @@ public interface GameObjectFactory {
      * Creates a new {@link ChoppingStation}.
      *
      * @param position the {@link Position}
-     * @param world the {@link World}
+     * @param world    the {@link World}
      * @return the {@link ChoppingStation}
      */
     ChoppingStation createChoppingBoard(Position position, World world);
@@ -121,7 +121,7 @@ public interface GameObjectFactory {
     /**
      * Creates a new {@link ParquetFloor}.
      *
-     * @param position the {@link Position}
+     * @param position    the {@link Position}
      * @param leftParquet the left parquet
      * @return the {@link ParquetFloor}
      */

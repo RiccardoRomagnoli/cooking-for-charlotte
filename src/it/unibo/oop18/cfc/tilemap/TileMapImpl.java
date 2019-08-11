@@ -34,8 +34,8 @@ public class TileMapImpl implements TileMap {
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public final void loadMap() {
 
         try {
@@ -82,122 +82,99 @@ public class TileMapImpl implements TileMap {
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public Set<Position> getChoppingStationPosition() {
-        return maps.stream()
-                .filter(p -> p.getFirst() == TileType.CHOPPINGSTATION.getPosY())
-                .map(o -> o.getSecond())
+        return maps.stream().filter(p -> p.getFirst() == TileType.CHOPPINGSTATION.getPosY()).map(o -> o.getSecond())
                 .collect(Collectors.toSet());
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public Set<Position> getCookerPosition() {
-        return maps.stream()
-                .filter(p -> p.getFirst() == TileType.COOKER.getPosY())
-                .map(o -> o.getSecond())
+        return maps.stream().filter(p -> p.getFirst() == TileType.COOKER.getPosY()).map(o -> o.getSecond())
                 .collect(Collectors.toSet());
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public Set<Position> getCounterPosition() {
-        return maps.stream()
-                .filter(p -> p.getFirst() == TileType.COUNTER.getPosY())
-                .map(o -> o.getSecond())
+        return maps.stream().filter(p -> p.getFirst() == TileType.COUNTER.getPosY()).map(o -> o.getSecond())
                 .collect(Collectors.toSet());
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public Set<Position> getDeliveryStationPosition() {
-        return maps.stream()
-                .filter(p -> p.getFirst() == TileType.DELIVERYSTATION.getPosY())
-                .map(o -> o.getSecond())
+        return maps.stream().filter(p -> p.getFirst() == TileType.DELIVERYSTATION.getPosY()).map(o -> o.getSecond())
                 .collect(Collectors.toSet());
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public Set<Position> getBreadStationPosition() {
-        return maps.stream()
-                .filter(p -> p.getFirst() == TileType.BREADSTATION.getPosY())
-                .map(o -> o.getSecond())
+        return maps.stream().filter(p -> p.getFirst() == TileType.BREADSTATION.getPosY()).map(o -> o.getSecond())
                 .collect(Collectors.toSet());
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public Set<Position> getMeatStationPosition() {
-        return maps.stream()
-                .filter(p -> p.getFirst() == TileType.MEATSTATION.getPosY())
-                .map(o -> o.getSecond())
+        return maps.stream().filter(p -> p.getFirst() == TileType.MEATSTATION.getPosY()).map(o -> o.getSecond())
                 .collect(Collectors.toSet());
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public Set<Position> getTomatoStationPosition() {
-        return maps.stream()
-                .filter(p -> p.getFirst() == TileType.TOMATOSTATION.getPosY())
-                .map(o -> o.getSecond())
+        return maps.stream().filter(p -> p.getFirst() == TileType.TOMATOSTATION.getPosY()).map(o -> o.getSecond())
                 .collect(Collectors.toSet());
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public Set<Position> getLettuceStationPosition() {
-        return maps.stream()
-                .filter(p -> p.getFirst() == TileType.LETTUCESTATION.getPosY())
-                .map(o -> o.getSecond())
+        return maps.stream().filter(p -> p.getFirst() == TileType.LETTUCESTATION.getPosY()).map(o -> o.getSecond())
                 .collect(Collectors.toSet());
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public Set<Position> getPlateStationPosition() {
-        return maps.stream()
-                .filter(p -> p.getFirst() == TileType.PLATESTATION.getPosY())
-                .map(o -> o.getSecond())
+        return maps.stream().filter(p -> p.getFirst() == TileType.PLATESTATION.getPosY()).map(o -> o.getSecond())
                 .collect(Collectors.toSet());
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public Set<Position> getTrashcanPosition() {
-        return maps.stream()
-                .filter(p -> p.getFirst() == TileType.TRASHCAN.getPosY())
-                .map(o -> o.getSecond())
+        return maps.stream().filter(p -> p.getFirst() == TileType.TRASHCAN.getPosY()).map(o -> o.getSecond())
                 .collect(Collectors.toSet());
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public Set<Position> getWashbasinPosition() {
-        return maps.stream()
-                .filter(p -> p.getFirst() == TileType.WASHBASIN.getPosY())
-                .map(o -> o.getSecond())
+        return maps.stream().filter(p -> p.getFirst() == TileType.WASHBASIN.getPosY()).map(o -> o.getSecond())
                 .collect(Collectors.toSet());
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public Set<Position> getParquetFloorPosition() {
-        return maps.stream()
-                .filter(p -> p.getFirst() == TileType.PARQUETLEFTFLOOR.getPosY())
-                .map(o -> o.getSecond()).collect(Collectors.toSet());
+        return maps.stream().filter(p -> p.getFirst() == TileType.PARQUETLEFTFLOOR.getPosY()).map(o -> o.getSecond())
+                .collect(Collectors.toSet());
     }
 
 }

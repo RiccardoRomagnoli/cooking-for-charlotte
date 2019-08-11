@@ -14,11 +14,10 @@ public class TomatoStationGraphicComponent implements GraphicsComponent {
     private final TomatoStation tomatoStation;
     private final TomatoStationTile tomatoStationTile;
 
-
     /**
      * Instantiates a new tomato station graphic component.
      *
-     * @param tomatoStation the tomato station
+     * @param tomatoStation     the tomato station
      * @param tomatoStationTile the tomato station tile
      */
     public TomatoStationGraphicComponent(final TomatoStation tomatoStation, final TomatoStationTile tomatoStationTile) {

@@ -21,7 +21,7 @@ public class LettuceStation extends AbstractStationObject {
     /**
      * Instantiates a new lettuce station.
      *
-     * @param position the position
+     * @param position           the position
      * @param lettuceStationTile the lettuce station tile
      */
     public LettuceStation(final Position position, final LettuceStationTile lettuceStationTile) {
@@ -29,18 +29,16 @@ public class LettuceStation extends AbstractStationObject {
         this.graphicComponent = new LettuceStationGraphicComponent(this, lettuceStationTile);
     }
 
-
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void draw(final Graphics2D g) {
         this.graphicComponent.draw(g);
     }
 
-
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void doAction(final World world) {
         if (!world.getPlayer().getItemInHand().isPresent()) {
             final IngredientImpl lettuce = new IngredientImpl(world.getItemManager(), IngredientType.LETTUCE);

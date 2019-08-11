@@ -28,7 +28,8 @@ import it.unibo.oop18.cfc.world.World;
 import it.unibo.oop18.cfc.world.WorldImpl;
 
 /**
- * This class test some player features like input, movement and key/door collision.
+ * This class test some player features like input, movement and key/door
+ * collision.
  */
 public class TestOrders {
 
@@ -41,35 +42,35 @@ public class TestOrders {
      */
     @Test
     public void testGenerationOrder() throws IOException {
-        //Class initialization
+        // Class initialization
         this.world = new WorldImpl();
         OrdersManager ordersMan = new OrdersManagerImpl(world);
         OrderGenerator orderGen = new OrderGeneratorImpl(ordersMan);
         orderGen.generateNewOrder();
-        //Test effective creation
+        // Test effective creation
         Assert.assertTrue(ordersMan.getOrderQuantity() == 1);
-        //Clear
+        // Clear
         ordersMan.getCurrentOrders().clear();
-        //Test default creation if 0 orders
+        // Test default creation if 0 orders
         ordersMan.update();
         Assert.assertTrue(ordersMan.getOrderQuantity() == 1);
-        //Test 4 order limit
+        // Test 4 order limit
         orderGen.generateNewOrder();
         orderGen.generateNewOrder();
         orderGen.generateNewOrder();
         orderGen.generateNewOrder();
         orderGen.generateNewOrder();
-        Assert.assertTrue(ordersMan.getOrderQuantity() == 4);        
+        Assert.assertTrue(ordersMan.getOrderQuantity() == 4);
     }
 
     /**
      * Test the submission of plates to the order manager
      *
-     * @throws IOException 
+     * @throws IOException
      */
     @Test
     public void testDeliveryAction() throws IOException {
-        //World's initialization
+        // World's initialization
         this.world = new WorldImpl();
         Order o;
         Plate correctPlate;
@@ -80,70 +81,73 @@ public class TestOrders {
         correctPlateNotOrdered = new PlateImpl(world.getItemManager());
         OrdersManager ordersMan = new OrdersManagerImpl(world);
         OrderGenerator orderGen = new OrderGeneratorImpl(ordersMan);
-        //Generate an order
+        // Generate an order
         orderGen.generateNewOrder();
         orderGen.generateNewOrder();
         orderGen.generateNewOrder();
         o = ordersMan.getCurrentOrders().get(0);
         o.stopOrder();
-        //Generate a Correct plate
-        for(OrderIngredient orderIngredient : o.getIngredientsList()) {
-            correctPlate.addDish(new IngredientImpl(world.getItemManager(), orderIngredient.getIngredient(), orderIngredient.getState()));
+        // Generate a Correct plate
+        for (OrderIngredient orderIngredient : o.getIngredientsList()) {
+            correctPlate.addDish(new IngredientImpl(world.getItemManager(), orderIngredient.getIngredient(),
+                    orderIngredient.getState()));
         }
         o = ordersMan.getCurrentOrders().get(1);
         o.stopOrder();
-        //Generate a Wrong plate
-        for(OrderIngredient orderIngredient : o.getIngredientsList()) {
-            wrongPlate.addDish(new IngredientImpl(world.getItemManager(), IngredientType.BREAD, orderIngredient.getState()));
+        // Generate a Wrong plate
+        for (OrderIngredient orderIngredient : o.getIngredientsList()) {
+            wrongPlate.addDish(
+                    new IngredientImpl(world.getItemManager(), IngredientType.BREAD, orderIngredient.getState()));
         }
         o = ordersMan.getCurrentOrders().get(2);
         o.stopOrder();
-        //Generate a Correct plate in different ingredient order
-        for (int i = o.getIngredientsList().size()-1; i >= 0; i--) {
+        // Generate a Correct plate in different ingredient order
+        for (int i = o.getIngredientsList().size() - 1; i >= 0; i--) {
             OrderIngredient orderIngredient = o.getIngredientsList().get(i);
-            correctPlateNotOrdered.addDish(
-                    new IngredientImpl(world.getItemManager(), orderIngredient.getIngredient(), orderIngredient.getState()));
+            correctPlateNotOrdered.addDish(new IngredientImpl(world.getItemManager(), orderIngredient.getIngredient(),
+                    orderIngredient.getState()));
         }
-        //Test correct Delivery
+        // Test correct Delivery
         Assert.assertTrue(ordersMan.deliveryPlate(correctPlate));
-        //Test wrong Delivery
+        // Test wrong Delivery
         Assert.assertFalse(ordersMan.deliveryPlate(wrongPlate));
-        //Test correct Delivery in casual ingredient position
+        // Test correct Delivery in casual ingredient position
         Assert.assertTrue(ordersMan.deliveryPlate(correctPlateNotOrdered));
     }
 
     /**
-     * Checks if current list and finished list of orders 
-     * are correctly updated when an order expires
+     * Checks if current list and finished list of orders are correctly updated when
+     * an order expires
      *
-     * @throws IOException 
+     * @throws IOException
      */
     @Test
     public void testOrdersListUpdating() throws IOException {
-        //Initialization
+        // Initialization
         this.world = new WorldImpl();
         OrdersManager ordersMan = new OrdersManagerImpl(world);
         OrderGenerator orderGen = new OrderGeneratorImpl(ordersMan);
-        //Generate an Order
+        // Generate an Order
         orderGen.generateNewOrder();
         Order o = ordersMan.getCurrentOrders().get(0);
-        Assert.assertTrue(ordersMan.getOrderQuantity()==1);
-        //Test Order Timer CountDown
+        Assert.assertTrue(ordersMan.getOrderQuantity() == 1);
+        // Test Order Timer CountDown
         o.setCountDownTimer(1);
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Assert.assertTrue(ordersMan.getCurrentOrders().size()==0);
-        Assert.assertTrue(ordersMan.getFinishedOrders().size()==1);
+        Assert.assertTrue(ordersMan.getCurrentOrders().size() == 0);
+        Assert.assertTrue(ordersMan.getFinishedOrders().size() == 1);
 
     }
 
     /**
-     * Throws IllegalStateException if more than 4 ingredients are inserted in an order
+     * Throws IllegalStateException if more than 4 ingredients are inserted in an
+     * order
      *
-     * @throws IOException 
+     * @throws IOException
      */
     @Test(expected = IllegalStateException.class)
     public void testOrderIngredients() throws IllegalStateException, IOException {
@@ -156,7 +160,7 @@ public class TestOrders {
         o.addIngredient(IngredientType.TOMATO, IngredientState.CHOPPED);
         o.addIngredient(IngredientType.MEAT, IngredientState.BURNED);
     }
-    
+
     /**
      * Tests if orders are placed in order of their time of expire
      * 
@@ -164,11 +168,11 @@ public class TestOrders {
      */
     @Test
     public void testOrdersListOrdering() throws IOException {
-        //Initialization
+        // Initialization
         this.world = new WorldImpl();
         OrdersManager ordersMan = new OrdersManagerImpl(world);
         OrderGenerator orderGen = new OrderGeneratorImpl(ordersMan);
-        //Generate an Order
+        // Generate an Order
         orderGen.generateNewOrder();
         orderGen.generateNewOrder();
         orderGen.generateNewOrder();
@@ -178,7 +182,7 @@ public class TestOrders {
         o2.stopOrder();
         Order o3 = ordersMan.getCurrentOrders().get(2);
         o3.stopOrder();
-        //Test Order Timer CountDown
+        // Test Order Timer CountDown
         o1.setCountDownTimer(60);
         o2.setCountDownTimer(40);
         o3.setCountDownTimer(20);

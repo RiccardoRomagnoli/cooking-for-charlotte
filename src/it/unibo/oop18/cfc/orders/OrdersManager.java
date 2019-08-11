@@ -7,7 +7,7 @@ import it.unibo.oop18.cfc.object.items.Plate;
 import it.unibo.oop18.cfc.world.World;
 
 public interface OrdersManager {
-	
+
     /**
      * Manage the submission of the plate from delivery board
      * 
@@ -15,24 +15,24 @@ public interface OrdersManager {
      * @return True if they are the same
      */
     public boolean deliveryPlate(Plate plate);
-    
+
     public void update();
-    
+
     public void draw(Graphics2D g);
-    
+
     public void addOrder(Order o);
-    
+
     public int getOrderQuantity();
-    
+
     public void orderFailed(Order o);
-    
+
     public ArrayList<Order> getCurrentOrders();
 
     public ArrayList<Order> getFinishedOrders();
-    
+
     public void startGeneration();
-    
+
     public void stopGeneration();
-    
+
     public World getWorld();
 }

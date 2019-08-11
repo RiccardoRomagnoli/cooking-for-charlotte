@@ -2,9 +2,8 @@ package it.unibo.oop18.cfc.util;
 
 /**
  * 
- * Interface of gamescore class.
- * Contains the basic method to implement
- * a working game score
+ * Interface of gamescore class. Contains the basic method to implement a
+ * working game score
  */
 public interface GameScore {
 
@@ -14,8 +13,7 @@ public interface GameScore {
     int getScore();
 
     /**
-     * @param scoreValue Poitns to be added or
-     *  subtracted the actual score
+     * @param scoreValue Poitns to be added or subtracted the actual score
      */
     void computeScore(int scoreValue);
 }

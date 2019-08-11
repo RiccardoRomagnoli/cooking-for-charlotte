@@ -4,7 +4,7 @@ import java.awt.Graphics2D;
 
 import it.unibo.oop18.cfc.util.Position;
 
-public interface Item{
+public interface Item {
 
     void draw(Graphics2D g, Position p);
 

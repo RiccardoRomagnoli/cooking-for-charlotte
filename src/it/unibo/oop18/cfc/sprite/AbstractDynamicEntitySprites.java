@@ -18,7 +18,8 @@ public abstract class AbstractDynamicEntitySprites {
     private final List<Sprite> up;
 
     /**
-     * Creates a {@code AbstractEntitySprites} that initializes all sprite lists for any movement.
+     * Creates a {@code AbstractEntitySprites} that initializes all sprite lists for
+     * any movement.
      */
     public AbstractDynamicEntitySprites() {
         this.stop = new HashMap<Direction, Sprite>();
@@ -81,4 +82,3 @@ public abstract class AbstractDynamicEntitySprites {
     public abstract int getSpritesNumberToMove();
 
 }
-

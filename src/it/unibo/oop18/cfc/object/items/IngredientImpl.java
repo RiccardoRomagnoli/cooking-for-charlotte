@@ -28,12 +28,15 @@ public class IngredientImpl extends AbstractItem implements Ingredient, OrderIng
     public IngredientType getIngredient() {
         return this.type;
     }
+
     public IngredientState getState() {
         return this.state;
     }
-    public void changeState(IngredientState state){
+
+    public void changeState(IngredientState state) {
         this.state = state;
     }
+
     public boolean isReady() {
         if (this.state != IngredientState.RAW) {
             if (this.state == IngredientState.CHOPPED) {
@@ -45,14 +48,14 @@ public class IngredientImpl extends AbstractItem implements Ingredient, OrderIng
             if (this.state != IngredientState.WASTE) {
                 return true;
             }
-        } 
+        }
         return false;
     }
 
     @Override
     public void draw(final Graphics2D g, final Position p) {
-        g.drawImage(super.getItemManager().getFoodSprites().getIngredientSprite().get(type.getX()).get(state.getX()).getImage(),
-            AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
+        g.drawImage(super.getItemManager().getFoodSprites().getIngredientSprite().get(type.getX()).get(state.getX())
+                .getImage(), AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
     }
 
     @Override
@@ -78,18 +81,20 @@ public class IngredientImpl extends AbstractItem implements Ingredient, OrderIng
             break;
         }
     }
-    
+
     @Override
     public void drawState(final Graphics2D g, final Position p, final int width, final int height) {
         switch (state) {
         case CHOPPED:
-            g.drawImage(super.getItemManager().getFoodSprites().getStateSprite().get(0).getImage()
-                             .getScaledInstance(width, height, Image.SCALE_SMOOTH),
+            g.drawImage(
+                    super.getItemManager().getFoodSprites().getStateSprite().get(0).getImage().getScaledInstance(width,
+                            height, Image.SCALE_SMOOTH),
                     AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
             break;
         case PERFECT:
-            g.drawImage(super.getItemManager().getFoodSprites().getStateSprite().get(1).getImage()
-                             .getScaledInstance(width, height, Image.SCALE_SMOOTH),
+            g.drawImage(
+                    super.getItemManager().getFoodSprites().getStateSprite().get(1).getImage().getScaledInstance(width,
+                            height, Image.SCALE_SMOOTH),
                     AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
             break;
         default:
@@ -100,10 +105,9 @@ public class IngredientImpl extends AbstractItem implements Ingredient, OrderIng
     @Override
     public CheckStatus checkIngredient(Ingredient ingredient) {
         CheckStatus returnStatus = CheckStatus.NOT_ACCEPTABLE;
-        if(ingredient.getIngredient().equals(this.type) && 
-                 ingredient.getState().equals(this.state)) {
+        if (ingredient.getIngredient().equals(this.type) && ingredient.getState().equals(this.state)) {
             returnStatus = CheckStatus.ACCEPTABLE_WITHOUT_ERROR;
-        } else if(ingredient.getIngredient().equals(this.type)) {
+        } else if (ingredient.getIngredient().equals(this.type)) {
             returnStatus = CheckStatus.ACCEPTABLE_WITH_ERROR;
         }
         return returnStatus;

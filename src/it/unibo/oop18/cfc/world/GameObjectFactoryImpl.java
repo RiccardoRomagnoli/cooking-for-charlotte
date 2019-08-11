@@ -26,7 +26,7 @@ public class GameObjectFactoryImpl implements GameObjectFactory {
     final private SpriteManager sm;
     final private TileManager tm;
     final private ItemManager im;
-    
+
     /**
      * Instantiates a new game object factory impl.
      *
@@ -41,95 +41,93 @@ public class GameObjectFactoryImpl implements GameObjectFactory {
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public PlayerImpl createPlayer(final Position position, final World world) {
         return new PlayerImpl(new Position(position), this.sm.getPlayerSprites(), world);
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public ChoppingStation createChoppingBoard(final Position position, final World world) {
-        return new ChoppingStation(new Position(position), this.tm.getChoppingStationTile(), this.im.getLoadingSprites(), world);
+        return new ChoppingStation(new Position(position), this.tm.getChoppingStationTile(),
+                this.im.getLoadingSprites(), world);
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public Cooker createCooker(final Position position) {
         return new Cooker(new Position(position), this.tm.getCookerTile(), this.im.getLoadingSprites());
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public Counter createCounter(final Position position) {
         return new Counter(new Position(position), this.tm.getCounterTile());
     }
 
-
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public DeliveryStation createDeliveryStation(final Position position) {
         return new DeliveryStation(new Position(position), this.tm.getDeliveryStationTile());
     }
 
-
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public BreadStation createBreadStation(final Position position) {
         return new BreadStation(new Position(position), this.tm.getBreadStationTile());
     }
 
-
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public MeatStation createMeatStation(final Position position) {
         return new MeatStation(new Position(position), this.tm.getMeatStationTile());
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public TomatoStation createTomatoStation(final Position position) {
         return new TomatoStation(new Position(position), this.tm.getTomatoStationTile());
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public LettuceStation createLettuceStation(final Position position) {
         return new LettuceStation(new Position(position), this.tm.getLettuceStationTile());
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public Trashcan createTrashcan(final Position position) {
         return new Trashcan(new Position(position), this.tm.getTrashcanTile());
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public Washbasin createWashbasin(final Position position) {
         return new Washbasin(new Position(position), this.tm.getWashbasinTile());
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public PlateStation createPlateStation(final Position position) {
         return new PlateStation(new Position(position), this.tm.getPlateStationTile());
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public ParquetFloor createParquetFloor(final Position position) {
         return new ParquetFloor(new Position(position), this.tm.getParquetFloorTile());
     }

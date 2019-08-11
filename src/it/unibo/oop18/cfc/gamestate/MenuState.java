@@ -53,7 +53,7 @@ public class MenuState extends GameState {
      * {@inheritDoc}.
      */
     public void update() {
-        
+
     }
 
     /**

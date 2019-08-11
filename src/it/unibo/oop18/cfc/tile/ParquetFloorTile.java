@@ -8,7 +8,7 @@ import it.unibo.oop18.cfc.tilemap.TileType;
 /**
  * The Class ParquetFloorTile.
  */
-public class ParquetFloorTile extends AbstractFloorTile{
+public class ParquetFloorTile extends AbstractFloorTile {
 
     private static final int N_TILES = 2;
 
@@ -19,13 +19,13 @@ public class ParquetFloorTile extends AbstractFloorTile{
      */
     public ParquetFloorTile(final TileSheet sheet) {
         super();
-        IntStream.range(0, N_TILES).mapToObj(a -> new Tile(sheet, a, TileType.PARQUETLEFTFLOOR.getPosY())).collect(Collectors.toList())
-                .forEach(a -> super.getTiles().add(a));
+        IntStream.range(0, N_TILES).mapToObj(a -> new Tile(sheet, a, TileType.PARQUETLEFTFLOOR.getPosY()))
+                .collect(Collectors.toList()).forEach(a -> super.getTiles().add(a));
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public int getTilesNumber() {
         return N_TILES;
     }

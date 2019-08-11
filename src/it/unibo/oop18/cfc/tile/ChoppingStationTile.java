@@ -24,8 +24,8 @@ public class ChoppingStationTile extends AbstractStationTile {
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public int getTilesNumber() {
         return N_TILES;
     }

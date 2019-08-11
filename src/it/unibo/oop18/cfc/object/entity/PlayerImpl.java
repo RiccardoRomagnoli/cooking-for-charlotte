@@ -63,34 +63,34 @@ public class PlayerImpl extends AbstractEntity implements Player {
     public int getTotalPoints() {
         return totalPoints;
     }
-    
+
     /**
      * @param i total point to reach
      */
     public void setTotalPoints(final int i) {
         totalPoints = i;
     }
-    
+
     public int getLifes() {
         return this.lifes;
     }
 
     public void decLifes() {
-       this.lifes--;
+        this.lifes--;
     }
-    
-    public Optional<Item> getItemInHand(){
+
+    public Optional<Item> getItemInHand() {
         return this.hand;
     }
 
-    public void setItemInHand(final Item i){
+    public void setItemInHand(final Item i) {
         this.hand = Optional.ofNullable(i);
     }
-    
+
     public void removeItemInHand() {
         this.hand = Optional.empty();
     }
-    
+
     public boolean isCutting() {
         return actionCut;
     }
@@ -98,7 +98,7 @@ public class PlayerImpl extends AbstractEntity implements Player {
     public void setCutAction(final boolean b) {
         this.actionCut = b;
     }
-    
+
     public DynamicPhysicsComponent getPhysics() {
         return physics;
     }
@@ -113,7 +113,7 @@ public class PlayerImpl extends AbstractEntity implements Player {
     public void update() {
         this.input.processInput();
         this.physics.move();
-        if(this.actionCut) {
+        if (this.actionCut) {
             cutIngredient();
         }
     }
@@ -135,9 +135,7 @@ public class PlayerImpl extends AbstractEntity implements Player {
     @Override
     public void cutIngredient() {
         final Optional<ChoppingStation> cs = super.getWorld().getChoppingStations().stream()
-                .filter(p -> p.getPosition()
-                        .samePosition((Position.setInTile(getNextPosition()))))
-          .findFirst();
+                .filter(p -> p.getPosition().samePosition((Position.setInTile(getNextPosition())))).findFirst();
         if (cs.isPresent()) {
             cs.get().cutIngredient();
         } else {

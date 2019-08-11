@@ -17,7 +17,7 @@ public class MeatStationGraphicComponent implements GraphicsComponent {
     /**
      * Instantiates a new meat station graphic component.
      *
-     * @param meatStation the meat station
+     * @param meatStation     the meat station
      * @param meatStationTile the meat station tile
      */
     public MeatStationGraphicComponent(final MeatStation meatStation, final MeatStationTile meatStationTile) {

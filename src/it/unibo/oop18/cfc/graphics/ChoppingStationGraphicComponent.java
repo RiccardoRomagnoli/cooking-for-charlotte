@@ -9,7 +9,6 @@ import it.unibo.oop18.cfc.sprite.LoadingSprite;
 import it.unibo.oop18.cfc.tile.ChoppingStationTile;
 import it.unibo.oop18.cfc.util.Position;
 
-
 /**
  * The Class ChoppingStationGraphicComponent.
  */
@@ -33,11 +32,12 @@ public class ChoppingStationGraphicComponent implements GraphicsComponent {
     /**
      * Instantiates a new chopping station graphic component.
      *
-     * @param choppingStation the chopping station
+     * @param choppingStation     the chopping station
      * @param choppingStationTile the chopping station tile
-     * @param loadingSprite the loading sprite
+     * @param loadingSprite       the loading sprite
      */
-    public ChoppingStationGraphicComponent(final ChoppingStation choppingStation, final ChoppingStationTile choppingStationTile, final LoadingSprite loadingSprite) {
+    public ChoppingStationGraphicComponent(final ChoppingStation choppingStation,
+            final ChoppingStationTile choppingStationTile, final LoadingSprite loadingSprite) {
         this.choppingStation = choppingStation;
         this.loadingSprite = loadingSprite;
         this.choppingStationTile = choppingStationTile;
@@ -52,12 +52,12 @@ public class ChoppingStationGraphicComponent implements GraphicsComponent {
         if (this.choppingStation.isCut()) {
             this.nextFrame();
             g.drawImage(this.choppingStationTile.getTiles().get(this.frame).getImage(),
-                    AffineTransform.getTranslateInstance(this.choppingStation.getPosition().getX(), this.choppingStation.getPosition().getY()),
+                    AffineTransform.getTranslateInstance(this.choppingStation.getPosition().getX(),
+                            this.choppingStation.getPosition().getY()),
                     null);
         } else {
-            g.drawImage(this.choppingStationTile.getTiles().get(0).getImage(),
-                    AffineTransform.getTranslateInstance(this.choppingStation.getPosition().getX(), this.choppingStation.getPosition().getY()),
-                    null);
+            g.drawImage(this.choppingStationTile.getTiles().get(0).getImage(), AffineTransform.getTranslateInstance(
+                    this.choppingStation.getPosition().getX(), this.choppingStation.getPosition().getY()), null);
         }
         if (this.choppingStation.getFood().isPresent()) {
             this.choppingStation.getFood().get().draw(g,

@@ -15,11 +15,9 @@ import it.unibo.oop18.cfc.manager.GameStateManager;
  */
 public class IntroState extends GameState {
 
-
     private BufferedImage logo;
     private int alpha;
     private int ticks;
-
 
     private static final int FADE_IN = 60;
     private static final int LENGTH = 60;
@@ -28,6 +26,7 @@ public class IntroState extends GameState {
 
     /**
      * Constructor.
+     * 
      * @param gsm gamestate instance
      */
     public IntroState(final GameStateManager gsm) {
@@ -70,6 +69,7 @@ public class IntroState extends GameState {
 
     /**
      * {@inheritDoc}.
+     * 
      * @param g basic graphics
      */
     public void draw(final Graphics2D g) {

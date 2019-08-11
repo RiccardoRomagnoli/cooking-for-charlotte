@@ -5,7 +5,6 @@ import java.awt.geom.Rectangle2D;
 
 import it.unibo.oop18.cfc.util.Position;
 
-
 /**
  * This interface declares all method of all objects in the game.
  */
@@ -24,6 +23,7 @@ public interface GameObject {
      * @return body's rectangle
      */
     Rectangle2D getBounds();
+
     /**
      * Renders object's sprite.
      * 

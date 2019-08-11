@@ -31,7 +31,7 @@ public final class JukeBoxUtil {
     private static AudioInputStream dais;
     private static FloatControl gainControl;
     private static BooleanControl muteControl;
-    
+
     private JukeBoxUtil() {
 
     }

@@ -5,7 +5,7 @@ import it.unibo.oop18.cfc.physics.Direction;
 /**
  * Class that manages enemies and player {@link Sprite}.
  */
-public class PlayerSprites extends AbstractDynamicEntitySprites{
+public class PlayerSprites extends AbstractDynamicEntitySprites {
 
     private static final int SPRITES_TO_MOVE = 4;
     private static final int Y_LOCATION_MOVE_LEFT = 1;
@@ -15,11 +15,12 @@ public class PlayerSprites extends AbstractDynamicEntitySprites{
     private static final int X_LOCATION_STOP = 0;
 
     /**
-     * Creates a {@code AbstractEntitySprites} that initializes all sprite lists for any movement.
+     * Creates a {@code AbstractEntitySprites} that initializes all sprite lists for
+     * any movement.
      */
     public PlayerSprites(final SpriteSheet sheet) {
         super();
-        for (int i = 0; i < SPRITES_TO_MOVE; i++ ) {
+        for (int i = 0; i < SPRITES_TO_MOVE; i++) {
             super.getRightSprites().add(new Sprite(sheet, i, Y_LOCATION_MOVE_RIGHT));
             super.getLeftSprites().add(new Sprite(sheet, i, Y_LOCATION_MOVE_LEFT));
             super.getDownSprites().add(new Sprite(sheet, i, Y_LOCATION_MOVE_DOWN));
@@ -37,7 +38,7 @@ public class PlayerSprites extends AbstractDynamicEntitySprites{
      * @return the max size of any list of {@link Sprite}
      */
     public int getSpritesNumberToMove() {
-    	return SPRITES_TO_MOVE;
+        return SPRITES_TO_MOVE;
     }
 
 }

@@ -89,7 +89,7 @@ public class Position {
      */
     public boolean isCentered() {
         return Math.round(this.x) % (TileSheet.TILE_SIZE_IN_GAME) == 0
-               && Math.round(this.y) % (TileSheet.TILE_SIZE_IN_GAME) == 0;
+                && Math.round(this.y) % (TileSheet.TILE_SIZE_IN_GAME) == 0;
     }
 
     /**

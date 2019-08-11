@@ -9,8 +9,7 @@ public class GameScoreImpl implements GameScore {
     private int score;
 
     /**
-     * Constructor of gamescore class.
-     * Set inital score to 0 
+     * Constructor of gamescore class. Set inital score to 0
      */
     public GameScoreImpl() {
         super();
@@ -21,12 +20,12 @@ public class GameScoreImpl implements GameScore {
      * Return the actual game score
      */
     @Override
-    public int getScore() { 
+    public int getScore() {
         return this.score;
     }
 
     /*
-     * Increase or decrease the score 
+     * Increase or decrease the score
      */
     @Override
     public void computeScore(final int scoreValue) {

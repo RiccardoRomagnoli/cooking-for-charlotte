@@ -28,16 +28,17 @@ public class IngredientSprite extends AbstractItemSprite {
         this.lettuceSprite = new ArrayList<>();
         this.tomatoSprite = new ArrayList<>();
         this.stateSprite = new ArrayList<>();
-        IntStream.rangeClosed(0, INGREDIENT_STATE_SPRITES).mapToObj(a -> new ItemSprite(sheet, a, Y_LOCATION_STATE_INGREDIENT)).collect(Collectors.toList())
-        .forEach(a -> stateSprite.add(a));
-        IntStream.range(0, FOOD_SPRITES).mapToObj(a -> new ItemSprite(sheet, a, Y_LOCATION_BREAD)).collect(Collectors.toList())
-        .forEach(a -> breadSprite.add(a));
-        IntStream.range(0, FOOD_SPRITES).mapToObj(a -> new ItemSprite(sheet, a, Y_LOCATION_MEAT)).collect(Collectors.toList())
-        .forEach(a -> meatSprite.add(a));
-        IntStream.range(0, FOOD_SPRITES).mapToObj(a -> new ItemSprite(sheet, a, Y_LOCATION_LETTUCE)).collect(Collectors.toList())
-        .forEach(a -> lettuceSprite.add(a));
-        IntStream.range(0, FOOD_SPRITES).mapToObj(a -> new ItemSprite(sheet, a, Y_LOCATION_TOMATO)).collect(Collectors.toList())
-        .forEach(a -> tomatoSprite.add(a));
+        IntStream.rangeClosed(0, INGREDIENT_STATE_SPRITES)
+                .mapToObj(a -> new ItemSprite(sheet, a, Y_LOCATION_STATE_INGREDIENT)).collect(Collectors.toList())
+                .forEach(a -> stateSprite.add(a));
+        IntStream.range(0, FOOD_SPRITES).mapToObj(a -> new ItemSprite(sheet, a, Y_LOCATION_BREAD))
+                .collect(Collectors.toList()).forEach(a -> breadSprite.add(a));
+        IntStream.range(0, FOOD_SPRITES).mapToObj(a -> new ItemSprite(sheet, a, Y_LOCATION_MEAT))
+                .collect(Collectors.toList()).forEach(a -> meatSprite.add(a));
+        IntStream.range(0, FOOD_SPRITES).mapToObj(a -> new ItemSprite(sheet, a, Y_LOCATION_LETTUCE))
+                .collect(Collectors.toList()).forEach(a -> lettuceSprite.add(a));
+        IntStream.range(0, FOOD_SPRITES).mapToObj(a -> new ItemSprite(sheet, a, Y_LOCATION_TOMATO))
+                .collect(Collectors.toList()).forEach(a -> tomatoSprite.add(a));
         this.ingredients = new ArrayList<List<ItemSprite>>();
         ingredients.add(breadSprite);
         ingredients.add(meatSprite);

@@ -17,9 +17,11 @@ import it.unibo.oop18.cfc.world.World;
 public class TomatoStation extends AbstractStationObject {
 
     private final GraphicsComponent graphicComponent;
+
     /**
      * Constructor method.
-     * @param position entity
+     * 
+     * @param position          entity
      * @param tomatoStationTile image
      */
     public TomatoStation(final Position position, final TomatoStationTile tomatoStationTile) {

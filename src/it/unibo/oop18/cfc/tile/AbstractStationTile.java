@@ -10,14 +10,12 @@ public abstract class AbstractStationTile {
 
     private final List<Tile> tiles;
 
-
     /**
      * Instantiates a new abstract station tile.
      */
     public AbstractStationTile() {
         this.tiles = new ArrayList<>();
     }
-
 
     /**
      * Gets the tiles.
@@ -27,7 +25,6 @@ public abstract class AbstractStationTile {
     public List<Tile> getTiles() {
         return this.tiles;
     }
-
 
     /**
      * Gets the tiles number.

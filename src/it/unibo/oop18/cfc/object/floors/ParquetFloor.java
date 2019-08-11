@@ -14,7 +14,7 @@ public class ParquetFloor extends AbstractFloorObject {
 
     private final GraphicsComponent graphicComponent;
     private Optional<Item> item;
-    
+
     public ParquetFloor(final Position position, final ParquetFloorTile parquetFloorTile) {
         super(position);
         this.item = Optional.empty();

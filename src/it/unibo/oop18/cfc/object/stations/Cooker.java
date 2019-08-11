@@ -27,8 +27,8 @@ public class Cooker extends AbstractStationObject {
     /**
      * Instantiates a new cooker.
      *
-     * @param position the position
-     * @param cookerTile the cooker tile
+     * @param position      the position
+     * @param cookerTile    the cooker tile
      * @param loadingSprite the loading sprite
      */
     public Cooker(final Position position, final CookerTile cookerTile, final LoadingSprite loadingSprite) {
@@ -40,8 +40,8 @@ public class Cooker extends AbstractStationObject {
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void draw(final Graphics2D g) {
         this.graphicComponent.draw(g);
     }
@@ -89,15 +89,15 @@ public class Cooker extends AbstractStationObject {
      * Update.
      */
     public void update() {
-        if(isCooking == true && this.food.isPresent()) {
-            if (this.food.get().getState() == IngredientState.CHOPPED &&
-                    timer.getSeconds() >= this.food.get().getIngredient().getTimeToCook()) {
+        if (isCooking == true && this.food.isPresent()) {
+            if (this.food.get().getState() == IngredientState.CHOPPED
+                    && timer.getSeconds() >= this.food.get().getIngredient().getTimeToCook()) {
                 this.food.get().changeState(IngredientState.PERFECT);
-            } else if(this.food.get().getState() == IngredientState.PERFECT &&
-                    timer.getSeconds() >= this.food.get().getIngredient().getTimeToCook() + 5) {
+            } else if (this.food.get().getState() == IngredientState.PERFECT
+                    && timer.getSeconds() >= this.food.get().getIngredient().getTimeToCook() + 5) {
                 this.food.get().changeState(IngredientState.BURNED);
-            } else if(this.food.get().getState() == IngredientState.BURNED &&
-                    timer.getSeconds() >= this.food.get().getIngredient().getTimeToCook() + 10) {
+            } else if (this.food.get().getState() == IngredientState.BURNED
+                    && timer.getSeconds() >= this.food.get().getIngredient().getTimeToCook() + 10) {
                 this.food.get().changeState(IngredientState.WASTE);
                 this.food = Optional.empty();
                 this.isCooking = false;
@@ -115,10 +115,9 @@ public class Cooker extends AbstractStationObject {
         return isCooking;
     }
 
-
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void doAction(World world) {
         // se cibo presente
         if (food.isPresent()) {

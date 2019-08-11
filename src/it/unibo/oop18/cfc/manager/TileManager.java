@@ -16,10 +16,6 @@ import it.unibo.oop18.cfc.tile.TomatoStationTile;
 import it.unibo.oop18.cfc.tile.TrashcanTile;
 import it.unibo.oop18.cfc.tile.WashbasinTile;
 
-
-
-
-
 /**
  * This class stores and gets any kind of sprite in game.
  */
@@ -37,6 +33,7 @@ public class TileManager {
     private final TrashcanTile trashcanTile;
     private final WashbasinTile washbasinTile;
     private final ParquetFloorTile parquetFloorTile;
+
     /**
      * Creates a {@code SpritesManager} to manage any {@link Sprite} in game.
      *
@@ -58,72 +55,84 @@ public class TileManager {
         this.lettuceStationTile = new LettuceStationTile(sheet);
         this.meatStationTile = new MeatStationTile(sheet);
     }
+
     /**
      * @return the choppingStationTile
      */
     public ChoppingStationTile getChoppingStationTile() {
         return choppingStationTile;
     }
+
     /**
      * @return the cookerTile
      */
     public CookerTile getCookerTile() {
         return cookerTile;
     }
+
     /**
      * @return the counterTile
      */
     public CounterTile getCounterTile() {
         return counterTile;
     }
+
     /**
      * @return the deliveryStationTile
      */
     public DeliveryStationTile getDeliveryStationTile() {
         return deliveryStationTile;
     }
+
     /**
      * @return the breadStationTile
      */
     public BreadStationTile getBreadStationTile() {
         return breadStationTile;
     }
+
     /**
      * @return the plateStationTile
      */
     public PlateStationTile getPlateStationTile() {
         return plateStationTile;
     }
+
     /**
      * @return the trashcanTile
      */
     public TrashcanTile getTrashcanTile() {
         return trashcanTile;
     }
+
     /**
      * @return the washbasinTile
      */
     public WashbasinTile getWashbasinTile() {
         return washbasinTile;
     }
+
     /**
      * @return the washbasinTile
      */
     public ParquetFloorTile getParquetFloorTile() {
         return parquetFloorTile;
     }
+
     /**
      * @return the meatStationTile
      */
     public MeatStationTile getMeatStationTile() {
         return meatStationTile;
     }
+
     /**
      * @return the lettuceStationTile
      */
     public LettuceStationTile getLettuceStationTile() {
         return lettuceStationTile;
     }
+
     /**
      * @return the tomatoStationTile
      */

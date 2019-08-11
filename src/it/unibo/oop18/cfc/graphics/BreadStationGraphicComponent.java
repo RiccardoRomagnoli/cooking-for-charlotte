@@ -11,14 +11,13 @@ import it.unibo.oop18.cfc.tile.BreadStationTile;
  */
 public class BreadStationGraphicComponent implements GraphicsComponent {
 
-    private final BreadStation breadStation; 
+    private final BreadStation breadStation;
     private final BreadStationTile breadStationTile;
-
 
     /**
      * Instantiates a new bread station graphic component.
      *
-     * @param breadStation the bread station
+     * @param breadStation     the bread station
      * @param breadStationTile the bread station tile
      */
     public BreadStationGraphicComponent(final BreadStation breadStation, final BreadStationTile breadStationTile) {

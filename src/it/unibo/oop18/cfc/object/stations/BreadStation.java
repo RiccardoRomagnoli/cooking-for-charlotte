@@ -21,7 +21,7 @@ public class BreadStation extends AbstractStationObject {
     /**
      * Instantiates a new bread station.
      *
-     * @param position the position
+     * @param position         the position
      * @param breadStationTile the bread station tile
      */
     public BreadStation(final Position position, final BreadStationTile breadStationTile) {

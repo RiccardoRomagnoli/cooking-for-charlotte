@@ -63,7 +63,7 @@ public interface WorldInitializer {
      * @return the sets of {@link MeatStation}
      */
     Set<MeatStation> initializeMeatStation();
-    
+
     /**
      * Initialize {@link TomatoStation}.
      *
@@ -112,5 +112,5 @@ public interface WorldInitializer {
      * @param world the {@link World}
      * @return the {@link Player}
      */
-    PlayerImpl initializePlayer(World world); 
+    PlayerImpl initializePlayer(World world);
 }

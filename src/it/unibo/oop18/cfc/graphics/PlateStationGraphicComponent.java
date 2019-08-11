@@ -6,7 +6,6 @@ import java.awt.geom.AffineTransform;
 import it.unibo.oop18.cfc.object.stations.PlateStation;
 import it.unibo.oop18.cfc.tile.PlateStationTile;
 
-
 /**
  * The Class PlateStationGraphicComponent.
  */
@@ -14,18 +13,16 @@ public class PlateStationGraphicComponent implements GraphicsComponent {
     private final PlateStation plateStation;
     private final PlateStationTile plateStationTile;
 
-
     /**
      * Instantiates a new plate station graphic component.
      *
-     * @param plateStation the plate station
+     * @param plateStation     the plate station
      * @param plateStationTile the plate station tile
      */
     public PlateStationGraphicComponent(final PlateStation plateStation, final PlateStationTile plateStationTile) {
         this.plateStation = plateStation;
         this.plateStationTile = plateStationTile;
     }
-
 
     /**
      * {@inheritDoc}.

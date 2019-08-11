@@ -17,7 +17,7 @@ public class OrderGeneratorImpl extends TimerTask implements OrderGenerator {
     private final List<Pair<IngredientType, IngredientState>> orderIngredientsAvaiable;
     private final Random random;
     private final OrdersManager ordersManager;
-    
+
     public OrderGeneratorImpl(OrdersManager ordersManager) {
         this.ordersManager = ordersManager;
         this.timer = new Timer();
@@ -28,20 +28,20 @@ public class OrderGeneratorImpl extends TimerTask implements OrderGenerator {
     }
 
     @Override
-    public void startGeneration(long intervalMilliseconds){
+    public void startGeneration(long intervalMilliseconds) {
         this.timer = new Timer();
         timer.schedule(this, 0, intervalMilliseconds);
     }
-    
+
     @Override
     public void stopGeneration() {
         this.timer.cancel();
         this.timer.purge();
     }
-    
+
     @Override
     public void run() {
-        if(ordersManager.getOrderQuantity()!=4) {
+        if (ordersManager.getOrderQuantity() != 4) {
             generateNewOrder();
         }
     }
@@ -57,31 +57,31 @@ public class OrderGeneratorImpl extends TimerTask implements OrderGenerator {
      * @return Order generated
      */
     public void generateNewOrder() {
-        if(ordersManager.getOrderQuantity()!=4) {
+        if (ordersManager.getOrderQuantity() != 4) {
             Order o = new OrderImpl(ordersManager);
             o.setSlot(ordersManager.getOrderQuantity());
-            if(getRandomRecipe().equals(Recipes.BURGER)) {
+            if (getRandomRecipe().equals(Recipes.BURGER)) {
                 o.addIngredient(IngredientType.BREAD, IngredientState.CHOPPED);
             }
-            while(o.getOrderIngredientQuantity() - currentDifficulty.getNumberOfIngredients() != 0) {
+            while (o.getOrderIngredientQuantity() - currentDifficulty.getNumberOfIngredients() != 0) {
                 int randIng = random.nextInt(orderIngredientsAvaiable.size());
-                o.addIngredient(orderIngredientsAvaiable.get(randIng).getFirst(), 
-                                orderIngredientsAvaiable.get(randIng).getSecond());
+                o.addIngredient(orderIngredientsAvaiable.get(randIng).getFirst(),
+                        orderIngredientsAvaiable.get(randIng).getSecond());
             }
             o.setCountDownTimer(currentDifficulty.getSecondsOfConutDown());
             o.startOrder();
             ordersManager.addOrder(o);
         }
     }
-    
+
     private Recipes getRandomRecipe() {
-        if(random.nextBoolean()) {
+        if (random.nextBoolean()) {
             return Recipes.BURGER;
         }
         return Recipes.SIMPLE_PLATE;
     }
-    
-    private void initList() {  
+
+    private void initList() {
         orderIngredientsAvaiable.add(new Pair<>(IngredientType.LETTUCE, IngredientState.CHOPPED));
         orderIngredientsAvaiable.add(new Pair<>(IngredientType.TOMATO, IngredientState.CHOPPED));
         orderIngredientsAvaiable.add(new Pair<>(IngredientType.MEAT, IngredientState.PERFECT));

@@ -22,7 +22,7 @@ public class Washbasin extends AbstractStationObject {
      * Creates a generic {@code Station}.
      * 
      * @param position block's position
-     * @param tile   block's tile
+     * @param tile     block's tile
      */
     public Washbasin(final Position position, final WashbasinTile washbasinTile) {
         super(position);
@@ -59,11 +59,10 @@ public class Washbasin extends AbstractStationObject {
     }
 
     public void doAction(World world) {
-        if (world.getPlayer().getItemInHand().isPresent() &&
-                world.getPlayer().getItemInHand().get() instanceof PlateImpl) {
+        if (world.getPlayer().getItemInHand().isPresent()
+                && world.getPlayer().getItemInHand().get() instanceof PlateImpl) {
             ((PlateImpl) world.getPlayer().getItemInHand().get()).wash();
             JukeBoxUtil.play("trash.wav");
         }
     }
 }
-

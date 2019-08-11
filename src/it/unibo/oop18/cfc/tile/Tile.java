@@ -13,8 +13,8 @@ public class Tile {
      * Instantiates a new tile.
      *
      * @param sheet the sheet
-     * @param x the x
-     * @param y the y
+     * @param x     the x
+     * @param y     the y
      */
     public Tile(final TileSheet sheet, final int x, final int y) {
         this.image = sheet.getSingleTile(x, y);

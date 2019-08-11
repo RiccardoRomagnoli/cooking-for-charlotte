@@ -19,13 +19,13 @@ public class MeatStationTile extends AbstractStationTile {
      */
     public MeatStationTile(final TileSheet sheet) {
         super();
-        IntStream.range(0, N_TILES).mapToObj(a -> new Tile(sheet, a, TileType.MEATSTATION.getPosY())).collect(Collectors.toList())
-                .forEach(a -> super.getTiles().add(a));
+        IntStream.range(0, N_TILES).mapToObj(a -> new Tile(sheet, a, TileType.MEATSTATION.getPosY()))
+                .collect(Collectors.toList()).forEach(a -> super.getTiles().add(a));
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public int getTilesNumber() {
         return N_TILES;
     }

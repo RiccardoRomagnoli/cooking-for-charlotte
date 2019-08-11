@@ -32,9 +32,8 @@ public class TileSheet {
      * @return the single tile
      */
     public BufferedImage getSingleTile(final int x, final int y) {
-        return this.sheet.getSubimage(x * TILE_SIZE_IN_GAME,
-                                      y * TILE_SIZE_IN_GAME,
-                                      TILE_SIZE_IN_GAME, TILE_SIZE_IN_GAME);
+        return this.sheet.getSubimage(x * TILE_SIZE_IN_GAME, y * TILE_SIZE_IN_GAME, TILE_SIZE_IN_GAME,
+                TILE_SIZE_IN_GAME);
     }
 
 }

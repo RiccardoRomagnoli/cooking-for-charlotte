@@ -17,9 +17,11 @@ import it.unibo.oop18.cfc.world.World;
 public class MeatStation extends AbstractStationObject {
 
     private final GraphicsComponent graphicComponent;
+
     /**
      * Constructor method.
-     * @param position entity
+     * 
+     * @param position        entity
      * @param meatStationTile image
      */
     public MeatStation(final Position position, final MeatStationTile meatStationTile) {
@@ -38,5 +40,5 @@ public class MeatStation extends AbstractStationObject {
             final IngredientImpl meat = new IngredientImpl(world.getItemManager(), IngredientType.MEAT);
             world.getPlayer().setItemInHand(meat);
         }
-   }
+    }
 }

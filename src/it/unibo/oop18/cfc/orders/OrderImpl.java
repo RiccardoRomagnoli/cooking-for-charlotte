@@ -26,30 +26,31 @@ public class OrderImpl implements Order {
     private final OrdersManager ordersManager;
     private final Order thisOrder;
     private final GraphicsComponent graphicComponent;
-	
+
     public OrderImpl(final OrdersManager ordersManager) {
         thisOrder = this;
         this.ordersManager = ordersManager;
         this.countDownTimer = new Timer();
-	this.ingredientsList = new ArrayList<>();
-	this.graphicComponent = new OrderGraphicComponent(this);
+        this.ingredientsList = new ArrayList<>();
+        this.graphicComponent = new OrderGraphicComponent(this);
     }
 
     @Override
     public boolean checkOrder(Plate plate) {
         return plate.checkIngredients(this.ingredientsList);
     }
-    
+
     public int getPoints() {
         return points;
     }
-    
+
     public void addIngredient(IngredientType ingredientType, IngredientState ingredientState) {
-        if(ingredientsList.size()==4)
+        if (ingredientsList.size() == 4)
             throw new IllegalStateException();
-        ingredientsList.add(new IngredientImpl(this.ordersManager.getWorld().getItemManager(), ingredientType, ingredientState));
+        ingredientsList.add(
+                new IngredientImpl(this.ordersManager.getWorld().getItemManager(), ingredientType, ingredientState));
     }
-    
+
     @Override
     public void setSlot(int slot) {
         this.slot = slot;
@@ -58,13 +59,13 @@ public class OrderImpl implements Order {
     public int getSlot() {
         return this.slot;
     }
-    
+
     @Override
     public void setCountDownTimer(int timeInSeconds) {
         this.countDownTime = timeInSeconds;
         this.ordersManager.getCurrentOrders().sort((o1, o2) -> o1.getCountDownTime() - o2.getCountDownTime());
     }
-    
+
     @Override
     public int getCountDownTime() {
         return countDownTime;
@@ -74,7 +75,7 @@ public class OrderImpl implements Order {
     public int getOrderIngredientQuantity() {
         return ingredientsList.size();
     }
-    
+
     @Override
     public ArrayList<OrderIngredient> getIngredientsList() {
         return ingredientsList;
@@ -94,7 +95,7 @@ public class OrderImpl implements Order {
             }
         }, 0, TIMER_PERIOD);
     }
-    
+
     @Override
     public void stopOrder() {
         countDownTimer.cancel();

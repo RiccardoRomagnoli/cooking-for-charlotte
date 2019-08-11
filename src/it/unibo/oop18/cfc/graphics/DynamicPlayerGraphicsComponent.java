@@ -26,11 +26,10 @@ public class DynamicPlayerGraphicsComponent implements GraphicsComponent {
     /**
      * Creates {@code DynamicEntityGraphicsComponent}.
      *
-     * @param entity reference to take its direction
+     * @param entity  reference to take its direction
      * @param sprites for player and entity animations
      */
-    public DynamicPlayerGraphicsComponent(final AbstractEntity entity,
-                                          final PlayerSprites sprites) {
+    public DynamicPlayerGraphicsComponent(final AbstractEntity entity, final PlayerSprites sprites) {
         this.sprites = sprites;
         this.entity = entity;
         this.frame = 0;
@@ -46,29 +45,24 @@ public class DynamicPlayerGraphicsComponent implements GraphicsComponent {
         Direction oldDir = this.entity.getPhysics().getVelocity().getOldDirection();
         switch (dir) {
         case UP:
-            g.drawImage(this.sprites.getUpSprites().get(this.frame).getImage(),
-                        AffineTransform.getTranslateInstance(this.entity.getPosition().getX(),
-                                                             this.entity.getPosition().getY()), null);
+            g.drawImage(this.sprites.getUpSprites().get(this.frame).getImage(), AffineTransform
+                    .getTranslateInstance(this.entity.getPosition().getX(), this.entity.getPosition().getY()), null);
             break;
         case RIGHT:
-            g.drawImage(this.sprites.getRightSprites().get(this.frame).getImage(),
-                        AffineTransform.getTranslateInstance(this.entity.getPosition().getX(),
-                                                             this.entity.getPosition().getY()), null);
+            g.drawImage(this.sprites.getRightSprites().get(this.frame).getImage(), AffineTransform
+                    .getTranslateInstance(this.entity.getPosition().getX(), this.entity.getPosition().getY()), null);
             break;
         case LEFT:
-            g.drawImage(this.sprites.getLeftSprites().get(this.frame).getImage(),
-                        AffineTransform.getTranslateInstance(this.entity.getPosition().getX(),
-                                                             this.entity.getPosition().getY()), null);
+            g.drawImage(this.sprites.getLeftSprites().get(this.frame).getImage(), AffineTransform
+                    .getTranslateInstance(this.entity.getPosition().getX(), this.entity.getPosition().getY()), null);
             break;
         case DOWN:
-            g.drawImage(this.sprites.getDownSprites().get(this.frame).getImage(),
-                        AffineTransform.getTranslateInstance(this.entity.getPosition().getX(),
-                                                             this.entity.getPosition().getY()), null);
+            g.drawImage(this.sprites.getDownSprites().get(this.frame).getImage(), AffineTransform
+                    .getTranslateInstance(this.entity.getPosition().getX(), this.entity.getPosition().getY()), null);
             break;
         default:
-            g.drawImage(this.sprites.getStopSprites().get(oldDir).getImage(),
-                    AffineTransform.getTranslateInstance(this.entity.getPosition().getX(),
-                                                         this.entity.getPosition().getY()), null);
+            g.drawImage(this.sprites.getStopSprites().get(oldDir).getImage(), AffineTransform
+                    .getTranslateInstance(this.entity.getPosition().getX(), this.entity.getPosition().getY()), null);
             break;
         }
     }

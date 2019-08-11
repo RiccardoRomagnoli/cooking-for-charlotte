@@ -12,7 +12,7 @@ public class ItemManager {
     private final PlateSprite plateSprites;
     private final IngredientSprite foodSprites;
     private final LoadingSprite loadingSprites;
-    
+
     public ItemManager(final String path) throws IOException {
         final ItemSpriteSheet is = new ItemSpriteSheet(path);
         this.plateSprites = new PlateSprite(is);

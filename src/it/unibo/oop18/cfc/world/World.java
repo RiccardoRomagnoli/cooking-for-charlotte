@@ -38,6 +38,7 @@ public interface World {
 
     /**
      * Renders all object sprite and tile.
+     * 
      * @param g a set of graphic element
      */
     void draw(Graphics2D g);
@@ -91,7 +92,7 @@ public interface World {
      * @return the {@link OrdersManager}
      */
     OrdersManager getOrdersManager();
-    
+
     /**
      * Gets the {@link Player}.
      * 

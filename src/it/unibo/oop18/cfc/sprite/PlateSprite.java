@@ -15,8 +15,8 @@ public class PlateSprite extends AbstractItemSprite {
     public PlateSprite(final ItemSpriteSheet sheet) {
         super();
         this.plateSprite = new ArrayList<>();
-        IntStream.range(0, PLATE_SPRITES).mapToObj(a -> new ItemSprite(sheet, a, Y_LOCATION_PLATE)).collect(Collectors.toList())
-        .forEach(a -> plateSprite.add(a));
+        IntStream.range(0, PLATE_SPRITES).mapToObj(a -> new ItemSprite(sheet, a, Y_LOCATION_PLATE))
+                .collect(Collectors.toList()).forEach(a -> plateSprite.add(a));
     }
 
     @Override

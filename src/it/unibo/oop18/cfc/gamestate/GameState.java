@@ -20,7 +20,7 @@ public abstract class GameState {
     /**
      * Constructor for all game states.
      * 
-     * @param gsm game state instance
+     * @param gsm           game state instance
      * @param gameStateName game state name
      */
     public GameState(final GameStateManager gsm, final GameStates gameStateName) {
@@ -49,6 +49,7 @@ public abstract class GameState {
 
     /**
      * Draw the scene of the game state.
+     * 
      * @param g graphics to be printed on screen
      */
     public abstract void draw(Graphics2D g);

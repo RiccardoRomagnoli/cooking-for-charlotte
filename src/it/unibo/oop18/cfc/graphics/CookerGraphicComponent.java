@@ -35,8 +35,8 @@ public class CookerGraphicComponent implements GraphicsComponent {
     /**
      * Instantiates a new cooker graphic component.
      *
-     * @param cooker the cooker
-     * @param cookerTile the cooker tile
+     * @param cooker        the cooker
+     * @param cookerTile    the cooker tile
      * @param loadingSprite the loading sprite
      */
     public CookerGraphicComponent(final Cooker cooker, final CookerTile cookerTile, final LoadingSprite loadingSprite) {
@@ -60,10 +60,8 @@ public class CookerGraphicComponent implements GraphicsComponent {
                     .getTranslateInstance(this.cooker.getPosition().getX(), this.cooker.getPosition().getY()), null);
         }
         if (this.cooker.getFood().isPresent()) {
-            this.cooker.getFood().get().draw(g,
-                    new Position(cooker.getPosition().getX() + POSITION_X_INGREDIENT,
-                            cooker.getPosition().getY() + POSITION_Y_INGREDIENT),
-                    DIM_INGREDIENT, DIM_INGREDIENT);
+            this.cooker.getFood().get().draw(g, new Position(cooker.getPosition().getX() + POSITION_X_INGREDIENT,
+                    cooker.getPosition().getY() + POSITION_Y_INGREDIENT), DIM_INGREDIENT, DIM_INGREDIENT);
         }
         if (this.cooker.getFood().isPresent() && this.cooker.isCooked()) {
             if (this.cooker.getFood().get().getState() == IngredientState.CHOPPED) {

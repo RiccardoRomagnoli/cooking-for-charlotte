@@ -13,13 +13,12 @@ public class Sprite {
      * Creates {@code Sprite}.
      *
      * @param sheet where to take the single sprite
-     * @param x coordinate to select the sprite
-     * @param y coordinate to select the sprite
+     * @param x     coordinate to select the sprite
+     * @param y     coordinate to select the sprite
      */
     public Sprite(final SpriteSheet sheet, final int x, final int y) {
         this.image = sheet.getSingleSprite(x, y).getScaledInstance(SpriteSheet.SPRITE_SIZE_IN_GAME,
-                                                                   SpriteSheet.SPRITE_SIZE_IN_GAME,
-                                                                   Image.SCALE_SMOOTH);
+                SpriteSheet.SPRITE_SIZE_IN_GAME, Image.SCALE_SMOOTH);
     }
 
     /**

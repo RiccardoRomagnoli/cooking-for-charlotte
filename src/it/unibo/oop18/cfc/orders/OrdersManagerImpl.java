@@ -25,7 +25,7 @@ public class OrdersManagerImpl implements OrdersManager {
         finishedOrders = new ArrayList<>();
         gameTimer = world.getGameTimer();
         generator = new OrderGeneratorImpl(this);
-    }   
+    }
 
     public World getWorld() {
         return world;
@@ -41,22 +41,22 @@ public class OrdersManagerImpl implements OrdersManager {
     }
 
     /**
-     * delegates draw of each order by setting them their slot
-     * which is the index of order list
+     * delegates draw of each order by setting them their slot which is the index of
+     * order list
      */
     @Override
     public void draw(Graphics2D g) {
-        currentOrders.stream().forEach(o->{
+        currentOrders.stream().forEach(o -> {
             o.setSlot(currentOrders.indexOf(o));
             o.draw(g);
         });
     }
-    
+
     @Override
     public void update() {
-        //generator(timertask) work with timers that call run
-        //this is the alternative solution call every time in update
-        //generator.run();
+        // generator(timertask) work with timers that call run
+        // this is the alternative solution call every time in update
+        // generator.run();
         updateDifficulty();
         checkZeroOrders();
     }
@@ -66,19 +66,19 @@ public class OrdersManagerImpl implements OrdersManager {
         this.currentOrders.add(o);
         this.currentOrders.sort((o1, o2) -> o1.getCountDownTime() - o2.getCountDownTime());
     }
-	
+
     @Override
     public int getOrderQuantity() {
         return currentOrders.size();
     }
-    
+
     @Override
     public void orderFailed(Order order) {
         currentOrders.remove(order);
         finishedOrders.add(order);
         this.world.getPlayer().decLifes();
     }
-    
+
     @Override
     public ArrayList<Order> getCurrentOrders() {
         return currentOrders;
@@ -88,19 +88,21 @@ public class OrdersManagerImpl implements OrdersManager {
     public ArrayList<Order> getFinishedOrders() {
         return finishedOrders;
     }
-    
+
     @Override
     public void startGeneration() {
         generator.startGeneration(INTERVAL_MILLISECONDS);
     }
-    
+
     @Override
     public void stopGeneration() {
-        generator.stopGeneration();;
+        generator.stopGeneration();
+        ;
     }
 
     /**
      * Just need the first correct order that matches
+     * 
      * @param plate submitted
      * @return
      */
@@ -130,7 +132,7 @@ public class OrdersManagerImpl implements OrdersManager {
         if (currentMinute > 16) {
             currentDifficulty = OrderDifficulty.EXTREME;
         }
-	generator.setDifficulty(currentDifficulty);
+        generator.setDifficulty(currentDifficulty);
     }
 
     private void checkZeroOrders() {

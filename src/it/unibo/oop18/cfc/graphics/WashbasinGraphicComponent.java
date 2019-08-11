@@ -13,11 +13,10 @@ public class WashbasinGraphicComponent implements GraphicsComponent {
     private final Washbasin washbasin;
     private final WashbasinTile washbasinTile;
 
-
     /**
      * Instantiates a new washbasin graphic component.
      *
-     * @param washbasin the washbasin
+     * @param washbasin     the washbasin
      * @param washbasinTile the washbasin tile
      */
     public WashbasinGraphicComponent(final Washbasin washbasin, final WashbasinTile washbasinTile) {

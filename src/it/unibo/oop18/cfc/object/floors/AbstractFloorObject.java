@@ -4,7 +4,7 @@ import it.unibo.oop18.cfc.object.AbstractGameObject;
 import it.unibo.oop18.cfc.util.Position;
 
 /**
- *  This class models a still {@link AbstractGameObject}.
+ * This class models a still {@link AbstractGameObject}.
  */
 public abstract class AbstractFloorObject extends AbstractGameObject {
 

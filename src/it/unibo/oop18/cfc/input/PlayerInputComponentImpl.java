@@ -1,6 +1,5 @@
 package it.unibo.oop18.cfc.input;
 
-
 import it.unibo.oop18.cfc.object.entity.PlayerImpl;
 import it.unibo.oop18.cfc.physics.Direction;
 
@@ -12,6 +11,7 @@ public class PlayerInputComponentImpl extends AbstractInputComponent implements 
     private static final int PIXEL_PER_SECOND = 8;
 
     private final PlayerImpl player;
+
     /**
      * Creates {@code PlayerInputComponentImpl}.
      *
@@ -44,7 +44,7 @@ public class PlayerInputComponentImpl extends AbstractInputComponent implements 
     @Override
     public void doAction() {
         super.resetCommands();
-        super.createGenericCommand(() ->{
+        super.createGenericCommand(() -> {
             this.player.doAction();
         });
     }

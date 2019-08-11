@@ -67,15 +67,15 @@ public class VelocityImpl implements Velocity {
      */
     @Override
     public void setDirection(final Direction direction) {
-        if(direction != Direction.STOP) {
+        if (direction != Direction.STOP) {
             this.oldDirection = direction;
         }
         this.direction = direction;
     }
 
-	@Override
-	public Direction getOldDirection() {
-		return oldDirection;
-	}
+    @Override
+    public Direction getOldDirection() {
+        return oldDirection;
+    }
 
 }

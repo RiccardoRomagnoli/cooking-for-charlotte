@@ -7,10 +7,9 @@ import java.util.stream.IntStream;
 import it.unibo.oop18.cfc.object.entity.DynamicObject;
 import it.unibo.oop18.cfc.physics.Direction;
 
-
 /**
- * This class models the {@link InputComponent} of {@link DynamicObject}.
- * It manages the command queue, adding and removing command according to the
+ * This class models the {@link InputComponent} of {@link DynamicObject}. It
+ * manages the command queue, adding and removing command according to the
  * supplied input and GameEngine work.
  */
 public abstract class AbstractInputComponent implements InputComponent {
@@ -36,36 +35,36 @@ public abstract class AbstractInputComponent implements InputComponent {
     @Override
     public void createDirectionCommand(final Direction direction, final double distance) {
         switch (direction) {
-            case UP:
-                this.commandQueue.add(() -> {
-                     entity.getPhysics().getVelocity().setSpaceX(0);
-                     entity.getPhysics().getVelocity().setSpaceY(-distance);
-                });
-                break;
-            case DOWN:
-                this.commandQueue.add(() -> {
-                     entity.getPhysics().getVelocity().setSpaceX(0);
-                     entity.getPhysics().getVelocity().setSpaceY(+distance);
-                });
-                break;
-            case LEFT:
-                this.commandQueue.add(() -> {
-                     entity.getPhysics().getVelocity().setSpaceX(-distance);
-                     entity.getPhysics().getVelocity().setSpaceY(0);
-                });
-                break;
-            case RIGHT:
-                this.commandQueue.add(() -> {
-                     entity.getPhysics().getVelocity().setSpaceX(+distance);
-                     entity.getPhysics().getVelocity().setSpaceY(0);
-                });
-                break;
-            default:
-                this.commandQueue.add(() -> {
-                     entity.getPhysics().getVelocity().setSpaceX(0);
-                     entity.getPhysics().getVelocity().setSpaceY(0);
-                });
-                break;
+        case UP:
+            this.commandQueue.add(() -> {
+                entity.getPhysics().getVelocity().setSpaceX(0);
+                entity.getPhysics().getVelocity().setSpaceY(-distance);
+            });
+            break;
+        case DOWN:
+            this.commandQueue.add(() -> {
+                entity.getPhysics().getVelocity().setSpaceX(0);
+                entity.getPhysics().getVelocity().setSpaceY(+distance);
+            });
+            break;
+        case LEFT:
+            this.commandQueue.add(() -> {
+                entity.getPhysics().getVelocity().setSpaceX(-distance);
+                entity.getPhysics().getVelocity().setSpaceY(0);
+            });
+            break;
+        case RIGHT:
+            this.commandQueue.add(() -> {
+                entity.getPhysics().getVelocity().setSpaceX(+distance);
+                entity.getPhysics().getVelocity().setSpaceY(0);
+            });
+            break;
+        default:
+            this.commandQueue.add(() -> {
+                entity.getPhysics().getVelocity().setSpaceX(0);
+                entity.getPhysics().getVelocity().setSpaceY(0);
+            });
+            break;
         }
         this.setDirection(direction);
 
@@ -78,7 +77,7 @@ public abstract class AbstractInputComponent implements InputComponent {
     public void createGenericCommand(final Command command) {
         this.commandQueue.add(command);
     }
-    
+
     public void resetCommands() {
         this.commandQueue.clear();
     }
@@ -88,9 +87,8 @@ public abstract class AbstractInputComponent implements InputComponent {
      */
     @Override
     public void processInput() {
-        IntStream.range(0, this.commandQueue.size())
-                 .mapToObj(c -> this.commandQueue.poll())
-                 .forEach(command -> command.execute());
+        IntStream.range(0, this.commandQueue.size()).mapToObj(c -> this.commandQueue.poll())
+                .forEach(command -> command.execute());
     }
 
     private void setDirection(final Direction dir) {

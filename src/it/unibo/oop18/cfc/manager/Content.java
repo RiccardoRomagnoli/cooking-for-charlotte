@@ -77,8 +77,9 @@ public class Content {
             g.drawImage(font[row][col], x + 50 * i, y, null);
         }
     }
-        
-    public static void drawString(final Graphics2D g, final String str, final int x, final int y, final int width, final int height) {
+
+    public static void drawString(final Graphics2D g, final String str, final int x, final int y, final int width,
+            final int height) {
         final String s = str.toUpperCase();
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);

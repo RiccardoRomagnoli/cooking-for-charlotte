@@ -11,7 +11,7 @@ public interface InputComponent {
      * Creates a new Command.
      *
      * @param direction of the command
-     * @param distance covered by the entity in a second
+     * @param distance  covered by the entity in a second
      */
     void createDirectionCommand(Direction direction, double distance);
 

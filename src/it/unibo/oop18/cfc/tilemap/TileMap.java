@@ -71,6 +71,7 @@ interface TileMap {
      */
 
     Set<Position> getLettuceStationPosition();
+
     /**
      * Get the set of plate station {@link Position}.
      * 
@@ -97,6 +98,6 @@ interface TileMap {
      * 
      * @return set of {@link Position}
      */
-    Set<Position> getParquetFloorPosition(); 
+    Set<Position> getParquetFloorPosition();
 
 }

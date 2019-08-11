@@ -69,7 +69,8 @@ public class Counter extends AbstractStationObject {
                         }
                     }
                 }
-            } else {// se il player non ha niente in mano
+            } else {
+                // se il player non ha niente in mano
                 world.getPlayer().setItemInHand(item.get());
                 this.removeItem();
             }

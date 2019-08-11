@@ -14,7 +14,7 @@ public class Pair<X, Y> {
     /**
      * Creates {@code Pair}.
      *
-     * @param first value
+     * @param first  value
      * @param second value
      */
     public Pair(final X first, final Y second) {

@@ -25,20 +25,20 @@ public class ChoppingStation extends AbstractStationObject {
     private Optional<IngredientImpl> food;
     private final World world;
     private boolean isCutting;
-    
+
     /** The is sound playing. */
     public int isSoundPlaying;
-
 
     /**
      * Instantiates a new chopping station.
      *
-     * @param position the position
+     * @param position            the position
      * @param choppingStationTile the chopping station tile
-     * @param loadingSprite the loading sprite
-     * @param world the world
+     * @param loadingSprite       the loading sprite
+     * @param world               the world
      */
-    public ChoppingStation(final Position position, final ChoppingStationTile choppingStationTile, final LoadingSprite loadingSprite, final World world) {
+    public ChoppingStation(final Position position, final ChoppingStationTile choppingStationTile,
+            final LoadingSprite loadingSprite, final World world) {
         super(position);
         this.food = Optional.empty();
         this.isSoundPlaying = 0;

@@ -52,6 +52,6 @@ public interface DynamicPhysicsComponent {
      */
     public abstract void checksCollisions(Set<Item> object);
 
-   // public TileType getNextTile();
+    // public TileType getNextTile();
 
 }

@@ -26,7 +26,7 @@ public class GameEngine extends JPanel implements Runnable {
     /**
      * Window width.
      */
-    public static final int WIDTH = 1024; 
+    public static final int WIDTH = 1024;
     /**
      * Window gamemap height.
      */
@@ -75,6 +75,7 @@ public class GameEngine extends JPanel implements Runnable {
     private BufferedImage image;
     private static Graphics2D g;
     private GameStateManager gsm;
+
     /**
      * Create our JPanel for the game.
      */
@@ -84,6 +85,7 @@ public class GameEngine extends JPanel implements Runnable {
         setFocusable(true);
         requestFocus();
     }
+
     /**
      * Add notify to our JPanel.
      */
@@ -94,6 +96,7 @@ public class GameEngine extends JPanel implements Runnable {
             thread.start();
         }
     }
+
     /**
      * Main method that run the game and loop the update and draw of all components.
      */
@@ -128,7 +131,8 @@ public class GameEngine extends JPanel implements Runnable {
     }
 
     /**
-     * Initialize the {@link GameStateManager} and add a KeyListener from {@link KeyInput}.
+     * Initialize the {@link GameStateManager} and add a KeyListener from
+     * {@link KeyInput}.
      */
     private void init() {
         running = true;

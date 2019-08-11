@@ -17,23 +17,23 @@ public interface Order {
      * @return True if they are the same
      */
     public boolean checkOrder(Plate plate);
-    
+
     public int getPoints();
-    
+
     public void startOrder();
-    
+
     public int getOrderIngredientQuantity();
-    
+
     public void addIngredient(IngredientType ingredientType, IngredientState ingredientState);
-    
+
     public void setCountDownTimer(int timeInSeconds);
 
     public int getCountDownTime();
 
     public void setSlot(int slot);
-    
+
     public void draw(Graphics2D g);
-    
+
     public int getSlot();
 
     public ArrayList<OrderIngredient> getIngredientsList();

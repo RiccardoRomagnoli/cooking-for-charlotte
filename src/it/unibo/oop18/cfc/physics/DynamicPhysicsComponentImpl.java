@@ -20,7 +20,7 @@ public class DynamicPhysicsComponentImpl implements DynamicPhysicsComponent {
 
     private final Velocity vector;
     private final DynamicObject entity;
-    
+
     public DynamicPhysicsComponentImpl(final DynamicObject entity) {
         this.vector = new VelocityImpl();
         this.entity = entity;
@@ -80,7 +80,8 @@ public class DynamicPhysicsComponentImpl implements DynamicPhysicsComponent {
 
     @Override
     public Rectangle2D getRightBound() {
-        return new Rectangle2D.Double(this.entity.getPosition().getX() + TileSheet.TILE_SIZE_IN_GAME - HEIGHT_ADJUSTMENT,
+        return new Rectangle2D.Double(
+                this.entity.getPosition().getX() + TileSheet.TILE_SIZE_IN_GAME - HEIGHT_ADJUSTMENT,
                 this.entity.getPosition().getY() + POSITION_ADJUSTMENT, HEIGHT_ADJUSTMENT,
                 TileSheet.TILE_SIZE_IN_GAME - WIDTH_ADJUSTMENT);
     }

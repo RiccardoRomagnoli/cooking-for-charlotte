@@ -35,9 +35,8 @@ public class ItemSpriteSheet {
      * @return a buffered image of the {@link Sprite}
      */
     public BufferedImage getSingleItemSprite(final int x, final int y) {
-        return this.sheet.getSubimage(x * ITEM_SPRITE_WIDTH_IN_GAME,
-                                      y * ITEM_SPRITE_HEIGHT_IN_GAME,
-                                      ITEM_SPRITE_WIDTH_IN_GAME, ITEM_SPRITE_HEIGHT_IN_GAME);
+        return this.sheet.getSubimage(x * ITEM_SPRITE_WIDTH_IN_GAME, y * ITEM_SPRITE_HEIGHT_IN_GAME,
+                ITEM_SPRITE_WIDTH_IN_GAME, ITEM_SPRITE_HEIGHT_IN_GAME);
     }
 
 }

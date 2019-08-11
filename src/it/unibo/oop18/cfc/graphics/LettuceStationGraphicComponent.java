@@ -17,10 +17,11 @@ public class LettuceStationGraphicComponent implements GraphicsComponent {
     /**
      * Instantiates a new lettuce station graphic component.
      *
-     * @param lettuceStation the lettuce station
+     * @param lettuceStation     the lettuce station
      * @param lettuceStationTile the lettuce station tile
      */
-    public LettuceStationGraphicComponent(final LettuceStation lettuceStation, final LettuceStationTile lettuceStationTile) {
+    public LettuceStationGraphicComponent(final LettuceStation lettuceStation,
+            final LettuceStationTile lettuceStationTile) {
         this.lettuceStation = lettuceStation;
         this.lettuceStationTile = lettuceStationTile;
     }

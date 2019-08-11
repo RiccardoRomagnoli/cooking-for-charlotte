@@ -19,8 +19,8 @@ public class DeliveryStationTile extends AbstractStationTile {
      */
     public DeliveryStationTile(final TileSheet sheet) {
         super();
-        IntStream.range(0, N_TILES).mapToObj(a -> new Tile(sheet, a, TileType.DELIVERYSTATION.getPosY())).collect(Collectors.toList())
-                .forEach(a -> super.getTiles().add(a));
+        IntStream.range(0, N_TILES).mapToObj(a -> new Tile(sheet, a, TileType.DELIVERYSTATION.getPosY()))
+                .collect(Collectors.toList()).forEach(a -> super.getTiles().add(a));
     }
 
     /**

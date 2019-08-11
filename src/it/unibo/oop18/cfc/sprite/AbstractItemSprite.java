@@ -3,7 +3,6 @@ package it.unibo.oop18.cfc.sprite;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public abstract class AbstractItemSprite {
 
     private final List<ItemSprite> itemSprite;
