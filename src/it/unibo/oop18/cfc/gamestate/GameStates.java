@@ -32,5 +32,9 @@ public enum GameStates {
     /**
      * Option state.
      */
-    OPTION
+    OPTION,
+    /**
+     * Ranking State.
+     */
+    RANKING
 }

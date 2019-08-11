@@ -6,32 +6,31 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
+import it.unibo.oop18.cfc.gamestate.InfoState;
 import static java.util.stream.Collectors.toMap;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.Graphics2D;
+
 import static java.util.Map.Entry.comparingByValue;
 
 /**
- * 
  * Ranking class manage a CSV file.
- * 
- *
  */
 public class RankingImpl implements Ranking {
 
     private static Map<String, Integer> ranked = new HashMap<>();
-    final private int rowNumber;
-
-    final private static String RANK_PATH = "/HUD/rank.txt";
+    private final int rowNumber;
+    private static final String RANK_PATH = "/HUD/rank.txt";
 
     /**
      * Constructor.
      * 
      * @throws IOException generic exception
-     * 
      */
     public RankingImpl() throws IOException {
         this.rowNumber = ranked.size();
@@ -51,15 +50,29 @@ public class RankingImpl implements Ranking {
 
     /**
      * Print point on screen.
+     * 
+     * @param g graphics
      */
-    public static void printOnScreen() {
+    public static void printOnScreen(final Graphics2D g) {
         int count = 1;
         loadRanking();
-        for (final HashMap.Entry<String, Integer> entry : ranked.entrySet()) {
-            final String key = entry.getKey();
-            final Integer value = entry.getValue();
-            System.out.printf("#%d  -  Name: %s  -  Points: %d ", count, key, value);
-            count++;
+        Font myFont;
+        try {
+            myFont = Font.createFont(Font.TRUETYPE_FONT, InfoState.class.getResourceAsStream("/HUD/comicsans.ttf"));
+            myFont = myFont.deriveFont(30f);
+            g.setFont(myFont);
+            g.setColor(Color.green);
+            for (final HashMap.Entry<String, Integer> entry : ranked.entrySet()) {
+                final String key = entry.getKey();
+                final Integer value = entry.getValue();
+                g.drawString(String.format("#%d  -  Name: %s  -  Points: %d ", count, key.toUpperCase(), value), 100,
+                        300 + 100 * count);
+                count++;
+            }
+        } catch (FontFormatException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -91,14 +104,8 @@ public class RankingImpl implements Ranking {
      * 
      */
     public static final void loadRanking() {
-        final BufferedReader csvReader;
         try {
-            System.out.println(new File("/rank.txt").exists());
-            System.out.println(new File("/rank.txt").isDirectory());
-            System.out.println(new File("/rank.txt").canRead());
-            System.out.println(new File(".").getAbsolutePath());
-            System.out.println("The path is '" + RANK_PATH + "'");
-            csvReader = new BufferedReader(new FileReader(new File("rank.txt")));
+            final BufferedReader csvReader = new BufferedReader(new FileReader("rank.txt"));
             String row;
             while ((row = csvReader.readLine()) != null) {
                 final String[] data = row.split(";");

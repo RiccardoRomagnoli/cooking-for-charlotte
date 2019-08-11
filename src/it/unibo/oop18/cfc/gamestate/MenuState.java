@@ -22,10 +22,6 @@ public class MenuState extends GameState {
     private final String[] options = { "START", "OPTIONS", "INFO", "RANKING NOOO", "QUIT" };
     private final int menuOptions = options.length;
     private final int[] dim = { 300, 360, 420, 480, 540 };
-    private int rankingOption;
-
-    /** Control if menu is playing. */
-    private static int menuIsPlaying;
 
     /**
      * Menu state init.
@@ -45,20 +41,19 @@ public class MenuState extends GameState {
         JukeBoxUtil.load("/SFX/collect.wav", "collect");
         JukeBoxUtil.load("/SFX/menuoption.wav", "menuoption");
         JukeBoxUtil.load("/SFX/menuresized.wav", "menuSong");
-        if (menuIsPlaying == 0) {
-            JukeBoxUtil.play("menuSong");
-        } else if (menuIsPlaying == 3) {
-            JukeBoxUtil.play("menuSong");
-        } else if (menuIsPlaying == 2) {
+        if (!JukeBoxUtil.isPlaying("menuSong")) {
+            JukeBoxUtil.loop("menuSong");
+        } else {
             JukeBoxUtil.resume("menuSong");
         }
+
     }
 
     /**
      * {@inheritDoc}.
      */
     public void update() {
-        // handleInput();
+        
     }
 
     /**
@@ -67,16 +62,11 @@ public class MenuState extends GameState {
      * @param g the g
      */
     public void draw(final Graphics2D g) {
-        if (rankingOption == 0) {
-            g.drawImage(bg, 0, 0, null);
-            for (int i = 0; i < menuOptions; i++) {
-                Content.drawString(g, options[i], STRING_POS, dim[i]);
-            }
-            g.drawImage(food, IMAGE_POS, dim[currentOption], null);
-        } else {
-            g.drawImage(bg, 0, 0, null);
-            RankingImpl.printOnScreen();
+        g.drawImage(bg, 0, 0, null);
+        for (int i = 0; i < menuOptions; i++) {
+            Content.drawString(g, options[i], STRING_POS, dim[i]);
         }
+        g.drawImage(food, IMAGE_POS, dim[currentOption], null);
     }
 
     /**
@@ -91,25 +81,20 @@ public class MenuState extends GameState {
         if (currentOption == 1) {
             gsm.setState(GameStates.OPTION);
             gsm.draw(g);
-            // JukeBoxUtil.stop("menuSong");
-            menuIsPlaying = 2;
         }
         if (currentOption == 2) {
             gsm.setState(GameStates.INFO);
             gsm.draw(g);
-            menuIsPlaying = 1;
         }
         if (currentOption == 3) {
-            rankingOption = 1;
-        } else {
-            rankingOption = 0;
+            gsm.setState(GameStates.RANKING);
+            gsm.draw(g);
         }
         if (currentOption == 4) {
             JukeBoxUtil.stop("menuSong");
             JukeBoxUtil.closeResource();
             System.exit(0); // TODO. trovare un metodo meno brutale
         }
-
     }
 
     /**
@@ -139,18 +124,4 @@ public class MenuState extends GameState {
         JukeBoxUtil.play("collect");
         selectOption();
     }
-
-    /**
-     * Get menu sound state.
-     * 
-     * @return state of menu music
-     */
-    public static int getMenuIsPlaying() {
-        return menuIsPlaying;
-    }
-
-    public static void setMenuIsPlaying(int menuIsPlaying) {
-        MenuState.menuIsPlaying = menuIsPlaying;
-    }
-
 }

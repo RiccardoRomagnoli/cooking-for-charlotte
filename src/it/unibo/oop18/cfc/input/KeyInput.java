@@ -28,8 +28,8 @@ public class KeyInput implements KeyListener {
     private PlayerImpl player;
 
     /**
-     * Pair where a direction value is assigned to a boolean value.
-     * TODO. non so cosa faccia sta roba, qualcuno aggiusti la javadoc
+     * Pair where a direction value is assigned to a boolean value. TODO. non so
+     * cosa faccia sta roba, qualcuno aggiusti la javadoc
      */
     public Map<Integer, Boolean> keys;
 
@@ -82,6 +82,9 @@ public class KeyInput implements KeyListener {
             break;
         case OPTION:
             optionKeyInput(e);
+            break;
+        case RANKING:
+            rankingKeyInput(e);
             break;
         default:
             break;
@@ -195,6 +198,10 @@ public class KeyInput implements KeyListener {
         }
     }
 
+    private void rankingKeyInput(final KeyEvent e) {
+        gsm.setState(GameStates.MENU);
+    }
+
     private void infoKeyInput(final KeyEvent e) {
         gsm.setState(GameStates.MENU);
     }
@@ -207,7 +214,7 @@ public class KeyInput implements KeyListener {
     @Override
     public void keyReleased(final KeyEvent e) {
         if (gsm.getCurrentGameState().getGameStateName() == GameStates.PLAY) {
-            if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+            if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                 this.doAction();
             }
 
