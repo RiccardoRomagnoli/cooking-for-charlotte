@@ -25,7 +25,7 @@ public class RankingImpl implements Ranking {
 
     private static Map<String, Integer> ranked = new HashMap<>();
     private final int rowNumber;
-    private static final String RANK_PATH = "/HUD/rank.txt";
+    // private static final String RANK_PATH = "/HUD/rank.txt";
     // private int scoreMin;
 
     /**

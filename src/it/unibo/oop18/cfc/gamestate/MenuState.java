@@ -19,7 +19,7 @@ public class MenuState extends GameState {
     private static final int STRING_POS = 350;
     private static final int IMAGE_POS = 280;
     private int currentOption;
-    private final String[] options = { "START", "OPTIONS", "INFO", "RANKING NOOO", "QUIT" };
+    private final String[] options = { "START", "OPTIONS", "INFO", "RANKING", "QUIT" };
     private final int menuOptions = options.length;
     private final int[] dim = { 300, 360, 420, 480, 540 };
 
@@ -40,7 +40,7 @@ public class MenuState extends GameState {
         food = ContentUtil.FOOD[6][2];
         JukeBoxUtil.load("/SFX/collect.wav", "collect");
         JukeBoxUtil.load("/SFX/menuoption.wav", "menuoption");
-        JukeBoxUtil.load("/SFX/menuresized.wav", "menuSong");
+        JukeBoxUtil.load("/SFX/menuSong.wav", "menuSong");
         if (!JukeBoxUtil.isPlaying("menuSong")) {
             JukeBoxUtil.loop("menuSong");
         } else {

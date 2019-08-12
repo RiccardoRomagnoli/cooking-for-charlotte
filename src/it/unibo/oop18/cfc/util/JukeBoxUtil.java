@@ -139,6 +139,8 @@ public final class JukeBoxUtil {
      */
     public static void resumeLoop(final String s) {
         final Clip c = clips.get(s);
+        final float f = (float) (getVolume() * 0.06);
+        setVolume(s, f);
         if (c == null) {
             return;
         }
@@ -185,6 +187,8 @@ public final class JukeBoxUtil {
      */
     public static void loop(final String s, final int frame, final int start, final int end) {
         final Clip c = clips.get(s);
+        final float f = (float) (getVolume() * 0.06);
+        setVolume(s, f);
         if (c == null) {
             return;
         }
@@ -297,14 +301,14 @@ public final class JukeBoxUtil {
      * @throws IOException if stream are not open
      */
     public static void closeResource() {
-        try {
-            in.close();
-            bin.close();
-            ais.close();
-            dais.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            in.close();
+//            bin.close();
+//            ais.close();
+//            dais.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
 }
