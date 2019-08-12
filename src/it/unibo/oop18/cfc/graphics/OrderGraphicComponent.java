@@ -45,7 +45,9 @@ public class OrderGraphicComponent implements GraphicsComponent {
                 .forEach(
                         i -> i.draw(g,
                                 new Position(OFFSET + WIDTH_SLOT_GRAPHIC + X_FIRST_INGREDIENT
-                                        + SLOT_DIMENSION * order.getSlot(), Y_INGREDIENTS),
+                                        + SLOT_DIMENSION * order.getSlot() + 
+                                        (DISTANCE_BETWEEN_INGREDIENT + INGREDIENT_WIDTH_HEIGHT) * order.getIngredientsList().indexOf(i),
+                                        Y_INGREDIENTS),
                                 INGREDIENT_WIDTH_HEIGHT, INGREDIENT_WIDTH_HEIGHT));
         drawCountDown(g, order.getCountDownTime() / SECONDS_IN_MINUTE, order.getCountDownTime() % SECONDS_IN_MINUTE,
                 OFFSET + WIDTH_SLOT_GRAPHIC + X_TIMER + SLOT_DIMENSION * order.getSlot(), Y_TIMER, WIDTH_TIMER_TEXT,
