@@ -20,7 +20,8 @@ public class OrderImpl implements Order {
 
     private final ArrayList<OrderIngredient> ingredientsList;
     private int points;
-    private int slot; // 1 2 3 4
+    private int slot;
+    private boolean paused;
     private int countDownTime;
     private Timer countDownTimer;
     private final OrdersManager ordersManager;
@@ -28,6 +29,7 @@ public class OrderImpl implements Order {
     private final GraphicsComponent graphicComponent;
 
     public OrderImpl(final OrdersManager ordersManager) {
+        this.paused = false;
         thisOrder = this;
         this.ordersManager = ordersManager;
         this.countDownTimer = new Timer();
@@ -87,10 +89,12 @@ public class OrderImpl implements Order {
         countDownTimer.schedule(new TimerTask() {
             @Override
             public void run() {
-                countDownTime--;
-                if (countDownTime == 0) {
-                    countDownTimer.cancel();
-                    ordersManager.orderFailed(thisOrder);
+                if(!paused) {
+                    countDownTime--;
+                    if (countDownTime == 0) {
+                        countDownTimer.cancel();
+                        ordersManager.orderFailed(thisOrder);
+                    }
                 }
             }
         }, 0, TIMER_PERIOD);
@@ -105,6 +109,11 @@ public class OrderImpl implements Order {
     @Override
     public void draw(Graphics2D g) {
         this.graphicComponent.draw(g);
+    }
+    
+    @Override
+    public void setPaused(boolean paused) {
+        this.paused = paused;
     }
 
 }

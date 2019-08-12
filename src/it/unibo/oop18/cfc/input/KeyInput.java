@@ -225,6 +225,7 @@ public class KeyInput implements KeyListener {
     private void launchPause() {
         this.gsm.setState(GameStates.PAUSE);
         this.gsm.getPlayState().getWorld().getGameTimer().stop();
+        pauseOrderTimers();
     }
 
     private void moveEntity(final Optional<Direction> way) {
@@ -247,6 +248,7 @@ public class KeyInput implements KeyListener {
         gsm.setState(GameStates.PLAY);
         gsm.getPlayState().getWorld().getGameTimer().start();
         resetKeys();
+        resumeOrderTimers();
         this.gsm.getPlayState().getWorld().getPlayer().getInput().stop();
         JukeBoxUtil.resumeLoop("music1");
     }
@@ -278,6 +280,13 @@ public class KeyInput implements KeyListener {
             break;
         }
         return dir;
+    }
+    
+    private void pauseOrderTimers() {
+        this.gsm.getPlayState().getWorld().getOrdersManager().getCurrentOrders().stream().forEach(o->o.setPaused(true));
+    }
+    private void resumeOrderTimers() {
+        this.gsm.getPlayState().getWorld().getOrdersManager().getCurrentOrders().stream().forEach(o->o.setPaused(false));
     }
 
 }

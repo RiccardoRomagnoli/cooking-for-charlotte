@@ -39,4 +39,6 @@ public interface Order {
     public ArrayList<OrderIngredient> getIngredientsList();
 
     public void stopOrder();
+
+    public void setPaused(boolean paused);
 }
