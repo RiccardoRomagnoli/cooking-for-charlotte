@@ -1,4 +1,4 @@
-package it.unibo.oop18.cfc.manager;
+package it.unibo.oop18.cfc.util;
 
 /**
  * Global helper class. Records finish time upon game completion
