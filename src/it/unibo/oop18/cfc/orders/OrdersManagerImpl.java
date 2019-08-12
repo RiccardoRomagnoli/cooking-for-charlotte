@@ -36,6 +36,8 @@ public class OrdersManagerImpl implements OrdersManager {
         Optional<Order> order = checkOrder(plate);
         if (order.isPresent()) {
             orderSucceed(order.get());
+        }else {
+            loseLife();
         }
         return order.isPresent();
     }
@@ -77,8 +79,7 @@ public class OrdersManagerImpl implements OrdersManager {
         order.stopOrder();
         currentOrders.remove(order);
         finishedOrders.add(order);
-        this.world.getPlayer().decLifes();
-        System.out.println("Just losed a life");
+        this.loseLife();
     }
 
     @Override
@@ -141,5 +142,10 @@ public class OrdersManagerImpl implements OrdersManager {
         if (currentOrders.size() == 0) {
             generator.generateNewOrder();
         }
+    }
+
+    private void loseLife() {
+        this.world.getPlayer().decLifes();
+        System.out.println("You just losed a life!!");
     }
 }
