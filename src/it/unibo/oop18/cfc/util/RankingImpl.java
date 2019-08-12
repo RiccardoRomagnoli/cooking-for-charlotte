@@ -124,6 +124,7 @@ public class RankingImpl implements Ranking {
      * @return the ordered map
      * @param map to be ordered
      */
+    //TODO mettere in ordine decrescente
     public static Map<String, Integer> orderRank(final Map<String, Integer> map) {
         return map.entrySet().stream().sorted(comparingByValue())
                 .collect(toMap(e -> e.getKey(), e -> e.getValue(), (e1, e2) -> e2, LinkedHashMap::new));
