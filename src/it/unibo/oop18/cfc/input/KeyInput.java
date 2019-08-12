@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import it.unibo.oop18.cfc.gamestate.GameOverState;
 import it.unibo.oop18.cfc.gamestate.GameState;
 import it.unibo.oop18.cfc.gamestate.GameStates;
 import it.unibo.oop18.cfc.gamestate.MenuState;
@@ -145,10 +146,32 @@ public class KeyInput implements KeyListener {
 
     // key pressed during game over state
     private void gameOverKeyInput(final KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            gsm.setState(GameStates.MENU);
+        final GameOverState over = (GameOverState) currentState;
+        switch (e.getKeyCode()) {
+        case KeyEvent.VK_UP:
+            over.goUp();
+            break;
+        case KeyEvent.VK_DOWN:
+            over.goDown();
+            break;
+        case KeyEvent.VK_LEFT:
+            over.goLeft();
+            break;
+        case KeyEvent.VK_RIGHT:
+            over.goRight();
+            break;
+        case KeyEvent.VK_ENTER:
             JukeBoxUtil.play("collect");
+            // TODO avverti che il punteggio è stato salvato
+            over.save();
+            gsm.setState(GameStates.MENU);
+        default:
+            break;
         }
+        /*
+         * if (e.getKeyCode() == KeyEvent.VK_ENTER) { gsm.setState(GameStates.MENU);
+         * JukeBoxUtil.play("collect"); }
+         */
     }
 
     // key pressed during menu state

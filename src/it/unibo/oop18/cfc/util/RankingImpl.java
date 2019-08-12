@@ -26,6 +26,7 @@ public class RankingImpl implements Ranking {
     private static Map<String, Integer> ranked = new HashMap<>();
     private final int rowNumber;
     private static final String RANK_PATH = "/HUD/rank.txt";
+    // private int scoreMin;
 
     /**
      * Constructor.
@@ -41,7 +42,6 @@ public class RankingImpl implements Ranking {
     /**
      * @param player player that scored @param points
      */
-    @Override
     public void addPlacement(final String player, final int points) {
         if (!ranked.containsKey(player)) {
             ranked.put(player, points);
@@ -62,11 +62,12 @@ public class RankingImpl implements Ranking {
             myFont = myFont.deriveFont(30f);
             g.setFont(myFont);
             g.setColor(Color.green);
+            orderRank(ranked);
             for (final HashMap.Entry<String, Integer> entry : ranked.entrySet()) {
                 final String key = entry.getKey();
                 final Integer value = entry.getValue();
                 g.drawString(String.format("#%d  -  Name: %s  -  Points: %d ", count, key.toUpperCase(), value), 100,
-                        300 + 100 * count);
+                        300 + 50 * count);
                 count++;
             }
         } catch (FontFormatException e) {
@@ -84,7 +85,7 @@ public class RankingImpl implements Ranking {
         FileWriter w;
         BufferedWriter b;
         try {
-            w = new FileWriter(RANK_PATH);
+            w = new FileWriter("rank.txt");
             b = new BufferedWriter(w);
             for (final HashMap.Entry<String, Integer> entry : ranked.entrySet()) {
                 final String key = entry.getKey();
@@ -97,6 +98,7 @@ public class RankingImpl implements Ranking {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        orderRank(ranked);
     }
 
     /**
@@ -115,6 +117,7 @@ public class RankingImpl implements Ranking {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        orderRank(ranked);
     }
 
     /**
@@ -123,7 +126,7 @@ public class RankingImpl implements Ranking {
      * @return the ordered map
      * @param map to be ordered
      */
-    public final Map<String, Integer> orderRank(final Map<String, Integer> map) {
+    public static Map<String, Integer> orderRank(final Map<String, Integer> map) {
         return map.entrySet().stream().sorted(comparingByValue())
                 .collect(toMap(e -> e.getKey(), e -> e.getValue(), (e1, e2) -> e2, LinkedHashMap::new));
     }
@@ -135,4 +138,5 @@ public class RankingImpl implements Ranking {
     public int getRowNumber() {
         return rowNumber;
     }
+
 }

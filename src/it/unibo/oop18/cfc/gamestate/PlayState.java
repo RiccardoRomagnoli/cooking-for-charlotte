@@ -2,11 +2,9 @@ package it.unibo.oop18.cfc.gamestate;
 
 import java.awt.Graphics2D;
 import java.io.IOException;
-
 import it.unibo.oop18.cfc.hud.DownHud;
 import it.unibo.oop18.cfc.hud.TopHud;
 import it.unibo.oop18.cfc.manager.GameStateManager;
-import it.unibo.oop18.cfc.util.GameScoreImpl;
 import it.unibo.oop18.cfc.util.JukeBoxUtil;
 import it.unibo.oop18.cfc.world.World;
 import it.unibo.oop18.cfc.world.WorldImpl;
@@ -63,7 +61,7 @@ public class PlayState extends GameState {
      * {@inheritDoc}
      */
     public void draw(final Graphics2D g) {
-        if (JukeBoxUtil.isPlaying("themeSong")) {
+        if (!JukeBoxUtil.isPlaying("themeSong")) {
             JukeBoxUtil.loop("themeSong");
         } else {
             JukeBoxUtil.resume("themeSong");
