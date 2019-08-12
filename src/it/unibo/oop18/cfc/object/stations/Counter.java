@@ -79,7 +79,7 @@ public class Counter extends AbstractStationObject {
                     // e la station ha un ingrediente
                     if (this.item.get() instanceof IngredientImpl) {
                         //aggiungi l'ingrediente al piatto e svuota il counter
-                        plate.addDish((IngredientImpl) this.item.get());
+                        plate.addIngredient((IngredientImpl) this.item.get());
                         this.item = Optional.empty();
                     }
                     //se invece ho un ingrediente e il piatto sulla station non è pieno
@@ -87,7 +87,7 @@ public class Counter extends AbstractStationObject {
                         && this.item.get() instanceof PlateImpl
                         && ((PlateImpl) this.item.get()).getIngredients().size() < 4) { 
                     // aggiungo l'ingrediente al piatto
-                    ((PlateImpl) this.item.get()).addDish((IngredientImpl) world.getPlayer().getItemInHand().get());
+                    ((PlateImpl) this.item.get()).addIngredient((IngredientImpl) world.getPlayer().getItemInHand().get());
                     world.getPlayer().removeItemInHand();
                 }
             } else {

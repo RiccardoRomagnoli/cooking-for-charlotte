@@ -45,7 +45,7 @@ public class PlateStation extends AbstractStationObject {
         } else if (world.getPlayer().getItemInHand().isPresent()
                 && world.getPlayer().getItemInHand().get() instanceof IngredientImpl) {
             final PlateImpl plate = new PlateImpl(world.getItemManager());
-            plate.addDish((IngredientImpl) world.getPlayer().getItemInHand().get());
+            plate.addIngredient((IngredientImpl) world.getPlayer().getItemInHand().get());
             world.getPlayer().removeItemInHand();
             world.getPlayer().setItemInHand(plate);
         }

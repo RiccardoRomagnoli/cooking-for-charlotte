@@ -82,14 +82,14 @@ public class TestOrders {
         o.stopOrder();
         // Generate a Correct plate
         for (OrderIngredient orderIngredient : o.getIngredientsList()) {
-            correctPlate.addDish(new IngredientImpl(world.getItemManager(), orderIngredient.getIngredient(),
+            correctPlate.addIngredient(new IngredientImpl(world.getItemManager(), orderIngredient.getIngredient(),
                     orderIngredient.getState()));
         }
         o = ordersMan.getCurrentOrders().get(1);
         o.stopOrder();
         // Generate a Wrong plate
         for (OrderIngredient orderIngredient : o.getIngredientsList()) {
-            wrongPlate.addDish(
+            wrongPlate.addIngredient(
                     new IngredientImpl(world.getItemManager(), IngredientType.BREAD, orderIngredient.getState()));
         }
         o = ordersMan.getCurrentOrders().get(2);
@@ -97,7 +97,7 @@ public class TestOrders {
         // Generate a Correct plate in different ingredient order
         for (int i = o.getIngredientsList().size() - 1; i >= 0; i--) {
             OrderIngredient orderIngredient = o.getIngredientsList().get(i);
-            correctPlateNotOrdered.addDish(new IngredientImpl(world.getItemManager(), orderIngredient.getIngredient(),
+            correctPlateNotOrdered.addIngredient(new IngredientImpl(world.getItemManager(), orderIngredient.getIngredient(),
                     orderIngredient.getState()));
         }
         // Test correct Delivery

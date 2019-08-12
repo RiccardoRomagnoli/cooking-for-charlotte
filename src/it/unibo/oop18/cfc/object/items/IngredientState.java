@@ -1,5 +1,8 @@
 package it.unibo.oop18.cfc.object.items;
 
+/**
+ * The Enum IngredientState.
+ */
 public enum IngredientState {
 
     /**
@@ -29,10 +32,15 @@ public enum IngredientState {
 
     private int x;
 
-    private IngredientState(int x) {
+    IngredientState(final int x) {
         this.x = x;
     }
 
+    /**
+     * Gets the x position in the sheet.
+     *
+     * @return the x
+     */
     public int getX() {
         return this.x;
     }

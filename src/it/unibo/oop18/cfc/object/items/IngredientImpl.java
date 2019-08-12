@@ -8,42 +8,67 @@ import it.unibo.oop18.cfc.manager.ItemManager;
 import it.unibo.oop18.cfc.util.CheckStatus;
 import it.unibo.oop18.cfc.util.Position;
 
+/**
+ * The Class IngredientImpl.
+ */
 public class IngredientImpl extends AbstractItem implements Ingredient, OrderIngredient {
 
-    private IngredientType type;
+    private final IngredientType type;
     private IngredientState state;
 
+    /**
+     * Instantiates a new {@link IngredientImpl}.
+     *
+     * @param itemManager the {@link ItemManager} to get the sprites
+     * @param type        the {@link IngredientType}
+     */
     public IngredientImpl(final ItemManager itemManager, final IngredientType type) {
         super(itemManager);
         this.type = type;
         this.state = IngredientState.RAW;
     }
 
+    /**
+     * Instantiates a new ingredient impl.
+     *
+     * @param itemManager the {@link ItemManager} to get the sprites
+     * @param type        the {@link IngredientType}
+     * @param state       the {@link IngredientState}
+     */
     public IngredientImpl(final ItemManager itemManager, final IngredientType type, final IngredientState state) {
         super(itemManager);
         this.type = type;
         this.state = state;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public IngredientType getIngredient() {
         return this.type;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public IngredientState getState() {
         return this.state;
     }
 
-    public void changeState(IngredientState state) {
+    /**
+     * {@inheritDoc}
+     */
+    public void changeState(final IngredientState state) {
         this.state = state;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean isReady() {
         if (this.state != IngredientState.RAW) {
             if (this.state == IngredientState.CHOPPED) {
-                if (this.type.getTimeToCook() == 0) {
-                    return true;
-                }
-                return false;
+                return this.type.getTimeToCook() == 0 ? true : false;
             }
             if (this.state != IngredientState.WASTE) {
                 return true;
@@ -52,13 +77,17 @@ public class IngredientImpl extends AbstractItem implements Ingredient, OrderIng
         return false;
     }
 
-    @Override
+    /**
+     * {@inheritDoc}
+     */
     public void draw(final Graphics2D g, final Position p) {
         g.drawImage(super.getItemManager().getFoodSprites().getIngredientSprite().get(type.getX()).get(state.getX())
                 .getImage(), AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
     }
 
-    @Override
+    /**
+     * {@inheritDoc}
+     */
     public void draw(final Graphics2D g, final Position p, final int width, final int height) {
         g.drawImage(
                 super.getItemManager().getFoodSprites().getIngredientSprite().get(type.getX()).get(state.getX())
@@ -66,7 +95,9 @@ public class IngredientImpl extends AbstractItem implements Ingredient, OrderIng
                 AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
     }
 
-    @Override
+    /**
+     * {@inheritDoc}
+     */
     public void drawState(final Graphics2D g, final Position p) {
         switch (state) {
         case CHOPPED:
@@ -82,7 +113,9 @@ public class IngredientImpl extends AbstractItem implements Ingredient, OrderIng
         }
     }
 
-    @Override
+    /**
+     * {@inheritDoc}
+     */
     public void drawState(final Graphics2D g, final Position p, final int width, final int height) {
         switch (state) {
         case CHOPPED:
@@ -102,8 +135,10 @@ public class IngredientImpl extends AbstractItem implements Ingredient, OrderIng
         }
     }
 
-    @Override
-    public CheckStatus checkIngredient(Ingredient ingredient) {
+    /**
+     * {@inheritDoc}
+     */
+    public CheckStatus checkIngredient(final Ingredient ingredient) {
         CheckStatus returnStatus = CheckStatus.NOT_ACCEPTABLE;
         if (ingredient.getIngredient().equals(this.type) && ingredient.getState().equals(this.state)) {
             returnStatus = CheckStatus.ACCEPTABLE_WITHOUT_ERROR;

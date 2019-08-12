@@ -20,7 +20,7 @@ public class Trashcan extends AbstractStationObject {
      * Instantiates a new {@link Trashcan}.
      *
      * @param position the {@link Position}
-     * @param trashcanTile the {@link TrashcanTile}
+     * @param trashcanTile the {@link TrashcanTile} to draw
      */
     public Trashcan(final Position position, final TrashcanTile trashcanTile) {
         super(position);

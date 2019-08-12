@@ -27,4 +27,9 @@ public interface InputComponent {
      */
     void createGenericCommand(Command command);
 
+    /**
+     * Reset all the command queue.
+     */
+    void resetCommands();
+
 }

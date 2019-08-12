@@ -22,7 +22,7 @@ public class Washbasin extends AbstractStationObject {
      * Instantiates a new {@link Washbasin}.
      *
      * @param position the {@link Position}
-     * @param washbasinTile the {@link WashbasinTile}
+     * @param washbasinTile the {@link WashbasinTile} to draw
      */
     public Washbasin(final Position position, final WashbasinTile washbasinTile) {
         super(position);

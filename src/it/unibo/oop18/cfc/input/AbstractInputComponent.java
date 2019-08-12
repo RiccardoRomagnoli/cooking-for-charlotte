@@ -32,7 +32,6 @@ public abstract class AbstractInputComponent implements InputComponent {
     /**
      * {@inheritDoc}.
      */
-    @Override
     public void createDirectionCommand(final Direction direction, final double distance) {
         switch (direction) {
         case UP:
@@ -73,11 +72,13 @@ public abstract class AbstractInputComponent implements InputComponent {
     /**
      * {@inheritDoc}.
      */
-    @Override
     public void createGenericCommand(final Command command) {
         this.commandQueue.add(command);
     }
 
+    /**
+     * {@inheritDoc}.
+     */
     public void resetCommands() {
         this.commandQueue.clear();
     }
@@ -85,7 +86,6 @@ public abstract class AbstractInputComponent implements InputComponent {
     /**
      * {@inheritDoc}
      */
-    @Override
     public void processInput() {
         IntStream.range(0, this.commandQueue.size()).mapToObj(c -> this.commandQueue.poll())
                 .forEach(command -> command.execute());
