@@ -53,7 +53,8 @@ public class OrdersManagerImpl implements OrdersManager {
      */
     @Override
     public void draw(final Graphics2D g) {
-        for (final Order o : this.currentOrders) {
+        final List<Order> copyCurrentOrders = new ArrayList<Order>(this.currentOrders);
+        for (final Order o : copyCurrentOrders) {
             o.setSlot(currentOrders.indexOf(o));
             o.draw(g);
         }
