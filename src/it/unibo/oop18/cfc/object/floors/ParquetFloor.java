@@ -1,36 +1,34 @@
 package it.unibo.oop18.cfc.object.floors;
 
 import java.awt.Graphics2D;
-import java.util.Optional;
-
 import it.unibo.oop18.cfc.graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.graphics.ParquetFloorGraphicComponent;
-import it.unibo.oop18.cfc.object.items.Item;
 import it.unibo.oop18.cfc.tile.ParquetFloorTile;
 import it.unibo.oop18.cfc.util.Position;
 
+/**
+ * The Class ParquetFloor.
+ */
 public class ParquetFloor extends AbstractFloorObject {
 
     private final GraphicsComponent graphicComponent;
-    private Optional<Item> item;
 
+    /**
+     * Instantiates a new {@link ParquetFloor}.
+     *
+     * @param position the {@link Position} to set
+     * @param parquetFloorTile the {@link ParquetFloorTile} to draw
+     */
     public ParquetFloor(final Position position, final ParquetFloorTile parquetFloorTile) {
         super(position);
-        this.item = Optional.empty();
         this.graphicComponent = new ParquetFloorGraphicComponent(this, parquetFloorTile);
     }
 
-    @Override
+    /**
+    * {@inheritDoc}
+    */
     public void draw(final Graphics2D g) {
         this.graphicComponent.draw(g);
-    }
-
-    public Optional<Item> getItem() {
-        return item;
-    }
-
-    public void setItem(final Item item) {
-        this.item = Optional.ofNullable(item);
     }
 
 }

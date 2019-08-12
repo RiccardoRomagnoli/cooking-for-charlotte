@@ -9,7 +9,7 @@ import it.unibo.oop18.cfc.util.Position;
 public abstract class AbstractFloorObject extends AbstractGameObject {
 
     /**
-     * Creates an {@code AbstractFloorObject}.
+     * Creates an {@link AbstractFloorObject}.
      * 
      * @param position object's position
      */
@@ -20,7 +20,6 @@ public abstract class AbstractFloorObject extends AbstractGameObject {
     /**
      * {@inheritDoc}
      */
-    @Override
     public Position getPosition() {
         return new Position(super.getPosition());
     }
