@@ -9,7 +9,7 @@ import it.unibo.oop18.cfc.util.Position;
 public abstract class AbstractStationObject extends AbstractGameObject implements Station {
 
     /**
-     * Instantiates a new abstract station object.
+     * Instantiates a new {@link AbstractStationObject}.
      *
      * @param position the position
      */
@@ -18,9 +18,9 @@ public abstract class AbstractStationObject extends AbstractGameObject implement
     }
 
     /**
-     * Gets the position.
+     * Gets the {@link Position}.
      *
-     * @return the position
+     * @return a new {@link position} with same values
      */
     public Position getPosition() {
         return new Position(super.getPosition());

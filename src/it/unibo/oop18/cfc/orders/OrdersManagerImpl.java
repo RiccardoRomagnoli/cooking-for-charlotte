@@ -16,14 +16,14 @@ public class OrdersManagerImpl implements OrdersManager {
      * 
      */
     private static final long INTERVAL_MILLISECONDS = 30000;
-    private final ArrayList<Order> currentOrders;
-    private final ArrayList<Order> finishedOrders;
-    private GameTimer gameTimer;
+    private final List<Order> currentOrders;
+    private final List<Order> finishedOrders;
+    private final GameTimer gameTimer;
     private final OrderGeneratorImpl generator;
     private final World world;
     private static GameScoreImpl score = new GameScoreImpl();
 
-    public OrdersManagerImpl(World world) {
+    public OrdersManagerImpl(final World world) {
         this.world = world;
         currentOrders = new ArrayList<>();
         finishedOrders = new ArrayList<>();
@@ -37,8 +37,8 @@ public class OrdersManagerImpl implements OrdersManager {
     }
 
     @Override
-    public boolean deliveryPlate(Plate plate) {
-        Optional<Order> order = checkOrder(plate);
+    public boolean deliveryPlate(final Plate plate) {
+        final Optional<Order> order = checkOrder(plate);
         if (order.isPresent()) {
             orderSucceed(order.get());
         } else {
@@ -49,11 +49,11 @@ public class OrdersManagerImpl implements OrdersManager {
 
     /**
      * delegates draw of each order by setting them their slot which is the index of
-     * order list
+     * order list.
      */
     @Override
     public void draw(final Graphics2D g) {
-        for (Order o : this.currentOrders) {
+        for (final Order o : this.currentOrders) {
             o.setSlot(currentOrders.indexOf(o));
             o.draw(g);
         }
@@ -69,7 +69,7 @@ public class OrdersManagerImpl implements OrdersManager {
     }
 
     @Override
-    public void addOrder(Order o) {
+    public void addOrder(final Order o) {
         this.currentOrders.add(o);
         this.currentOrders.sort((o1, o2) -> o1.getCountDownTime() - o2.getCountDownTime());
     }
