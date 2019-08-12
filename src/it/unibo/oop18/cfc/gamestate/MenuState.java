@@ -46,6 +46,7 @@ public class MenuState extends GameState {
         } else {
             JukeBoxUtil.resume("menuSong");
         }
+        JukeBoxUtil.stop("themeSong");
     }
 
     /**
