@@ -9,8 +9,8 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import it.unibo.oop18.cfc.gamestate.PlayState;
-import it.unibo.oop18.cfc.manager.Content;
 import it.unibo.oop18.cfc.object.entity.PlayerImpl;
+import it.unibo.oop18.cfc.util.ContentUtil;
 import it.unibo.oop18.cfc.world.World;
 
 public class TopHud {
@@ -22,7 +22,7 @@ public class TopHud {
     public TopHud(World world) {
         this.world = world;
         yoffset = 0;
-        bar = Content.TOPBAR[0][0];
+        bar = ContentUtil.TOPBAR[0][0];
     }
 
     public void draw(Graphics2D g) {

@@ -36,7 +36,7 @@ public class OrdersManagerImpl implements OrdersManager {
         Optional<Order> order = checkOrder(plate);
         if (order.isPresent()) {
             orderSucceed(order.get());
-        }else {
+        } else {
             loseLife();
         }
         return order.isPresent();
@@ -47,8 +47,8 @@ public class OrdersManagerImpl implements OrdersManager {
      * order list
      */
     @Override
-    public void draw(Graphics2D g) {  
-        for(Order o : this.currentOrders) {
+    public void draw(Graphics2D g) {
+        for (Order o : this.currentOrders) {
             o.setSlot(currentOrders.indexOf(o));
             o.draw(g);
         }

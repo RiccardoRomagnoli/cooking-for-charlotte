@@ -1,7 +1,6 @@
 package it.unibo.oop18.cfc.gamestate;
 
 import java.awt.Graphics2D;
-
 import it.unibo.oop18.cfc.manager.GameStateManager;
 
 /**
@@ -10,9 +9,9 @@ import it.unibo.oop18.cfc.manager.GameStateManager;
 public abstract class GameState {
 
     /**
-     * Game state instance.
+     * Game state manager instance.
      */
-    protected GameStateManager gsm;
+    private GameStateManager gsm;
 
     /** The game state name. */
     private final GameStates gameStateName;
@@ -20,8 +19,8 @@ public abstract class GameState {
     /**
      * Constructor for all game states.
      * 
-     * @param gsm           game state instance
-     * @param gameStateName game state name
+     * @param gsm           the {@link GameStateManager}
+     * @param gameStateName the game state name
      */
     public GameState(final GameStateManager gsm, final GameStates gameStateName) {
         this.gsm = gsm;
@@ -29,9 +28,23 @@ public abstract class GameState {
     }
 
     /**
+     * @return the {@link GameStateManager}
+     */
+    public GameStateManager getGsm() {
+        return gsm;
+    }
+
+    /**
+     * @param gsm the {@link GameStateManager} to set
+     */
+    public void setGsm(final GameStateManager gsm) {
+        this.gsm = gsm;
+    }
+
+    /**
      * Getter name of game state.
      * 
-     * @return game state name
+     * @return {@link GameStates} name
      */
     public GameStates getGameStateName() {
         return gameStateName;
@@ -48,9 +61,9 @@ public abstract class GameState {
     public abstract void update();
 
     /**
-     * Draw the scene of the game state.
+     * Draw the scene of the game state on screen.
      * 
-     * @param g graphics to be printed on screen
+     * @param g {@link Graphics2D} of the game
      */
     public abstract void draw(Graphics2D g);
 

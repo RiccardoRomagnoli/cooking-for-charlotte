@@ -7,8 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import it.unibo.oop18.cfc.main.GameEngine;
-import it.unibo.oop18.cfc.manager.Content;
 import it.unibo.oop18.cfc.manager.GameStateManager;
+import it.unibo.oop18.cfc.util.ContentUtil;
 import it.unibo.oop18.cfc.util.JukeBoxUtil;
 
 // TODO: Auto-generated Javadoc
@@ -46,8 +46,8 @@ public class OptionState extends GameState {
      * {@inheritDoc}.
      */
     public void init() {
-        bg = Content.MENUBG[0][0];
-        food = Content.FOOD[6][2];
+        bg = ContentUtil.MENUBG[0][0];
+        food = ContentUtil.FOOD[6][2];
     }
 
     /**
@@ -65,13 +65,13 @@ public class OptionState extends GameState {
     public void draw(final Graphics2D g) {
         g.drawImage(bg, 0, 0, null);
         for (int i = 0; i < numOptions; i++) {
-            Content.drawString(g, options[i], STRING_POS, dim[i]);
+            ContentUtil.drawString(g, options[i], STRING_POS, dim[i]);
         }
         g.drawImage(food, IMAGE_POS, dim[currentOption], null);
         g.drawRect(STRING_POS, dim[currentOption], FONT_HEIGTH * options[currentOption].length(), FONT_LENGTH);
 
-        Content.drawString(g, volume.get(lastVolIndex).toString(), STRING_POS * 8 - 30, dim[0]);
-        Content.drawString(g, resolution.get(lastResIndex), STRING_POS * 8 - 30, dim[1]);
+        ContentUtil.drawString(g, volume.get(lastVolIndex).toString(), STRING_POS * 8 - 30, dim[0]);
+        ContentUtil.drawString(g, resolution.get(lastResIndex), STRING_POS * 8 - 30, dim[1]);
     }
 
     /**

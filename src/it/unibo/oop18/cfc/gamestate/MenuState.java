@@ -3,10 +3,9 @@ package it.unibo.oop18.cfc.gamestate;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import it.unibo.oop18.cfc.main.GameEngine;
-import it.unibo.oop18.cfc.manager.Content;
 import it.unibo.oop18.cfc.manager.GameStateManager;
+import it.unibo.oop18.cfc.util.ContentUtil;
 import it.unibo.oop18.cfc.util.JukeBoxUtil;
-import it.unibo.oop18.cfc.util.RankingImpl;
 
 /**
  * Menu manager class. Provide methods to manage the selection of options and
@@ -26,7 +25,7 @@ public class MenuState extends GameState {
     /**
      * Menu state init.
      * 
-     * @param gsm game state manager
+     * @param gsm {@link GameStateManager}
      */
     public MenuState(final GameStateManager gsm) {
         super(gsm, GameStates.MENU);
@@ -36,8 +35,8 @@ public class MenuState extends GameState {
      * Initialize the menu screen and load the sounds.
      */
     public void init() {
-        bg = Content.MENUBG[0][0];
-        food = Content.FOOD[6][2];
+        bg = ContentUtil.MENUBG[0][0];
+        food = ContentUtil.FOOD[6][2];
         JukeBoxUtil.load("/SFX/collect.wav", "collect");
         JukeBoxUtil.load("/SFX/menuoption.wav", "menuoption");
         JukeBoxUtil.load("/SFX/menuresized.wav", "menuSong");
@@ -46,7 +45,6 @@ public class MenuState extends GameState {
         } else {
             JukeBoxUtil.resume("menuSong");
         }
-
     }
 
     /**
@@ -58,13 +56,11 @@ public class MenuState extends GameState {
 
     /**
      * {@inheritDoc}..
-     *
-     * @param g the g
      */
     public void draw(final Graphics2D g) {
         g.drawImage(bg, 0, 0, null);
         for (int i = 0; i < menuOptions; i++) {
-            Content.drawString(g, options[i], STRING_POS, dim[i]);
+            ContentUtil.drawString(g, options[i], STRING_POS, dim[i]);
         }
         g.drawImage(food, IMAGE_POS, dim[currentOption], null);
     }
@@ -75,25 +71,25 @@ public class MenuState extends GameState {
     private void selectOption() {
         final Graphics2D g = GameEngine.getG();
         if (currentOption == 0) {
-            gsm.newGame();
+            getGsm().newGame();
             JukeBoxUtil.stop("menuSong");
         }
         if (currentOption == 1) {
-            gsm.setState(GameStates.OPTION);
-            gsm.draw(g);
+            getGsm().setState(GameStates.OPTION);
+            getGsm().draw(g);
         }
         if (currentOption == 2) {
-            gsm.setState(GameStates.INFO);
-            gsm.draw(g);
+            getGsm().setState(GameStates.INFO);
+            getGsm().draw(g);
         }
         if (currentOption == 3) {
-            gsm.setState(GameStates.RANKING);
-            gsm.draw(g);
+            getGsm().setState(GameStates.RANKING);
+            getGsm().draw(g);
         }
         if (currentOption == 4) {
             JukeBoxUtil.stop("menuSong");
             JukeBoxUtil.closeResource();
-            System.exit(0); // TODO. trovare un metodo meno brutale
+            System.exit(0);
         }
     }
 

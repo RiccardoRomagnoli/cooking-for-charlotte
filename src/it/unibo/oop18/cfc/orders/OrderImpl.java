@@ -89,7 +89,7 @@ public class OrderImpl implements Order {
         countDownTimer.schedule(new TimerTask() {
             @Override
             public void run() {
-                if(!paused) {
+                if (!paused) {
                     countDownTime--;
                     if (countDownTime == 0) {
                         countDownTimer.cancel();
@@ -110,7 +110,7 @@ public class OrderImpl implements Order {
     public void draw(Graphics2D g) {
         this.graphicComponent.draw(g);
     }
-    
+
     @Override
     public void setPaused(boolean paused) {
         this.paused = paused;

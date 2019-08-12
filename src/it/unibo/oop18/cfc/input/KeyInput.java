@@ -281,12 +281,15 @@ public class KeyInput implements KeyListener {
         }
         return dir;
     }
-    
+
     private void pauseOrderTimers() {
-        this.gsm.getPlayState().getWorld().getOrdersManager().getCurrentOrders().stream().forEach(o->o.setPaused(true));
+        this.gsm.getPlayState().getWorld().getOrdersManager().getCurrentOrders().stream()
+                .forEach(o -> o.setPaused(true));
     }
+
     private void resumeOrderTimers() {
-        this.gsm.getPlayState().getWorld().getOrdersManager().getCurrentOrders().stream().forEach(o->o.setPaused(false));
+        this.gsm.getPlayState().getWorld().getOrdersManager().getCurrentOrders().stream()
+                .forEach(o -> o.setPaused(false));
     }
 
 }

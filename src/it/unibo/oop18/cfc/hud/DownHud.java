@@ -11,10 +11,10 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import it.unibo.oop18.cfc.main.GameEngine;
-import it.unibo.oop18.cfc.manager.Content;
 import it.unibo.oop18.cfc.manager.ItemManager;
 import it.unibo.oop18.cfc.object.items.IngredientImpl;
 import it.unibo.oop18.cfc.object.items.PlateImpl;
+import it.unibo.oop18.cfc.util.ContentUtil;
 import it.unibo.oop18.cfc.util.Position;
 import it.unibo.oop18.cfc.world.World;
 
@@ -37,7 +37,7 @@ public class DownHud {
 
         this.yoffset = GameEngine.HEIGHT2;
         this.world = world;
-        this.bar = Content.DOWNBAR[0][0];
+        this.bar = ContentUtil.DOWNBAR[0][0];
     }
 
     public void draw(Graphics2D g) {
@@ -66,23 +66,23 @@ public class DownHud {
         int seconds = (int) world.getGameTimer().getSeconds();
         if (minutes < 10) {
             if (seconds < 10) {
-                Content.drawString(g, "0" + minutes + ":0" + seconds, 17, 704);
+                ContentUtil.drawString(g, "0" + minutes + ":0" + seconds, 17, 704);
             } else {
-                Content.drawString(g, "0" + minutes + ":" + seconds, 17, 704);
+                ContentUtil.drawString(g, "0" + minutes + ":" + seconds, 17, 704);
             }
         } else {
             if (seconds < 10) {
-                Content.drawString(g, minutes + ":0" + seconds, 17, 704);
+                ContentUtil.drawString(g, minutes + ":0" + seconds, 17, 704);
             } else {
-                Content.drawString(g, minutes + ":" + seconds, 17, 704);
+                ContentUtil.drawString(g, minutes + ":" + seconds, 17, 704);
             }
         }
         // draw lifes
         Integer lifes = world.getPlayer().getLifes();
         if (lifes <= 10) {
-            Content.drawString(g, "hp:0" + lifes.toString(), 17, 654);
+            ContentUtil.drawString(g, "hp:0" + lifes.toString(), 17, 654);
         } else {
-            Content.drawString(g, "hp: " + lifes.toString(), 17, 654);
+            ContentUtil.drawString(g, "hp: " + lifes.toString(), 17, 654);
         }
 
     }

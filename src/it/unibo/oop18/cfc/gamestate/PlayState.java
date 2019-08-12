@@ -54,7 +54,7 @@ public class PlayState extends GameState {
     public void update() {
         world.update();
         if (this.world.getPlayer().getLifes() == 0) {
-            gsm.setState(GameStates.GAMEOVER);
+            getGsm().setState(GameStates.GAMEOVER);
         }
     }
 

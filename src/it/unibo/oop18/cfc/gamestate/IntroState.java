@@ -27,7 +27,7 @@ public class IntroState extends GameState {
     /**
      * Constructor.
      * 
-     * @param gsm gamestate instance
+     * @param gsm {@link GameStateManager} instance
      */
     public IntroState(final GameStateManager gsm) {
         super(gsm, GameStates.INTRO);
@@ -63,14 +63,12 @@ public class IntroState extends GameState {
             }
         }
         if (ticks > FADE_IN + LENGTH + FADE_OUT) {
-            gsm.setState(GameStates.MENU);
+            getGsm().setState(GameStates.MENU);
         }
     }
 
     /**
      * {@inheritDoc}.
-     * 
-     * @param g basic graphics
      */
     public void draw(final Graphics2D g) {
         g.setColor(Color.WHITE);

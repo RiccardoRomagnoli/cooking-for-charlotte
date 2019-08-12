@@ -7,8 +7,8 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-import it.unibo.oop18.cfc.manager.Content;
 import it.unibo.oop18.cfc.manager.GameStateManager;
+import it.unibo.oop18.cfc.util.ContentUtil;
 
 /**
  * Infostate class.
@@ -31,7 +31,7 @@ public class InfoState extends GameState {
      * {@inheritDoc}.
      */
     public void init() {
-        bg = Content.MENUBG[0][0];
+        bg = ContentUtil.MENUBG[0][0];
     }
 
     /**
@@ -48,10 +48,10 @@ public class InfoState extends GameState {
      */
     public void draw(final Graphics2D g) {
         g.drawImage(bg, 0, 0, null);
-        Content.drawString(g, "INFO", 400, 300);
-        Content.drawString(g, "arrow keys : move", 100, 370);
-        Content.drawString(g, "space : action", 200, 440);
-        Content.drawString(g, "F1: return to menu", 100, 510);
+        ContentUtil.drawString(g, "INFO", 400, 300);
+        ContentUtil.drawString(g, "arrow keys : move", 100, 370);
+        ContentUtil.drawString(g, "space : action", 200, 440);
+        ContentUtil.drawString(g, "F1: return to menu", 100, 510);
         Font myFont = null;
         try {
             myFont = Font.createFont(Font.TRUETYPE_FONT, InfoState.class.getResourceAsStream("/HUD/comicsans.ttf"));

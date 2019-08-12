@@ -2,8 +2,9 @@ package it.unibo.oop18.cfc.gamestate;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import it.unibo.oop18.cfc.manager.Content;
+
 import it.unibo.oop18.cfc.manager.GameStateManager;
+import it.unibo.oop18.cfc.util.ContentUtil;
 import it.unibo.oop18.cfc.util.RankingImpl;
 
 /**
@@ -26,7 +27,7 @@ public class RankState extends GameState {
      * {@inheritDoc}.
      */
     public void init() {
-        bg = Content.MENUBG[0][0];
+        bg = ContentUtil.MENUBG[0][0];
     }
 
     /**
