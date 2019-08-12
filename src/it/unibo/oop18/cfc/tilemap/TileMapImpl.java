@@ -19,8 +19,6 @@ import it.unibo.oop18.cfc.util.Position;
 public class TileMapImpl implements TileMap {
 
     private List<Pair<Integer, Position>> maps;
-    private int numRows;
-    private int numCols;
     private final String bitMap;
 
     /**
@@ -31,54 +29,6 @@ public class TileMapImpl implements TileMap {
     public TileMapImpl(final String bitMap) {
         this.bitMap = bitMap;
         loadMap();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public final void loadMap() {
-
-        try {
-            final InputStream in = getClass().getResourceAsStream(bitMap);
-            final BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            maps = new ArrayList<Pair<Integer, Position>>();
-            numCols = Integer.parseInt(br.readLine());
-            numRows = Integer.parseInt(br.readLine());
-
-            final String delims = "\\s+";
-            for (int row = 0; row < numRows; row++) {
-                final String line = br.readLine();
-                if (line != null) {
-                    final String[] tokens = line.split(delims);
-                    for (int col = 0; col < numCols; col++) {
-                        maps.add(new Pair<Integer, Position>(Integer.parseInt(tokens[col]),
-                                new Position(col * TileSheet.TILE_SIZE_IN_GAME,
-                                        GameEngine.HUDHEIGHT + row * TileSheet.TILE_SIZE_IN_GAME)));
-                    }
-                }
-            }
-            br.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Gets the num rows.
-     *
-     * @return the num rows
-     */
-    public int getNumRows() {
-        return numRows;
-    }
-
-    /**
-     * Gets the num cols.
-     *
-     * @return the num cols
-     */
-    public int getNumCols() {
-        return numCols;
     }
 
     /**
@@ -177,4 +127,29 @@ public class TileMapImpl implements TileMap {
                 .collect(Collectors.toSet());
     }
 
+    private void loadMap() {
+        try {
+            final InputStream in = getClass().getResourceAsStream(bitMap);
+            final BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            maps = new ArrayList<Pair<Integer, Position>>();
+            final int numCols = Integer.parseInt(br.readLine());
+            final int numRows = Integer.parseInt(br.readLine());
+
+            final String delims = "\\s+";
+            for (int row = 0; row < numRows; row++) {
+                final String line = br.readLine();
+                if (line != null) {
+                    final String[] tokens = line.split(delims);
+                    for (int col = 0; col < numCols; col++) {
+                        maps.add(new Pair<Integer, Position>(Integer.parseInt(tokens[col]),
+                                new Position(col * TileSheet.TILE_SIZE_IN_GAME,
+                                        GameEngine.HUDHEIGHT + row * TileSheet.TILE_SIZE_IN_GAME)));
+                    }
+                }
+            }
+            br.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -20,6 +20,7 @@ import it.unibo.oop18.cfc.object.stations.TomatoStation;
 import it.unibo.oop18.cfc.object.stations.Trashcan;
 import it.unibo.oop18.cfc.object.stations.Washbasin;
 import it.unibo.oop18.cfc.sprite.SpriteSheet;
+import it.unibo.oop18.cfc.tilemap.TileMap;
 import it.unibo.oop18.cfc.tilemap.TileMapImpl;
 import it.unibo.oop18.cfc.util.Position;
 
@@ -31,7 +32,7 @@ public class WorldInitializerImpl implements WorldInitializer {
     private static final int START_PLAYER_X = 7;
     private static final int START_PLAYER_Y = 7;
     private final GameObjectFactory factory;
-    private final TileMapImpl tilemap;
+    private final TileMap tilemap;
 
     /**
      * Instantiates a new {@link WorldInitializerImpl}.

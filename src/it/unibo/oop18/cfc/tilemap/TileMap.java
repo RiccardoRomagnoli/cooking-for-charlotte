@@ -7,14 +7,7 @@ import it.unibo.oop18.cfc.util.Position;
 /**
  * This interface declares the method of a {@link TileMap}.
  */
-interface TileMap {
-
-    /**
-     * Load the map of the game based of the bitmap.
-     * 
-     * @param s The name of the file with the bitmap
-     */
-    void loadMap();
+public interface TileMap {
 
     /**
      * Get the set of chopping station {@link Position}.
