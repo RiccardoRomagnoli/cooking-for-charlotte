@@ -51,7 +51,7 @@ public class CookerGraphicComponent implements GraphicsComponent {
      * {@inheritDoc}
      */
     public void draw(final Graphics2D g) {
-        if (this.cooker.isCooked()) {
+        if (this.cooker.isCooking()) {
             this.nextFrame();
             g.drawImage(this.cookerTile.getTiles().get(this.frame).getImage(), AffineTransform
                     .getTranslateInstance(this.cooker.getPosition().getX(), this.cooker.getPosition().getY()), null);
@@ -63,7 +63,7 @@ public class CookerGraphicComponent implements GraphicsComponent {
             this.cooker.getFood().get().draw(g, new Position(cooker.getPosition().getX() + POSITION_X_INGREDIENT,
                     cooker.getPosition().getY() + POSITION_Y_INGREDIENT), DIM_INGREDIENT, DIM_INGREDIENT);
         }
-        if (this.cooker.getFood().isPresent() && this.cooker.isCooked()) {
+        if (this.cooker.getFood().isPresent() && this.cooker.isCooking()) {
             if (this.cooker.getFood().get().getState() == IngredientState.CHOPPED) {
                 g.drawImage(loadingSprite.getLoadingSprite().get(1).getImage(),
                         (int) this.cooker.getPosition().getX() + POSITION_X_BAR,

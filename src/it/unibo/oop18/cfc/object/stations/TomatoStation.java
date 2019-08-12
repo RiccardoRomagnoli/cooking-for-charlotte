@@ -11,7 +11,7 @@ import it.unibo.oop18.cfc.util.Position;
 import it.unibo.oop18.cfc.world.World;
 
 /**
- * Managing of the place where food is processed.
+ * Managing of the place where tomato is generated.
  *
  */
 public class TomatoStation extends AbstractStationObject {
@@ -19,22 +19,26 @@ public class TomatoStation extends AbstractStationObject {
     private final GraphicsComponent graphicComponent;
 
     /**
-     * Constructor method.
-     * 
-     * @param position          entity
-     * @param tomatoStationTile image
+     * Instantiates a new {@link TomatoStation}.
+     *
+     * @param position the {@link Position}
+     * @param tomatoStationTile the {@link TomatoStationTile} to draw
      */
     public TomatoStation(final Position position, final TomatoStationTile tomatoStationTile) {
         super(position);
         this.graphicComponent = new TomatoStationGraphicComponent(this, tomatoStationTile);
     }
 
-    @Override
+    /**
+    * {@inheritDoc}
+    */
     public void draw(final Graphics2D g) {
         this.graphicComponent.draw(g);
     }
 
-    @Override
+    /**
+    * {@inheritDoc}
+    */
     public void doAction(final World world) {
         if (!world.getPlayer().getItemInHand().isPresent()) {
             final IngredientImpl tomato = new IngredientImpl(world.getItemManager(), IngredientType.TOMATO);

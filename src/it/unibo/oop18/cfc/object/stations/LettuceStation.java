@@ -11,7 +11,7 @@ import it.unibo.oop18.cfc.util.Position;
 import it.unibo.oop18.cfc.world.World;
 
 /**
- * Managing of the place where food is processed.
+ * Managing of the place where lettuce is generated.
  *
  */
 public class LettuceStation extends AbstractStationObject {
@@ -19,10 +19,10 @@ public class LettuceStation extends AbstractStationObject {
     private final GraphicsComponent graphicComponent;
 
     /**
-     * Instantiates a new lettuce station.
+     * Instantiates a new {@link LettuceStation}.
      *
-     * @param position           the position
-     * @param lettuceStationTile the lettuce station tile
+     * @param position           the {@link Position}
+     * @param lettuceStationTile the {@link LettuceStationTile} to draw
      */
     public LettuceStation(final Position position, final LettuceStationTile lettuceStationTile) {
         super(position);

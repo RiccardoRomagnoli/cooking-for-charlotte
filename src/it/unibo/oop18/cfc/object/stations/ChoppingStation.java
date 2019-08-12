@@ -16,7 +16,8 @@ import it.unibo.oop18.cfc.util.Position;
 import it.unibo.oop18.cfc.world.World;
 
 /**
- * The Class ChoppingStation.
+ * Managing of the place where food is cut.
+ *
  */
 public class ChoppingStation extends AbstractStationObject {
 
@@ -27,15 +28,15 @@ public class ChoppingStation extends AbstractStationObject {
     private boolean isCutting;
 
     /** The is sound playing. */
-    public int isSoundPlaying;
+    private int isSoundPlaying;
 
     /**
-     * Instantiates a new chopping station.
+     * Instantiates a new {@link ChoppingStation}.
      *
-     * @param position            the position
-     * @param choppingStationTile the chopping station tile
-     * @param loadingSprite       the loading sprite
-     * @param world               the world
+     * @param position            the {@link Position}
+     * @param choppingStationTile the {@link ChoppingStationTile} to draw
+     * @param loadingSprite       the {@link LoadingSprite} to draw
+     * @param world               the {@link World}
      */
     public ChoppingStation(final Position position, final ChoppingStationTile choppingStationTile,
             final LoadingSprite loadingSprite, final World world) {
@@ -49,9 +50,9 @@ public class ChoppingStation extends AbstractStationObject {
     }
 
     /**
-     * Gets the chopping station timer.
+     * Gets the chopping station {@link GameTimer}.
      *
-     * @return the chopping station timer
+     * @return the chopping station {@link GameTimer}
      */
     public GameTimer getChoppingStationTimer() {
         return timer;
@@ -65,18 +66,18 @@ public class ChoppingStation extends AbstractStationObject {
     }
 
     /**
-     * Checks if is cut.
+     * Checks if is cutting.
      *
-     * @return true, if is cut
+     * @return true, if is cutting
      */
     public boolean isCut() {
         return isCutting;
     }
 
     /**
-     * Gets the food.
+     * Gets the {@link IngredientImpl}.
      *
-     * @return the food
+     * @return an Optional of {@link IngredientImpl}
      */
     public Optional<IngredientImpl> getFood() {
         return this.food;
@@ -94,9 +95,9 @@ public class ChoppingStation extends AbstractStationObject {
     };
 
     /**
-     * Sets the item.
+     * Sets the {@link IngredientImpl} and start cut.
      *
-     * @param f the new item
+     * @param f the {@link IngredientImpl}
      */
     public void setItem(final IngredientImpl f) {
         this.food = Optional.ofNullable(f);
@@ -104,7 +105,7 @@ public class ChoppingStation extends AbstractStationObject {
     };
 
     /**
-     * Update.
+     * Update the station to check the end of action.
      */
     public void update() {
         if (!world.getPlayer().isCutting() || (food.isPresent() && food.get().getState() == IngredientState.CHOPPED)) {
@@ -119,7 +120,7 @@ public class ChoppingStation extends AbstractStationObject {
     }
 
     /**
-     * Spacebar pressed.
+     * When a player press/longpress Spacebar do this.
      */
     public void cutIngredient() {
 
@@ -137,33 +138,25 @@ public class ChoppingStation extends AbstractStationObject {
     }
 
     /**
-     * Spacebar released.
-     * 
-     * @param world world
+     * {@inheritDoc}
      */
     public void doAction(final World world) {
         // se cibo presente
         if (food.isPresent()) {
-            // se il player ha qualcosa in mano
-            if (world.getPlayer().getItemInHand().isPresent()) {
-                // se è un piatto
-                if (world.getPlayer().getItemInHand().get() instanceof PlateImpl) {
-                    // e non è pieno
-                    if (((PlateImpl) world.getPlayer().getItemInHand().get()).getIngredients().size() < 4) {
-                        // aggiungi l'ingrediente nel piatto e toglilo dalla station
-                        ((PlateImpl) world.getPlayer().getItemInHand().get()).addDish(food.get());
-                        this.food = Optional.empty();
-                    }
-                }
-            } else {
+            // se ha un piatto e non è pieno
+            if (world.getPlayer().getItemInHand().isPresent()
+                    && world.getPlayer().getItemInHand().get() instanceof PlateImpl
+                    && ((PlateImpl) world.getPlayer().getItemInHand().get()).getIngredients().size() < 4) {
+                // aggiungi l'ingrediente nel piatto e toglilo dalla station
+                ((PlateImpl) world.getPlayer().getItemInHand().get()).addDish(food.get());
+                this.food = Optional.empty();
                 // se il player non ha niente in mano e l'ingrediente è tagliato
-                if (this.food.get().getState() == IngredientState.CHOPPED) {
-                    world.getPlayer().setItemInHand(this.food.get());
-                    this.food = Optional.empty();
-                }
+            } else if (this.food.get().getState() == IngredientState.CHOPPED) {
+                world.getPlayer().setItemInHand(this.food.get());
+                this.food = Optional.empty();
             }
         } else {
-            // se non c'è cibo e ho in mano qualcosa che si un ingrediente
+            // se non c'è cibo e ho in mano qualcosa che sia un ingrediente
             if (world.getPlayer().getItemInHand().isPresent()
                     && world.getPlayer().getItemInHand().get() instanceof IngredientImpl
                     && ((IngredientImpl) world.getPlayer().getItemInHand().get()).getState() == IngredientState.RAW) {

@@ -28,12 +28,7 @@ public class WashbasinGraphicComponent implements GraphicsComponent {
      * {@inheritDoc}
      */
     public void draw(final Graphics2D g) {
-        if (this.washbasin.isWashed()) {
-            g.drawImage(this.washbasinTile.getTiles().get(1).getImage(), AffineTransform.getTranslateInstance(
-                    this.washbasin.getPosition().getX(), this.washbasin.getPosition().getY()), null);
-        } else {
-            g.drawImage(this.washbasinTile.getTiles().get(0).getImage(), AffineTransform.getTranslateInstance(
-                    this.washbasin.getPosition().getX(), this.washbasin.getPosition().getY()), null);
-        }
+        g.drawImage(this.washbasinTile.getTiles().get(0).getImage(), AffineTransform
+                .getTranslateInstance(this.washbasin.getPosition().getX(), this.washbasin.getPosition().getY()), null);
     }
 }

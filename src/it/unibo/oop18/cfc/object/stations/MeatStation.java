@@ -11,30 +11,36 @@ import it.unibo.oop18.cfc.util.Position;
 import it.unibo.oop18.cfc.world.World;
 
 /**
- * Managing of the place where food is processed.
+ * Managing of the place where meat is generated.
  *
  */
 public class MeatStation extends AbstractStationObject {
 
     private final GraphicsComponent graphicComponent;
 
+
     /**
-     * Constructor method.
-     * 
-     * @param position        entity
-     * @param meatStationTile image
+     * Instantiates a new {@link MeatStation}.
+     *
+     * @param position the {@link Position}
+     * @param meatStationTile the {@link MeatStationTile} to draw
      */
     public MeatStation(final Position position, final MeatStationTile meatStationTile) {
         super(position);
         this.graphicComponent = new MeatStationGraphicComponent(this, meatStationTile);
     }
 
-    @Override
+
+    /**
+    * {@inheritDoc}
+    */
     public void draw(final Graphics2D g) {
         this.graphicComponent.draw(g);
     }
 
-    @Override
+    /**
+    * {@inheritDoc}
+    */
     public void doAction(final World world) {
         if (!world.getPlayer().getItemInHand().isPresent()) {
             final IngredientImpl meat = new IngredientImpl(world.getItemManager(), IngredientType.MEAT);

@@ -11,7 +11,7 @@ import it.unibo.oop18.cfc.util.Position;
 import it.unibo.oop18.cfc.world.World;
 
 /**
- * Managing of the place where food is processed.
+ * Managing of the place where bread is generated.
  *
  */
 public class BreadStation extends AbstractStationObject {
@@ -19,10 +19,10 @@ public class BreadStation extends AbstractStationObject {
     private final GraphicsComponent graphicComponent;
 
     /**
-     * Instantiates a new bread station.
+     * Instantiates a new {@link BreadStation}.
      *
-     * @param position         the position
-     * @param breadStationTile the bread station tile
+     * @param position         the {@link Position}
+     * @param breadStationTile the {@link BreadStationTile} to draw
      */
     public BreadStation(final Position position, final BreadStationTile breadStationTile) {
         super(position);

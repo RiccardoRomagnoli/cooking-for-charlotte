@@ -15,27 +15,30 @@ import it.unibo.oop18.cfc.util.Position;
 import it.unibo.oop18.cfc.world.World;
 
 /**
- * The Class Cooker.
+ * Managing of the place where food si cooked.
+ *
  */
 public class Cooker extends AbstractStationObject {
 
+    private static final  int TIME_TO_BURN = 5;
+
     private final GraphicsComponent graphicComponent;
-    private GameTimer timer;
+    private final GameTimer timer;
     private Optional<IngredientImpl> food;
-    private boolean isCooking;
+    private boolean cooking;
 
     /**
-     * Instantiates a new cooker.
+     * Instantiates a new {@link Cooker}.
      *
-     * @param position      the position
-     * @param cookerTile    the cooker tile
-     * @param loadingSprite the loading sprite
+     * @param position      the {@link Position}
+     * @param cookerTile    the {@link CookerTile} to draw
+     * @param loadingSprite the {@link LoadingSprite} to draw
      */
     public Cooker(final Position position, final CookerTile cookerTile, final LoadingSprite loadingSprite) {
         super(position);
         this.food = Optional.empty();
         this.timer = new GameTimer();
-        this.isCooking = false;
+        this.cooking = false;
         this.graphicComponent = new CookerGraphicComponent(this, cookerTile, loadingSprite);
     }
 
@@ -47,27 +50,27 @@ public class Cooker extends AbstractStationObject {
     }
 
     /**
-     * Gets the cooker timer.
+     * Gets the cooker {@link GameTimer}.
      *
-     * @return the cooker timer
+     * @return the cooker {@link GameTimer}
      */
     public GameTimer getCookerTimer() {
         return this.timer;
     }
 
     /**
-     * Gets the food.
+     * Gets the {@link GameTimer}.
      *
-     * @return the food
+     * @return the {@link GameTimer}
      */
     public Optional<IngredientImpl> getFood() {
         return this.food;
     }
 
     /**
-     * Take item.
+     * Take {@link GameTimer}.
      *
-     * @return the optional
+     * @return the optional {@link GameTimer}
      */
     public Optional<IngredientImpl> takeItem() {
         final Optional<IngredientImpl> f = food;
@@ -76,72 +79,68 @@ public class Cooker extends AbstractStationObject {
     };
 
     /**
-     * Sets the item.
+     * Sets the {@link GameTimer}.
      *
-     * @param f the new item
+     * @param f the new {@link GameTimer}
      */
-    public void setItem(IngredientImpl f) {
+    public void setItem(final IngredientImpl f) {
         this.food = Optional.ofNullable(f);
         this.timer.start();
     };
 
     /**
-     * Update.
+     * Update and check if the cooker and food is cooking.
      */
     public void update() {
-        if (isCooking && this.food.isPresent()) {
+        if (cooking && this.food.isPresent()) {
             if (this.food.get().getState() == IngredientState.CHOPPED
                     && timer.getSeconds() >= this.food.get().getIngredient().getTimeToCook()) {
                 this.food.get().changeState(IngredientState.PERFECT);
             } else if (this.food.get().getState() == IngredientState.PERFECT
-                    && timer.getSeconds() >= this.food.get().getIngredient().getTimeToCook() + 5) {
+                    && timer.getSeconds() >= this.food.get().getIngredient().getTimeToCook() + TIME_TO_BURN) {
                 this.food.get().changeState(IngredientState.BURNED);
             } else if (this.food.get().getState() == IngredientState.BURNED
-                    && timer.getSeconds() >= this.food.get().getIngredient().getTimeToCook() + 10) {
+                    && timer.getSeconds() >= this.food.get().getIngredient().getTimeToCook() + TIME_TO_BURN * 2) {
                 this.food.get().changeState(IngredientState.WASTE);
                 this.food = Optional.empty();
-                this.isCooking = false;
+                this.cooking = false;
                 this.timer.reset();
             }
         }
     }
 
     /**
-     * Checks if is cooked.
+     * Checks if is cooking.
      *
      * @return true, if is cooked
      */
-    public boolean isCooked() {
-        return isCooking;
+    public boolean isCooking() {
+        return cooking;
     }
 
     /**
      * {@inheritDoc}
      */
-    public void doAction(World world) {
+    public void doAction(final World world) {
         // se cibo presente
         if (food.isPresent()) {
-            // se il player ha qualcosa in mano
-            if (world.getPlayer().getItemInHand().isPresent()) {
-                // se è un piatto
-                if (world.getPlayer().getItemInHand().get() instanceof PlateImpl) {
-                    // e non è pieno
-                    if (((PlateImpl) world.getPlayer().getItemInHand().get()).getIngredients().size() < 4) {
+            // se il player ha un piatto in mano e non è pieno
+            if (world.getPlayer().getItemInHand().isPresent()
+                    && world.getPlayer().getItemInHand().get() instanceof PlateImpl
+                    && ((PlateImpl) world.getPlayer().getItemInHand().get()).getIngredients().size() < 4) {
                         // aggiungi l'ingrediente nel piatto e toglilo dalla station
                         ((PlateImpl) world.getPlayer().getItemInHand().get()).addDish(food.get());
                         this.food = Optional.empty();
                         this.timer.reset();
-                        this.isCooking = false;
-                    }
-                }
-            } else {
+                        this.cooking = false;
+                } else {
                 // se il player non ha niente in mano e l'ingrediente è cotto
                 if (this.food.get().getState() == IngredientState.PERFECT
                         || this.food.get().getState() == IngredientState.BURNED) {
                     world.getPlayer().setItemInHand(this.food.get());
                     this.food = Optional.empty();
                     this.timer.reset();
-                    this.isCooking = false;
+                    this.cooking = false;
                 }
             }
         } else {
@@ -155,7 +154,7 @@ public class Cooker extends AbstractStationObject {
                 this.food = Optional.ofNullable((IngredientImpl) world.getPlayer().getItemInHand().get());
                 world.getPlayer().removeItemInHand();
                 this.timer.start();
-                this.isCooking = true;
+                this.cooking = true;
             }
         }
 

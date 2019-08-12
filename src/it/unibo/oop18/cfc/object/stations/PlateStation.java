@@ -10,21 +10,34 @@ import it.unibo.oop18.cfc.tile.PlateStationTile;
 import it.unibo.oop18.cfc.util.Position;
 import it.unibo.oop18.cfc.world.World;
 
+/**
+ * Managing of the place where plate is generated.
+ */
 public class PlateStation extends AbstractStationObject {
 
     private final GraphicsComponent graphicComponent;
 
+    /**
+     * Instantiates a new {@link PlateStation}.
+     *
+     * @param position the {@link Position}
+     * @param plateStationTile the {@link PlateStationTile} to draw
+     */
     public PlateStation(final Position position, final PlateStationTile plateStationTile) {
         super(position);
         this.graphicComponent = new PlateStationGraphicComponent(this, plateStationTile);
     }
 
-    @Override
+    /**
+    * {@inheritDoc}
+    */
     public void draw(final Graphics2D g) {
         this.graphicComponent.draw(g);
     }
 
-    @Override
+    /**
+    * {@inheritDoc}
+    */
     public void doAction(final World world) {
         if (!world.getPlayer().getItemInHand().isPresent()) {
             final PlateImpl plate = new PlateImpl(world.getItemManager());
