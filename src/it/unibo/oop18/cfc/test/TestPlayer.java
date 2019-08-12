@@ -20,6 +20,7 @@ import it.unibo.oop18.cfc.world.WorldImpl;
  */
 public class TestPlayer {
 
+    /** The Constant ITEMPATH. */
     public static final String ITEMPATH = "/Sprites/itemSprite.png";
     private static final int PIXEL_PER_SECOND = 4 * 16;
     private static final Position INITIAL_POSITION = new Position(7 * SpriteSheet.SPRITE_SIZE_IN_GAME,
@@ -31,7 +32,7 @@ public class TestPlayer {
     /**
      * Tests the player's position.
      *
-     * @throws IOException
+     * @throws IOException Signals that an I/O exception has occurred.
      */
     @Test
     public void testPlayerPosition() throws IOException {
@@ -58,9 +59,9 @@ public class TestPlayer {
     }
 
     /**
-     * Tests player taking an ingredient from a Station
+     * Tests player taking an ingredient from a Station.
      *
-     * @throws IOException
+     * @throws IOException Signals that an I/O exception has occurred.
      */
     @Test
     public void testDoAcion() throws IOException {
@@ -82,7 +83,7 @@ public class TestPlayer {
     /**
      * Tests the player input.
      *
-     * @throws IOException
+     * @throws IOException Signals that an I/O exception has occurred.
      */
     @Test
     public void testPlayerInput() throws IOException {
@@ -106,7 +107,7 @@ public class TestPlayer {
     /**
      * Tests a wrong index in food sprite list with a player sprite id.
      *
-     * @throws IOException
+     * @throws IOException Signals that an I/O exception has occurred.
      */
     @Test(expected = IndexOutOfBoundsException.class)
     public void testSprites() throws IOException {

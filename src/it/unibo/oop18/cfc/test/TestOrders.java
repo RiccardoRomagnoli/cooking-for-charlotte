@@ -31,7 +31,7 @@ public class TestOrders {
     /**
      * Test the correct generation of an order.
      *
-     * @throws IOException error to read files
+     * @throws IOException Signals that an I/O exception has occurred.
      */
     @Test
     public void testGenerationOrder() throws IOException {
@@ -59,7 +59,7 @@ public class TestOrders {
     /**
      * Test the submission of plates to the order manager.
      *
-     * @throws IOException error to read files
+     * @throws IOException Signals that an I/O exception has occurred.
      */
     @Test
     public void testDeliveryAction() throws IOException {
@@ -112,7 +112,7 @@ public class TestOrders {
      * Checks if current list and finished list of orders are correctly updated when
      * an order expires.
      *
-     * @throws IOException error to read files
+     * @throws IOException Signals that an I/O exception has occurred.
      */
     @Test
     public void testOrdersListUpdating() throws IOException {
@@ -140,8 +140,8 @@ public class TestOrders {
      * Throws IllegalStateException if more than 4 ingredients are inserted in an
      * order.
      *
-     * @throws IOException error to read files
-     * @throws IllegalStateException
+     * @throws IllegalStateException the illegal state exception
+     * @throws IOException Signals that an I/O exception has occurred.
      */
     @Test(expected = IllegalStateException.class)
     public void testOrderIngredients() throws IllegalStateException, IOException {
@@ -157,8 +157,8 @@ public class TestOrders {
 
     /**
      * Tests if orders are placed in order of their time of expire.
-     * 
-     * @throws IOException error to read files
+     *
+     * @throws IOException Signals that an I/O exception has occurred.
      */
     @Test
     public void testOrdersListOrdering() throws IOException {
