@@ -10,7 +10,6 @@ import it.unibo.oop18.cfc.manager.TileManager;
 import it.unibo.oop18.cfc.object.GameObject;
 import it.unibo.oop18.cfc.object.entity.Player;
 import it.unibo.oop18.cfc.object.floors.ParquetFloor;
-import it.unibo.oop18.cfc.object.stations.AbstractStationObject;
 import it.unibo.oop18.cfc.object.stations.BreadStation;
 import it.unibo.oop18.cfc.object.stations.ChoppingStation;
 import it.unibo.oop18.cfc.object.stations.Cooker;
@@ -19,6 +18,7 @@ import it.unibo.oop18.cfc.object.stations.DeliveryStation;
 import it.unibo.oop18.cfc.object.stations.LettuceStation;
 import it.unibo.oop18.cfc.object.stations.MeatStation;
 import it.unibo.oop18.cfc.object.stations.PlateStation;
+import it.unibo.oop18.cfc.object.stations.Station;
 import it.unibo.oop18.cfc.object.stations.TomatoStation;
 import it.unibo.oop18.cfc.object.stations.Trashcan;
 import it.unibo.oop18.cfc.object.stations.Washbasin;
@@ -55,15 +55,7 @@ public interface World {
      * 
      * @return all games object
      */
-    List<? extends AbstractStationObject> getAllStations();
-
-    /**
-     * Removes a game object from a set of world's objects.
-     * 
-     * @param object a set of object to remove
-     * @param <X>    object's type to remove
-     */
-    <X extends GameObject> void removeObject(X object);
+    List<? extends Station> getAllStations();
 
     /**
      * Gets the {@link TileManager}.

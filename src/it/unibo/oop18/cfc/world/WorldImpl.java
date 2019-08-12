@@ -12,9 +12,8 @@ import it.unibo.oop18.cfc.manager.ItemManager;
 import it.unibo.oop18.cfc.manager.SpriteManager;
 import it.unibo.oop18.cfc.manager.TileManager;
 import it.unibo.oop18.cfc.object.GameObject;
-import it.unibo.oop18.cfc.object.entity.PlayerImpl;
+import it.unibo.oop18.cfc.object.entity.Player;
 import it.unibo.oop18.cfc.object.floors.ParquetFloor;
-import it.unibo.oop18.cfc.object.stations.AbstractStationObject;
 import it.unibo.oop18.cfc.object.stations.BreadStation;
 import it.unibo.oop18.cfc.object.stations.ChoppingStation;
 import it.unibo.oop18.cfc.object.stations.Cooker;
@@ -23,6 +22,7 @@ import it.unibo.oop18.cfc.object.stations.DeliveryStation;
 import it.unibo.oop18.cfc.object.stations.LettuceStation;
 import it.unibo.oop18.cfc.object.stations.MeatStation;
 import it.unibo.oop18.cfc.object.stations.PlateStation;
+import it.unibo.oop18.cfc.object.stations.Station;
 import it.unibo.oop18.cfc.object.stations.TomatoStation;
 import it.unibo.oop18.cfc.object.stations.Trashcan;
 import it.unibo.oop18.cfc.object.stations.Washbasin;
@@ -58,7 +58,7 @@ public class WorldImpl implements World {
      */
     public static final String MAPPATH = "/Maps/testmap1.map";
     /**
-     * Path to tilesheet.
+     * Path to tile sheet.
      */
     public static final String TILEPATH = "/Tilesets/tilesheet.png";
     /**
@@ -83,7 +83,7 @@ public class WorldImpl implements World {
     private final Set<Washbasin> washbasins;
     private final Set<ParquetFloor> parquetFloor;
 
-    private PlayerImpl player;
+    private Player player;
     private final GameTimer timer;
     // private final PlayerScore score;
 
@@ -121,30 +121,29 @@ public class WorldImpl implements World {
     }
 
     /**
-     * @return the tileManager
+     * {@inheritDoc}
      */
     public TileManager getTileManager() {
         return tileManager;
     }
 
     /**
-     * @return the spriteManager
+     * {@inheritDoc}
      */
     public SpriteManager getSpriteManager() {
         return spriteManager;
     }
 
     /**
-     * @return the itemManager
+     * {@inheritDoc}
      */
     public ItemManager getItemManager() {
         return itemManager;
     }
 
     /**
-     * @return the ordersManager
+     * {@inheritDoc}
      */
-    @Override
     public OrdersManager getOrdersManager() {
         return ordersManager;
     }
@@ -152,7 +151,6 @@ public class WorldImpl implements World {
     /**
      * {@inheritDoc}
      */
-    @Override
     public List<? extends GameObject> getAllGameObjects() {
         final List<GameObject> allGameObjects = new LinkedList<>();
         allGameObjects.addAll(this.choppingStations);
@@ -171,27 +169,21 @@ public class WorldImpl implements World {
         return Collections.unmodifiableList(allGameObjects);
     }
 
-    @Override
-    public List<? extends AbstractStationObject> getAllStations() {
-        final List<AbstractStationObject> allStationObjects = new LinkedList<>();
-        allStationObjects.addAll(this.choppingStations);
-        allStationObjects.addAll(this.counters);
-        allStationObjects.addAll(this.cookers);
-        allStationObjects.addAll(this.deliveryStations);
-        allStationObjects.addAll(this.breadStations);
-        allStationObjects.addAll(this.meatStations);
-        allStationObjects.addAll(this.tomatoStations);
-        allStationObjects.addAll(this.lettuceStations);
-        allStationObjects.addAll(this.plateStations);
-        allStationObjects.addAll(this.trashcans);
-        allStationObjects.addAll(this.washbasins);
+    /**
+     * {@inheritDoc}
+     */
+    public List<? extends Station> getAllStations() {
+        final List<Station> allStationObjects = new LinkedList<>();
+        getAllGameObjects().stream()
+            .filter(p -> p instanceof Station)
+            .forEach(s -> allStationObjects.add((Station) s));
         return Collections.unmodifiableList(allStationObjects);
     }
 
     /**
      * {@inheritDoc}
      */
-    public PlayerImpl getPlayer() {
+    public Player getPlayer() {
         return this.player;
     }
 
@@ -284,12 +276,6 @@ public class WorldImpl implements World {
      */
     public Set<ParquetFloor> getParquetFloor() {
         return parquetFloor;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public <X extends GameObject> void removeObject(final X object) {
     }
 
     /**

@@ -3,7 +3,6 @@ package it.unibo.oop18.cfc.world;
 import java.util.Set;
 
 import it.unibo.oop18.cfc.object.entity.Player;
-import it.unibo.oop18.cfc.object.entity.PlayerImpl;
 import it.unibo.oop18.cfc.object.floors.ParquetFloor;
 import it.unibo.oop18.cfc.object.stations.BreadStation;
 import it.unibo.oop18.cfc.object.stations.ChoppingStation;
@@ -113,5 +112,5 @@ public interface WorldInitializer {
      * @param world the {@link World}
      * @return the {@link Player}
      */
-    PlayerImpl initializePlayer(World world);
+    Player initializePlayer(World world);
 }

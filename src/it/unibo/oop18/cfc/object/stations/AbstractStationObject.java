@@ -18,9 +18,7 @@ public abstract class AbstractStationObject extends AbstractGameObject implement
     }
 
     /**
-     * Gets the {@link Position}.
-     *
-     * @return a new {@link position} with same values
+     *  {@inheritDoc}}
      */
     public Position getPosition() {
         return new Position(super.getPosition());
