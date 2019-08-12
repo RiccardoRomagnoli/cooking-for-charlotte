@@ -4,7 +4,6 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import it.unibo.oop18.cfc.object.items.Plate;
 import it.unibo.oop18.cfc.util.GameTimer;
 import it.unibo.oop18.cfc.world.World;
@@ -14,11 +13,11 @@ public class OrdersManagerImpl implements OrdersManager {
     private static final long INTERVAL_MILLISECONDS = 30000;
     private final List<Order> currentOrders;
     private final List<Order> finishedOrders;
-    private GameTimer gameTimer;
-    private final OrderGeneratorImpl generator;
+    private final GameTimer gameTimer;
+    private final OrderGenerator generator;
     private final World world;
 
-    public OrdersManagerImpl(World world) {
+    public OrdersManagerImpl(final World world) {
         this.world = world;
         currentOrders = new ArrayList<>();
         finishedOrders = new ArrayList<>();
@@ -31,8 +30,8 @@ public class OrdersManagerImpl implements OrdersManager {
     }
 
     @Override
-    public boolean deliveryPlate(Plate plate) {
-        Optional<Order> order = checkOrder(plate);
+    public boolean deliveryPlate(final Plate plate) {
+        final Optional<Order> order = checkOrder(plate);
         if (order.isPresent()) {
             orderSucceed(order.get());
         } else {
@@ -46,8 +45,8 @@ public class OrdersManagerImpl implements OrdersManager {
      * order list.
      */
     @Override
-    public void draw(Graphics2D g) {
-        for (Order o : this.currentOrders) {
+    public void draw(final Graphics2D g) {
+        for (final Order o : this.currentOrders) {
             o.setSlot(currentOrders.indexOf(o));
             o.draw(g);
         }
@@ -63,7 +62,7 @@ public class OrdersManagerImpl implements OrdersManager {
     }
 
     @Override
-    public void addOrder(Order o) {
+    public void addOrder(final Order o) {
         this.currentOrders.add(o);
         this.currentOrders.sort((o1, o2) -> o1.getCountDownTime() - o2.getCountDownTime());
     }
@@ -74,7 +73,7 @@ public class OrdersManagerImpl implements OrdersManager {
     }
 
     @Override
-    public void orderFailed(Order order) {
+    public void orderFailed(final Order order) {
         order.stopOrder();
         currentOrders.remove(order);
         finishedOrders.add(order);
@@ -107,8 +106,8 @@ public class OrdersManagerImpl implements OrdersManager {
      * @param plate submitted
      * @return
      */
-    private Optional<Order> checkOrder(Plate plate) {
-        for (Order order : currentOrders) {
+    private Optional<Order> checkOrder(final Plate plate) {
+        for (final Order order : currentOrders) {
             if (order.checkOrder(plate)) {
                 return Optional.ofNullable(order);
             }
@@ -116,14 +115,14 @@ public class OrdersManagerImpl implements OrdersManager {
         return Optional.empty();
     }
 
-    private void orderSucceed(Order order) {
+    private void orderSucceed(final Order order) {
         order.stopOrder();
         currentOrders.remove(order);
         finishedOrders.add(order);
     }
 
     private void updateDifficulty() {
-        int currentMinute = (int) gameTimer.getMinutes();
+        final int currentMinute = (int) gameTimer.getMinutes();
         OrderDifficulty currentDifficulty = OrderDifficulty.EASY;
 
         if (currentMinute > 2) {
@@ -139,7 +138,7 @@ public class OrdersManagerImpl implements OrdersManager {
     }
 
     private void checkZeroOrders() {
-        if (currentOrders.size() == 0) {
+        if (currentOrders.isEmpty()) {
             generator.generateNewOrder();
         }
     }
