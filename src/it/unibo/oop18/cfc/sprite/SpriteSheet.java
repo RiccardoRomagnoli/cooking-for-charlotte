@@ -17,7 +17,7 @@ public class SpriteSheet {
     private final BufferedImage sheet;
 
     /**
-     * Creates {@code SpriteSheet}.
+     * Creates {@link SpriteSheet}.
      *
      * @param path to load the sprite sheet
      * @throws IOException launched while loading

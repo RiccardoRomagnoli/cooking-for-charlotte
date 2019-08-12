@@ -10,7 +10,7 @@ public class Sprite {
     private final Image image;
 
     /**
-     * Creates {@code Sprite}.
+     * Creates {@link Sprite}.
      *
      * @param sheet where to take the single sprite
      * @param x     coordinate to select the sprite

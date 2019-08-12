@@ -6,21 +6,22 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- * Class that loads and stores a sprite sheet from a path.
+ * Class that loads and stores a item sprite sheet from a path.
  */
 public class ItemSpriteSheet {
 
-    /**
-     * It sets the sprite size used in game.
-     */
+    /** The item sprite width. */
     public static final int ITEM_SPRITE_WIDTH_IN_GAME = 30;
+
+    /** The item sprite height. */
     public static final int ITEM_SPRITE_HEIGHT_IN_GAME = 20;
+
     private final BufferedImage sheet;
 
     /**
-     * Creates {@code SpriteSheet}.
+     * Creates {@link ItemSpriteSheet}.
      *
-     * @param path to load the sprite sheet
+     * @param path to load the item sprite sheet
      * @throws IOException launched while loading
      */
     public ItemSpriteSheet(final String path) throws IOException {
@@ -28,11 +29,11 @@ public class ItemSpriteSheet {
     }
 
     /**
-     * Gets a single sprite taken from sheet.
+     * Gets a single item sprite taken from sheet.
      *
-     * @param x coordinate to select the {@link Sprite}
-     * @param y coordinate to select the {@link Sprite}
-     * @return a buffered image of the {@link Sprite}
+     * @param x coordinate to select the {@link ItemSprite}
+     * @param y coordinate to select the {@link ItemSprite}
+     * @return a buffered image of the {@link ItemSprite}
      */
     public BufferedImage getSingleItemSprite(final int x, final int y) {
         return this.sheet.getSubimage(x * ITEM_SPRITE_WIDTH_IN_GAME, y * ITEM_SPRITE_HEIGHT_IN_GAME,

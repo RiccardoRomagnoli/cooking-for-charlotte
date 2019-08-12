@@ -3,7 +3,7 @@ package it.unibo.oop18.cfc.sprite;
 import it.unibo.oop18.cfc.physics.Direction;
 
 /**
- * Class that manages enemies and player {@link Sprite}.
+ * Class that manages player {@link Sprite}.
  */
 public class PlayerSprites extends AbstractDynamicEntitySprites {
 
@@ -15,8 +15,10 @@ public class PlayerSprites extends AbstractDynamicEntitySprites {
     private static final int X_LOCATION_STOP = 0;
 
     /**
-     * Creates a {@code AbstractEntitySprites} that initializes all sprite lists for
+     * Creates a {@link PlayerSprites} that initializes all sprite lists for
      * any movement.
+     * 
+     * @param sheet the {@link SpriteSheet} to take images
      */
     public PlayerSprites(final SpriteSheet sheet) {
         super();
@@ -33,9 +35,9 @@ public class PlayerSprites extends AbstractDynamicEntitySprites {
     }
 
     /**
-     * Gets the greater list sprite size.
+     * Gets the list of player sprite size.
      *
-     * @return the max size of any list of {@link Sprite}
+     * @return the size of player {@link Sprite} size
      */
     public int getSpritesNumberToMove() {
         return SPRITES_TO_MOVE;

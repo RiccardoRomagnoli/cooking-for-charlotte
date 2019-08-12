@@ -8,7 +8,7 @@ import java.util.Map;
 import it.unibo.oop18.cfc.physics.Direction;
 
 /**
- * Class that manages enemies and player {@link Sprite}.
+ * Class that manages player {@link Sprite}.
  */
 public abstract class AbstractDynamicEntitySprites {
 
@@ -19,7 +19,7 @@ public abstract class AbstractDynamicEntitySprites {
     private final List<Sprite> up;
 
     /**
-     * Creates a {@code AbstractEntitySprites} that initializes all sprite lists for
+     * Creates a {@link AbstractEntitySprites} that initializes all sprite lists for
      * any movement.
      */
     public AbstractDynamicEntitySprites() {
