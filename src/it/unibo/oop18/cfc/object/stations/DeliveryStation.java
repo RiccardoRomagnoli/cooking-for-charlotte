@@ -25,8 +25,7 @@ public class DeliveryStation extends AbstractStationObject {
 
     @Override
     public void doAction(World world) {
-        if (world.getPlayer().getItemInHand().isPresent() && world.getPlayer().getItemInHand().get() instanceof Plate
-                && ((Plate) world.getPlayer().getItemInHand().get()).getIngredients().size() > 0) {
+        if (world.getPlayer().getItemInHand().isPresent() && world.getPlayer().getItemInHand().get() instanceof Plate) {
             world.getOrdersManager().deliveryPlate((Plate) world.getPlayer().getItemInHand().get());
             world.getPlayer().removeItemInHand();
         }
