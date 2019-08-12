@@ -27,7 +27,7 @@ public class KeyInput implements KeyListener {
     /**
      * Pair where a direction value is assigned to a boolean value.
      */
-    public Map<Integer, Boolean> keys;
+    private final Map<Integer, Boolean> keys;
 
     /**
      * Creates {@code KeyInput}.
@@ -78,7 +78,6 @@ public class KeyInput implements KeyListener {
     }
 
     private void optionKeyInput(final KeyEvent e) {
-        gsm.setState(GameStates.OPTION);
         final OptionState option = (OptionState) currentState;
         switch (e.getKeyCode()) {
         case KeyEvent.VK_UP:
@@ -117,6 +116,10 @@ public class KeyInput implements KeyListener {
             break;
         case KeyEvent.VK_UP:
             way = Optional.ofNullable(Direction.UP);
+            break;
+        case KeyEvent.VK_Q://TODO: da togliere solo per debug
+            gsm.setState(GameStates.GAMEOVER);
+            way = Optional.empty();
             break;
         case KeyEvent.VK_SPACE:
             this.gsm.getPlayState().getWorld().getPlayer().setCutAction(true);
@@ -247,6 +250,7 @@ public class KeyInput implements KeyListener {
 
     private void launchPause() {
         this.gsm.setState(GameStates.PAUSE);
+        resetKeys();
         this.gsm.getPlayState().getWorld().getGameTimer().stop();
         pauseOrderTimers();
     }
