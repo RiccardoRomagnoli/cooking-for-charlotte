@@ -11,10 +11,19 @@ import it.unibo.oop18.cfc.util.JukeBoxUtil;
  */
 public class PauseState extends GameState {
 
+    private static final int POSITION_X_PAUSE = 400;
+    private static final int POSITION_Y_PAUSE = 200;
+    private static final int POSITION_X_MOVE = 120;
+    private static final int POSITION_Y_MOVE = 270;
+    private static final int POSITION_X_DOACTION = 200;
+    private static final int POSITION_Y_DOACTION = 340;
+    private static final int POSITION_X_MENU = 120;
+    private static final int POSITION_Y_MENU = 410;
+
     /**
      * Class constructor.
      * 
-     * @param gsm gamestate
+     * @param gsm The {@link GameStateManager}
      */
     public PauseState(final GameStateManager gsm) {
         super(gsm, GameStates.PAUSE);
@@ -35,8 +44,6 @@ public class PauseState extends GameState {
 
     /**
      * {@inheritDoc}.
-     * 
-     * @param g basic graphics
      */
     public void draw(final Graphics2D g) {
         if (PlayState.themeIsPlaying == 1) {
@@ -44,12 +51,12 @@ public class PauseState extends GameState {
             PlayState.themeIsPlaying = 2;
         }
 
-        ContentUtil.drawString(g, "pause", 400, 200);
+        ContentUtil.drawString(g, "pause", POSITION_X_PAUSE, POSITION_Y_PAUSE);
 
-        ContentUtil.drawString(g, "arrow keys : move", 120, 270);
+        ContentUtil.drawString(g, "arrow keys : move", POSITION_X_MOVE, POSITION_Y_MOVE);
 
-        ContentUtil.drawString(g, "space : action", 200, 340);
+        ContentUtil.drawString(g, "space : action", POSITION_X_DOACTION, POSITION_Y_DOACTION);
 
-        ContentUtil.drawString(g, "F1: return to menu", 120, 410);
+        ContentUtil.drawString(g, "F1: return to menu", POSITION_X_MENU, POSITION_Y_MENU);
     }
 }
