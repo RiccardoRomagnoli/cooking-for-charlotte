@@ -2,7 +2,6 @@ package it.unibo.oop18.cfc.manager;
 
 import java.io.IOException;
 
-import it.unibo.oop18.cfc.sprite.Sprite;
 import it.unibo.oop18.cfc.tile.BreadStationTile;
 import it.unibo.oop18.cfc.tile.ChoppingStationTile;
 import it.unibo.oop18.cfc.tile.CookerTile;
@@ -36,10 +35,10 @@ public class TileManager {
     private final ParquetFloorTile parquetFloorTile;
 
     /**
-     * Creates a {@code SpritesManager} to manage any {@link Sprite} in game.
+     * Creates a {@link SpritesManager} to manage any {@link Sprite} in game.
      *
-     * @param path path
-     * @throws IOException : problem during input/output
+     * @param path the path of tile image
+     * @throws IOException Signals that an I/O exception has occurred.
      */
     public TileManager(final String path) throws IOException {
         final TileSheet sheet = new TileSheet(path);

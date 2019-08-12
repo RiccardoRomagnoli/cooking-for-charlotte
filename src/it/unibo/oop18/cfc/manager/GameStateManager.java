@@ -62,7 +62,7 @@ public class GameStateManager {
     /**
      * Change the current state and initialize it.
      * 
-     * @param gameState current game state
+     * @param gameState current {@link GameStates}
      */
     public void setState(final GameStates gameState) {
         switch (gameState) {
@@ -111,7 +111,7 @@ public class GameStateManager {
     /**
      * Draw the graphics on the panel.
      * 
-     * @param g graphics
+     * @param g {@link Graphics2D} to draw
      */
     public void draw(final Graphics2D g) {
         currentState.draw(g);
@@ -120,7 +120,7 @@ public class GameStateManager {
     /**
      * Getter for playstate.
      * 
-     * @return current playstate
+     * @return current {@link PlayState}
      */
     public PlayState getPlayState() {
         return (PlayState) playState;
@@ -129,7 +129,7 @@ public class GameStateManager {
     /**
      * Getter for current game state.
      * 
-     * @return current state
+     * @return current {@link GameState}
      */
     public GameState getCurrentGameState() {
         return currentState;
