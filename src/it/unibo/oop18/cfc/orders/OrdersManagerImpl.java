@@ -2,11 +2,8 @@ package it.unibo.oop18.cfc.orders;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
-
-import it.unibo.oop18.cfc.gamestate.PlayState;
-import it.unibo.oop18.cfc.graphics.GraphicsComponent;
-import it.unibo.oop18.cfc.graphics.OrderGraphicComponent;
 import it.unibo.oop18.cfc.object.items.Plate;
 import it.unibo.oop18.cfc.util.GameScoreImpl;
 import it.unibo.oop18.cfc.util.GameTimer;
@@ -14,6 +11,10 @@ import it.unibo.oop18.cfc.world.World;
 
 public class OrdersManagerImpl implements OrdersManager {
 
+    /**
+     * TODO. mettere i javadoc sulla interfaccia e qua lasciare solo l'inherit
+     * 
+     */
     private static final long INTERVAL_MILLISECONDS = 30000;
     private final ArrayList<Order> currentOrders;
     private final ArrayList<Order> finishedOrders;
@@ -51,7 +52,7 @@ public class OrdersManagerImpl implements OrdersManager {
      * order list
      */
     @Override
-    public void draw(Graphics2D g) {
+    public void draw(final Graphics2D g) {
         for (Order o : this.currentOrders) {
             o.setSlot(currentOrders.indexOf(o));
             o.draw(g);
@@ -73,62 +74,83 @@ public class OrdersManagerImpl implements OrdersManager {
         this.currentOrders.sort((o1, o2) -> o1.getCountDownTime() - o2.getCountDownTime());
     }
 
-    @Override
+    /**
+     * Get the quantity of order. {@inheritDoc}
+     */
     public int getOrderQuantity() {
         return currentOrders.size();
     }
 
-    @Override
-    public void orderFailed(Order order) {
+    /**
+     * Manage a bad delivered order. {@inheritDoc}
+     */
+    public void orderFailed(final Order order) {
         order.stopOrder();
         currentOrders.remove(order);
         finishedOrders.add(order);
         this.loseLife();
     }
 
-    @Override
-    public ArrayList<Order> getCurrentOrders() {
+    /**
+     * Get the list of current active orders. {@inheritDoc}
+     */
+    public List<Order> getCurrentOrders() {
         return currentOrders;
     }
 
-    @Override
-    public ArrayList<Order> getFinishedOrders() {
+    /**
+     * Get the list of finisched orders. {@inheritDoc}
+     */
+    public List<Order> getFinishedOrders() {
         return finishedOrders;
     }
 
-    @Override
+    /**
+     * Start the orders generation. {@inheritDoc}
+     */
     public void startGeneration() {
         generator.startGeneration(INTERVAL_MILLISECONDS);
     }
 
-    @Override
+    /**
+     * Stop the orders generation. {@inheritDoc}
+     */
     public void stopGeneration() {
         generator.stopGeneration();
     }
 
     /**
-     * Just need the first correct order that matches
+     * Just need the first correct order that matches.
      * 
      * @param plate submitted
      * @return
      */
-    private Optional<Order> checkOrder(Plate plate) {
-        for (Order order : currentOrders) {
-            if (order.checkOrder(plate))
+    private Optional<Order> checkOrder(final Plate plate) {
+        for (final Order order : currentOrders) {
+            if (order.checkOrder(plate)) {
                 return Optional.ofNullable(order);
+            }
         }
         return Optional.empty();
     }
 
-    private void orderSucceed(Order order) {
+    /**
+     * Complete order when it's correct.
+     * 
+     * @param order created and delivered
+     */
+    private void orderSucceed(final Order order) {
         order.stopOrder();
         currentOrders.remove(order);
         finishedOrders.add(order);
         score.computeScore(10);
     }
 
+    /**
+     * Update the difficulty of the game.
+     */
     private void updateDifficulty() {
-        int currentMinute = (int) gameTimer.getMinutes();
+        final int currentMinute = (int) gameTimer.getMinutes();
         OrderDifficulty currentDifficulty = OrderDifficulty.EASY;
 
         if (currentMinute > 2) {
@@ -147,7 +169,7 @@ public class OrdersManagerImpl implements OrdersManager {
     }
 
     private void checkZeroOrders() {
-        if (currentOrders.size() == 0) {
+        if (currentOrders.isEmpty()) {
             generator.generateNewOrder();
         }
     }
