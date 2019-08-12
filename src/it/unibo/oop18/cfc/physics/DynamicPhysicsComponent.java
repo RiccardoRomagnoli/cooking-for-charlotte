@@ -1,15 +1,13 @@
 package it.unibo.oop18.cfc.physics;
 
 import java.awt.geom.Rectangle2D;
-import java.util.Set;
 
-import it.unibo.oop18.cfc.object.items.Item;
 import it.unibo.oop18.cfc.util.Velocity;
-import it.unibo.oop18.cfc.util.VelocityImpl;
 
+/**
+ * The Interface DynamicPhysicsComponent.
+ */
 public interface DynamicPhysicsComponent {
-
-    void move();
 
     /**
      * Gets the dynamic object's velocity.
@@ -47,10 +45,8 @@ public interface DynamicPhysicsComponent {
     Rectangle2D getRightBound();
 
     /**
-     * {@inheritDoc}
+     * Let the entity move.
      */
-    public abstract void checksCollisions(Set<Item> object);
-
-    // public TileType getNextTile();
+    void move();
 
 }
