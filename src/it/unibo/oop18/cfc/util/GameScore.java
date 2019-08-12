@@ -13,7 +13,7 @@ public interface GameScore {
     int getScore();
 
     /**
-     * @param scoreValue Poitns to be added or subtracted the actual score
+     * @param scoreValue Points to be added or subtracted the actual score
      */
     void computeScore(int scoreValue);
 }

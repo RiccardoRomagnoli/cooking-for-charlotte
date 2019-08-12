@@ -38,21 +38,21 @@ public interface Velocity {
     /**
      * Gets the current entity's direction.
      * 
-     * @return the current direction
+     * @return the current {@link Direction}
      */
     Direction getDirection();
 
     /**
      * Gets the previous entity's direction.
      * 
-     * @return the current direction
+     * @return the previous {@link Direction}
      */
     Direction getOldDirection();
 
     /**
-     * Sets a new direction.
+     * Sets a new direction and save the old direction.
      * 
-     * @param direction to set
+     * @param direction the new {@link Direction} to set
      */
     void setDirection(Direction direction);
 

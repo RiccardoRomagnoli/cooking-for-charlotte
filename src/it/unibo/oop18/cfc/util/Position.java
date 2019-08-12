@@ -14,7 +14,7 @@ public class Position {
     private double y;
 
     /**
-     * Creates a new {@code Position}.
+     * Creates a new {@link Position}.
      *
      * @param x coordinate
      * @param y coordinate
@@ -25,7 +25,7 @@ public class Position {
     }
 
     /**
-     * Create a new {@code Position}.
+     * Create a new {@link Position}.
      *
      * @param p is the new position
      */
@@ -70,7 +70,9 @@ public class Position {
         this.y = y;
     }
 
-    @Override
+    /**
+    * {@inheritDoc}
+    */
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -83,7 +85,7 @@ public class Position {
     }
 
     /**
-     * Controls if a {@code Position} is equals to the center of a tile.
+     * Controls if a {@link Position} is equals to the center of a tile.
      *
      * @return true if position is the center of a tile, otherwise false
      */
@@ -106,16 +108,31 @@ public class Position {
                 Math.floor(position.getY() / dimTile) * dimTile);
     }
 
+    /**
+     * Same position of different elements and simple check.
+     *
+     * @param p the {@link Position} of other elements
+     * @return true, if successful
+     */
     public boolean samePosition(final Position p) {
         return p.x == this.x && p.y == this.y;
     }
 
-    @Override
+    /**
+    * Stamp the {@link Position}.
+    * 
+    * @return the {@link Position} in specific format
+    */
     public String toString() {
         return "Position [x=" + x + ", y=" + y + "]";
     }
 
-    @Override
+    /**
+    * Check if two elements of same class are in the same position.
+    * 
+    * @param obj a generic object to match the {@link Position}
+    * @return true, if in the same position and same class
+    */
     public boolean equals(final Object obj) {
         Optional<Position> other = Optional.empty();
         final int sprDim = SpriteSheet.SPRITE_SIZE_IN_GAME;

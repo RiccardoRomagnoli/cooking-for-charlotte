@@ -25,7 +25,6 @@ public class VelocityImpl implements Velocity {
     /**
      * {@inheritDoc}
      */
-    @Override
     public double getSpaceX() {
         return this.spaceX;
     }
@@ -33,7 +32,6 @@ public class VelocityImpl implements Velocity {
     /**
      * {@inheritDoc}
      */
-    @Override
     public void setSpaceX(final double spaceX) {
         this.spaceX = spaceX;
     }
@@ -41,7 +39,6 @@ public class VelocityImpl implements Velocity {
     /**
      * {@inheritDoc}
      */
-    @Override
     public double getSpaceY() {
         return this.spaceY;
     }
@@ -49,7 +46,6 @@ public class VelocityImpl implements Velocity {
     /**
      * {@inheritDoc}
      */
-    @Override
     public void setSpaceY(final double spaceY) {
         this.spaceY = spaceY;
     }
@@ -57,7 +53,6 @@ public class VelocityImpl implements Velocity {
     /**
      * {@inheritDoc}
      */
-    @Override
     public Direction getDirection() {
         return this.direction;
     }
@@ -65,7 +60,6 @@ public class VelocityImpl implements Velocity {
     /**
      * {@inheritDoc}
      */
-    @Override
     public void setDirection(final Direction direction) {
         if (direction != Direction.STOP) {
             this.oldDirection = direction;
@@ -73,7 +67,9 @@ public class VelocityImpl implements Velocity {
         this.direction = direction;
     }
 
-    @Override
+    /**
+     * {@inheritDoc}
+     */
     public Direction getOldDirection() {
         return oldDirection;
     }
