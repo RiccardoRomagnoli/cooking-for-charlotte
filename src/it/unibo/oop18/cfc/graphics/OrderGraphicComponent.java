@@ -2,9 +2,7 @@ package it.unibo.oop18.cfc.graphics;
 
 import java.awt.Graphics2D;
 
-import it.unibo.oop18.cfc.object.items.OrderIngredient;
 import it.unibo.oop18.cfc.orders.Order;
-import it.unibo.oop18.cfc.orders.OrderImpl;
 import it.unibo.oop18.cfc.util.ContentUtil;
 import it.unibo.oop18.cfc.util.Position;
 
@@ -33,14 +31,14 @@ public class OrderGraphicComponent implements GraphicsComponent {
      *
      * @param order the order
      */
-    public OrderGraphicComponent(Order order) {
+    public OrderGraphicComponent(final Order order) {
         this.order = order;
     }
 
     /**
      * {@inheritDoc}.
      */
-    public void draw(Graphics2D g) {
+    public void draw(final Graphics2D g) {
         this.order.getIngredientsList()
                 .forEach(i -> i.draw(g,
                         new Position(OFFSET + WIDTH_SLOT_GRAPHIC + X_FIRST_INGREDIENT + SLOT_DIMENSION * order.getSlot()
@@ -53,7 +51,7 @@ public class OrderGraphicComponent implements GraphicsComponent {
                 HEIGHT_TIMER_TEXT);
     }
 
-    private void drawCountDown(Graphics2D g, int minutes, int seconds, int x, int y, int width, int height) {
+    private void drawCountDown(final Graphics2D g, final int minutes, final int seconds, final int x, final int y, final int width, final int height) {
         if (minutes < 10) {
             if (seconds < 10) {
                 ContentUtil.drawString(g, "0" + minutes + ":0" + seconds, x, y, width, height);
