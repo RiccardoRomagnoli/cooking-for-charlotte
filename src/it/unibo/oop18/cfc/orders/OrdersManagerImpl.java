@@ -2,27 +2,33 @@ package it.unibo.oop18.cfc.orders;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
+
+import it.unibo.oop18.cfc.gamestate.PlayState;
+import it.unibo.oop18.cfc.graphics.GraphicsComponent;
+import it.unibo.oop18.cfc.graphics.OrderGraphicComponent;
 import it.unibo.oop18.cfc.object.items.Plate;
+import it.unibo.oop18.cfc.util.GameScoreImpl;
 import it.unibo.oop18.cfc.util.GameTimer;
 import it.unibo.oop18.cfc.world.World;
 
 public class OrdersManagerImpl implements OrdersManager {
 
     private static final long INTERVAL_MILLISECONDS = 30000;
-    private final List<Order> currentOrders;
-    private final List<Order> finishedOrders;
-    private final GameTimer gameTimer;
-    private final OrderGenerator generator;
+    private final ArrayList<Order> currentOrders;
+    private final ArrayList<Order> finishedOrders;
+    private GameTimer gameTimer;
+    private final OrderGeneratorImpl generator;
     private final World world;
+    private static GameScoreImpl score = new GameScoreImpl();
 
-    public OrdersManagerImpl(final World world) {
+    public OrdersManagerImpl(World world) {
         this.world = world;
         currentOrders = new ArrayList<>();
         finishedOrders = new ArrayList<>();
         gameTimer = world.getGameTimer();
         generator = new OrderGeneratorImpl(this);
+        score.computeScore(0);
     }
 
     public World getWorld() {
@@ -30,8 +36,8 @@ public class OrdersManagerImpl implements OrdersManager {
     }
 
     @Override
-    public boolean deliveryPlate(final Plate plate) {
-        final Optional<Order> order = checkOrder(plate);
+    public boolean deliveryPlate(Plate plate) {
+        Optional<Order> order = checkOrder(plate);
         if (order.isPresent()) {
             orderSucceed(order.get());
         } else {
@@ -42,11 +48,11 @@ public class OrdersManagerImpl implements OrdersManager {
 
     /**
      * delegates draw of each order by setting them their slot which is the index of
-     * order list.
+     * order list
      */
     @Override
-    public void draw(final Graphics2D g) {
-        for (final Order o : this.currentOrders) {
+    public void draw(Graphics2D g) {
+        for (Order o : this.currentOrders) {
             o.setSlot(currentOrders.indexOf(o));
             o.draw(g);
         }
@@ -62,7 +68,7 @@ public class OrdersManagerImpl implements OrdersManager {
     }
 
     @Override
-    public void addOrder(final Order o) {
+    public void addOrder(Order o) {
         this.currentOrders.add(o);
         this.currentOrders.sort((o1, o2) -> o1.getCountDownTime() - o2.getCountDownTime());
     }
@@ -73,7 +79,7 @@ public class OrdersManagerImpl implements OrdersManager {
     }
 
     @Override
-    public void orderFailed(final Order order) {
+    public void orderFailed(Order order) {
         order.stopOrder();
         currentOrders.remove(order);
         finishedOrders.add(order);
@@ -81,12 +87,12 @@ public class OrdersManagerImpl implements OrdersManager {
     }
 
     @Override
-    public List<Order> getCurrentOrders() {
+    public ArrayList<Order> getCurrentOrders() {
         return currentOrders;
     }
 
     @Override
-    public List<Order> getFinishedOrders() {
+    public ArrayList<Order> getFinishedOrders() {
         return finishedOrders;
     }
 
@@ -106,39 +112,42 @@ public class OrdersManagerImpl implements OrdersManager {
      * @param plate submitted
      * @return
      */
-    private Optional<Order> checkOrder(final Plate plate) {
-        for (final Order order : currentOrders) {
-            if (order.checkOrder(plate)) {
+    private Optional<Order> checkOrder(Plate plate) {
+        for (Order order : currentOrders) {
+            if (order.checkOrder(plate))
                 return Optional.ofNullable(order);
-            }
         }
         return Optional.empty();
     }
 
-    private void orderSucceed(final Order order) {
+    private void orderSucceed(Order order) {
         order.stopOrder();
         currentOrders.remove(order);
         finishedOrders.add(order);
+        score.computeScore(10);
     }
 
     private void updateDifficulty() {
-        final int currentMinute = (int) gameTimer.getMinutes();
+        int currentMinute = (int) gameTimer.getMinutes();
         OrderDifficulty currentDifficulty = OrderDifficulty.EASY;
 
         if (currentMinute > 2) {
             currentDifficulty = OrderDifficulty.MEDIUM;
+            score.computeScore(100);
         }
         if (currentMinute > 8) {
             currentDifficulty = OrderDifficulty.HARD;
+            score.computeScore(400);
         }
         if (currentMinute > 16) {
             currentDifficulty = OrderDifficulty.EXTREME;
+            score.computeScore(1000);
         }
         generator.setDifficulty(currentDifficulty);
     }
 
     private void checkZeroOrders() {
-        if (currentOrders.isEmpty()) {
+        if (currentOrders.size() == 0) {
             generator.generateNewOrder();
         }
     }
@@ -146,5 +155,14 @@ public class OrdersManagerImpl implements OrdersManager {
     private void loseLife() {
         this.world.getPlayer().decLifes();
         System.out.println("You just losed a life!!");
+    }
+
+    /**
+     * Return integer of points made during game.
+     * 
+     * @return int points
+     */
+    public static int getScore() {
+        return score.getScore();
     }
 }

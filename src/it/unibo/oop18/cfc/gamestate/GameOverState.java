@@ -5,8 +5,10 @@ import java.awt.Graphics2D;
 
 import it.unibo.oop18.cfc.main.GameEngine;
 import it.unibo.oop18.cfc.manager.GameStateManager;
+import it.unibo.oop18.cfc.orders.OrdersManagerImpl;
 import it.unibo.oop18.cfc.util.ContentUtil;
 import it.unibo.oop18.cfc.util.DataUtil;
+import it.unibo.oop18.cfc.util.GameScoreImpl;
 
 /**
  * The Class GameOverState.
@@ -15,7 +17,8 @@ public class GameOverState extends GameState {
 
     private Color color;
     private int rank;
-    private long ticks;
+    private static final int STRING_COL = 50;
+    private GameScoreImpl finalScore = new GameScoreImpl();
 
     /**
      * GameOverState constructor.
@@ -24,6 +27,7 @@ public class GameOverState extends GameState {
      */
     public GameOverState(final GameStateManager gsm) {
         super(gsm, GameStates.GAMEOVER);
+        finalScore.computeScore(OrdersManagerImpl.getScore());
     }
 
     /**
@@ -31,16 +35,6 @@ public class GameOverState extends GameState {
      */
     public void init() {
         color = new Color(164, 198, 222);
-        ticks = DataUtil.getTime();
-        if (ticks < 3600) {
-            rank = 1;
-        } else if (ticks < 5400) {
-            rank = 2;
-        } else if (ticks < 7200) {
-            rank = 3;
-        } else {
-            rank = 4;
-        }
     }
 
     /**
@@ -57,35 +51,17 @@ public class GameOverState extends GameState {
         g.setColor(color);
         g.fillRect(0, 0, GameEngine.WIDTH, GameEngine.HEIGHT2);
 
-        ContentUtil.drawString(g, "finish time", 20, 36);
-
-        final int minutes = (int) (ticks / 1800);
-        final int seconds = (int) ((ticks / 30) % 60);
-        if (minutes < 10) {
-            if (seconds < 10) {
-                ContentUtil.drawString(g, "0" + minutes + ":0" + seconds, 44, 48);
-            } else {
-                ContentUtil.drawString(g, "0" + minutes + ":" + seconds, 44, 48);
-            }
-        } else {
-            if (seconds < 10) {
-                ContentUtil.drawString(g, minutes + ":0" + seconds, 44, 48);
-            } else {
-                ContentUtil.drawString(g, minutes + ":" + seconds, 44, 48);
-            }
+        ContentUtil.drawString(g, "GAME OVER", STRING_COL, 150);
+        if (finalScore.getScore() >= 500) {
+            ContentUtil.drawString(g, "3 stelle michelin", STRING_COL, 300);
+        } else if (finalScore.getScore() >= 200 &&  finalScore.getScore() < 500) {
+            ContentUtil.drawString(g, "2 stella michelin", STRING_COL, 300);
+        } else if (finalScore.getScore() >= 100 &&  finalScore.getScore() < 200) {
+            ContentUtil.drawString(g, "1 stella michelin", STRING_COL, 300);
+        } else if (finalScore.getScore() < 100) {
+            ContentUtil.drawString(g, "lavapiatti", STRING_COL, 300);
         }
 
-        ContentUtil.drawString(g, "rank", 48, 66);
-        if (rank == 1) {
-            ContentUtil.drawString(g, "3 stelle michelin", 20, 78);
-        } else if (rank == 2) {
-            ContentUtil.drawString(g, "2 stella michelin", 24, 78);
-        } else if (rank == 3) {
-            ContentUtil.drawString(g, "1 stella michelin", 32, 78);
-        } else if (rank == 4) {
-            ContentUtil.drawString(g, "lavapiatti", 8, 78);
-        }
-
-        ContentUtil.drawString(g, "press any key", 12, 110);
+        ContentUtil.drawString(g, "press any key", STRING_COL, 420);
     }
 }
