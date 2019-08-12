@@ -13,7 +13,7 @@ public abstract class AbstractEntity extends AbstractGameObject implements Dynam
     private final World world;
 
     /**
-     * Creates an {@code AbstractEntity}.
+     * Creates an {@link AbstractEntity}.
      * 
      * @param position initial entity
      * @param world    reference
@@ -26,7 +26,6 @@ public abstract class AbstractEntity extends AbstractGameObject implements Dynam
     /**
      * {@inheritDoc}
      */
-    @Override
     public World getWorld() {
         return this.world;
     }

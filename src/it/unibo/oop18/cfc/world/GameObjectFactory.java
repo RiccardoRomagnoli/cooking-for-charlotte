@@ -121,8 +121,7 @@ public interface GameObjectFactory {
     /**
      * Creates a new {@link ParquetFloor}.
      *
-     * @param position    the {@link Position}
-     * @param leftParquet the left parquet
+     * @param position the {@link Position}
      * @return the {@link ParquetFloor}
      */
     ParquetFloor createParquetFloor(Position position);

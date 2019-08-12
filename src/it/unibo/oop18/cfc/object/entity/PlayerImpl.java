@@ -13,9 +13,13 @@ import it.unibo.oop18.cfc.physics.Direction;
 import it.unibo.oop18.cfc.physics.DynamicPhysicsComponent;
 import it.unibo.oop18.cfc.physics.DynamicPhysicsComponentImpl;
 import it.unibo.oop18.cfc.sprite.PlayerSprites;
+import it.unibo.oop18.cfc.sprite.SpriteSheet;
 import it.unibo.oop18.cfc.util.Position;
 import it.unibo.oop18.cfc.world.World;
 
+/**
+ * The Class PlayerImpl.
+ */
 public class PlayerImpl extends AbstractEntity implements Player {
 
     // gameplay
@@ -30,7 +34,11 @@ public class PlayerImpl extends AbstractEntity implements Player {
     private final GraphicsComponent gfx;
 
     /**
-     * @param tm
+     * Instantiates a new player impl.
+     *
+     * @param position the position
+     * @param playerSprites the player sprites
+     * @param world the world
      */
     public PlayerImpl(final Position position, final PlayerSprites playerSprites, final World world) {
         super(position, world);
@@ -43,73 +51,104 @@ public class PlayerImpl extends AbstractEntity implements Player {
         this.gfx = new DynamicPlayerGraphicsComponent(this, playerSprites);
     }
 
+
     /**
-     *
-     */
+    * {@inheritDoc}
+    */
     public void increasePoints() {
         points++;
     }
 
+
     /**
-     *
-     */
+    * {@inheritDoc}
+    */
     public int getPoints() {
         return points;
     }
 
+
     /**
-     *
-     */
+    * {@inheritDoc}
+    */
     public int getTotalPoints() {
         return totalPoints;
     }
 
+
     /**
-     * @param i total point to reach
-     */
+    * {@inheritDoc}
+    */
     public void setTotalPoints(final int i) {
         totalPoints = i;
     }
 
+    /**
+    * {@inheritDoc}
+    */
     public int getLifes() {
         return this.lifes;
     }
 
+    /**
+    * {@inheritDoc}
+    */
     public void decLifes() {
         this.lifes--;
     }
 
+    /**
+    * {@inheritDoc}
+    */
     public Optional<Item> getItemInHand() {
         return this.hand;
     }
 
+    /**
+    * {@inheritDoc}
+    */
     public void setItemInHand(final Item i) {
         this.hand = Optional.ofNullable(i);
     }
 
+    /**
+    * {@inheritDoc}
+    */
     public void removeItemInHand() {
         this.hand = Optional.empty();
     }
 
+    /**
+    * {@inheritDoc}
+    */
     public boolean isCutting() {
         return actionCut;
     }
 
+    /**
+    * {@inheritDoc}
+    */
     public void setCutAction(final boolean b) {
         this.actionCut = b;
     }
 
+    /**
+    * {@inheritDoc}
+    */
     public DynamicPhysicsComponent getPhysics() {
         return physics;
     }
 
+    /**
+    * {@inheritDoc}
+    */
     public PlayerInputComponent getInput() {
         return input;
     }
 
     /**
-     *
-     */
+    * {@inheritDoc}
+    */
     public void update() {
         this.input.processInput();
         this.physics.move();
@@ -119,20 +158,25 @@ public class PlayerImpl extends AbstractEntity implements Player {
     }
 
     /**
-     * @param g element to draw
-     */
+    * {@inheritDoc}
+    */
     public void draw(final Graphics2D g) {
         gfx.draw(g);
     }
 
-    @Override
+
+    /**
+    * {@inheritDoc}
+    */
     public void doAction() {
         super.getWorld().getAllStations().stream()
                 .filter(p -> p.getPosition().samePosition((Position.setInTile(getNextPosition())))).findFirst()
                 .ifPresent(val -> val.doAction(super.getWorld()));
     }
 
-    @Override
+    /**
+    * {@inheritDoc}
+    */
     public void cutIngredient() {
         final Optional<ChoppingStation> cs = super.getWorld().getChoppingStations().stream()
                 .filter(p -> p.getPosition().samePosition((Position.setInTile(getNextPosition())))).findFirst();
@@ -143,25 +187,28 @@ public class PlayerImpl extends AbstractEntity implements Player {
         }
     }
 
+    /**
+    * {@inheritDoc}
+    */
     public Position getNextPosition() {
         final Position nextPosition = new Position(0, 0);
         final Direction way = this.physics.getVelocity().getOldDirection();
         switch (way) {
         case UP:
-            nextPosition.setX(this.getPosition().getX() + 32);
+            nextPosition.setX(this.getPosition().getX() + SpriteSheet.SPRITE_SIZE_IN_GAME / 2);
             nextPosition.setY(this.getPosition().getY() - 1);
             break;
         case DOWN:
-            nextPosition.setX(this.getPosition().getX() + 32);
-            nextPosition.setY(this.getPosition().getY() + 65);
+            nextPosition.setX(this.getPosition().getX() + SpriteSheet.SPRITE_SIZE_IN_GAME / 2);
+            nextPosition.setY(this.getPosition().getY() + SpriteSheet.SPRITE_SIZE_IN_GAME + 1);
             break;
         case LEFT:
             nextPosition.setX(this.getPosition().getX() - 1);
-            nextPosition.setY(this.getPosition().getY() + 32);
+            nextPosition.setY(this.getPosition().getY() + SpriteSheet.SPRITE_SIZE_IN_GAME / 2);
             break;
         case RIGHT:
-            nextPosition.setX(this.getPosition().getX() + 65);
-            nextPosition.setY(this.getPosition().getY() + 32);
+            nextPosition.setX(this.getPosition().getX() + SpriteSheet.SPRITE_SIZE_IN_GAME + 1);
+            nextPosition.setY(this.getPosition().getY() + SpriteSheet.SPRITE_SIZE_IN_GAME / 2);
             break;
         default:
             break;
