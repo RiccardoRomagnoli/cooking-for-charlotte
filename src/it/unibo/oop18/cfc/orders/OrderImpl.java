@@ -2,6 +2,7 @@ package it.unibo.oop18.cfc.orders;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -15,9 +16,9 @@ import it.unibo.oop18.cfc.object.items.Plate;
 
 public class OrderImpl implements Order {
 
-    private final static int TIMER_PERIOD = 1000;
+    private static final  int TIMER_PERIOD = 1000;
 
-    private final ArrayList<OrderIngredient> ingredientsList;
+    private final List<OrderIngredient> ingredientsList;
     private int points;
     private int slot;
     private boolean paused;
@@ -45,9 +46,11 @@ public class OrderImpl implements Order {
         return points;
     }
 
-    public void addIngredient(IngredientType ingredientType, IngredientState ingredientState) {
-        if (ingredientsList.size() == 4)
+    public void addIngredient(final IngredientType ingredientType, final IngredientState ingredientState) {
+        if (ingredientsList.size() == 4) {
             throw new IllegalStateException();
+
+        }
         ingredientsList.add(
                 new IngredientImpl(this.ordersManager.getWorld().getItemManager(), ingredientType, ingredientState));
     }
@@ -78,7 +81,7 @@ public class OrderImpl implements Order {
     }
 
     @Override
-    public ArrayList<OrderIngredient> getIngredientsList() {
+    public List<OrderIngredient> getIngredientsList() {
         return ingredientsList;
     }
 

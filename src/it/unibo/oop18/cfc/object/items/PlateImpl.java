@@ -4,14 +4,14 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
-
+import java.util.List;
 import it.unibo.oop18.cfc.manager.ItemManager;
 import it.unibo.oop18.cfc.util.CheckStatus;
 import it.unibo.oop18.cfc.util.Position;
 
 public class PlateImpl extends AbstractItem implements Plate {
 
-    private ArrayList<IngredientImpl> ingredients;
+    private List<IngredientImpl> ingredients;
     private int points;
 
     public PlateImpl(final ItemManager itemManager) {
@@ -20,11 +20,11 @@ public class PlateImpl extends AbstractItem implements Plate {
         this.points = 0;
     }
 
-    public void addDish(IngredientImpl ing) {
+    public void addDish(final IngredientImpl ing) {
         ingredients.add(ing);
     }
 
-    public IngredientImpl getIngredient(int pos) {
+    public IngredientImpl getIngredient(final int pos) {
         return ingredients.get(pos);
     }
 
@@ -33,8 +33,6 @@ public class PlateImpl extends AbstractItem implements Plate {
     }
 
     /**
-     * TODO. Add method description
-     * 
      * @return true if it's ready, or viceversa
      */
     public boolean checkReady() {
@@ -51,12 +49,12 @@ public class PlateImpl extends AbstractItem implements Plate {
     }
 
     @Override
-    public ArrayList<IngredientImpl> getIngredients() {
+    public List<IngredientImpl> getIngredients() {
         return this.ingredients;
     }
 
     @Override
-    public void draw(Graphics2D g, Position p) {
+    public void draw(final Graphics2D g, final Position p) {
         if (this.ingredients.size() == 0) {
             g.drawImage(super.getItemManager().getPlateSprites().getPlateSprite().get(0).getImage(),
                     AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
@@ -68,7 +66,7 @@ public class PlateImpl extends AbstractItem implements Plate {
     }
 
     @Override
-    public void draw(Graphics2D g, Position p, int width, int height) {
+    public void draw(final Graphics2D g, final Position p, final int width, final int height) {
         if (this.ingredients.size() == 0) {
             g.drawImage(
                     super.getItemManager().getPlateSprites().getPlateSprite().get(0).getImage().getScaledInstance(width,
@@ -85,13 +83,13 @@ public class PlateImpl extends AbstractItem implements Plate {
     /**
      * Matches each order Ingredient to each plate ingredient if found a match
      * removes the ingredients matched in the plate if there is no match for just an
-     * order ingredient it fails directly
+     * order ingredient it fails directly.
      * 
      * @param ingredientsList List of order ingredients
      */
     @Override
-    public boolean checkIngredients(ArrayList<OrderIngredient> ingredientsList) {
-        ArrayList<IngredientImpl> cloneIngredients = (ArrayList<IngredientImpl>) ingredients.clone();
+    public boolean checkIngredients(final List<OrderIngredient> ingredientsList) {
+        List<IngredientImpl> cloneIngredients = new ArrayList<IngredientImpl>(ingredients);
         boolean found = false;
         int index = 0;
         int indexFound = 0;

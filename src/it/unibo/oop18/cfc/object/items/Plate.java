@@ -1,15 +1,15 @@
 package it.unibo.oop18.cfc.object.items;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface Plate {
     void addDish(IngredientImpl d);
 
     IngredientImpl getIngredient(int pos);
 
-    ArrayList<IngredientImpl> getIngredients();
+    List<IngredientImpl> getIngredients();
 
     public boolean checkReady();
 
-    public boolean checkIngredients(ArrayList<OrderIngredient> ingredientsList);
+    public boolean checkIngredients(List<OrderIngredient> ingredientsList);
 }

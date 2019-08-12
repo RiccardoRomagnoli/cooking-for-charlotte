@@ -1,7 +1,7 @@
 package it.unibo.oop18.cfc.orders;
 
 import java.awt.Graphics2D;
-import java.util.ArrayList;
+import java.util.List;
 
 import it.unibo.oop18.cfc.object.items.Plate;
 import it.unibo.oop18.cfc.world.World;
@@ -26,9 +26,9 @@ public interface OrdersManager {
 
     public void orderFailed(Order o);
 
-    public ArrayList<Order> getCurrentOrders();
+    public List<Order> getCurrentOrders();
 
-    public ArrayList<Order> getFinishedOrders();
+    public List<Order> getFinishedOrders();
 
     public void startGeneration();
 

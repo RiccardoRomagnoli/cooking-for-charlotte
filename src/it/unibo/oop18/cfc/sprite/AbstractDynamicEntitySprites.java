@@ -3,6 +3,7 @@ package it.unibo.oop18.cfc.sprite;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import it.unibo.oop18.cfc.physics.Direction;
 
@@ -11,7 +12,7 @@ import it.unibo.oop18.cfc.physics.Direction;
  */
 public abstract class AbstractDynamicEntitySprites {
 
-    private final HashMap<Direction, Sprite> stop;
+    private final Map<Direction, Sprite> stop;
     private final List<Sprite> left;
     private final List<Sprite> right;
     private final List<Sprite> down;
@@ -34,7 +35,7 @@ public abstract class AbstractDynamicEntitySprites {
      *
      * @return list of {@link Sprite} to represent a still entity
      */
-    public HashMap<Direction, Sprite> getStopSprites() {
+    public Map<Direction, Sprite> getStopSprites() {
         return this.stop;
     }
 

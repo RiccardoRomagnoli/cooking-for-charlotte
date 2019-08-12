@@ -2,6 +2,7 @@ package it.unibo.oop18.cfc.orders;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import it.unibo.oop18.cfc.object.items.Plate;
@@ -11,8 +12,8 @@ import it.unibo.oop18.cfc.world.World;
 public class OrdersManagerImpl implements OrdersManager {
 
     private static final long INTERVAL_MILLISECONDS = 30000;
-    private final ArrayList<Order> currentOrders;
-    private final ArrayList<Order> finishedOrders;
+    private final List<Order> currentOrders;
+    private final List<Order> finishedOrders;
     private GameTimer gameTimer;
     private final OrderGeneratorImpl generator;
     private final World world;
@@ -42,7 +43,7 @@ public class OrdersManagerImpl implements OrdersManager {
 
     /**
      * delegates draw of each order by setting them their slot which is the index of
-     * order list
+     * order list.
      */
     @Override
     public void draw(Graphics2D g) {
@@ -81,12 +82,12 @@ public class OrdersManagerImpl implements OrdersManager {
     }
 
     @Override
-    public ArrayList<Order> getCurrentOrders() {
+    public List<Order> getCurrentOrders() {
         return currentOrders;
     }
 
     @Override
-    public ArrayList<Order> getFinishedOrders() {
+    public List<Order> getFinishedOrders() {
         return finishedOrders;
     }
 
