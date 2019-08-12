@@ -24,10 +24,10 @@ public class DynamicPlayerGraphicsComponent implements GraphicsComponent {
     private int updateFrame;
 
     /**
-     * Creates {@code DynamicEntityGraphicsComponent}.
+     * Creates {@link DynamicEntityGraphicsComponent}.
      *
-     * @param entity  reference to take its direction
-     * @param sprites for player and entity animations
+     * @param entity  {@link AbstractEntity} referenced to take its direction
+     * @param sprites {@link PlayerSprites} for player animations
      */
     public DynamicPlayerGraphicsComponent(final AbstractEntity entity, final PlayerSprites sprites) {
         this.sprites = sprites;
@@ -41,8 +41,8 @@ public class DynamicPlayerGraphicsComponent implements GraphicsComponent {
      */
     public void draw(final Graphics2D g) {
         this.nextFrame();
-        Direction dir = this.entity.getPhysics().getVelocity().getDirection();
-        Direction oldDir = this.entity.getPhysics().getVelocity().getOldDirection();
+        final Direction dir = this.entity.getPhysics().getVelocity().getDirection();
+        final Direction oldDir = this.entity.getPhysics().getVelocity().getOldDirection();
         switch (dir) {
         case UP:
             g.drawImage(this.sprites.getUpSprites().get(this.frame).getImage(), AffineTransform
@@ -79,8 +79,6 @@ public class DynamicPlayerGraphicsComponent implements GraphicsComponent {
     private void nextFrame() {
         if (this.entity.getPhysics().getVelocity().getDirection() != Direction.STOP) {
             this.nextMoveFrame();
-        } else {
-            this.nextStopFrame();
         }
     }
 
@@ -91,12 +89,6 @@ public class DynamicPlayerGraphicsComponent implements GraphicsComponent {
             this.frame = this.frame >= this.sprites.getSpritesNumberToMove() ? 0 : this.frame;
         }
         this.resetUpdateFrameCounter();
-    }
-
-    private void nextStopFrame() {
-//        this.updateFrame += 1;
-//        this.frame = this.updateFrame < STOP_FRAME_DELAY ? 0 : 1;
-//        this.resetUpdateFrameCounter();
     }
 
     private void resetUpdateFrameCounter() {

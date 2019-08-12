@@ -25,6 +25,7 @@ public class CookerGraphicComponent implements GraphicsComponent {
     private static final int POSITION_Y_BAR = 46;
     private static final double WIDTH_BAR = 28.0;
     private static final int HEIGHT_BAR = 6;
+    private static final int TIME_TO_BURN = 5;
 
     private final Cooker cooker;
     private final CookerTile cookerTile;
@@ -33,11 +34,11 @@ public class CookerGraphicComponent implements GraphicsComponent {
     private int updateFrame;
 
     /**
-     * Instantiates a new cooker graphic component.
+     * Instantiates a new {@link CookerGraphicComponent}.
      *
-     * @param cooker        the cooker
-     * @param cookerTile    the cooker tile
-     * @param loadingSprite the loading sprite
+     * @param cooker        the {@link Cooker}
+     * @param cookerTile    the {@link CookerTile} to draw
+     * @param loadingSprite the {@link LoadingSprite} to draw
      */
     public CookerGraphicComponent(final Cooker cooker, final CookerTile cookerTile, final LoadingSprite loadingSprite) {
         this.cooker = cooker;
@@ -75,15 +76,15 @@ public class CookerGraphicComponent implements GraphicsComponent {
                 g.drawImage(loadingSprite.getLoadingSprite().get(2).getImage(),
                         (int) this.cooker.getPosition().getX() + POSITION_X_BAR,
                         (int) this.cooker.getPosition().getY() + POSITION_Y_BAR,
-                        (int) ((WIDTH_BAR / (5 * 1000)) * (this.cooker.getCookerTimer().getTimeMillis()
+                        (int) ((WIDTH_BAR / (TIME_TO_BURN * 1000)) * (this.cooker.getCookerTimer().getTimeMillis()
                                 - (this.cooker.getFood().get().getIngredient().getTimeToCook() * 1000))),
                         HEIGHT_BAR, null);
             } else if (this.cooker.getFood().get().getState() == IngredientState.BURNED) {
                 g.drawImage(loadingSprite.getLoadingSprite().get(3).getImage(),
                         (int) this.cooker.getPosition().getX() + POSITION_X_BAR,
                         (int) this.cooker.getPosition().getY() + POSITION_Y_BAR,
-                        (int) ((WIDTH_BAR / (5 * 1000)) * (this.cooker.getCookerTimer().getTimeMillis()
-                                - (this.cooker.getFood().get().getIngredient().getTimeToCook() * 1000) - 5000)),
+                        (int) ((WIDTH_BAR / (TIME_TO_BURN * 1000)) * (this.cooker.getCookerTimer().getTimeMillis()
+                                - (this.cooker.getFood().get().getIngredient().getTimeToCook() * 1000) - TIME_TO_BURN * 1000)),
                         HEIGHT_BAR, null);
             }
         }

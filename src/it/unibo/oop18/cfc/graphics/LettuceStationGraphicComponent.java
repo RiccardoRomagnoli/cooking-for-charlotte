@@ -15,10 +15,10 @@ public class LettuceStationGraphicComponent implements GraphicsComponent {
     private final LettuceStationTile lettuceStationTile;
 
     /**
-     * Instantiates a new lettuce station graphic component.
+     * Instantiates a new {@link LettuceStationGraphicComponent}.
      *
-     * @param lettuceStation     the lettuce station
-     * @param lettuceStationTile the lettuce station tile
+     * @param lettuceStation     the {@link LettuceStation}
+     * @param lettuceStationTile the {@link LettuceStationTile} to draw
      */
     public LettuceStationGraphicComponent(final LettuceStation lettuceStation,
             final LettuceStationTile lettuceStationTile) {

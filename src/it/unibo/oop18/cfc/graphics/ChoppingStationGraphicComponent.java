@@ -30,11 +30,11 @@ public class ChoppingStationGraphicComponent implements GraphicsComponent {
     private int updateFrame;
 
     /**
-     * Instantiates a new chopping station graphic component.
+     * Instantiates a new {@link ChoppingStationGraphicComponent}.
      *
-     * @param choppingStation     the chopping station
-     * @param choppingStationTile the chopping station tile
-     * @param loadingSprite       the loading sprite
+     * @param choppingStation     the {@link ChoppingStation}
+     * @param choppingStationTile the {@link ChoppingStationTile} to draw
+     * @param loadingSprite       the {@link LoadingSprite} to draw
      */
     public ChoppingStationGraphicComponent(final ChoppingStation choppingStation,
             final ChoppingStationTile choppingStationTile, final LoadingSprite loadingSprite) {

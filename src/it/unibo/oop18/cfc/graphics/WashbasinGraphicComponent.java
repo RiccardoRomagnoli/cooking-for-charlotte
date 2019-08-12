@@ -14,10 +14,10 @@ public class WashbasinGraphicComponent implements GraphicsComponent {
     private final WashbasinTile washbasinTile;
 
     /**
-     * Instantiates a new washbasin graphic component.
+     * Instantiates a new {@link WashbasinGraphicComponent}.
      *
-     * @param washbasin     the washbasin
-     * @param washbasinTile the washbasin tile
+     * @param washbasin     the {@link Washbasin}
+     * @param washbasinTile the {@link WashbasinTile} to draw
      */
     public WashbasinGraphicComponent(final Washbasin washbasin, final WashbasinTile washbasinTile) {
         this.washbasin = washbasin;

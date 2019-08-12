@@ -27,9 +27,9 @@ public class OrderGraphicComponent implements GraphicsComponent {
     private final Order order;
 
     /**
-     * Instantiates a new order graphic component.
+     * Instantiates a new {@link OrderGraphicComponent}.
      *
-     * @param order the order
+     * @param order the {@link Order}
      */
     public OrderGraphicComponent(final Order order) {
         this.order = order;

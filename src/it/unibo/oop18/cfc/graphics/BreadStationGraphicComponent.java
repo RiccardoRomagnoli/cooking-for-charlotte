@@ -15,10 +15,10 @@ public class BreadStationGraphicComponent implements GraphicsComponent {
     private final BreadStationTile breadStationTile;
 
     /**
-     * Instantiates a new bread station graphic component.
+     * Instantiates a new {@link BreadStationGraphicComponent}.
      *
-     * @param breadStation     the bread station
-     * @param breadStationTile the bread station tile
+     * @param breadStation     the {@link BreadStation}
+     * @param breadStationTile the {@link BreadStationTile} to draw
      */
     public BreadStationGraphicComponent(final BreadStation breadStation, final BreadStationTile breadStationTile) {
         this.breadStation = breadStation;

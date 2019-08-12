@@ -27,8 +27,8 @@ public class CounterGraphicComponent implements GraphicsComponent {
     /**
      * Instantiates a new counter graphic component.
      *
-     * @param counter     the counter
-     * @param counterTile the counter tile
+     * @param counter     the {@link Counter}
+     * @param counterTile the {@link CounterTile} to draw
      */
     public CounterGraphicComponent(final Counter counter, final CounterTile counterTile) {
         this.counter = counter;
@@ -38,7 +38,6 @@ public class CounterGraphicComponent implements GraphicsComponent {
     /**
      * {@inheritDoc}
      */
-    @Override
     public void draw(final Graphics2D g) {
         if (this.counter.getPosition().getX() == 0
                 || this.counter.getPosition().getX() == GameEngine.WIDTH - TileSheet.TILE_SIZE_IN_GAME) {

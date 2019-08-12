@@ -14,10 +14,10 @@ public class PlateStationGraphicComponent implements GraphicsComponent {
     private final PlateStationTile plateStationTile;
 
     /**
-     * Instantiates a new plate station graphic component.
+     * Instantiates a new {@link PlateStationGraphicComponent}.
      *
-     * @param plateStation     the plate station
-     * @param plateStationTile the plate station tile
+     * @param plateStation     the {@link PlateStation}
+     * @param plateStationTile the {@link PlateStationTile} to draw
      */
     public PlateStationGraphicComponent(final PlateStation plateStation, final PlateStationTile plateStationTile) {
         this.plateStation = plateStation;

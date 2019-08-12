@@ -15,10 +15,10 @@ public class TomatoStationGraphicComponent implements GraphicsComponent {
     private final TomatoStationTile tomatoStationTile;
 
     /**
-     * Instantiates a new tomato station graphic component.
+     * Instantiates a new {@link TomatoStationGraphicComponent}.
      *
-     * @param tomatoStation     the tomato station
-     * @param tomatoStationTile the tomato station tile
+     * @param tomatoStation     the {@link TomatoStation}
+     * @param tomatoStationTile the {@link TomatoStationTile} to draw
      */
     public TomatoStationGraphicComponent(final TomatoStation tomatoStation, final TomatoStationTile tomatoStationTile) {
         this.tomatoStation = tomatoStation;

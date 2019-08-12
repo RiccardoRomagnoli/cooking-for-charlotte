@@ -14,10 +14,10 @@ public class TrashcanGraphicComponent implements GraphicsComponent {
     private final TrashcanTile trashcanTile;
 
     /**
-     * Instantiates a new trashcan graphic component.
+     * Instantiates a new {@link TrashcanGraphicComponent}.
      *
-     * @param trashcan     the trashcan
-     * @param trashcanTile the trashcan tile
+     * @param trashcan     the {@link Trashcan}
+     * @param trashcanTile the {@link TrashcanTile} to draw
      */
     public TrashcanGraphicComponent(final Trashcan trashcan, final TrashcanTile trashcanTile) {
         this.trashcan = trashcan;

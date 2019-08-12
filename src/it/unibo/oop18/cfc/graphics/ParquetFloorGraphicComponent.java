@@ -17,10 +17,10 @@ public class ParquetFloorGraphicComponent implements GraphicsComponent {
     private final ParquetFloorTile parquetFloorTile;
 
     /**
-     * Instantiates a new parquet floor graphic component.
+     * Instantiates a new {@link ParquetFloorGraphicComponent}.
      *
-     * @param parquetFloor     the parquet floor
-     * @param parquetFloorTile the parquet floor tile
+     * @param parquetFloor     the {@link ParquetFloor}
+     * @param parquetFloorTile the {@link ParquetFloorTile} to draw
      */
     public ParquetFloorGraphicComponent(final ParquetFloor parquetFloor, final ParquetFloorTile parquetFloorTile) {
         this.parquetFloor = parquetFloor;

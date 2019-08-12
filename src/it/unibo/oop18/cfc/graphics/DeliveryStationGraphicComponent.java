@@ -14,10 +14,10 @@ public class DeliveryStationGraphicComponent implements GraphicsComponent {
     private final DeliveryStationTile deliveryStationTile;
 
     /**
-     * Instantiates a new delivery station graphic component.
+     * Instantiates a new {@link DeliveryStationGraphicComponent}.
      *
-     * @param deliveryStation     the delivery station
-     * @param deliveryStationTile the delivery station tile
+     * @param deliveryStation     the {@link DeliveryStation}
+     * @param deliveryStationTile the {@link DeliveryStationTile} to draw
      */
     public DeliveryStationGraphicComponent(final DeliveryStation deliveryStation,
             final DeliveryStationTile deliveryStationTile) {

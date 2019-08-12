@@ -15,10 +15,10 @@ public class MeatStationGraphicComponent implements GraphicsComponent {
     private final MeatStationTile meatStationTile;
 
     /**
-     * Instantiates a new meat station graphic component.
+     * Instantiates a new {@link MeatStationGraphicComponent}.
      *
-     * @param meatStation     the meat station
-     * @param meatStationTile the meat station tile
+     * @param meatStation     the {@link MeatStation}
+     * @param meatStationTile the {@link MeatStationTile}
      */
     public MeatStationGraphicComponent(final MeatStation meatStation, final MeatStationTile meatStationTile) {
         this.meatStation = meatStation;
