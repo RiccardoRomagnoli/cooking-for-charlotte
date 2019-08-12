@@ -45,11 +45,11 @@ public class OrdersManagerImpl implements OrdersManager {
      * order list
      */
     @Override
-    public void draw(Graphics2D g) {
-        currentOrders.stream().forEach(o -> {
+    public void draw(Graphics2D g) {  
+        for(Order o : this.currentOrders) {
             o.setSlot(currentOrders.indexOf(o));
             o.draw(g);
-        });
+        }
     }
 
     @Override
@@ -74,9 +74,11 @@ public class OrdersManagerImpl implements OrdersManager {
 
     @Override
     public void orderFailed(Order order) {
+        order.stopOrder();
         currentOrders.remove(order);
         finishedOrders.add(order);
         this.world.getPlayer().decLifes();
+        System.out.println("Just losed a life");
     }
 
     @Override
@@ -97,7 +99,6 @@ public class OrdersManagerImpl implements OrdersManager {
     @Override
     public void stopGeneration() {
         generator.stopGeneration();
-        ;
     }
 
     /**
@@ -115,6 +116,7 @@ public class OrdersManagerImpl implements OrdersManager {
     }
 
     private void orderSucceed(Order order) {
+        order.stopOrder();
         currentOrders.remove(order);
         finishedOrders.add(order);
     }

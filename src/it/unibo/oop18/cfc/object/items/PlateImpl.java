@@ -115,9 +115,9 @@ public class PlateImpl extends AbstractItem implements Plate {
             }
             if (found) {
                 cloneIngredients.remove(indexFound);
-            }
-            if (!found)
+            }else {
                 return false;
+            }
         }
         return true;
     }
