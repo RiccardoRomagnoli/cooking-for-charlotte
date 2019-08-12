@@ -6,7 +6,6 @@ import java.util.Optional;
 import it.unibo.oop18.cfc.graphics.CounterGraphicComponent;
 import it.unibo.oop18.cfc.graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.object.items.IngredientImpl;
-import it.unibo.oop18.cfc.object.items.IngredientType;
 import it.unibo.oop18.cfc.object.items.Item;
 import it.unibo.oop18.cfc.object.items.PlateImpl;
 import it.unibo.oop18.cfc.tile.CounterTile;

@@ -5,10 +5,6 @@ import java.io.IOException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import it.unibo.oop18.cfc.main.GameEngine;
-import it.unibo.oop18.cfc.manager.ItemManager;
-import it.unibo.oop18.cfc.object.entity.Player;
-import it.unibo.oop18.cfc.object.items.Ingredient;
 import it.unibo.oop18.cfc.object.items.IngredientImpl;
 import it.unibo.oop18.cfc.object.items.IngredientState;
 import it.unibo.oop18.cfc.object.items.IngredientType;
@@ -21,9 +17,6 @@ import it.unibo.oop18.cfc.orders.OrderGeneratorImpl;
 import it.unibo.oop18.cfc.orders.OrderImpl;
 import it.unibo.oop18.cfc.orders.OrdersManager;
 import it.unibo.oop18.cfc.orders.OrdersManagerImpl;
-import it.unibo.oop18.cfc.physics.Direction;
-import it.unibo.oop18.cfc.sprite.SpriteSheet;
-import it.unibo.oop18.cfc.util.Position;
 import it.unibo.oop18.cfc.world.World;
 import it.unibo.oop18.cfc.world.WorldImpl;
 
@@ -36,7 +29,7 @@ public class TestOrders {
     private World world;
 
     /**
-     * Test the correct generation of an order
+     * Test the correct generation of an order.
      *
      * @throws IOException
      */

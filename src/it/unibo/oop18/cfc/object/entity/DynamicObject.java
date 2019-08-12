@@ -4,7 +4,6 @@ import java.awt.Graphics2D;
 
 import it.unibo.oop18.cfc.object.GameObject;
 import it.unibo.oop18.cfc.physics.DynamicPhysicsComponent;
-import it.unibo.oop18.cfc.tilemap.TileMapImpl;
 import it.unibo.oop18.cfc.world.World;
 
 /**

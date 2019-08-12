@@ -4,9 +4,8 @@ import java.awt.geom.Rectangle2D;
 import java.util.Set;
 
 import it.unibo.oop18.cfc.object.items.Item;
-import it.unibo.oop18.cfc.tilemap.TileType;
-import it.unibo.oop18.cfc.util.Position;
 import it.unibo.oop18.cfc.util.Velocity;
+import it.unibo.oop18.cfc.util.VelocityImpl;
 
 public interface DynamicPhysicsComponent {
 

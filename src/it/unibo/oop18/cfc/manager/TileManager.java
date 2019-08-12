@@ -2,6 +2,7 @@ package it.unibo.oop18.cfc.manager;
 
 import java.io.IOException;
 
+import it.unibo.oop18.cfc.sprite.Sprite;
 import it.unibo.oop18.cfc.tile.BreadStationTile;
 import it.unibo.oop18.cfc.tile.ChoppingStationTile;
 import it.unibo.oop18.cfc.tile.CookerTile;

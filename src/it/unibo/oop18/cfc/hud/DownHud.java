@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.stream.IntStream;
+
 import it.unibo.oop18.cfc.main.GameEngine;
 import it.unibo.oop18.cfc.object.items.PlateImpl;
 import it.unibo.oop18.cfc.util.ContentUtil;

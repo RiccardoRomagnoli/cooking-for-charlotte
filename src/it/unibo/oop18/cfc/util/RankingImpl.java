@@ -1,22 +1,22 @@
 package it.unibo.oop18.cfc.util;
 
+import static java.util.Map.Entry.comparingByValue;
+import static java.util.stream.Collectors.toMap;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.Graphics2D;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import it.unibo.oop18.cfc.gamestate.InfoState;
-import static java.util.stream.Collectors.toMap;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.Graphics2D;
 
-import static java.util.Map.Entry.comparingByValue;
+import it.unibo.oop18.cfc.gamestate.InfoState;
 
 /**
  * Ranking class manage a CSV file.

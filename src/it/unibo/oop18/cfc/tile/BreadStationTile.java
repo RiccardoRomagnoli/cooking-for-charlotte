@@ -2,6 +2,7 @@ package it.unibo.oop18.cfc.tile;
 
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
 import it.unibo.oop18.cfc.tilemap.TileType;
 
 /**

@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import it.unibo.oop18.cfc.main.GameEngine;
 import it.unibo.oop18.cfc.manager.ItemManager;
 import it.unibo.oop18.cfc.object.entity.Player;
 import it.unibo.oop18.cfc.object.items.IngredientType;

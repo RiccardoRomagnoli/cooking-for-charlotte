@@ -4,7 +4,6 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import it.unibo.oop18.cfc.manager.ItemManager;
 import it.unibo.oop18.cfc.util.CheckStatus;
@@ -48,10 +47,7 @@ public class PlateImpl extends AbstractItem implements Plate {
                 counter++;
             }
         }
-        if (counter == max) {
-            return true;
-        }
-        return false;
+        return counter == max ? true : false;
     }
 
     @Override

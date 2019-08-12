@@ -1,7 +1,6 @@
 package it.unibo.oop18.cfc.input;
 
 import it.unibo.oop18.cfc.physics.Direction;
-import it.unibo.oop18.cfc.util.Position;
 
 /**
  * Interface to models the player input and manage its commands in the game.

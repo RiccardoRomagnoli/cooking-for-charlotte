@@ -6,6 +6,7 @@ package it.unibo.oop18.cfc.hud;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+
 import it.unibo.oop18.cfc.util.ContentUtil;
 import it.unibo.oop18.cfc.world.World;
 

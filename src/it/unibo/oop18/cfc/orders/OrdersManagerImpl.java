@@ -4,8 +4,6 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import it.unibo.oop18.cfc.graphics.GraphicsComponent;
-import it.unibo.oop18.cfc.graphics.OrderGraphicComponent;
 import it.unibo.oop18.cfc.object.items.Plate;
 import it.unibo.oop18.cfc.util.GameTimer;
 import it.unibo.oop18.cfc.world.World;
@@ -110,8 +108,9 @@ public class OrdersManagerImpl implements OrdersManager {
      */
     private Optional<Order> checkOrder(Plate plate) {
         for (Order order : currentOrders) {
-            if (order.checkOrder(plate))
+            if (order.checkOrder(plate)) {
                 return Optional.ofNullable(order);
+            }
         }
         return Optional.empty();
     }

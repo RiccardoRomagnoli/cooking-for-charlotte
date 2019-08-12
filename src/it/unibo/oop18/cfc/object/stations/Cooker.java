@@ -89,7 +89,7 @@ public class Cooker extends AbstractStationObject {
      * Update.
      */
     public void update() {
-        if (isCooking == true && this.food.isPresent()) {
+        if (isCooking && this.food.isPresent()) {
             if (this.food.get().getState() == IngredientState.CHOPPED
                     && timer.getSeconds() >= this.food.get().getIngredient().getTimeToCook()) {
                 this.food.get().changeState(IngredientState.PERFECT);

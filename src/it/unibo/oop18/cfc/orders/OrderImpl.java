@@ -12,7 +12,6 @@ import it.unibo.oop18.cfc.object.items.IngredientState;
 import it.unibo.oop18.cfc.object.items.IngredientType;
 import it.unibo.oop18.cfc.object.items.OrderIngredient;
 import it.unibo.oop18.cfc.object.items.Plate;
-import it.unibo.oop18.cfc.util.Pair;
 
 public class OrderImpl implements Order {
 

@@ -206,7 +206,7 @@ public class KeyInput implements KeyListener {
             if (keys.keySet().contains(e.getKeyCode())) {
                 keys.put(e.getKeyCode(), false);
             }
-            if (keys.values().stream().filter(k -> k == true).count() == 1) {
+            if (keys.values().stream().filter(k -> k).count() == 1) {
                 keys.keySet().forEach(k -> {
                     if (keys.get(k)) {
                         this.moveEntity(Optional.of(keyToDir(k)));
@@ -239,7 +239,7 @@ public class KeyInput implements KeyListener {
     }
 
     private void handleStopPlayer(final KeyEvent e) {
-        if (keys.values().stream().filter(k -> k == true).count() == 0 && keys.keySet().contains(e.getKeyCode())) {
+        if (keys.values().stream().filter(k -> k).count() == 0 && keys.keySet().contains(e.getKeyCode())) {
             this.gsm.getPlayState().getWorld().getPlayer().getInput().stop();
         }
     }

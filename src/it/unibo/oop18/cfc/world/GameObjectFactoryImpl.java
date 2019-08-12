@@ -23,9 +23,9 @@ import it.unibo.oop18.cfc.util.Position;
  */
 public class GameObjectFactoryImpl implements GameObjectFactory {
 
-    final private SpriteManager sm;
-    final private TileManager tm;
-    final private ItemManager im;
+    private final SpriteManager sm;
+    private final TileManager tm;
+    private final ItemManager im;
 
     /**
      * Instantiates a new game object factory impl.

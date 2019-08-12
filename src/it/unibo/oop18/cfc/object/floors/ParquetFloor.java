@@ -7,7 +7,6 @@ import it.unibo.oop18.cfc.graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.graphics.ParquetFloorGraphicComponent;
 import it.unibo.oop18.cfc.object.items.Item;
 import it.unibo.oop18.cfc.tile.ParquetFloorTile;
-import it.unibo.oop18.cfc.tilemap.TileType;
 import it.unibo.oop18.cfc.util.Position;
 
 public class ParquetFloor extends AbstractFloorObject {

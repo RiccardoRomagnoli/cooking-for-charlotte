@@ -2,6 +2,7 @@ package it.unibo.oop18.cfc.gamestate;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 import it.unibo.oop18.cfc.manager.GameStateManager;
 import it.unibo.oop18.cfc.util.ContentUtil;
