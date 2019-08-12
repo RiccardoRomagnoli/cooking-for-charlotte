@@ -1,11 +1,7 @@
 package it.unibo.oop18.cfc.util;
 
-import java.io.IOException;
-
 /**
- * 
- * Interface for the ranking class.
- *
+ * Manage the ranking.
  */
 public interface Ranking {
 
@@ -21,8 +17,12 @@ public interface Ranking {
     /**
      * Save rank on a csv formatted file.
      * 
-     * @throws IOException
      */
-    void saveRanking() throws IOException;
+    void saveRanking();
+
+    /**
+     * Load rank from a csv formatted file.
+     */
+    void loadRanking();
 
 }

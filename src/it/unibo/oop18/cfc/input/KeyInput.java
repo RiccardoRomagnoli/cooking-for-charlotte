@@ -117,7 +117,7 @@ public class KeyInput implements KeyListener {
         case KeyEvent.VK_UP:
             way = Optional.ofNullable(Direction.UP);
             break;
-        case KeyEvent.VK_Q://TODO: da togliere solo per debug
+        case KeyEvent.VK_Q:// TODO: da togliere solo per debug
             gsm.setState(GameStates.GAMEOVER);
             way = Optional.empty();
             break;

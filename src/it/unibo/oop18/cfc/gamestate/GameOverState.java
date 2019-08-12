@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-
-import it.unibo.oop18.cfc.main.GameEngine;
 import it.unibo.oop18.cfc.manager.GameStateManager;
 import it.unibo.oop18.cfc.orders.OrdersManagerImpl;
 import it.unibo.oop18.cfc.util.ContentUtil;
@@ -18,7 +16,7 @@ import it.unibo.oop18.cfc.util.RankingImpl;
  */
 public class GameOverState extends GameState {
 
-    private Color color;
+    // private Color color;
     private static final int STRING_COL = 50;
     private final GameScoreImpl finalScore = new GameScoreImpl();
     private Font myFont;
@@ -35,11 +33,7 @@ public class GameOverState extends GameState {
     public GameOverState(final GameStateManager gsm) {
         super(gsm, GameStates.GAMEOVER);
         finalScore.computeScore(OrdersManagerImpl.getScore());
-        try {
-            ranking = new RankingImpl();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        ranking = new RankingImpl();
     }
 
     /**
@@ -61,10 +55,8 @@ public class GameOverState extends GameState {
      * {@inheritDoc}
      */
     public void draw(final Graphics2D g) {
-        if (finalScore.getScore() >= 0) { // TODO togliere e mettere score.min
-            // g.setColor(Color.ORANGE);
+        if (finalScore.getScore() >= 0) { // TODO togliere e mettere score.min  
             g.drawImage(bg, 0, 0, null);
-            // g.fillRect(0, 0, GameEngine.WIDTH, GameEngine.HEIGHT3);
             g.drawString("Insert your name:", STRING_COL, 350);
             try {
                 myFont = Font.createFont(Font.TRUETYPE_FONT, InfoState.class.getResourceAsStream("/HUD/comicsans.ttf"));
@@ -77,7 +69,7 @@ public class GameOverState extends GameState {
             g.drawString(String.valueOf(choice), STRING_COL, 500); //
             g.drawString(String.format("Points: %d", OrdersManagerImpl.getScore()), STRING_COL + 350, 500);
         }
-        g.drawString("press any key", STRING_COL, 750);
+        g.drawString("press any key", STRING_COL, 700);
     }
 
     /**

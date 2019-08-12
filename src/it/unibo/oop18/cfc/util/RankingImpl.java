@@ -2,7 +2,6 @@ package it.unibo.oop18.cfc.util;
 
 import static java.util.Map.Entry.comparingByValue;
 import static java.util.stream.Collectors.toMap;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -14,8 +13,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
-
 import it.unibo.oop18.cfc.gamestate.InfoState;
 
 /**
@@ -25,21 +24,19 @@ public class RankingImpl implements Ranking {
 
     private static Map<String, Integer> ranked = new HashMap<>();
     private final int rowNumber;
-    // private static final String RANK_PATH = "/HUD/rank.txt";
-    // private int scoreMin;
 
     /**
      * Constructor.
-     * 
-     * @throws IOException generic exception
      */
-    public RankingImpl() throws IOException {
+    public RankingImpl() {
         this.rowNumber = ranked.size();
         loadRanking(); // Loads the ranking, so now the HashMap is filled
         ranked = orderRank(ranked);
     }
 
     /**
+     * {@inheritDoc}
+     * 
      * @param player player that scored @param points
      */
     public void addPlacement(final String player, final int points) {
@@ -55,19 +52,17 @@ public class RankingImpl implements Ranking {
      */
     public static void printOnScreen(final Graphics2D g) {
         int count = 1;
-        loadRanking();
         Font myFont;
         try {
             myFont = Font.createFont(Font.TRUETYPE_FONT, InfoState.class.getResourceAsStream("/HUD/comicsans.ttf"));
             myFont = myFont.deriveFont(30f);
             g.setFont(myFont);
             g.setColor(Color.green);
-            orderRank(ranked);
             for (final HashMap.Entry<String, Integer> entry : ranked.entrySet()) {
                 final String key = entry.getKey();
                 final Integer value = entry.getValue();
-                g.drawString(String.format("#%d  -  Name: %s  -  Points: %d ", count, key.toUpperCase(), value), 100,
-                        300 + 50 * count);
+                g.drawString(String.format("#%d  -  Name: %s  -  Points: %d ", count, key.toUpperCase(Locale.ENGLISH),
+                        value), 100, 300 + 50 * count);
                 count++;
             }
         } catch (FontFormatException e) {
@@ -78,9 +73,8 @@ public class RankingImpl implements Ranking {
     }
 
     /**
-     * Write the rank to a CSV file.
+     * {@inheritDoc}
      */
-    @Override
     public void saveRanking() {
         FileWriter w;
         BufferedWriter b;
@@ -105,14 +99,18 @@ public class RankingImpl implements Ranking {
      * Read the ranking from the CSV file.
      * 
      */
-    public static final void loadRanking() {
+    public final void loadRanking() {
         try {
             final BufferedReader csvReader = new BufferedReader(new FileReader("rank.txt"));
             String row;
             while ((row = csvReader.readLine()) != null) {
                 final String[] data = row.split(";");
+                try {
                 ranked.put(data[0], Integer.parseInt(data[1]));
-            }
+                }catch(ArrayIndexOutOfBoundsException e) {
+                    //Ignore e
+                }
+                }
             csvReader.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -132,6 +130,7 @@ public class RankingImpl implements Ranking {
     }
 
     /**
+     * Return number of ranked.
      * 
      * @return the number of row in the map (dimension of the map)
      */
