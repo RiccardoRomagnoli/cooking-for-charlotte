@@ -10,7 +10,7 @@ import it.unibo.oop18.cfc.tilemap.TileType;
  */
 public class DeliveryStationTile extends AbstractStationTile {
 
-    private static final int N_TILES = 1;
+    private static final int N_TILES = 5;
 
     /**
      * Instantiates a new delivery station tile.
