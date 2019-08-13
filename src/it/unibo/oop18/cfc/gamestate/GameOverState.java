@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import it.unibo.oop18.cfc.manager.GameStateManager;
+import it.unibo.oop18.cfc.object.items.IngredientImpl;
 import it.unibo.oop18.cfc.orders.OrdersManagerImpl;
 import it.unibo.oop18.cfc.util.ContentUtil;
 import it.unibo.oop18.cfc.util.GameScoreImpl;
@@ -16,7 +17,7 @@ import it.unibo.oop18.cfc.util.RankingImpl;
 public class GameOverState extends GameState {
 
     // private Color color;
-    private static final int STRING_COL = 50;
+    private static final int STRING_COL = 220;
     private final GameScoreImpl finalScore = new GameScoreImpl();
     private Font myFont;
     private char[] choice = "_ _ _ _ _ _ _ _ _ _".toCharArray();
@@ -30,7 +31,7 @@ public class GameOverState extends GameState {
      */
     public GameOverState(final GameStateManager gsm) {
         super(gsm, GameStates.GAMEOVER);
-        finalScore.computeScore(OrdersManagerImpl.getScore());
+        finalScore.computeScore(IngredientImpl.getScore());
         ranking = new RankingImpl();
     }
 
@@ -53,19 +54,19 @@ public class GameOverState extends GameState {
      * {@inheritDoc}
      */
     public void draw(final Graphics2D g) {
-        if (finalScore.getScore() >= 0) { // TODO togliere e mettere score.min  
+        if (finalScore.getScore() >= 0) { // TODO togliere e mettere score.min
             ContentUtil.drawMenu(g);
-            g.drawString("Insert your name:", STRING_COL, 350);
+            g.drawString("Insert your name:", STRING_COL, 300);
             try {
                 myFont = Font.createFont(Font.TRUETYPE_FONT, InfoState.class.getResourceAsStream("/HUD/comicsans.ttf"));
                 myFont = myFont.deriveFont(30f);
                 g.setFont(myFont);
-                g.setColor(Color.orange);
+                g.setColor(Color.DARK_GRAY);
             } catch (Exception e) {
                 e.printStackTrace();
             }
             g.drawString(String.valueOf(choice), STRING_COL, 500); //
-            g.drawString(String.format("Points: %d", OrdersManagerImpl.getScore()), STRING_COL + 350, 500);
+            g.drawString(String.format("Points: %d", IngredientImpl.getScore()), STRING_COL + 350, 500);
         }
         g.drawString("press any key", STRING_COL, 700);
     }
@@ -123,7 +124,7 @@ public class GameOverState extends GameState {
      * Save the ranking and exit.
      */
     public void save() {
-        ranking.addPlacement(getName(), OrdersManagerImpl.getScore());
+        ranking.addPlacement(getName(), IngredientImpl.getScore());
         ranking.saveRanking();
     }
 
@@ -135,4 +136,5 @@ public class GameOverState extends GameState {
     public String getName() {
         return String.valueOf(choice).replaceAll(" ", "").replaceAll("_", "");
     }
+
 }

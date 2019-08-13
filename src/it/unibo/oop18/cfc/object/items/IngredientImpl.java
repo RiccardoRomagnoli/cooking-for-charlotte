@@ -6,6 +6,7 @@ import java.awt.geom.AffineTransform;
 
 import it.unibo.oop18.cfc.manager.ItemManager;
 import it.unibo.oop18.cfc.util.CheckStatus;
+import it.unibo.oop18.cfc.util.GameScoreImpl;
 import it.unibo.oop18.cfc.util.Position;
 
 /**
@@ -15,6 +16,7 @@ public class IngredientImpl extends AbstractItem implements Ingredient, OrderIng
 
     private final IngredientType type;
     private IngredientState state;
+    private static GameScoreImpl score = new GameScoreImpl(); // TODO
 
     /**
      * Instantiates a new {@link IngredientImpl}.
@@ -26,6 +28,7 @@ public class IngredientImpl extends AbstractItem implements Ingredient, OrderIng
         super(itemManager);
         this.type = type;
         this.state = IngredientState.RAW;
+        score.computeScore(0);
     }
 
     /**
@@ -142,9 +145,33 @@ public class IngredientImpl extends AbstractItem implements Ingredient, OrderIng
         CheckStatus returnStatus = CheckStatus.NOT_ACCEPTABLE;
         if (ingredient.getIngredient().equals(this.type) && ingredient.getState().equals(this.state)) {
             returnStatus = CheckStatus.ACCEPTABLE_WITHOUT_ERROR;
-        } else if (ingredient.getIngredient().equals(this.type) && ingredient.getState().equals(IngredientState.BURNED)) {
+        } else if (ingredient.getIngredient().equals(this.type)
+                && ingredient.getState().equals(IngredientState.BURNED)) {
             returnStatus = CheckStatus.ACCEPTABLE_WITH_ERROR;
+        }
+        switch (returnStatus) {
+        case NOT_ACCEPTABLE:
+            score.computeScore(0);
+            break;
+        case ACCEPTABLE_WITH_ERROR:
+            score.computeScore(5);
+            break;
+        case ACCEPTABLE_WITHOUT_ERROR:
+            score.computeScore(10);
+            break;
+        default:
+            break;
         }
         return returnStatus;
     }
+
+    /**
+     * Return integer of points made during game.
+     * 
+     * @return int points
+     */
+    public static int getScore() {
+        return score.getScore();
+    }
+
 }

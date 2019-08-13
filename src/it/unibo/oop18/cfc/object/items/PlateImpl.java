@@ -29,15 +29,15 @@ public class PlateImpl extends AbstractItem implements Plate {
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void addIngredient(final IngredientImpl ing) {
         ingredients.add(ing);
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public IngredientImpl getIngredient(final int pos) {
         return ingredients.get(pos);
     }
@@ -59,15 +59,15 @@ public class PlateImpl extends AbstractItem implements Plate {
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public List<IngredientImpl> getIngredients() {
         return this.ingredients;
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void draw(final Graphics2D g, final Position p) {
         if (this.ingredients.size() == 0) {
             g.drawImage(super.getItemManager().getPlateSprites().getPlateSprite().get(0).getImage(),
@@ -80,8 +80,8 @@ public class PlateImpl extends AbstractItem implements Plate {
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void draw(final Graphics2D g, final Position p, final int width, final int height) {
         if (this.ingredients.size() == 0) {
             g.drawImage(
@@ -97,8 +97,8 @@ public class PlateImpl extends AbstractItem implements Plate {
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public boolean checkIngredients(final List<OrderIngredient> ingredientsList) {
         final List<IngredientImpl> cloneIngredients = new ArrayList<IngredientImpl>(ingredients);
         boolean found = false;
@@ -124,15 +124,15 @@ public class PlateImpl extends AbstractItem implements Plate {
                 return false;
             }
         }
-        if(cloneIngredients.size() == 0) {
+        if (cloneIngredients.size() == 0) {
             return true;
         }
         return false;
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void wash() {
         this.ingredients.clear();
     }
@@ -140,4 +140,5 @@ public class PlateImpl extends AbstractItem implements Plate {
     private void updatePoints(final int points) {
         this.points += points;
     }
+
 }

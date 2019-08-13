@@ -49,6 +49,7 @@ public class ChoppingStationGraphicComponent implements GraphicsComponent {
      * {@inheritDoc}
      */
     public void draw(final Graphics2D g) {
+        
         if (this.choppingStation.isCut()) {
             this.nextFrame();
             g.drawImage(this.choppingStationTile.getTiles().get(this.frame).getImage(),

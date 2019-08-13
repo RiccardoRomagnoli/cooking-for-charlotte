@@ -14,8 +14,6 @@ import it.unibo.oop18.cfc.util.ContentUtil;
  */
 public class InfoState extends GameState {
 
-    private static final int FONT_SIZE = 25;
-
     /**
      * Class constructor.
      * 

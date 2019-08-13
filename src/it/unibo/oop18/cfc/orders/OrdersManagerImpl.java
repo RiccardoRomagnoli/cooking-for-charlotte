@@ -21,7 +21,6 @@ public class OrdersManagerImpl implements OrdersManager {
     private final GameTimer gameTimer;
     private final OrderGeneratorImpl generator;
     private final World world;
-    private static GameScoreImpl score = new GameScoreImpl();
 
     public OrdersManagerImpl(final World world) {
         this.world = world;
@@ -29,7 +28,6 @@ public class OrdersManagerImpl implements OrdersManager {
         finishedOrders = new ArrayList<>();
         gameTimer = world.getGameTimer();
         generator = new OrderGeneratorImpl(this);
-        score.computeScore(0);
     }
 
     public World getWorld() {
@@ -119,34 +117,25 @@ public class OrdersManagerImpl implements OrdersManager {
     public void stopGeneration() {
         generator.stopGeneration();
     }
-    
+
     @Override
     public void pauseGeneration() {
         this.generator.setPaused(true);
     }
-    
+
     @Override
     public void resumeGeneration() {
         this.generator.setPaused(false);
     }
-    
+
     @Override
     public void pauseOrders() {
         this.getCurrentOrders().stream().forEach(o -> o.setPaused(true));
     }
-    
+
     @Override
     public void resumeOrders() {
         this.getCurrentOrders().stream().forEach(o -> o.setPaused(false));
-    }
-    
-    /**
-     * Return integer of points made during game.
-     * 
-     * @return int points
-     */
-    public static int getScore() {
-        return score.getScore();
     }
 
     @Override
@@ -178,7 +167,7 @@ public class OrdersManagerImpl implements OrdersManager {
         order.stopOrder();
         currentOrders.remove(order);
         finishedOrders.add(order);
-        score.computeScore(10);
+        // TODO score.computeScore(10);
     }
 
     /**
@@ -190,15 +179,12 @@ public class OrdersManagerImpl implements OrdersManager {
 
         if (currentMinute > 2) {
             currentDifficulty = OrderDifficulty.MEDIUM;
-            score.computeScore(100);
         }
         if (currentMinute > 8) {
             currentDifficulty = OrderDifficulty.HARD;
-            score.computeScore(400);
         }
         if (currentMinute > 16) {
             currentDifficulty = OrderDifficulty.EXTREME;
-            score.computeScore(1000);
         }
         generator.setDifficulty(currentDifficulty);
     }
