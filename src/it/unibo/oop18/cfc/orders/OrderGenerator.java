@@ -6,7 +6,7 @@ public interface OrderGenerator {
 
     public void startGeneration(long intervalMilliseconds);
 
-    public void generateNewOrder();
+    void setPaused(boolean paused);
 
-    public void stopGeneration();
+    public void generateNewOrder();
 }

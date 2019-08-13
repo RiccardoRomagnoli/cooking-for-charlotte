@@ -119,6 +119,16 @@ public class OrdersManagerImpl implements OrdersManager {
     public void stopGeneration() {
         generator.stopGeneration();
     }
+    
+    @Override
+    public void pauseGeneration() {
+        this.generator.setPaused(true);
+    }
+    
+    @Override
+    public void resumeGeneration() {
+        this.generator.setPaused(false);
+    }
 
     /**
      * Just need the first correct order that matches.

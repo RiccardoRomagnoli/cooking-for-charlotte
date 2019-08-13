@@ -35,4 +35,8 @@ public interface OrdersManager {
     public void stopGeneration();
 
     public World getWorld();
+
+    void pauseGeneration();
+
+    void resumeGeneration();
 }

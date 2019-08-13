@@ -17,6 +17,7 @@ public class OrderGeneratorImpl extends TimerTask implements OrderGenerator {
     private final List<Pair<IngredientType, IngredientState>> orderIngredientsAvaiable;
     private final Random random;
     private final OrdersManager ordersManager;
+    private boolean paused;
 
     public OrderGeneratorImpl(OrdersManager ordersManager) {
         this.ordersManager = ordersManager;
@@ -24,25 +25,27 @@ public class OrderGeneratorImpl extends TimerTask implements OrderGenerator {
         this.orderIngredientsAvaiable = new ArrayList<>();
         this.random = new Random();
         this.currentDifficulty = OrderDifficulty.EASY;
+        this.paused = false;
         initList();
     }
 
     @Override
     public void startGeneration(long intervalMilliseconds) {
         this.timer = new Timer();
-        timer.schedule(this, 0, intervalMilliseconds);
+        this.timer.schedule(this, 0, intervalMilliseconds);
     }
-
+    
     @Override
-    public void stopGeneration() {
-        this.timer.cancel();
-        this.timer.purge();
+    public void setPaused(boolean paused) {
+        this.paused = paused;
     }
 
     @Override
     public void run() {
-        if (ordersManager.getOrderQuantity() != 4) {
-            generateNewOrder();
+        if(!paused) {
+            if (ordersManager.getOrderQuantity() != 4) {
+                generateNewOrder();
+            }
         }
     }
 
@@ -85,5 +88,10 @@ public class OrderGeneratorImpl extends TimerTask implements OrderGenerator {
         orderIngredientsAvaiable.add(new Pair<>(IngredientType.LETTUCE, IngredientState.CHOPPED));
         orderIngredientsAvaiable.add(new Pair<>(IngredientType.TOMATO, IngredientState.CHOPPED));
         orderIngredientsAvaiable.add(new Pair<>(IngredientType.MEAT, IngredientState.PERFECT));
+    }
+
+    public void stopGeneration() {
+        // TODO Auto-generated method stub
+        
     }
 }
