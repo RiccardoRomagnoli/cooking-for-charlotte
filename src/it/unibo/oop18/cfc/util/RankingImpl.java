@@ -62,7 +62,7 @@ public class RankingImpl implements Ranking {
                 final String key = entry.getKey();
                 final Integer value = entry.getValue();
                 g.drawString(String.format("#%d  -  Name: %s  -  Points: %d ", count, key.toUpperCase(Locale.ENGLISH),
-                        value), 100, 300 + 50 * count);
+                        value), 220, 310 + 50 * count);
                 count++;
             }
         } catch (FontFormatException e) {
@@ -106,11 +106,11 @@ public class RankingImpl implements Ranking {
             while ((row = csvReader.readLine()) != null) {
                 final String[] data = row.split(";");
                 try {
-                ranked.put(data[0], Integer.parseInt(data[1]));
-                }catch(ArrayIndexOutOfBoundsException e) {
-                    //Ignore e
+                    ranked.put(data[0], Integer.parseInt(data[1]));
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    //TODO
                 }
-                }
+            }
             csvReader.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -124,7 +124,7 @@ public class RankingImpl implements Ranking {
      * @return the ordered map
      * @param map to be ordered
      */
-    //TODO mettere in ordine decrescente
+    // TODO mettere in ordine decrescente
     public static Map<String, Integer> orderRank(final Map<String, Integer> map) {
         return map.entrySet().stream().sorted(comparingByValue())
                 .collect(toMap(e -> e.getKey(), e -> e.getValue(), (e1, e2) -> e2, LinkedHashMap::new));
