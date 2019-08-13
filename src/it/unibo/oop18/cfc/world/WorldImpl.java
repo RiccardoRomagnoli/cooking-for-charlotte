@@ -278,6 +278,27 @@ public class WorldImpl implements World {
         return parquetFloor;
     }
 
+    @Override
+    public void stopTimers() {
+        this.getOrdersManager().stopGeneration();
+        this.getOrdersManager().stopOrders();
+        this.timer.reset();
+    }
+    
+    @Override
+    public void pauseTimers() {
+        this.ordersManager.pauseOrders();
+        this.ordersManager.pauseGeneration();
+        this.timer.stop();
+    }
+
+    @Override
+    public void resumeTimers() {
+        this.ordersManager.resumeOrders();
+        this.ordersManager.resumeGeneration();
+        this.timer.start();
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -312,5 +333,4 @@ public class WorldImpl implements World {
         this.player = initializer.initializePlayer(this);
         this.ordersManager.startGeneration();
     }
-
 }

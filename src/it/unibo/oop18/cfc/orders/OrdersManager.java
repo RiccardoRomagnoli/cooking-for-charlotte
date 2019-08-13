@@ -39,4 +39,10 @@ public interface OrdersManager {
     void pauseGeneration();
 
     void resumeGeneration();
+
+    public void stopOrders();
+
+    public void pauseOrders();
+
+    public void resumeOrders();
 }

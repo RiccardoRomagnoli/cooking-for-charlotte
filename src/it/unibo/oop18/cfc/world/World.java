@@ -190,4 +190,13 @@ public interface World {
      * @return all this {@link ParquetFloor}
      */
     Set<ParquetFloor> getParquetFloor();
+
+    /**
+     * Reset all the timers and threads from the playstate
+     */
+    void stopTimers();
+
+    void pauseTimers();
+
+    void resumeTimers();
 }

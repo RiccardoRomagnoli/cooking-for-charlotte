@@ -35,6 +35,11 @@ public class OrderGeneratorImpl extends TimerTask implements OrderGenerator {
         this.timer.schedule(this, 0, intervalMilliseconds);
     }
     
+    public void stopGeneration() {
+        this.timer.cancel();
+        this.timer.purge();
+    }
+    
     @Override
     public void setPaused(boolean paused) {
         this.paused = paused;
@@ -88,10 +93,5 @@ public class OrderGeneratorImpl extends TimerTask implements OrderGenerator {
         orderIngredientsAvaiable.add(new Pair<>(IngredientType.LETTUCE, IngredientState.CHOPPED));
         orderIngredientsAvaiable.add(new Pair<>(IngredientType.TOMATO, IngredientState.CHOPPED));
         orderIngredientsAvaiable.add(new Pair<>(IngredientType.MEAT, IngredientState.PERFECT));
-    }
-
-    public void stopGeneration() {
-        // TODO Auto-generated method stub
-        
     }
 }

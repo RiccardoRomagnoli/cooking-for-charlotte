@@ -129,6 +129,30 @@ public class OrdersManagerImpl implements OrdersManager {
     public void resumeGeneration() {
         this.generator.setPaused(false);
     }
+    
+    @Override
+    public void pauseOrders() {
+        this.getCurrentOrders().stream().forEach(o -> o.setPaused(true));
+    }
+    
+    @Override
+    public void resumeOrders() {
+        this.getCurrentOrders().stream().forEach(o -> o.setPaused(false));
+    }
+    
+    /**
+     * Return integer of points made during game.
+     * 
+     * @return int points
+     */
+    public static int getScore() {
+        return score.getScore();
+    }
+
+    @Override
+    public void stopOrders() {
+        this.getCurrentOrders().stream().forEach(o -> o.stopOrder());
+    }
 
     /**
      * Just need the first correct order that matches.
@@ -188,14 +212,5 @@ public class OrdersManagerImpl implements OrdersManager {
     private void loseLife() {
         this.world.getPlayer().decLifes();
         System.out.println("You just losed a life!!");
-    }
-
-    /**
-     * Return integer of points made during game.
-     * 
-     * @return int points
-     */
-    public static int getScore() {
-        return score.getScore();
     }
 }

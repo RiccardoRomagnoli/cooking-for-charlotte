@@ -40,6 +40,7 @@ public class GameOverState extends GameState {
      * {@inheritDoc}
      */
     public void init() {
+        super.getGsm().getPlayState().getWorld().stopTimers();
         JukeBoxUtil.stop("themeSong");
         bg = ContentUtil.MENUBG[0][0];
     }
