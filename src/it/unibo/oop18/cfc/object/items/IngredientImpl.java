@@ -142,7 +142,7 @@ public class IngredientImpl extends AbstractItem implements Ingredient, OrderIng
         CheckStatus returnStatus = CheckStatus.NOT_ACCEPTABLE;
         if (ingredient.getIngredient().equals(this.type) && ingredient.getState().equals(this.state)) {
             returnStatus = CheckStatus.ACCEPTABLE_WITHOUT_ERROR;
-        } else if (ingredient.getIngredient().equals(this.type)) {
+        } else if (ingredient.getIngredient().equals(this.type) && ingredient.getState().equals(IngredientState.BURNED)) {
             returnStatus = CheckStatus.ACCEPTABLE_WITH_ERROR;
         }
         return returnStatus;
