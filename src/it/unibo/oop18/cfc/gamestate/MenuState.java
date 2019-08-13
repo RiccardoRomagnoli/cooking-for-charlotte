@@ -1,7 +1,6 @@
 package it.unibo.oop18.cfc.gamestate;
 
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 
 import it.unibo.oop18.cfc.main.GameEngine;
 import it.unibo.oop18.cfc.manager.GameStateManager;
@@ -14,8 +13,6 @@ import it.unibo.oop18.cfc.util.JukeBoxUtil;
  */
 public class MenuState extends GameState {
 
-    private BufferedImage bg;
-    private BufferedImage food;
     private static final int STRING_POS = 350;
     private static final int IMAGE_POS = 280;
     private int currentOption;
@@ -36,8 +33,6 @@ public class MenuState extends GameState {
      * Initialize the menu screen and load the sounds.
      */
     public void init() {
-        bg = ContentUtil.MENUBG[0][0];
-        food = ContentUtil.FOOD[6][2];
         JukeBoxUtil.load("/SFX/collect.wav", "collect");
         JukeBoxUtil.load("/SFX/menuoption.wav", "menuoption");
         JukeBoxUtil.load("/SFX/menuSong.wav", "menuSong");
@@ -60,11 +55,11 @@ public class MenuState extends GameState {
      * {@inheritDoc}..
      */
     public void draw(final Graphics2D g) {
-        g.drawImage(bg, 0, 0, null);
+        ContentUtil.drawMenu(g);
+        ContentUtil.drawFood(g, IMAGE_POS, dim[currentOption]);
         for (int i = 0; i < menuOptions; i++) {
             ContentUtil.drawString(g, options[i], STRING_POS, dim[i]);
         }
-        g.drawImage(food, IMAGE_POS, dim[currentOption], null);
     }
 
     /**

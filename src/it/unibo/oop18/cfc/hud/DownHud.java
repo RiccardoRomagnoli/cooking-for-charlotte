@@ -1,7 +1,6 @@
 package it.unibo.oop18.cfc.hud;
 
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.stream.IntStream;
 
@@ -33,7 +32,6 @@ public class DownHud {
 
     private final int yoffset;
     private final World world;
-    private final BufferedImage bar;
 
     /**
      * Instantiates a new down hud.
@@ -45,7 +43,6 @@ public class DownHud {
 
         this.yoffset = GameEngine.HEIGHT2;
         this.world = world;
-        this.bar = ContentUtil.DOWNBAR[0][0];
     }
 
     /**
@@ -56,7 +53,7 @@ public class DownHud {
     public void draw(final Graphics2D g) {
 
         // draw hud
-        g.drawImage(bar, 0, yoffset, null);
+        ContentUtil.drawBotHud(g);
         if (world.getPlayer().getItemInHand().isPresent()) {
             if (world.getPlayer().getItemInHand().get() instanceof PlateImpl) {
                 final PlateImpl p = ((PlateImpl) world.getPlayer().getItemInHand().get());

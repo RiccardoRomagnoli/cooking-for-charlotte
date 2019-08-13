@@ -1,7 +1,6 @@
 package it.unibo.oop18.cfc.gamestate;
 
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,8 +18,6 @@ public class OptionState extends GameState {
     private static final int FONT_HEIGTH = 50;
     private static final int FONT_LENGTH = 50;
 
-    private BufferedImage bg;
-    private BufferedImage food;
     private final String[] options = { "volume", "resolution", "quit" };
     private static List<Integer> volume = new ArrayList<Integer>(Arrays.asList(0, 15, 30, 45, 60, 75, 90, 100));
     private int lastVolIndex = 1;
@@ -43,8 +40,6 @@ public class OptionState extends GameState {
      * {@inheritDoc}.
      */
     public void init() {
-        bg = ContentUtil.MENUBG[0][0];
-        food = ContentUtil.FOOD[6][2];
     }
 
     /**
@@ -60,11 +55,11 @@ public class OptionState extends GameState {
      * @param g basic graphics
      */
     public void draw(final Graphics2D g) {
-        g.drawImage(bg, 0, 0, null);
+        ContentUtil.drawMenu(g);
         for (int i = 0; i < numOptions; i++) {
             ContentUtil.drawString(g, options[i], STRING_POS, dim[i]);
         }
-        g.drawImage(food, IMAGE_POS, dim[currentOption], null);
+        ContentUtil.drawFood(g, IMAGE_POS, dim[currentOption]);
         g.drawRect(STRING_POS, dim[currentOption], FONT_HEIGTH * options[currentOption].length(), FONT_LENGTH);
 
         ContentUtil.drawString(g, volume.get(lastVolIndex).toString(), STRING_POS * 8 - 30, dim[0]);

@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import it.unibo.oop18.cfc.manager.GameStateManager;
@@ -15,8 +14,7 @@ import it.unibo.oop18.cfc.util.ContentUtil;
  */
 public class InfoState extends GameState {
 
-    private BufferedImage bg;
-    public static final int FONT_SIZE = 25;
+    private static final int FONT_SIZE = 25;
 
     /**
      * Class constructor.
@@ -31,7 +29,6 @@ public class InfoState extends GameState {
      * {@inheritDoc}.
      */
     public void init() {
-        bg = ContentUtil.MENUBG[0][0];
     }
 
     /**
@@ -47,7 +44,7 @@ public class InfoState extends GameState {
      * @throws IOException
      */
     public void draw(final Graphics2D g) {
-        g.drawImage(bg, 0, 0, null);
+        ContentUtil.drawMenu(g);
         ContentUtil.drawString(g, "INFO", 400, 300);
         ContentUtil.drawString(g, "arrow keys : move", 100, 370);
         ContentUtil.drawString(g, "space : action", 200, 440);

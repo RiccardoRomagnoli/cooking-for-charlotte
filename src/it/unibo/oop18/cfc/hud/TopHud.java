@@ -5,7 +5,6 @@
 package it.unibo.oop18.cfc.hud;
 
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 
 import it.unibo.oop18.cfc.util.ContentUtil;
 import it.unibo.oop18.cfc.world.World;
@@ -15,8 +14,6 @@ import it.unibo.oop18.cfc.world.World;
  */
 public class TopHud {
 
-    private final int yoffset;
-    private final BufferedImage bar;
     private final World world;
 
     /**
@@ -26,8 +23,6 @@ public class TopHud {
      */
     public TopHud(final World world) {
         this.world = world;
-        yoffset = 0;
-        bar = ContentUtil.TOPBAR[0][0];
     }
 
     /**
@@ -36,7 +31,7 @@ public class TopHud {
      * @param g the {@link Graphics2D} to draw 
      */
     public void draw(final Graphics2D g) {
-        g.drawImage(bar, 0, yoffset, null);
+        ContentUtil.drawTopHud(g);
         this.world.getOrdersManager().draw(g);
     }
 }

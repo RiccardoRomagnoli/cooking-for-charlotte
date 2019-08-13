@@ -3,7 +3,6 @@ package it.unibo.oop18.cfc.gamestate;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import it.unibo.oop18.cfc.manager.GameStateManager;
 import it.unibo.oop18.cfc.orders.OrdersManagerImpl;
 import it.unibo.oop18.cfc.util.ContentUtil;
@@ -23,7 +22,6 @@ public class GameOverState extends GameState {
     private char[] choice = "_ _ _ _ _ _ _ _ _ _".toCharArray();
     private int index;
     private RankingImpl ranking;
-    private BufferedImage bg;
 
     /**
      * GameOverState constructor.
@@ -42,7 +40,6 @@ public class GameOverState extends GameState {
     public void init() {
         super.getGsm().getPlayState().getWorld().stopTimers();
         JukeBoxUtil.stop("themeSong");
-        bg = ContentUtil.MENUBG[0][0];
     }
 
     /**
@@ -57,7 +54,7 @@ public class GameOverState extends GameState {
      */
     public void draw(final Graphics2D g) {
         if (finalScore.getScore() >= 0) { // TODO togliere e mettere score.min  
-            g.drawImage(bg, 0, 0, null);
+            ContentUtil.drawMenu(g);
             g.drawString("Insert your name:", STRING_COL, 350);
             try {
                 myFont = Font.createFont(Font.TRUETYPE_FONT, InfoState.class.getResourceAsStream("/HUD/comicsans.ttf"));
