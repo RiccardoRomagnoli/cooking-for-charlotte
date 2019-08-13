@@ -192,11 +192,17 @@ public interface World {
     Set<ParquetFloor> getParquetFloor();
 
     /**
-     * Reset all the timers and threads from the playstate
+     * Reset all the timers and threads from the playstate.
      */
     void stopTimers();
 
+    /**
+     * Pause all the timers and threads from the playstate.
+     */
     void pauseTimers();
 
+    /**
+     * Resume all the timers and threads from the playstate.
+     */
     void resumeTimers();
 }

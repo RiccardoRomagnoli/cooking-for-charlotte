@@ -278,21 +278,27 @@ public class WorldImpl implements World {
         return parquetFloor;
     }
 
-    @Override
+    /**
+     * {@inheritDoc}
+     */
     public void stopTimers() {
         this.getOrdersManager().stopGeneration();
         this.getOrdersManager().stopOrders();
         this.timer.reset();
     }
-    
-    @Override
+
+    /**
+     * {@inheritDoc}
+     */
     public void pauseTimers() {
         this.ordersManager.pauseOrders();
         this.ordersManager.pauseGeneration();
         this.timer.stop();
     }
 
-    @Override
+    /**
+     * {@inheritDoc}
+     */
     public void resumeTimers() {
         this.ordersManager.resumeOrders();
         this.ordersManager.resumeGeneration();

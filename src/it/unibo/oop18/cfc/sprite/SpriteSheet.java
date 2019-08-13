@@ -14,6 +14,8 @@ public class SpriteSheet {
      * It sets the sprite size used in game.
      */
     public static final int SPRITE_SIZE_IN_GAME = 64;
+    private static final int WIDTH_SIZE_IN_SHEET = 32;
+    private static final int HEIGHT_SIZE_IN_SHEET = 48;
     private final BufferedImage sheet;
 
     /**
@@ -34,8 +36,8 @@ public class SpriteSheet {
      * @return a buffered image of the {@link Sprite}
      */
     public BufferedImage getSingleSprite(final int x, final int y) {
-        return this.sheet.getSubimage(x * SPRITE_SIZE_IN_GAME, y * SPRITE_SIZE_IN_GAME, SPRITE_SIZE_IN_GAME,
-                SPRITE_SIZE_IN_GAME);
+        return this.sheet.getSubimage(x * WIDTH_SIZE_IN_SHEET, y * HEIGHT_SIZE_IN_SHEET, WIDTH_SIZE_IN_SHEET,
+                HEIGHT_SIZE_IN_SHEET);
     }
 
 }
