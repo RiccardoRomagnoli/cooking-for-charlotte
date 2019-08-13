@@ -151,7 +151,7 @@ public class ChoppingStation extends AbstractStationObject {
                 ((PlateImpl) world.getPlayer().getItemInHand().get()).addIngredient(food.get());
                 this.food = Optional.empty();
                 // se il player non ha niente in mano e l'ingrediente è tagliato
-            } else if (this.food.get().getState() == IngredientState.CHOPPED) {
+            } else {
                 world.getPlayer().setItemInHand(this.food.get());
                 this.food = Optional.empty();
             }
