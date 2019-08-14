@@ -23,6 +23,8 @@ import it.unibo.oop18.cfc.gamestate.InfoState;
 public class RankingImpl implements Ranking {
 
     private static Map<String, Integer> ranked = new HashMap<>();
+    private static String path = "rank.txt";
+
     private final int rowNumber;
 
     /**
@@ -79,7 +81,7 @@ public class RankingImpl implements Ranking {
         FileWriter w;
         BufferedWriter b;
         try {
-            w = new FileWriter("rank.txt");
+            w = new FileWriter(path);
             b = new BufferedWriter(w);
             for (final HashMap.Entry<String, Integer> entry : ranked.entrySet()) {
                 final String key = entry.getKey();
@@ -101,14 +103,14 @@ public class RankingImpl implements Ranking {
      */
     public final void loadRanking() {
         try {
-            final BufferedReader csvReader = new BufferedReader(new FileReader("rank.txt"));
+            final BufferedReader csvReader = new BufferedReader(new FileReader(path));
             String row;
             while ((row = csvReader.readLine()) != null) {
                 final String[] data = row.split(";");
                 try {
                     ranked.put(data[0], Integer.parseInt(data[1]));
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    //TODO
+                    System.out.println("The loaded ranking, is empty");
                 }
             }
             csvReader.close();
@@ -137,6 +139,24 @@ public class RankingImpl implements Ranking {
      */
     public int getRowNumber() {
         return rowNumber;
+    }
+
+    /**
+     * Get the map of classified player.
+     * 
+     * @return map of <player,points>
+     */
+    public static Map<String, Integer> getRanked() {
+        return ranked;
+    }
+
+    /**
+     * Set the path of the rank.
+     * 
+     * @param path rank
+     */
+    public static void setPath(String path) {
+        RankingImpl.path = path;
     }
 
 }
