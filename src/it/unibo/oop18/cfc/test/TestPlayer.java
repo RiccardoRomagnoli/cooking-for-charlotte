@@ -20,12 +20,13 @@ import it.unibo.oop18.cfc.world.WorldImpl;
  */
 public class TestPlayer {
 
+    private static final int START_POSOTION = 7;
     /** The Constant ITEMPATH. */
     public static final String ITEMPATH = "/Sprites/itemSprite.png";
     private static final int PIXEL_PER_SECOND = 4 * 16;
-    private static final Position INITIAL_POSITION = new Position(7 * SpriteSheet.SPRITE_SIZE_IN_GAME,
-            7 * SpriteSheet.SPRITE_SIZE_IN_GAME);
-    private static final int Y_LOCATION_MOVE_UP = 3;
+    private static final Position INITIAL_POSITION = new Position(START_POSOTION * SpriteSheet.SPRITE_SIZE_IN_GAME,
+            START_POSOTION * SpriteSheet.SPRITE_SIZE_IN_GAME);
+    private static final int Y_LOCATION_MOVE_UP = 6;
 
     private World world;
 
@@ -51,7 +52,7 @@ public class TestPlayer {
         player.getPosition().setX(8 * SpriteSheet.SPRITE_SIZE_IN_GAME);
         Assert.assertFalse(player.getPosition().equals(INITIAL_POSITION));
         Assert.assertTrue(player.getPosition()
-                .equals(new Position(8 * SpriteSheet.SPRITE_SIZE_IN_GAME, 7 * SpriteSheet.SPRITE_SIZE_IN_GAME)));
+                .equals(new Position(8 * SpriteSheet.SPRITE_SIZE_IN_GAME, START_POSOTION * SpriteSheet.SPRITE_SIZE_IN_GAME)));
         // Player was moved in position (8, 6)
         player.getPosition().setY(6 * SpriteSheet.SPRITE_SIZE_IN_GAME);
         Assert.assertTrue(player.getPosition()
@@ -69,8 +70,8 @@ public class TestPlayer {
         this.world = new WorldImpl();
         final Player player = world.getPlayer();
         // Initial player's is not in front of a food station
-        player.getPosition().setX(4 * SpriteSheet.SPRITE_SIZE_IN_GAME);
-        player.getPosition().setY(7 * SpriteSheet.SPRITE_SIZE_IN_GAME);
+        player.getPosition().setX(START_POSOTION * SpriteSheet.SPRITE_SIZE_IN_GAME);
+        player.getPosition().setY(START_POSOTION * SpriteSheet.SPRITE_SIZE_IN_GAME);
         player.getPhysics().getVelocity().setDirection(Direction.DOWN);
         player.doAction();
         Assert.assertFalse(player.getItemInHand().isPresent());

@@ -1,5 +1,17 @@
 package it.unibo.oop18.cfc.orders;
 
+
+/**
+ * Recipes Enum.
+ *
+ */
 public enum Recipes {
-    SIMPLE_PLATE, BURGER
+    /**
+     * Plate + Ingredients.
+     */
+    SIMPLE_PLATE, 
+    /**
+     * Plate + Bread + Ingredients.
+     */
+    BURGER
 }

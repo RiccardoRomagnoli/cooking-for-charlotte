@@ -14,12 +14,14 @@ import it.unibo.oop18.cfc.object.items.IngredientType;
 import it.unibo.oop18.cfc.object.items.OrderIngredient;
 import it.unibo.oop18.cfc.object.items.Plate;
 
+/**
+* The Class OrderImpl.
+*/
 public class OrderImpl implements Order {
 
     private static final  int TIMER_PERIOD = 1000;
 
     private final List<OrderIngredient> ingredientsList;
-    private int points;
     private int slot;
     private boolean paused;
     private int countDownTime;
@@ -28,6 +30,9 @@ public class OrderImpl implements Order {
     private final Order thisOrder;
     private final GraphicsComponent graphicComponent;
 
+    /**
+     * @param ordersManager OrderManager
+     */
     public OrderImpl(final OrdersManager ordersManager) {
         this.paused = false;
         thisOrder = this;
@@ -37,15 +42,16 @@ public class OrderImpl implements Order {
         this.graphicComponent = new OrderGraphicComponent(this);
     }
 
-    @Override
-    public boolean checkOrder(Plate plate) {
+    /**
+    * {@inheritDoc}
+    */
+    public boolean checkOrder(final Plate plate) {
         return plate.checkIngredients(this.ingredientsList);
     }
 
-    public int getPoints() {
-        return points;
-    }
-
+    /**
+    * {@inheritDoc}
+    */
     public void addIngredient(final IngredientType ingredientType, final IngredientState ingredientState) {
         if (ingredientsList.size() == 4) {
             throw new IllegalStateException();
@@ -55,37 +61,52 @@ public class OrderImpl implements Order {
                 new IngredientImpl(this.ordersManager.getWorld().getItemManager(), ingredientType, ingredientState));
     }
 
-    @Override
-    public void setSlot(int slot) {
+    /**
+    * {@inheritDoc}
+    */
+    public void setSlot(final int slot) {
         this.slot = slot;
     }
 
+    /**
+    * {@inheritDoc}
+    */
     public int getSlot() {
         return this.slot;
     }
 
-    @Override
-    public void setCountDownTimer(int timeInSeconds) {
+    /**
+    * {@inheritDoc}
+    */
+    public void setCountDownTimer(final int timeInSeconds) {
         this.countDownTime = timeInSeconds;
         this.ordersManager.getCurrentOrders().sort((o1, o2) -> o1.getCountDownTime() - o2.getCountDownTime());
     }
 
-    @Override
+    /**
+    * {@inheritDoc}
+    */
     public int getCountDownTime() {
         return countDownTime;
     }
 
-    @Override
+    /**
+    * {@inheritDoc}
+    */
     public int getOrderIngredientQuantity() {
         return ingredientsList.size();
     }
 
-    @Override
+    /**
+    * {@inheritDoc}
+    */
     public List<OrderIngredient> getIngredientsList() {
         return ingredientsList;
     }
 
-    @Override
+    /**
+    * {@inheritDoc}
+    */
     public void startOrder() {
         this.countDownTimer = new Timer();
         countDownTimer.schedule(new TimerTask() {
@@ -102,19 +123,25 @@ public class OrderImpl implements Order {
         }, 0, TIMER_PERIOD);
     }
 
-    @Override
+    /**
+    * {@inheritDoc}
+    */
     public void stopOrder() {
         countDownTimer.cancel();
         countDownTimer.purge();
     }
 
-    @Override
-    public void draw(Graphics2D g) {
+    /**
+    * {@inheritDoc}
+    */
+    public void draw(final Graphics2D g) {
         this.graphicComponent.draw(g);
     }
 
-    @Override
-    public void setPaused(boolean paused) {
+    /**
+    * {@inheritDoc}
+    */
+    public void setPaused(final boolean paused) {
         this.paused = paused;
     }
 

@@ -5,16 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import it.unibo.oop18.cfc.object.items.Plate;
-import it.unibo.oop18.cfc.util.GameScoreImpl;
 import it.unibo.oop18.cfc.util.GameTimer;
 import it.unibo.oop18.cfc.world.World;
 
+/**
+ * Order Manager Implementation Class.
+ *
+ */
 public class OrdersManagerImpl implements OrdersManager {
 
-    /**
-     * TODO. mettere i javadoc sulla interfaccia e qua lasciare solo l'inherit
-     * 
-     */
     private static final long INTERVAL_MILLISECONDS = 30000;
     private final List<Order> currentOrders;
     private final List<Order> finishedOrders;
@@ -22,6 +21,9 @@ public class OrdersManagerImpl implements OrdersManager {
     private final OrderGeneratorImpl generator;
     private final World world;
 
+    /**
+     * @param world World Instance
+     */
     public OrdersManagerImpl(final World world) {
         this.world = world;
         currentOrders = new ArrayList<>();
@@ -30,11 +32,16 @@ public class OrdersManagerImpl implements OrdersManager {
         generator = new OrderGeneratorImpl(this);
     }
 
+    /**
+    * {@inheritDoc}
+    */
     public World getWorld() {
         return world;
     }
 
-    @Override
+    /**
+    * {@inheritDoc}
+    */
     public boolean deliveryPlate(final Plate plate) {
         final Optional<Order> order = checkOrder(plate);
         if (order.isPresent()) {
@@ -58,7 +65,9 @@ public class OrdersManagerImpl implements OrdersManager {
         }
     }
 
-    @Override
+    /**
+    * {@inheritDoc}
+    */
     public void update() {
         // generator(timertask) work with timers that call run
         // this is the alternative solution call every time in update
@@ -67,22 +76,24 @@ public class OrdersManagerImpl implements OrdersManager {
         checkZeroOrders();
     }
 
-    @Override
+    /**
+    * {@inheritDoc}
+    */
     public void addOrder(final Order o) {
         this.currentOrders.add(o);
         this.currentOrders.sort((o1, o2) -> o1.getCountDownTime() - o2.getCountDownTime());
     }
 
     /**
-     * Get the quantity of order. {@inheritDoc}
-     */
+    * {@inheritDoc}
+    */
     public int getOrderQuantity() {
         return currentOrders.size();
     }
 
     /**
-     * Manage a bad delivered order. {@inheritDoc}
-     */
+    * {@inheritDoc}
+    */
     public void orderFailed(final Order order) {
         order.stopOrder();
         currentOrders.remove(order);
@@ -91,54 +102,64 @@ public class OrdersManagerImpl implements OrdersManager {
     }
 
     /**
-     * Get the list of current active orders. {@inheritDoc}
-     */
+    * {@inheritDoc}
+    */
     public List<Order> getCurrentOrders() {
         return currentOrders;
     }
 
     /**
-     * Get the list of finisched orders. {@inheritDoc}
-     */
+    * {@inheritDoc}
+    */
     public List<Order> getFinishedOrders() {
         return finishedOrders;
     }
 
     /**
-     * Start the orders generation. {@inheritDoc}
-     */
+    * {@inheritDoc}
+    */
     public void startGeneration() {
         generator.startGeneration(INTERVAL_MILLISECONDS);
     }
 
     /**
-     * Stop the orders generation. {@inheritDoc}
-     */
+    * {@inheritDoc}
+    */
     public void stopGeneration() {
         generator.stopGeneration();
     }
 
-    @Override
+    /**
+    * {@inheritDoc}
+    */
     public void pauseGeneration() {
         this.generator.setPaused(true);
     }
 
-    @Override
+    /**
+    * {@inheritDoc}
+    */
     public void resumeGeneration() {
         this.generator.setPaused(false);
     }
 
-    @Override
+    /**
+    * {@inheritDoc}
+    */
     public void pauseOrders() {
         this.getCurrentOrders().stream().forEach(o -> o.setPaused(true));
     }
 
-    @Override
+    /**
+    * {@inheritDoc}
+    */
     public void resumeOrders() {
         this.getCurrentOrders().stream().forEach(o -> o.setPaused(false));
     }
 
-    @Override
+    /**
+    * {@inheritDoc}
+    */
     public void stopOrders() {
         this.getCurrentOrders().stream().forEach(o -> o.stopOrder());
     }

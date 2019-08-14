@@ -124,10 +124,8 @@ public class PlateImpl extends AbstractItem implements Plate {
                 return false;
             }
         }
-        if (cloneIngredients.size() == 0) {
-            return true;
-        }
-        return false;
+
+        return cloneIngredients.isEmpty();
     }
 
     /**

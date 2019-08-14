@@ -6,43 +6,95 @@ import java.util.List;
 import it.unibo.oop18.cfc.object.items.Plate;
 import it.unibo.oop18.cfc.world.World;
 
+/**
+ * Order Manager Interface.
+ *
+ */
 public interface OrdersManager {
 
     /**
-     * Manage the submission of the plate from delivery board
+     * Manage the submission of the plate from delivery board.
      * 
      * @param plate Plate submitted
      * @return True if they are the same
      */
-    public boolean deliveryPlate(Plate plate);
+    boolean deliveryPlate(Plate plate);
 
-    public void update();
+    /**
+     * Update Method.
+     */
+    void update();
 
-    public void draw(Graphics2D g);
+    /**
+     * Draw Methods.
+     * @param g Graphics2D
+     */
+    void draw(Graphics2D g);
 
-    public void addOrder(Order o);
+    /**
+     * Add an order to Current Order List.
+     * @param order to be added
+     */
+    void addOrder(Order order);
 
-    public int getOrderQuantity();
+    /**
+     * @return N° of orders
+     */
+    int getOrderQuantity();
 
-    public void orderFailed(Order o);
+    /**
+     * Manage a bad delivered order.
+     * @param order to be placed on finished orders
+     */
+    void orderFailed(Order order);
 
-    public List<Order> getCurrentOrders();
+    /**
+     * @return List of current Orders
+     */
+    List<Order> getCurrentOrders();
 
-    public List<Order> getFinishedOrders();
+    /**
+     * @return List of finished Orders
+     */
+    List<Order> getFinishedOrders();
 
-    public void startGeneration();
+    /**
+     * Start the orders generation.
+     */
+    void startGeneration();
 
-    public void stopGeneration();
+    /**
+     * Stop the orders generation.
+     */
+    void stopGeneration();
 
-    public World getWorld();
+    /**
+     * @return World
+     */
+    World getWorld();
 
+    /**
+     * Pause Generation Timer.
+     */
     void pauseGeneration();
 
+    /**
+     * Resume Generation Timer.
+     */
     void resumeGeneration();
 
-    public void stopOrders();
+    /**
+     * Stop Orders Timers.
+     */
+    void stopOrders();
 
-    public void pauseOrders();
+    /**
+     * Pause Orders Timers.
+     */
+    void pauseOrders();
 
-    public void resumeOrders();
+    /**
+     * Resume Orders Timers.
+     */
+    void resumeOrders();
 }

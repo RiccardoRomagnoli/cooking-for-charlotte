@@ -10,6 +10,10 @@ import it.unibo.oop18.cfc.object.items.IngredientState;
 import it.unibo.oop18.cfc.object.items.IngredientType;
 import it.unibo.oop18.cfc.util.Pair;
 
+/**
+ * Order Generator Implementation Class.
+ *
+ */
 public class OrderGeneratorImpl extends TimerTask implements OrderGenerator {
 
     private Timer timer;
@@ -19,7 +23,11 @@ public class OrderGeneratorImpl extends TimerTask implements OrderGenerator {
     private final OrdersManager ordersManager;
     private boolean paused;
 
-    public OrderGeneratorImpl(OrdersManager ordersManager) {
+    /**
+     * @param ordersManager Order Manager Istance
+     */
+    public OrderGeneratorImpl(final OrdersManager ordersManager) {
+        super();
         this.ordersManager = ordersManager;
         this.timer = new Timer();
         this.orderIngredientsAvaiable = new ArrayList<>();
@@ -29,50 +37,59 @@ public class OrderGeneratorImpl extends TimerTask implements OrderGenerator {
         initList();
     }
 
-    @Override
-    public void startGeneration(long intervalMilliseconds) {
+
+    /**
+    * {@inheritDoc}
+    */
+    public void startGeneration(final long intervalMilliseconds) {
         this.timer = new Timer();
         this.timer.schedule(this, 0, intervalMilliseconds);
     }
-    
+
+    /**
+    * {@inheritDoc}
+    */
     public void stopGeneration() {
         this.timer.cancel();
         this.timer.purge();
     }
-    
-    @Override
-    public void setPaused(boolean paused) {
+
+    /**
+    * {@inheritDoc}
+    */
+    public void setPaused(final boolean paused) {
         this.paused = paused;
     }
 
-    @Override
+    /**
+    * {@inheritDoc}
+    */
     public void run() {
-        if(!paused) {
-            if (ordersManager.getOrderQuantity() != 4) {
-                generateNewOrder();
-            }
+        if (!paused && ordersManager.getOrderQuantity() != 4) {
+            generateNewOrder();
         }
     }
 
-    @Override
-    public void setDifficulty(OrderDifficulty difficulty) {
+    /**
+    * {@inheritDoc}
+    */
+    public void setDifficulty(final OrderDifficulty difficulty) {
         currentDifficulty = difficulty;
     }
 
     /**
-     * Generate a new random Order based on difficulty
+     * Generate a new random Order based on difficulty.
      * 
-     * @return Order generated
      */
     public void generateNewOrder() {
         if (ordersManager.getOrderQuantity() != 4) {
-            Order o = new OrderImpl(ordersManager);
+            final Order o = new OrderImpl(ordersManager);
             o.setSlot(ordersManager.getOrderQuantity());
             if (getRandomRecipe().equals(Recipes.BURGER)) {
                 o.addIngredient(IngredientType.BREAD, IngredientState.CHOPPED);
             }
             while (o.getOrderIngredientQuantity() - currentDifficulty.getNumberOfIngredients() != 0) {
-                int randIng = random.nextInt(orderIngredientsAvaiable.size());
+                final int randIng = random.nextInt(orderIngredientsAvaiable.size());
                 o.addIngredient(orderIngredientsAvaiable.get(randIng).getFirst(),
                         orderIngredientsAvaiable.get(randIng).getSecond());
             }
