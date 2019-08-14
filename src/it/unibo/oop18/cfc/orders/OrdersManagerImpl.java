@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import it.unibo.oop18.cfc.object.items.Plate;
+import it.unibo.oop18.cfc.util.GameScore;
 import it.unibo.oop18.cfc.util.GameTimer;
 import it.unibo.oop18.cfc.world.World;
 
@@ -15,6 +16,7 @@ import it.unibo.oop18.cfc.world.World;
 public class OrdersManagerImpl implements OrdersManager {
 
     private static final long INTERVAL_MILLISECONDS = 30000;
+    private final GameScore scoreManager;
     private final List<Order> currentOrders;
     private final List<Order> finishedOrders;
     private final GameTimer gameTimer;
@@ -25,11 +27,12 @@ public class OrdersManagerImpl implements OrdersManager {
      * @param world World Instance
      */
     public OrdersManagerImpl(final World world) {
+        this.scoreManager = world.getScoreManager();
         this.world = world;
-        currentOrders = new ArrayList<>();
-        finishedOrders = new ArrayList<>();
-        gameTimer = world.getGameTimer();
-        generator = new OrderGeneratorImpl(this);
+        this.currentOrders = new ArrayList<>();
+        this.finishedOrders = new ArrayList<>();
+        this.gameTimer = world.getGameTimer();
+        this.generator = new OrderGeneratorImpl(this);
     }
 
     /**
@@ -45,7 +48,7 @@ public class OrdersManagerImpl implements OrdersManager {
     public boolean deliveryPlate(final Plate plate) {
         final Optional<Order> order = checkOrder(plate);
         if (order.isPresent()) {
-            orderSucceed(order.get());
+            orderSucceed(order.get(), plate.getPoints());
         }
         return order.isPresent();
     }
@@ -182,11 +185,11 @@ public class OrdersManagerImpl implements OrdersManager {
      * 
      * @param order created and delivered
      */
-    private void orderSucceed(final Order order) {
+    private void orderSucceed(final Order order, final int points) {
+        scoreManager.computeScore(points);
         order.stopOrder();
         currentOrders.remove(order);
         finishedOrders.add(order);
-        // TODO score.computeScore(10);
     }
 
     /**

@@ -8,32 +8,34 @@ public enum IngredientState {
     /**
      * the ingredient as you pick it up.
      */
-    RAW(0),
+    RAW(0, 0),
 
     /**
      * the ingredient after being chopped.
      */
-    CHOPPED(1),
+    CHOPPED(1, 10),
 
     /**
      * the ingredient perfectly cooked.
      */
-    PERFECT(2),
+    PERFECT(2, 10),
 
     /**
      * the ingredient is overcooked, so burned but still edible.
      */
-    BURNED(3),
+    BURNED(3, 5),
 
     /**
      * the ingredient is dangerous to eat, unusable.
      */
-    WASTE(4);
+    WASTE(4, 0);
 
     private int x;
+    private int points;
 
-    IngredientState(final int x) {
+    IngredientState(final int x, final int points) {
         this.x = x;
+        this.points = points;
     }
 
     /**
@@ -43,6 +45,14 @@ public enum IngredientState {
      */
     public int getX() {
         return this.x;
+    }
+
+    /**
+     * Gets the points based on Ingredient State.
+     * @return points state points
+     */
+    public int getPoints() {
+        return this.points;
     }
 
 }

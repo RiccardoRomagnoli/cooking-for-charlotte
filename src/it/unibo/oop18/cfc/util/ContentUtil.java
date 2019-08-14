@@ -20,10 +20,9 @@ import it.unibo.oop18.cfc.main.GameEngine;
 public final class ContentUtil {
 
     private static final Image MENUBG = loadImage("/HUD/menu.png", 1024, 768);
-    private static final Image TOPBAR = loadImage("/HUD/toppbar.png", 1024, 128);
+    private static final Image TOPBAR = loadImage("/HUD/topbar.png", 1024, 128);
     private static final Image DOWNBAR = loadImage("/HUD/downbar.png", 1024, 128);
     private static final Image BLUEBAR = loadImage("/HUD/bluebar.png", 153, 5);
-    private static final BufferedImage[][] FOOD = loadBufferedImage("/Sprites/Food.png", 50, 50);
     private static final BufferedImage[][] FONT = loadBufferedImage("/HUD/font.png", 50, 50);
     private static final BufferedImage[][] LOADBAR = loadBufferedImage("/Sprites/loadbar.png", 30, 20);
 
@@ -143,17 +142,6 @@ public final class ContentUtil {
             final int col = c % FONT[0].length;
             g.drawImage(FONT[row][col], x + width * i, y, width, height, null);
         }
-    }
-
-    /**
-     * Draw food in specific location.
-     * 
-     * @param g {@link Graphics2D} the screen
-     * @param x the x position to draw
-     * @param y the y position to draw
-     */
-    public static void drawFood(final Graphics2D g, final int x, final int y) {
-        g.drawImage(FOOD[6][2], x, y, null);
     }
 
     /**

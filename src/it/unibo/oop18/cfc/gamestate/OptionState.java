@@ -59,7 +59,7 @@ public class OptionState extends GameState {
         for (int i = 0; i < numOptions; i++) {
             ContentUtil.drawString(g, options[i], STRING_POS, dim[i]);
         }
-        ContentUtil.drawFood(g, IMAGE_POS, dim[currentOption]);
+        //TODO: change with new font ContentUtil.drawFood(g, IMAGE_POS, dim[currentOption]);
         g.drawRect(STRING_POS, dim[currentOption], FONT_HEIGTH * options[currentOption].length(), FONT_LENGTH);
 
         ContentUtil.drawString(g, volume.get(lastVolIndex).toString(), STRING_POS * 8 - 30, dim[0]);

@@ -143,5 +143,4 @@ public class OrderImpl implements Order {
     public void setPaused(final boolean paused) {
         this.paused = paused;
     }
-
 }

@@ -55,6 +55,11 @@ public interface Plate {
     void wash();
 
     /**
+     * @return points of the plate
+     */
+    int getPoints();
+
+    /**
      * Draw the plate in the {@link Position} with specific width and height and
      * draw his ingredients on it.
      *
