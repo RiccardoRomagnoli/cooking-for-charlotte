@@ -33,6 +33,7 @@ public class PlateImpl extends AbstractItem implements Plate {
      */
     public void addIngredient(final IngredientImpl ing) {
         ingredients.add(ing);
+        updatePoints(ing.getState().getPoints());
     }
 
     /**
@@ -133,6 +134,14 @@ public class PlateImpl extends AbstractItem implements Plate {
      */
     public void wash() {
         this.ingredients.clear();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getPoints() {
+        return points;
     }
 
     private void updatePoints(final int points) {

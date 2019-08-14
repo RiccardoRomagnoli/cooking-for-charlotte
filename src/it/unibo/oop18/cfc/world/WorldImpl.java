@@ -29,6 +29,8 @@ import it.unibo.oop18.cfc.object.stations.Washbasin;
 import it.unibo.oop18.cfc.orders.OrdersManager;
 import it.unibo.oop18.cfc.orders.OrdersManagerImpl;
 import it.unibo.oop18.cfc.tile.TileSheet;
+import it.unibo.oop18.cfc.util.GameScore;
+import it.unibo.oop18.cfc.util.GameScoreImpl;
 import it.unibo.oop18.cfc.util.GameTimer;
 
 /**
@@ -91,6 +93,7 @@ public class WorldImpl implements World {
     private final SpriteManager spriteManager;
     private final ItemManager itemManager;
     private final OrdersManager ordersManager;
+    private final GameScore gameScoreManager;
 
     /**
      * Creates a {@code WorldImpl}.
@@ -115,6 +118,7 @@ public class WorldImpl implements World {
         this.tileManager = new TileManager(TILEPATH);
         this.spriteManager = new SpriteManager(SPRITEPATH);
         this.itemManager = new ItemManager(ITEMPATH);
+        this.gameScoreManager = new GameScoreImpl();
         this.ordersManager = new OrdersManagerImpl(this);
         this.createLevel();
         timer.start();
@@ -146,6 +150,13 @@ public class WorldImpl implements World {
      */
     public OrdersManager getOrdersManager() {
         return ordersManager;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public GameScore getScoreManager() {
+        return gameScoreManager;
     }
 
     /**

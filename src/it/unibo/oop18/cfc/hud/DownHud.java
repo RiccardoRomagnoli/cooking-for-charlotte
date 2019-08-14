@@ -27,8 +27,10 @@ public class DownHud {
     private static final int POSITION_X_STATE = 425;
     private static final int DISTANCE_BETWEEN_FOOD = 100;
     private static final int POSITION_X_STRINGS  = 17 + 50;
+    private static final int POSITION_X_POINTS  = 17 + 180;
     private static final int POSITION_Y_LIFE = 654 + 35;
     private static final int POSITION_Y_TIME = 704 + 35;
+    private static final int POSITION_Y_POINTS = 679 + 35;
 
     private final int yoffset;
     private final World world;
@@ -99,13 +101,16 @@ public class DownHud {
         final Integer lifes = world.getPlayer().getLifes();
         if (lifes <= 10) {
             //ContentUtil.drawString(g, "hp:0" + lifes.toString(), POSITION_X_STRINGS, POSITION_Y_LIFE);
-            ContentUtil.drawStringFont(g, POSITION_X_STRINGS, POSITION_Y_LIFE,"0" + lifes.toString());
+            ContentUtil.drawStringFont(g, POSITION_X_STRINGS, POSITION_Y_LIFE, "0" + lifes.toString());
 
         } else {
             //ContentUtil.drawString(g, "hp: " + lifes.toString(), POSITION_X_STRINGS, POSITION_Y_LIFE);
             ContentUtil.drawStringFont(g, POSITION_X_STRINGS, POSITION_Y_LIFE, lifes.toString());
 
         }
+        // draw points
+        final Integer points = world.getScoreManager().getScore();
+        ContentUtil.drawStringFont(g, POSITION_X_POINTS, POSITION_Y_POINTS, points.toString());
 
     }
 }

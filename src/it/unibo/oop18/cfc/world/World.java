@@ -23,6 +23,7 @@ import it.unibo.oop18.cfc.object.stations.TomatoStation;
 import it.unibo.oop18.cfc.object.stations.Trashcan;
 import it.unibo.oop18.cfc.object.stations.Washbasin;
 import it.unibo.oop18.cfc.orders.OrdersManager;
+import it.unibo.oop18.cfc.util.GameScore;
 import it.unibo.oop18.cfc.util.GameTimer;
 
 /**
@@ -84,6 +85,13 @@ public interface World {
      * @return the {@link OrdersManager}
      */
     OrdersManager getOrdersManager();
+
+    /**
+     * Gets the {@link GameScore}.
+     * 
+     * @return the {@link GameScore}
+     */
+    GameScore getScoreManager();
 
     /**
      * Gets the {@link Player}.

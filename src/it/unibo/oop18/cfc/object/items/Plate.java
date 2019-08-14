@@ -50,4 +50,9 @@ public interface Plate {
      * Clear all the ingredients on the plate.
      */
     void wash();
+
+    /**
+     * @return points of the plate
+     */
+    int getPoints();
 }
