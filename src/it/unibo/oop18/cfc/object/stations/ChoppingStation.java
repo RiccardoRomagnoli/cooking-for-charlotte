@@ -8,7 +8,6 @@ import it.unibo.oop18.cfc.graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.object.items.IngredientImpl;
 import it.unibo.oop18.cfc.object.items.IngredientState;
 import it.unibo.oop18.cfc.object.items.PlateImpl;
-import it.unibo.oop18.cfc.sprite.LoadingSprite;
 import it.unibo.oop18.cfc.tile.ChoppingStationTile;
 import it.unibo.oop18.cfc.util.GameTimer;
 import it.unibo.oop18.cfc.util.JukeBoxUtil;
@@ -35,18 +34,16 @@ public class ChoppingStation extends AbstractStationObject {
      *
      * @param position            the {@link Position}
      * @param choppingStationTile the {@link ChoppingStationTile} to draw
-     * @param loadingSprite       the {@link LoadingSprite} to draw
      * @param world               the {@link World}
      */
-    public ChoppingStation(final Position position, final ChoppingStationTile choppingStationTile,
-            final LoadingSprite loadingSprite, final World world) {
+    public ChoppingStation(final Position position, final ChoppingStationTile choppingStationTile, final World world) {
         super(position);
         this.food = Optional.empty();
         this.isSoundPlaying = 0;
         timer = new GameTimer();
         this.world = world;
         this.isCutting = false;
-        this.graphicComponent = new ChoppingStationGraphicComponent(this, choppingStationTile, loadingSprite);
+        this.graphicComponent = new ChoppingStationGraphicComponent(this, choppingStationTile);
     }
 
     /**
@@ -151,7 +148,7 @@ public class ChoppingStation extends AbstractStationObject {
                 ((PlateImpl) world.getPlayer().getItemInHand().get()).addIngredient(food.get());
                 this.food = Optional.empty();
                 // se il player non ha niente in mano e l'ingrediente è tagliato
-            } else {
+            } else if (!world.getPlayer().getItemInHand().isPresent()) {
                 world.getPlayer().setItemInHand(this.food.get());
                 this.food = Optional.empty();
             }

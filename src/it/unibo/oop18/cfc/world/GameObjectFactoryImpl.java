@@ -1,6 +1,5 @@
 package it.unibo.oop18.cfc.world;
 
-import it.unibo.oop18.cfc.manager.ItemManager;
 import it.unibo.oop18.cfc.manager.SpriteManager;
 import it.unibo.oop18.cfc.manager.TileManager;
 import it.unibo.oop18.cfc.object.entity.PlayerImpl;
@@ -25,19 +24,16 @@ public class GameObjectFactoryImpl implements GameObjectFactory {
 
     private final SpriteManager sm;
     private final TileManager tm;
-    private final ItemManager im;
 
     /**
      * Instantiates a new game object factory impl.
      *
      * @param tm the {@link TileManager}
      * @param sm the {@link SpriteManager}
-     * @param im the {@link ItemManager}
      */
-    public GameObjectFactoryImpl(final TileManager tm, final SpriteManager sm, final ItemManager im) {
+    public GameObjectFactoryImpl(final TileManager tm, final SpriteManager sm) {
         this.tm = tm;
         this.sm = sm;
-        this.im = im;
     }
 
     /**
@@ -51,15 +47,14 @@ public class GameObjectFactoryImpl implements GameObjectFactory {
      * {@inheritDoc}
      */
     public ChoppingStation createChoppingBoard(final Position position, final World world) {
-        return new ChoppingStation(new Position(position), this.tm.getChoppingStationTile(),
-                this.im.getLoadingSprites(), world);
+        return new ChoppingStation(new Position(position), this.tm.getChoppingStationTile(), world);
     }
 
     /**
      * {@inheritDoc}
      */
     public Cooker createCooker(final Position position) {
-        return new Cooker(new Position(position), this.tm.getCookerTile(), this.im.getLoadingSprites());
+        return new Cooker(new Position(position), this.tm.getCookerTile());
     }
 
     /**

@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import it.unibo.oop18.cfc.sprite.IngredientSprite;
 import it.unibo.oop18.cfc.sprite.ItemSpriteSheet;
-import it.unibo.oop18.cfc.sprite.LoadingSprite;
 import it.unibo.oop18.cfc.sprite.PlateSprite;
 
 /**
@@ -14,7 +13,6 @@ public class ItemManager {
 
     private final PlateSprite plateSprites;
     private final IngredientSprite foodSprites;
-    private final LoadingSprite loadingSprites;
 
     /**
      * Instantiates a new {@link ItemManager}.
@@ -26,7 +24,6 @@ public class ItemManager {
         final ItemSpriteSheet is = new ItemSpriteSheet(path);
         this.plateSprites = new PlateSprite(is);
         this.foodSprites = new IngredientSprite(is);
-        this.loadingSprites = new LoadingSprite(is);
     }
 
     /**
@@ -45,14 +42,5 @@ public class ItemManager {
      */
     public IngredientSprite getFoodSprites() {
         return foodSprites;
-    }
-
-    /**
-     * Gets the loading sprites.
-     *
-     * @return the {@link LoadingSprite}
-     */
-    public LoadingSprite getLoadingSprites() {
-        return loadingSprites;
     }
 }

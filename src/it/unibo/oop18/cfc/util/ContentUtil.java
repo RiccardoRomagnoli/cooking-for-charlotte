@@ -19,12 +19,13 @@ import it.unibo.oop18.cfc.main.GameEngine;
  */
 public final class ContentUtil {
 
-    private static final Image MENUBG = loadImage("/HUD/menu1.png", 1024, 768);
-    private static final Image TOPBAR = loadImage("/HUD/topbar.png", 1024, 128);
+    private static final Image MENUBG = loadImage("/HUD/menu.png", 1024, 768);
+    private static final Image TOPBAR = loadImage("/HUD/toppbar.png", 1024, 128);
     private static final Image DOWNBAR = loadImage("/HUD/downbar.png", 1024, 128);
     private static final Image BLUEBAR = loadImage("/HUD/bluebar.png", 153, 5);
     private static final BufferedImage[][] FOOD = loadBufferedImage("/Sprites/Food.png", 50, 50);
     private static final BufferedImage[][] FONT = loadBufferedImage("/HUD/font.png", 50, 50);
+    private static final BufferedImage[][] LOADBAR = loadBufferedImage("/Sprites/loadbar.png", 30, 20);
 
     private ContentUtil() {
 
@@ -88,6 +89,14 @@ public final class ContentUtil {
         drawString(g, str, x, y, FONT[0][0].getWidth(), FONT[0][0].getHeight());
     }
 
+    /**
+     * Draw.
+     * 
+     * @param g graphic to be printed
+     * @param s String to be printed
+     * @param x Pos
+     * @param y Pos
+     */
     public static void drawStringFont(final Graphics2D g, final int x, final int y, final String s) {
         Font myFont = null;
         try {
@@ -148,15 +157,32 @@ public final class ContentUtil {
     }
 
     /**
-    * Draw food in specific location.
-    * 
-    * @param g {@link Graphics2D} the screen
-    * @param x the x position to draw
-    * @param y the y position to draw
-    */
-   public static void drawBlueBar(final Graphics2D g, final int x, final int y, final int width, final int height) {
-       g.drawImage(BLUEBAR.getScaledInstance(width, height, Image.SCALE_SMOOTH), x, y, null);
-   }
+     * Draw food in specific location.
+     * 
+     * @param g {@link Graphics2D} the screen
+     * @param x the x position to draw
+     * @param y the y position to draw
+     * @param width the width of the bar
+     * @param height the height of the bar
+     */
+    public static void drawBlueBar(final Graphics2D g, final int x, final int y, final int width, final int height) {
+        g.drawImage(BLUEBAR.getScaledInstance(width, height, Image.SCALE_SMOOTH), x, y, null);
+    }
+
+    /**
+     * Draw load bar in specific location.
+     * 
+     * @param g {@link Graphics2D} the screen
+     * @param x the x position to draw
+     * @param y the y position to draw
+     * @param width the width of the bar
+     * @param height the height of the bar
+     * @param color the color of the bar
+     */
+    public static void drawLoadBar(final Graphics2D g, final int x, final int y, final int width, final int height,
+            final int color) {
+        g.drawImage(LOADBAR[0][color].getScaledInstance(width, height, Image.SCALE_SMOOTH), x, y, null);
+    }
 
     /**
      * Draw menu.

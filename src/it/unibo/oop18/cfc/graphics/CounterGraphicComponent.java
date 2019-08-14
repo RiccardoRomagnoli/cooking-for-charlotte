@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
 import it.unibo.oop18.cfc.main.GameEngine;
+import it.unibo.oop18.cfc.object.items.Ingredient;
+import it.unibo.oop18.cfc.object.items.PlateImpl;
 import it.unibo.oop18.cfc.object.stations.Counter;
 import it.unibo.oop18.cfc.tile.CounterTile;
 import it.unibo.oop18.cfc.tile.TileSheet;
@@ -61,7 +63,12 @@ public class CounterGraphicComponent implements GraphicsComponent {
                     this.counterTile.getTiles().get(TileType.COUNTER.getPosX()).getImage(), AffineTransform
                             .getTranslateInstance(this.counter.getPosition().getX(), this.counter.getPosition().getY()),
                     null);
-            if (this.counter.getItem().isPresent()) {
+            if (this.counter.getItem().isPresent() && this.counter.getItem().get() instanceof PlateImpl) {
+                ((PlateImpl) this.counter.getItem().get()).drawWithIngredients(g,
+                        new Position(counter.getPosition().getX() + POSITION_X_ITEM,
+                                counter.getPosition().getY() + POSITION_Y_ITEM),
+                        WIDTH_ITEM, HEIGHT_ITEM);
+            } else if (this.counter.getItem().isPresent() && this.counter.getItem().get() instanceof Ingredient) {
                 this.counter.getItem().get().draw(g, new Position(counter.getPosition().getX() + POSITION_X_ITEM,
                         counter.getPosition().getY() + POSITION_Y_ITEM), WIDTH_ITEM, HEIGHT_ITEM);
             }

@@ -3,7 +3,6 @@ package it.unibo.oop18.cfc.world;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import it.unibo.oop18.cfc.manager.ItemManager;
 import it.unibo.oop18.cfc.manager.SpriteManager;
 import it.unibo.oop18.cfc.manager.TileManager;
 import it.unibo.oop18.cfc.object.entity.PlayerImpl;
@@ -39,12 +38,10 @@ public class WorldInitializerImpl implements WorldInitializer {
      *
      * @param tm      the {@link TileManager}
      * @param sm      the {@link SpriteManager}
-     * @param im      the {@link ItemManager}
      * @param mapPath the map path
      */
-    public WorldInitializerImpl(final TileManager tm, final SpriteManager sm, final ItemManager im,
-            final String mapPath) {
-        this.factory = new GameObjectFactoryImpl(tm, sm, im);
+    public WorldInitializerImpl(final TileManager tm, final SpriteManager sm, final String mapPath) {
+        this.factory = new GameObjectFactoryImpl(tm, sm);
         this.tilemap = new TileMapImpl(mapPath);
     }
 

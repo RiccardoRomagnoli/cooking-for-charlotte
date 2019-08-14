@@ -16,6 +16,8 @@ public class PlateImpl extends AbstractItem implements Plate {
 
     private final List<IngredientImpl> ingredients;
     private int points;
+    private static final int INGREDIENTS_WIDTH = 20;
+    private static final int INGREDIENTS_HEIGHT = 20;
 
     /**
      * Instantiates a new plate impl.
@@ -69,31 +71,28 @@ public class PlateImpl extends AbstractItem implements Plate {
      * {@inheritDoc}
      */
     public void draw(final Graphics2D g, final Position p) {
-        if (this.ingredients.size() == 0) {
-            g.drawImage(super.getItemManager().getPlateSprites().getPlateSprite().get(0).getImage(),
-                    AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
-        } else {
-            g.drawImage(super.getItemManager().getPlateSprites().getPlateSprite().get(1).getImage(),
-                    AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
-        }
-
+        g.drawImage(super.getItemManager().getPlateSprites().getPlateSprite().get(0).getImage(),
+                AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
     }
 
     /**
      * {@inheritDoc}
      */
     public void draw(final Graphics2D g, final Position p, final int width, final int height) {
-        if (this.ingredients.size() == 0) {
-            g.drawImage(
-                    super.getItemManager().getPlateSprites().getPlateSprite().get(0).getImage().getScaledInstance(width,
-                            height, Image.SCALE_SMOOTH),
-                    AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
-        } else {
-            g.drawImage(
-                    super.getItemManager().getPlateSprites().getPlateSprite().get(1).getImage().getScaledInstance(width,
-                            height, Image.SCALE_SMOOTH),
-                    AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
-        }
+        g.drawImage(super.getItemManager().getPlateSprites().getPlateSprite().get(0).getImage().getScaledInstance(width,
+                height, Image.SCALE_SMOOTH), AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void drawWithIngredients(final Graphics2D g, final Position p, final int width, final int height) {
+        g.drawImage(super.getItemManager().getPlateSprites().getPlateSprite().get(0).getImage().getScaledInstance(width,
+                height, Image.SCALE_SMOOTH), AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
+        this.ingredients.forEach(i -> {
+            i.draw(g, p, INGREDIENTS_WIDTH, INGREDIENTS_HEIGHT);
+        });
+
     }
 
     /**

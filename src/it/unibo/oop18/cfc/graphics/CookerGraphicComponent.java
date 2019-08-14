@@ -6,8 +6,8 @@ import java.awt.geom.AffineTransform;
 import it.unibo.oop18.cfc.main.GameEngine;
 import it.unibo.oop18.cfc.object.items.IngredientState;
 import it.unibo.oop18.cfc.object.stations.Cooker;
-import it.unibo.oop18.cfc.sprite.LoadingSprite;
 import it.unibo.oop18.cfc.tile.CookerTile;
+import it.unibo.oop18.cfc.util.ContentUtil;
 import it.unibo.oop18.cfc.util.Position;
 
 /**
@@ -29,7 +29,6 @@ public class CookerGraphicComponent implements GraphicsComponent {
 
     private final Cooker cooker;
     private final CookerTile cookerTile;
-    private final LoadingSprite loadingSprite;
     private int frame;
     private int updateFrame;
 
@@ -38,12 +37,10 @@ public class CookerGraphicComponent implements GraphicsComponent {
      *
      * @param cooker        the {@link Cooker}
      * @param cookerTile    the {@link CookerTile} to draw
-     * @param loadingSprite the {@link LoadingSprite} to draw
      */
-    public CookerGraphicComponent(final Cooker cooker, final CookerTile cookerTile, final LoadingSprite loadingSprite) {
+    public CookerGraphicComponent(final Cooker cooker, final CookerTile cookerTile) {
         this.cooker = cooker;
         this.cookerTile = cookerTile;
-        this.loadingSprite = loadingSprite;
         this.frame = 0;
         this.updateFrame = 0;
     }
@@ -66,27 +63,25 @@ public class CookerGraphicComponent implements GraphicsComponent {
         }
         if (this.cooker.getFood().isPresent() && this.cooker.isCooking()) {
             if (this.cooker.getFood().get().getState() == IngredientState.CHOPPED) {
-                g.drawImage(loadingSprite.getLoadingSprite().get(1).getImage(),
-                        (int) this.cooker.getPosition().getX() + POSITION_X_BAR,
+                ContentUtil.drawLoadBar(g, (int) this.cooker.getPosition().getX() + POSITION_X_BAR,
                         (int) this.cooker.getPosition().getY() + POSITION_Y_BAR,
                         (int) ((WIDTH_BAR / (this.cooker.getFood().get().getIngredient().getTimeToCook() * 1000))
-                                * this.cooker.getCookerTimer().getTimeMillis()),
-                        HEIGHT_BAR, null);
+                                * this.cooker.getCookerTimer().getTimeMillis()) + 1,
+                        HEIGHT_BAR, 1);
             } else if (this.cooker.getFood().get().getState() == IngredientState.PERFECT) {
-                g.drawImage(loadingSprite.getLoadingSprite().get(2).getImage(),
-                        (int) this.cooker.getPosition().getX() + POSITION_X_BAR,
+                ContentUtil.drawLoadBar(g, (int) this.cooker.getPosition().getX() + POSITION_X_BAR,
                         (int) this.cooker.getPosition().getY() + POSITION_Y_BAR,
                         (int) ((WIDTH_BAR / (TIME_TO_BURN * 1000)) * (this.cooker.getCookerTimer().getTimeMillis()
-                                - (this.cooker.getFood().get().getIngredient().getTimeToCook() * 1000))),
-                        HEIGHT_BAR, null);
-            } else if (this.cooker.getFood().get().getState() == IngredientState.BURNED) {
-                g.drawImage(loadingSprite.getLoadingSprite().get(3).getImage(),
-                        (int) this.cooker.getPosition().getX() + POSITION_X_BAR,
+                      - (this.cooker.getFood().get().getIngredient().getTimeToCook() * 1000))) + 1,
+                        HEIGHT_BAR, 2);
+           } else if (this.cooker.getFood().get().getState() == IngredientState.BURNED) {
+               ContentUtil.drawLoadBar(g, (int) this.cooker.getPosition().getX() + POSITION_X_BAR,
                         (int) this.cooker.getPosition().getY() + POSITION_Y_BAR,
                         (int) ((WIDTH_BAR / (TIME_TO_BURN * 1000)) * (this.cooker.getCookerTimer().getTimeMillis()
-                                - (this.cooker.getFood().get().getIngredient().getTimeToCook() * 1000) - TIME_TO_BURN * 1000)),
-                        HEIGHT_BAR, null);
-            }
+                                - (this.cooker.getFood().get().getIngredient().getTimeToCook() * 1000)
+                                - TIME_TO_BURN * 1000)) + 1,
+                        HEIGHT_BAR, 3);
+           }
         }
     }
 

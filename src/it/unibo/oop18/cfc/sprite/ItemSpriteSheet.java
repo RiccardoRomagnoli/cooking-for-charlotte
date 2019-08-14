@@ -11,10 +11,10 @@ import javax.imageio.ImageIO;
 public class ItemSpriteSheet {
 
     /** The item sprite width. */
-    public static final int ITEM_SPRITE_WIDTH_IN_GAME = 30;
+    public static final int ITEM_SPRITE_WIDTH_IN_GAME = 32;
 
     /** The item sprite height. */
-    public static final int ITEM_SPRITE_HEIGHT_IN_GAME = 20;
+    public static final int ITEM_SPRITE_HEIGHT_IN_GAME = 26;
 
     private final BufferedImage sheet;
 

@@ -323,7 +323,7 @@ public class WorldImpl implements World {
     }
 
     private void createLevel() {
-        final WorldInitializer initializer = new WorldInitializerImpl(tileManager, spriteManager, itemManager, MAPPATH);
+        final WorldInitializer initializer = new WorldInitializerImpl(tileManager, spriteManager, MAPPATH);
         this.choppingStations.addAll(initializer.initializeChoppingBoard(this));
         this.cookers.addAll(initializer.initializeCooker());
         this.counters.addAll(initializer.initializeCounter());

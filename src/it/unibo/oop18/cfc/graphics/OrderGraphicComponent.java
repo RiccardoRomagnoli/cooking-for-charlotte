@@ -17,9 +17,9 @@ public class OrderGraphicComponent implements GraphicsComponent {
     private static final int Y_TIMER = 90;
     private static final int WIDTH_TIMER_TEXT = 25;
     private static final int HEIGHT_TIMER_TEXT = 25;
-    private static final int INGREDIENT_WIDTH_HEIGHT = 50;
+    private static final int INGREDIENT_WIDTH_HEIGHT = 40;
     private static final int X_FIRST_INGREDIENT = 6;
-    private static final int Y_INGREDIENTS = 35;
+    private static final int Y_INGREDIENTS = 25;
     private static final int OFFSET = 1;
     private static final int WIDTH_SLOT_GRAPHIC = 13;
     private static final int SECONDS_IN_MINUTE = 60;

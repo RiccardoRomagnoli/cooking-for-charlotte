@@ -1,6 +1,9 @@
 package it.unibo.oop18.cfc.object.items;
 
+import java.awt.Graphics2D;
 import java.util.List;
+
+import it.unibo.oop18.cfc.util.Position;
 
 /**
  * The Interface Plate.
@@ -50,4 +53,15 @@ public interface Plate {
      * Clear all the ingredients on the plate.
      */
     void wash();
+
+    /**
+     * Draw the plate in the {@link Position} with specific width and height and
+     * draw his ingredients on it.
+     *
+     * @param g      the {@link Graphics2D} of the screen
+     * @param p      the {@link Position}
+     * @param width  the width
+     * @param height the height
+     */
+    void drawWithIngredients(Graphics2D g, Position p, int width, int height);
 }

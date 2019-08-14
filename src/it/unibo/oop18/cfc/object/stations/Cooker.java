@@ -8,7 +8,6 @@ import it.unibo.oop18.cfc.graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.object.items.IngredientImpl;
 import it.unibo.oop18.cfc.object.items.IngredientState;
 import it.unibo.oop18.cfc.object.items.PlateImpl;
-import it.unibo.oop18.cfc.sprite.LoadingSprite;
 import it.unibo.oop18.cfc.tile.CookerTile;
 import it.unibo.oop18.cfc.util.GameTimer;
 import it.unibo.oop18.cfc.util.Position;
@@ -32,14 +31,13 @@ public class Cooker extends AbstractStationObject {
      *
      * @param position      the {@link Position}
      * @param cookerTile    the {@link CookerTile} to draw
-     * @param loadingSprite the {@link LoadingSprite} to draw
      */
-    public Cooker(final Position position, final CookerTile cookerTile, final LoadingSprite loadingSprite) {
+    public Cooker(final Position position, final CookerTile cookerTile) {
         super(position);
         this.food = Optional.empty();
         this.timer = new GameTimer();
         this.cooking = false;
-        this.graphicComponent = new CookerGraphicComponent(this, cookerTile, loadingSprite);
+        this.graphicComponent = new CookerGraphicComponent(this, cookerTile);
     }
 
     /**
@@ -128,20 +126,19 @@ public class Cooker extends AbstractStationObject {
             if (world.getPlayer().getItemInHand().isPresent()
                     && world.getPlayer().getItemInHand().get() instanceof PlateImpl
                     && ((PlateImpl) world.getPlayer().getItemInHand().get()).getIngredients().size() < 4) {
-                        // aggiungi l'ingrediente nel piatto e toglilo dalla station
-                        ((PlateImpl) world.getPlayer().getItemInHand().get()).addIngredient(food.get());
-                        this.food = Optional.empty();
-                        this.timer.reset();
-                        this.cooking = false;
-                } else {
-                // se il player non ha niente in mano e l'ingrediente è cotto
-                if (this.food.get().getState() == IngredientState.PERFECT
-                        || this.food.get().getState() == IngredientState.BURNED) {
-                    world.getPlayer().setItemInHand(this.food.get());
-                    this.food = Optional.empty();
-                    this.timer.reset();
-                    this.cooking = false;
-                }
+                // aggiungi l'ingrediente nel piatto e toglilo dalla station
+                ((PlateImpl) world.getPlayer().getItemInHand().get()).addIngredient(food.get());
+                this.food = Optional.empty();
+                this.timer.reset();
+                this.cooking = false;
+            // se il player non ha niente in mano e l'ingrediente è cotto o bruciato
+            } else if (!world.getPlayer().getItemInHand().isPresent()
+                    && (this.food.get().getState() == IngredientState.PERFECT
+                            || this.food.get().getState() == IngredientState.BURNED)) {
+                world.getPlayer().setItemInHand(this.food.get());
+                this.food = Optional.empty();
+                this.timer.reset();
+                this.cooking = false;
             }
         } else {
             // se non c'è cibo e ho in mano qualcosa che sia un ingrediente tagliato
@@ -157,6 +154,5 @@ public class Cooker extends AbstractStationObject {
                 this.cooking = true;
             }
         }
-
     }
 }
