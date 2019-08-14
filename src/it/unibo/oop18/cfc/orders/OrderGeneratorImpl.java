@@ -27,7 +27,6 @@ public class OrderGeneratorImpl extends TimerTask implements OrderGenerator {
      * @param ordersManager Order Manager Istance
      */
     public OrderGeneratorImpl(final OrdersManager ordersManager) {
-        super();
         this.ordersManager = ordersManager;
         this.timer = new Timer();
         this.orderIngredientsAvaiable = new ArrayList<>();

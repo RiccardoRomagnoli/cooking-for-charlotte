@@ -25,7 +25,7 @@ public class OrderImpl implements Order {
     private int slot;
     private boolean paused;
     private int countDownTime;
-    private Timer countDownTimer;
+    private final Timer countDownTimer;
     private final OrdersManager ordersManager;
     private final Order thisOrder;
     private final GraphicsComponent graphicComponent;
@@ -108,7 +108,6 @@ public class OrderImpl implements Order {
     * {@inheritDoc}
     */
     public void startOrder() {
-        this.countDownTimer = new Timer();
         countDownTimer.schedule(new TimerTask() {
             @Override
             public void run() {
