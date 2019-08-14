@@ -13,12 +13,11 @@ import it.unibo.oop18.cfc.util.JukeBoxUtil;
  */
 public class MenuState extends GameState {
 
-    private static final int STRING_POS = 350;
-    private static final int IMAGE_POS = 280;
     private int currentOption;
     private final String[] options = { "START", "OPTIONS", "INFO", "RANKING", "QUIT" };
     private final int menuOptions = options.length;
-    private final int[] dim = { 300, 360, 420, 480, 540 };
+    private final int[] posy = { 350, 400, 450, 500, 550};
+    private final int[] posx = { 465, 445, 475, 442, 475};
 
     /**
      * Menu state init.
@@ -56,9 +55,11 @@ public class MenuState extends GameState {
      */
     public void draw(final Graphics2D g) {
         ContentUtil.drawMenu(g);
-        ContentUtil.drawFood(g, IMAGE_POS, dim[currentOption]);
+        //ContentUtil.drawFood(g, IMAGE_POS, posy[currentOption]);
         for (int i = 0; i < menuOptions; i++) {
-            ContentUtil.drawString(g, options[i], STRING_POS, dim[i]);
+            //ContentUtil.drawString(g, options[i], STRING_POS, dim[i]);
+            ContentUtil.drawStringFont(g, posx[i], posy[i], options[i]);
+            ContentUtil.drawBlueBar(g, posx[currentOption] - 10, posy[currentOption] + 4, options[currentOption].length() * 23, 5);
         }
     }
 

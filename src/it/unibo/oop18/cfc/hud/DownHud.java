@@ -26,9 +26,9 @@ public class DownHud {
     private static final int POSITION_X_FOOD = 412;
     private static final int POSITION_X_STATE = 425;
     private static final int DISTANCE_BETWEEN_FOOD = 100;
-    private static final int POSITION_X_STRINGS  = 17;
-    private static final int POSITION_Y_LIFE = 654;
-    private static final int POSITION_Y_TIME = 704;
+    private static final int POSITION_X_STRINGS  = 17 + 50;
+    private static final int POSITION_Y_LIFE = 654 + 35;
+    private static final int POSITION_Y_TIME = 704 + 35;
 
     private final int yoffset;
     private final World world;
@@ -76,23 +76,35 @@ public class DownHud {
         final int seconds = (int) world.getGameTimer().getSeconds();
         if (minutes < 10) {
             if (seconds < 10) {
-                ContentUtil.drawString(g, "0" + minutes + ":0" + seconds, POSITION_X_STRINGS, POSITION_Y_TIME);
+                //ContentUtil.drawString(g, "0" + minutes + ":0" + seconds, POSITION_X_STRINGS, POSITION_Y_TIME);
+                ContentUtil.drawStringFont(g, POSITION_X_STRINGS, POSITION_Y_TIME,  "0" + minutes + ":0" + seconds);
+
             } else {
-                ContentUtil.drawString(g, "0" + minutes + ":" + seconds, POSITION_X_STRINGS, POSITION_Y_TIME);
+                //ContentUtil.drawString(g, "0" + minutes + ":" + seconds, POSITION_X_STRINGS, POSITION_Y_TIME);
+                ContentUtil.drawStringFont(g, POSITION_X_STRINGS, POSITION_Y_TIME, "0" + minutes + ":" + seconds);
+
             }
         } else {
             if (seconds < 10) {
-                ContentUtil.drawString(g, minutes + ":0" + seconds, POSITION_X_STRINGS, POSITION_Y_TIME);
+                //ContentUtil.drawString(g, minutes + ":0" + seconds, POSITION_X_STRINGS, POSITION_Y_TIME);
+                ContentUtil.drawStringFont(g, POSITION_X_STRINGS, POSITION_Y_TIME, minutes + ":0" + seconds);
+
             } else {
-                ContentUtil.drawString(g, minutes + ":" + seconds, POSITION_X_STRINGS, POSITION_Y_TIME);
+                //ContentUtil.drawString(g, minutes + ":" + seconds, POSITION_X_STRINGS, POSITION_Y_TIME);
+                ContentUtil.drawStringFont(g, POSITION_X_STRINGS, POSITION_Y_TIME, minutes + ":" + seconds);
+
             }
         }
         // draw lifes
         final Integer lifes = world.getPlayer().getLifes();
         if (lifes <= 10) {
-            ContentUtil.drawString(g, "hp:0" + lifes.toString(), POSITION_X_STRINGS, POSITION_Y_LIFE);
+            //ContentUtil.drawString(g, "hp:0" + lifes.toString(), POSITION_X_STRINGS, POSITION_Y_LIFE);
+            ContentUtil.drawStringFont(g, POSITION_X_STRINGS, POSITION_Y_LIFE,"0" + lifes.toString());
+
         } else {
-            ContentUtil.drawString(g, "hp: " + lifes.toString(), POSITION_X_STRINGS, POSITION_Y_LIFE);
+            //ContentUtil.drawString(g, "hp: " + lifes.toString(), POSITION_X_STRINGS, POSITION_Y_LIFE);
+            ContentUtil.drawStringFont(g, POSITION_X_STRINGS, POSITION_Y_LIFE, lifes.toString());
+
         }
 
     }
