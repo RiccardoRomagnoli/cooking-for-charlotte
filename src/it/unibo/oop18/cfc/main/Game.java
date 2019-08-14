@@ -10,7 +10,12 @@ import javax.swing.JFrame;
  * Graphics basic class. Entry point of the game. this class loads up a JFrame
  * window and puts a GamePanel into it.
  */
-public class Game {
+public final class Game {
+
+    private Game() {
+
+    }
+
     /**
      * Main.
      * 

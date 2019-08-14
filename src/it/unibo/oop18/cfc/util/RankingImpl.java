@@ -16,6 +16,7 @@ import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 import it.unibo.oop18.cfc.gamestate.InfoState;
+import it.unibo.oop18.cfc.world.WorldImpl;
 
 /**
  * Ranking class manage a CSV file.
@@ -28,12 +29,13 @@ public class RankingImpl implements Ranking {
     private final int rowNumber;
 
     /**
-     * Constructor.
+     * Constructor. Load the number of row (num of players classified) Load the
+     * ranking in the hashmap from the csvfile Order the hashmap
      */
     public RankingImpl() {
         this.rowNumber = ranked.size();
-        loadRanking(); // Loads the ranking, so now the HashMap is filled
-        ranked = orderRank(ranked);
+        loadRanking();
+        ranked = RankingImpl.orderRank(ranked);
     }
 
     /**
@@ -54,35 +56,21 @@ public class RankingImpl implements Ranking {
      */
     public static void printOnScreen(final Graphics2D g) {
         int count = 1;
-        Font myFont;
-        try {
-            myFont = Font.createFont(Font.TRUETYPE_FONT, InfoState.class.getResourceAsStream("/HUD/comicsans.ttf"));
-            myFont = myFont.deriveFont(30f);
-            g.setFont(myFont);
-            g.setColor(Color.green);
-            for (final HashMap.Entry<String, Integer> entry : ranked.entrySet()) {
-                final String key = entry.getKey();
-                final Integer value = entry.getValue();
-                g.drawString(String.format("#%d  -  Name: %s  -  Points: %d ", count, key.toUpperCase(Locale.ENGLISH),
-                        value), 220, 310 + 50 * count);
-                count++;
-            }
-        } catch (FontFormatException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        for (final HashMap.Entry<String, Integer> entry : ranked.entrySet()) {
+            final String key = entry.getKey();
+            final Integer value = entry.getValue();
+            ContentUtil.drawStringFont(g, 220, 310 + 50 * count,
+                    String.format("#%d  -  Name: %s  -  Points: %d ", count, key.toUpperCase(Locale.ENGLISH), value));
+            count++;
         }
+
     }
 
     /**
      * {@inheritDoc}
      */
     public void saveRanking() {
-        FileWriter w;
-        BufferedWriter b;
-        try {
-            w = new FileWriter(path);
-            b = new BufferedWriter(w);
+        try (BufferedWriter b = new BufferedWriter(new FileWriter(path));) {
             for (final HashMap.Entry<String, Integer> entry : ranked.entrySet()) {
                 final String key = entry.getKey();
                 final Integer value = entry.getValue();
@@ -90,7 +78,6 @@ public class RankingImpl implements Ranking {
                 b.write(row);
             }
             b.close();
-            w.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -102,8 +89,7 @@ public class RankingImpl implements Ranking {
      * 
      */
     public final void loadRanking() {
-        try {
-            final BufferedReader csvReader = new BufferedReader(new FileReader(path));
+        try (BufferedReader csvReader = new BufferedReader(new FileReader(path))) {
             String row;
             while ((row = csvReader.readLine()) != null) {
                 final String[] data = row.split(";");
@@ -155,7 +141,7 @@ public class RankingImpl implements Ranking {
      * 
      * @param path rank
      */
-    public static void setPath(String path) {
+    public static void setPath(final String path) {
         RankingImpl.path = path;
     }
 

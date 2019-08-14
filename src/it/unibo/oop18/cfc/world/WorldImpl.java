@@ -72,6 +72,11 @@ public class WorldImpl implements World {
      */
     public static final String ITEMPATH = "/Sprites/itemSprite.png";
 
+    /**
+     * Font size.
+     */
+    public static final float FONT_SIZE = 30f;
+
     private final Set<ChoppingStation> choppingStations;
     private final Set<Cooker> cookers;
     private final Set<Counter> counters;
@@ -185,9 +190,7 @@ public class WorldImpl implements World {
      */
     public List<? extends Station> getAllStations() {
         final List<Station> allStationObjects = new LinkedList<>();
-        getAllGameObjects().stream()
-            .filter(p -> p instanceof Station)
-            .forEach(s -> allStationObjects.add((Station) s));
+        getAllGameObjects().stream().filter(p -> p instanceof Station).forEach(s -> allStationObjects.add((Station) s));
         return Collections.unmodifiableList(allStationObjects);
     }
 

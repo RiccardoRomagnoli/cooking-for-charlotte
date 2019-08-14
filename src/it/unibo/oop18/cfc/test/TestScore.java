@@ -40,7 +40,7 @@ public class TestScore {
      * @exception Exception gamescore setted but not created
      */
     @Test(expected = Exception.class)
-    public void scoreTestExceptions() throws Exception {
+    public void scoreTestExceptions() {
         final GameScoreImpl score = new GameScoreImpl();
         Assert.assertTrue(score.getScore() == 0);
         score.getScore();

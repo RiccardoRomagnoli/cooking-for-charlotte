@@ -1,11 +1,9 @@
 package it.unibo.oop18.cfc.util;
 
 import java.io.BufferedInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -19,9 +17,10 @@ import javax.sound.sampled.FloatControl;
  */
 public final class JukeBoxUtil {
 
+    private static final int VOLUME_START = 15;
     private static Map<String, Clip> clips;
     private static int gap;
-    private static int volume = 15;
+    private static int volume = VOLUME_START;
     private static float gain;
     private static float dB;
     private static InputStream in;
@@ -145,6 +144,7 @@ public final class JukeBoxUtil {
             return;
         }
         c.loop(Clip.LOOP_CONTINUOUSLY);
+        //c.close();
     }
 
     /**
@@ -231,7 +231,7 @@ public final class JukeBoxUtil {
     }
 
     /**
-     * Close clips
+     * Close clips.
      * 
      * @param s clip name
      */
@@ -261,6 +261,7 @@ public final class JukeBoxUtil {
         gain = f / 3; // number between 0 and 2 (loudest)
         dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
         gainControl.setValue(dB);
+        //c.close();
     }
 
     /**
@@ -274,6 +275,8 @@ public final class JukeBoxUtil {
         if (c == null) {
             return false;
         }
+        //final boolean state = c.isRunning();
+        //c.close();
         return c.isRunning();
     }
 
@@ -301,14 +304,7 @@ public final class JukeBoxUtil {
      * @throws IOException if stream are not open
      */
     public static void closeResource() {
-//        try {
-//            in.close();
-//            bin.close();
-//            ais.close();
-//            dais.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
     }
 
 }

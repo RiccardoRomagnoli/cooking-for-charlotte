@@ -17,10 +17,6 @@ public class PlayState extends GameState {
     private World world;
     private TopHud topHud;
     private DownHud downHud;
-    /**
-     * 0 - not playing (never started) / 1 - playing / 2 - not playing (paused).
-     */
-    public static int themeIsPlaying;
 
     /**
      * Constructor.

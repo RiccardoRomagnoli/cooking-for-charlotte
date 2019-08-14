@@ -128,9 +128,8 @@ public class TileMapImpl implements TileMap {
     }
 
     private void loadMap() {
-        try {
-            final InputStream in = getClass().getResourceAsStream(bitMap);
-            final BufferedReader br = new BufferedReader(new InputStreamReader(in));
+        try (InputStream in = getClass().getResourceAsStream(bitMap);
+                BufferedReader br = new BufferedReader(new InputStreamReader(in));) {
             maps = new ArrayList<Pair<Integer, Position>>();
             final int numCols = Integer.parseInt(br.readLine());
             final int numRows = Integer.parseInt(br.readLine());

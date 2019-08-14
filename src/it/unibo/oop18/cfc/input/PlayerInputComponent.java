@@ -20,7 +20,7 @@ public interface PlayerInputComponent extends InputComponent {
     void stop();
 
     /**
-     * Do action on a specific Station
+     * Do action on a specific Station.
      */
     void doAction();
 }

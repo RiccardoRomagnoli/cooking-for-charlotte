@@ -46,9 +46,8 @@ public class PauseState extends GameState {
      * {@inheritDoc}.
      */
     public void draw(final Graphics2D g) {
-        if (PlayState.themeIsPlaying == 1) {
+        if (JukeBoxUtil.isPlaying("themeSong")) {
             JukeBoxUtil.stop("themeSong");
-            PlayState.themeIsPlaying = 2;
         }
 
         ContentUtil.drawString(g, "pause", POSITION_X_PAUSE, POSITION_Y_PAUSE);

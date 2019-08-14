@@ -16,8 +16,25 @@ public class MenuState extends GameState {
     private int currentOption;
     private final String[] options = { "START", "OPTIONS", "INFO", "RANKING", "QUIT" };
     private final int menuOptions = options.length;
-    private final int[] posy = { 350, 400, 450, 500, 550};
-    private final int[] posx = { 465, 445, 475, 442, 475};
+    /**
+     * Enter button press sound.
+     */
+    public static final String BUTTON_SOUND = "collect";
+    /**
+     * Menu main sound.
+     */
+    public static final String MENU_SOUND = "menuSong";
+    /**
+     * Theme sound.
+     */
+    public static final String THEME_SOUND = "themeSong";
+    /**
+     * Menu Option sound.
+     */
+    public static final String OPTION_SOUND = "menuoption";
+
+    private final int[] posy = { 350, 400, 450, 500, 550 };
+    private final int[] posx = { 465, 445, 475, 442, 475 };
 
     /**
      * Menu state init.
@@ -32,15 +49,15 @@ public class MenuState extends GameState {
      * Initialize the menu screen and load the sounds.
      */
     public void init() {
-        JukeBoxUtil.load("/SFX/collect.wav", "collect");
-        JukeBoxUtil.load("/SFX/menuoption.wav", "menuoption");
-        JukeBoxUtil.load("/SFX/menuSong.wav", "menuSong");
-        if (!JukeBoxUtil.isPlaying("menuSong")) {
-            JukeBoxUtil.loop("menuSong");
+        JukeBoxUtil.load("/SFX/collect.wav", BUTTON_SOUND);
+        JukeBoxUtil.load("/SFX/menuoption.wav", OPTION_SOUND);
+        JukeBoxUtil.load("/SFX/menuSong.wav", MENU_SOUND);
+        if (!JukeBoxUtil.isPlaying(MENU_SOUND)) {
+            JukeBoxUtil.loop(MENU_SOUND);
         } else {
-            JukeBoxUtil.resume("menuSong");
+            JukeBoxUtil.resume(MENU_SOUND);
         }
-        JukeBoxUtil.stop("themeSong");
+        JukeBoxUtil.stop(THEME_SOUND);
     }
 
     /**
@@ -55,11 +72,12 @@ public class MenuState extends GameState {
      */
     public void draw(final Graphics2D g) {
         ContentUtil.drawMenu(g);
-        //ContentUtil.drawFood(g, IMAGE_POS, posy[currentOption]);
+        // ContentUtil.drawFood(g, IMAGE_POS, posy[currentOption]);
         for (int i = 0; i < menuOptions; i++) {
-            //ContentUtil.drawString(g, options[i], STRING_POS, dim[i]);
+            // ContentUtil.drawString(g, options[i], STRING_POS, dim[i]);
             ContentUtil.drawStringFont(g, posx[i], posy[i], options[i]);
-            ContentUtil.drawBlueBar(g, posx[currentOption] - 10, posy[currentOption] + 4, options[currentOption].length() * 23, 5);
+            ContentUtil.drawBlueBar(g, posx[currentOption] - 10, posy[currentOption] + 4,
+                    options[currentOption].length() * 23, 5);
         }
     }
 
@@ -70,7 +88,7 @@ public class MenuState extends GameState {
         final Graphics2D g = GameEngine.getG();
         if (currentOption == 0) {
             getGsm().newGame();
-            JukeBoxUtil.stop("menuSong");
+            JukeBoxUtil.stop(MENU_SOUND);
         }
         if (currentOption == 1) {
             getGsm().setState(GameStates.OPTION);
@@ -85,8 +103,7 @@ public class MenuState extends GameState {
             getGsm().draw(g);
         }
         if (currentOption == 4) {
-            JukeBoxUtil.stop("menuSong");
-            JukeBoxUtil.closeResource();
+            JukeBoxUtil.stop(MENU_SOUND);
             System.exit(0);
         }
     }
@@ -96,7 +113,7 @@ public class MenuState extends GameState {
      */
     public void goUp() {
         if (currentOption > 0) {
-            JukeBoxUtil.play("menuoption");
+            JukeBoxUtil.play(OPTION_SOUND);
             currentOption--;
         }
     }
@@ -106,7 +123,7 @@ public class MenuState extends GameState {
      */
     public void goDown() {
         if (currentOption < options.length - 1) {
-            JukeBoxUtil.play("menuoption");
+            JukeBoxUtil.play(OPTION_SOUND);
             currentOption++;
         }
     }
@@ -115,7 +132,7 @@ public class MenuState extends GameState {
      * Enter button pressed.
      */
     public void select() {
-        JukeBoxUtil.play("collect");
+        JukeBoxUtil.play(BUTTON_SOUND);
         selectOption();
     }
 }

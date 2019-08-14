@@ -5,7 +5,6 @@ import java.awt.event.KeyListener;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-
 import it.unibo.oop18.cfc.gamestate.GameOverState;
 import it.unibo.oop18.cfc.gamestate.GameState;
 import it.unibo.oop18.cfc.gamestate.GameStates;
@@ -117,8 +116,7 @@ public class KeyInput implements KeyListener {
         case KeyEvent.VK_UP:
             way = Optional.ofNullable(Direction.UP);
             break;
-        //TODO: da togliere solo per debug
-        case KeyEvent.VK_Q:
+        case KeyEvent.VK_Q:// TODO : da togliere solo per debug
             gsm.setState(GameStates.GAMEOVER);
             way = Optional.empty();
             break;
@@ -128,7 +126,7 @@ public class KeyInput implements KeyListener {
             break;
         case KeyEvent.VK_P:
         case KeyEvent.VK_ESCAPE:
-            JukeBoxUtil.stop("music1");
+            JukeBoxUtil.stop("themeSong");
             this.launchPause();
         default:
             way = Optional.empty();
@@ -140,7 +138,11 @@ public class KeyInput implements KeyListener {
         this.moveEntity(way);
     }
 
-    // key pressed during intro state
+    /**
+     * Key pressed during intro state.
+     * 
+     * @param e key pressed
+     */
     private void introKeyInput(final KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             gsm.setState(GameStates.MENU);
@@ -148,7 +150,11 @@ public class KeyInput implements KeyListener {
         }
     }
 
-    // key pressed during game over state
+    /**
+     * Key pressed during gameOver.
+     * 
+     * @param e key pressed
+     */
     private void gameOverKeyInput(final KeyEvent e) {
         final GameOverState over = (GameOverState) currentState;
         switch (e.getKeyCode()) {
@@ -166,19 +172,18 @@ public class KeyInput implements KeyListener {
             break;
         case KeyEvent.VK_ENTER:
             JukeBoxUtil.play("collect");
-            // TODO avverti che il punteggio è stato salvato
             over.save();
             gsm.setState(GameStates.MENU);
         default:
             break;
         }
-        /*
-         * if (e.getKeyCode() == KeyEvent.VK_ENTER) { gsm.setState(GameStates.MENU);
-         * JukeBoxUtil.play("collect"); }
-         */
     }
 
-    // key pressed during menu state
+    /**
+     * Key pressed during menuState.
+     * 
+     * @param e key pressed
+     */
     private void menuKeyInput(final KeyEvent e) {
         final MenuState menu = (MenuState) currentState;
         switch (e.getKeyCode()) {
@@ -195,7 +200,11 @@ public class KeyInput implements KeyListener {
         }
     }
 
-    // key pressed during pause state
+    /**
+     * Key pressed during pause.
+     * 
+     * @param e key pressed
+     */
     private void pauseKeyInput(final KeyEvent e) {
         switch (e.getKeyCode()) {
         case KeyEvent.VK_ESCAPE:
@@ -210,11 +219,23 @@ public class KeyInput implements KeyListener {
         }
     }
 
+    /**
+     * Key pressed during rankState.
+     * 
+     * @param e key pressed
+     */
     private void rankingKeyInput(final KeyEvent e) {
+        e.consume();
         gsm.setState(GameStates.MENU);
     }
 
+    /**
+     * Key pressed during infoState.
+     * 
+     * @param e key pressed
+     */
     private void infoKeyInput(final KeyEvent e) {
+        e.consume();
         gsm.setState(GameStates.MENU);
     }
 
@@ -276,7 +297,7 @@ public class KeyInput implements KeyListener {
         resetKeys();
         resumeTimers();
         this.gsm.getPlayState().getWorld().getPlayer().getInput().stop();
-        JukeBoxUtil.resumeLoop("music1");
+        JukeBoxUtil.resumeLoop("themeSong");
     }
 
     private void resetKeys() {

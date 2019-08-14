@@ -5,16 +5,26 @@ package it.unibo.oop18.cfc.util;
  */
 public final class DataUtil {
 
-    public static long time;
+    private static long time;
 
     private DataUtil() {
 
     }
 
-    public static void setTime(long l) {
+    /**
+     * Time setter.
+     * 
+     * @param l time to be setted
+     */
+    public static void setTime(final long l) {
         time = l;
     }
 
+    /**
+     * Get the actual time.
+     * 
+     * @return the time
+     */
     public static long getTime() {
         return time;
     }

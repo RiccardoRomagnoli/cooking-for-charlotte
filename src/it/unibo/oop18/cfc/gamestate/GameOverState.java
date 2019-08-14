@@ -4,12 +4,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import it.unibo.oop18.cfc.manager.GameStateManager;
-import it.unibo.oop18.cfc.object.items.IngredientImpl;
-import it.unibo.oop18.cfc.orders.OrdersManagerImpl;
 import it.unibo.oop18.cfc.util.ContentUtil;
-import it.unibo.oop18.cfc.util.GameScoreImpl;
 import it.unibo.oop18.cfc.util.JukeBoxUtil;
 import it.unibo.oop18.cfc.util.RankingImpl;
+import it.unibo.oop18.cfc.world.WorldImpl;
 
 /**
  * The Class GameOverState.
@@ -18,11 +16,14 @@ public class GameOverState extends GameState {
 
     // private Color color;
     private static final int STRING_COL = 220;
+    private static final int STRING_ROW = 500;
+    private static final int SMALL_PADDING = 50;
+    private static final int BIG_PADDING = 350;
     private int finalScore;
     private Font myFont;
     private char[] choice = "_ _ _ _ _ _ _ _ _ _".toCharArray();
     private int index;
-    private RankingImpl ranking;
+    private final RankingImpl ranking;
 
     /**
      * GameOverState constructor.
@@ -54,21 +55,21 @@ public class GameOverState extends GameState {
      * {@inheritDoc}
      */
     public void draw(final Graphics2D g) {
-        if (finalScore >= 0) { // TODO togliere e mettere score.min
+        if (finalScore >= 0) {
             ContentUtil.drawMenu(g);
-            g.drawString("Insert your name:", STRING_COL, 300);
             try {
                 myFont = Font.createFont(Font.TRUETYPE_FONT, InfoState.class.getResourceAsStream("/HUD/comicsans.ttf"));
-                myFont = myFont.deriveFont(30f);
+                myFont = myFont.deriveFont(WorldImpl.FONT_SIZE);
                 g.setFont(myFont);
                 g.setColor(Color.DARK_GRAY);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            g.drawString(String.valueOf(choice), STRING_COL, 500); //
-            g.drawString(String.format("Points: %d", finalScore), STRING_COL + 350, 500);
+            g.drawString("Insert your name:", STRING_COL, STRING_ROW - 100);
+            g.drawString(String.valueOf(choice), STRING_COL, STRING_ROW); //
+            g.drawString(String.format("Points: %d", finalScore), STRING_COL + BIG_PADDING, STRING_ROW);
         }
-        g.drawString("press any key", STRING_COL, 700);
+        g.drawString("press any key", STRING_COL + BIG_PADDING, STRING_ROW + SMALL_PADDING);
     }
 
     /**
@@ -136,5 +137,4 @@ public class GameOverState extends GameState {
     public String getName() {
         return String.valueOf(choice).replaceAll(" ", "").replaceAll("_", "");
     }
-
 }

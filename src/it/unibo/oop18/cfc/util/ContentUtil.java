@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 
 import it.unibo.oop18.cfc.gamestate.InfoState;
 import it.unibo.oop18.cfc.main.GameEngine;
+import it.unibo.oop18.cfc.world.WorldImpl;
 
 /**
  * Loads and splits all sprites on start up. The sprites can easily be accessed
@@ -100,7 +101,7 @@ public final class ContentUtil {
         Font myFont = null;
         try {
             myFont = Font.createFont(Font.TRUETYPE_FONT, InfoState.class.getResourceAsStream("/HUD/seguibl.ttf"));
-            myFont = myFont.deriveFont(30f);
+            myFont = myFont.deriveFont(WorldImpl.FONT_SIZE);
             g.setFont(myFont);
             g.drawString(s, x, y);
         } catch (FontFormatException e) {
