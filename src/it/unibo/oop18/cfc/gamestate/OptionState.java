@@ -14,10 +14,10 @@ import it.unibo.oop18.cfc.util.JukeBoxUtil;
  */
 public class OptionState extends GameState {
 
-    private static final int STRING_POS = 200;
+    private static final int STRING_POS = 250;
     // private static final int IMAGE_POS = 20;
-    private static final int FONT_HEIGTH = 30;
-    private static final int FONT_LENGTH = 30;
+    // private static final int FONT_HEIGTH = 25;
+    // private static final int FONT_LENGTH = 30;
 
     private final String[] options = { "Volume", "Resolution", "Quit" };
     private static List<Integer> volume = new ArrayList<Integer>(Arrays.asList(0, 15, 30, 45, 60, 75, 90, 100));
@@ -26,7 +26,7 @@ public class OptionState extends GameState {
     private static List<String> resolution = new ArrayList<String>(Arrays.asList("1400x900", "800x600", "640x480"));
     private final int numOptions = options.length;
     private int currentOption;
-    private final int[] dim = { 400, 450, 500};
+    private final int[] dim = { 400, 450, 500 };
 
     /**
      * Class constructor.
@@ -62,10 +62,11 @@ public class OptionState extends GameState {
         }
         // TODO : change with new font ContentUtil.drawFood(g, IMAGE_POS,
         // dim[currentOption]);
-        g.drawRect(STRING_POS, dim[currentOption], FONT_HEIGTH * options[currentOption].length(), FONT_LENGTH);
-
-        ContentUtil.drawStringFont(g,  610,  dim[0],volume.get(lastVolIndex).toString());
-        ContentUtil.drawStringFont(g,  610, dim[1], resolution.get(lastResIndex));
+        // g.drawRect(STRING_POS, dim[currentOption] - FONT_LENGTH , FONT_HEIGTH *
+        // options[currentOption].length(), FONT_LENGTH);
+        ContentUtil.drawBlueBar(g, STRING_POS - 10, dim[currentOption] + 4, options[currentOption].length() * 23, 5);
+        ContentUtil.drawStringFont(g, 610, dim[0], volume.get(lastVolIndex).toString());
+        ContentUtil.drawStringFont(g, 610, dim[1], resolution.get(lastResIndex));
     }
 
     /**
