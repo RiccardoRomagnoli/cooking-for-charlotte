@@ -46,8 +46,6 @@ public class OrdersManagerImpl implements OrdersManager {
         final Optional<Order> order = checkOrder(plate);
         if (order.isPresent()) {
             orderSucceed(order.get());
-        } else {
-            loseLife();
         }
         return order.isPresent();
     }
