@@ -16,18 +16,16 @@ public class GameScoreImpl implements GameScore {
         this.score = GameScoreImpl.START;
     }
 
-
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public int getScore() {
         return this.score;
     }
 
-
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void computeScore(final int scoreValue) {
         this.score = this.score + scoreValue;
     }

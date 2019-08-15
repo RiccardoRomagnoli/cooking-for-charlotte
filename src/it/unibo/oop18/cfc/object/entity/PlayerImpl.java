@@ -36,9 +36,9 @@ public class PlayerImpl extends AbstractEntity implements Player {
     /**
      * Instantiates a new player impl.
      *
-     * @param position the position
+     * @param position      the position
      * @param playerSprites the player sprites
-     * @param world the world
+     * @param world         the world
      */
     public PlayerImpl(final Position position, final PlayerSprites playerSprites, final World world) {
         super(position, world);
@@ -51,104 +51,100 @@ public class PlayerImpl extends AbstractEntity implements Player {
         this.gfx = new DynamicPlayerGraphicsComponent(this, playerSprites);
     }
 
-
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void increasePoints() {
         points++;
     }
 
-
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public int getPoints() {
         return points;
     }
 
-
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public int getTotalPoints() {
         return totalPoints;
     }
 
-
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void setTotalPoints(final int i) {
         totalPoints = i;
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public int getLifes() {
         return this.lifes;
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void decLifes() {
         this.lifes--;
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public Optional<Item> getItemInHand() {
         return this.hand;
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void setItemInHand(final Item i) {
         this.hand = Optional.ofNullable(i);
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void removeItemInHand() {
         this.hand = Optional.empty();
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public boolean isCutting() {
         return actionCut;
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void setCutAction(final boolean b) {
         this.actionCut = b;
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public DynamicPhysicsComponent getPhysics() {
         return physics;
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public PlayerInputComponent getInput() {
         return input;
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void update() {
         this.input.processInput();
         this.physics.move();
@@ -158,16 +154,15 @@ public class PlayerImpl extends AbstractEntity implements Player {
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void draw(final Graphics2D g) {
         gfx.draw(g);
     }
 
-
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void doAction() {
         super.getWorld().getAllStations().stream()
                 .filter(p -> p.getPosition().samePosition((Position.setInTile(getNextPosition())))).findFirst()
@@ -175,8 +170,8 @@ public class PlayerImpl extends AbstractEntity implements Player {
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void cutIngredient() {
         final Optional<ChoppingStation> cs = super.getWorld().getChoppingStations().stream()
                 .filter(p -> p.getPosition().samePosition((Position.setInTile(getNextPosition())))).findFirst();
@@ -188,8 +183,8 @@ public class PlayerImpl extends AbstractEntity implements Player {
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public Position getNextPosition() {
         final Position nextPosition = new Position(0, 0);
         final Direction way = this.physics.getVelocity().getOldDirection();

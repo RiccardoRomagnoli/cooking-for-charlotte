@@ -144,7 +144,7 @@ public final class JukeBoxUtil {
             return;
         }
         c.loop(Clip.LOOP_CONTINUOUSLY);
-        //c.close();
+        // c.close();
     }
 
     /**
@@ -274,8 +274,8 @@ public final class JukeBoxUtil {
         if (c == null) {
             return false;
         }
-        //final boolean state = c.isRunning();
-        //c.close();
+        // final boolean state = c.isRunning();
+        // c.close();
         return c.isRunning();
     }
 

@@ -21,7 +21,7 @@ public class TomatoStation extends AbstractStationObject {
     /**
      * Instantiates a new {@link TomatoStation}.
      *
-     * @param position the {@link Position}
+     * @param position          the {@link Position}
      * @param tomatoStationTile the {@link TomatoStationTile} to draw
      */
     public TomatoStation(final Position position, final TomatoStationTile tomatoStationTile) {
@@ -30,15 +30,15 @@ public class TomatoStation extends AbstractStationObject {
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void draw(final Graphics2D g) {
         this.graphicComponent.draw(g);
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void doAction(final World world) {
         if (!world.getPlayer().getItemInHand().isPresent()) {
             final IngredientImpl tomato = new IngredientImpl(world.getItemManager(), IngredientType.TOMATO);

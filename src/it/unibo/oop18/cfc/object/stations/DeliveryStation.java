@@ -20,7 +20,7 @@ public class DeliveryStation extends AbstractStationObject {
     /**
      * Instantiates a new {@link DeliveryStation}.
      *
-     * @param position the {@link Position}
+     * @param position            the {@link Position}
      * @param deliveryStationTile the {@link DeliveryStationTile} to draw
      */
     public DeliveryStation(final Position position, final DeliveryStationTile deliveryStationTile) {
@@ -29,15 +29,15 @@ public class DeliveryStation extends AbstractStationObject {
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void draw(final Graphics2D g) {
         this.graphicComponent.draw(g);
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void doAction(final World world) {
         if (world.getPlayer().getItemInHand().isPresent() && world.getPlayer().getItemInHand().get() instanceof Plate) {
             world.getOrdersManager().deliveryPlate((Plate) world.getPlayer().getItemInHand().get());

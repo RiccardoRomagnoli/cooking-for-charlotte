@@ -50,9 +50,9 @@ public interface OrderIngredient {
     /**
      * Draw the ingredient with different dimension.
      *
-     * @param g the {@link Graphics2D} of the screen
-     * @param p the {@link Position}
-     * @param width the width
+     * @param g      the {@link Graphics2D} of the screen
+     * @param p      the {@link Position}
+     * @param width  the width
      * @param height the height
      */
     void draw(Graphics2D g, Position p, int width, int height);

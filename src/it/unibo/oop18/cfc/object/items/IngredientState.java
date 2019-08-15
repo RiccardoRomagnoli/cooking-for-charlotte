@@ -49,6 +49,7 @@ public enum IngredientState {
 
     /**
      * Gets the points based on Ingredient State.
+     * 
      * @return points state points
      */
     public int getPoints() {

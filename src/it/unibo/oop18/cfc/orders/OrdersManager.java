@@ -27,12 +27,14 @@ public interface OrdersManager {
 
     /**
      * Draw Methods.
+     * 
      * @param g Graphics2D
      */
     void draw(Graphics2D g);
 
     /**
      * Add an order to Current Order List.
+     * 
      * @param order to be added
      */
     void addOrder(Order order);
@@ -44,6 +46,7 @@ public interface OrdersManager {
 
     /**
      * Manage a bad delivered order.
+     * 
      * @param order to be placed on finished orders
      */
     void orderFailed(Order order);

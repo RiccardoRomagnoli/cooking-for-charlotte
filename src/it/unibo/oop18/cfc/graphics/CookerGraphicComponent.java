@@ -35,8 +35,8 @@ public class CookerGraphicComponent implements GraphicsComponent {
     /**
      * Instantiates a new {@link CookerGraphicComponent}.
      *
-     * @param cooker        the {@link Cooker}
-     * @param cookerTile    the {@link CookerTile} to draw
+     * @param cooker     the {@link Cooker}
+     * @param cookerTile the {@link CookerTile} to draw
      */
     public CookerGraphicComponent(final Cooker cooker, final CookerTile cookerTile) {
         this.cooker = cooker;
@@ -72,16 +72,16 @@ public class CookerGraphicComponent implements GraphicsComponent {
                 ContentUtil.drawLoadBar(g, (int) this.cooker.getPosition().getX() + POSITION_X_BAR,
                         (int) this.cooker.getPosition().getY() + POSITION_Y_BAR,
                         (int) ((WIDTH_BAR / (TIME_TO_BURN * 1000)) * (this.cooker.getCookerTimer().getTimeMillis()
-                      - (this.cooker.getFood().get().getIngredient().getTimeToCook() * 1000))) + 1,
+                                - (this.cooker.getFood().get().getIngredient().getTimeToCook() * 1000))) + 1,
                         HEIGHT_BAR, 2);
-           } else if (this.cooker.getFood().get().getState() == IngredientState.BURNED) {
-               ContentUtil.drawLoadBar(g, (int) this.cooker.getPosition().getX() + POSITION_X_BAR,
+            } else if (this.cooker.getFood().get().getState() == IngredientState.BURNED) {
+                ContentUtil.drawLoadBar(g, (int) this.cooker.getPosition().getX() + POSITION_X_BAR,
                         (int) this.cooker.getPosition().getY() + POSITION_Y_BAR,
                         (int) ((WIDTH_BAR / (TIME_TO_BURN * 1000)) * (this.cooker.getCookerTimer().getTimeMillis()
                                 - (this.cooker.getFood().get().getIngredient().getTimeToCook() * 1000)
                                 - TIME_TO_BURN * 1000)) + 1,
                         HEIGHT_BAR, 3);
-           }
+            }
         }
     }
 

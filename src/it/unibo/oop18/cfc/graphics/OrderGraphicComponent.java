@@ -51,7 +51,8 @@ public class OrderGraphicComponent implements GraphicsComponent {
                 HEIGHT_TIMER_TEXT);
     }
 
-    private void drawCountDown(final Graphics2D g, final int minutes, final int seconds, final int x, final int y, final int width, final int height) {
+    private void drawCountDown(final Graphics2D g, final int minutes, final int seconds, final int x, final int y,
+            final int width, final int height) {
         if (minutes < 10) {
             if (seconds < 10) {
                 ContentUtil.drawString(g, "0" + minutes + ":0" + seconds, x, y, width, height);

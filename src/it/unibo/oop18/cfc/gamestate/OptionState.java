@@ -16,18 +16,16 @@ import it.unibo.oop18.cfc.util.SoundUtil;
 public class OptionState extends GameState {
 
     private static final int STRING_POS = 250;
-    // private static final int IMAGE_POS = 20;
-    // private static final int FONT_HEIGTH = 25;
-    // private static final int FONT_LENGTH = 30;
+    private static final List<Integer> VOLUME = new ArrayList<Integer>(Arrays.asList(0, 15, 30, 45, 60, 75, 90, 100));
+    private static final int POSITION_X_OPTION = 610;
+    private static final int DIMENSION_FONT = 23;
+    private static final String[] OPTION = { "Volume", "Resolution", "Quit" };
+    private static final int[] POSITION_Y_OPTION = { 400, 450, 500 };
 
-    private final String[] options = { "Volume", "Resolution", "Quit" };
-    private static List<Integer> volume = new ArrayList<Integer>(Arrays.asList(0, 15, 30, 45, 60, 75, 90, 100));
     private int lastVolIndex = 1;
     private int lastResIndex;
     private static List<String> resolution = new ArrayList<String>(Arrays.asList("1400x900", "800x600", "640x480"));
-    private final int numOptions = options.length;
     private int currentOption;
-    private final int[] dim = { 400, 450, 500 };
 
     /**
      * Class constructor.
@@ -58,16 +56,13 @@ public class OptionState extends GameState {
      */
     public void draw(final Graphics2D g) {
         ContentUtil.drawMenu(g);
-        for (int i = 0; i < numOptions; i++) {
-            ContentUtil.drawStringFont(g, STRING_POS, dim[i], options[i]);
+        for (int i = 0; i < OPTION.length; i++) {
+            ContentUtil.drawStringFont(g, STRING_POS, POSITION_Y_OPTION[i], OPTION[i]);
         }
-        // TODO : change with new font ContentUtil.drawFood(g, IMAGE_POS,
-        // dim[currentOption]);
-        // g.drawRect(STRING_POS, dim[currentOption] - FONT_LENGTH , FONT_HEIGTH *
-        // options[currentOption].length(), FONT_LENGTH);
-        ContentUtil.drawBlueBar(g, STRING_POS - 10, dim[currentOption] + 4, options[currentOption].length() * 23, 5);
-        ContentUtil.drawStringFont(g, 610, dim[0], volume.get(lastVolIndex).toString());
-        ContentUtil.drawStringFont(g, 610, dim[1], resolution.get(lastResIndex));
+        ContentUtil.drawBlueBar(g, STRING_POS - 10, POSITION_Y_OPTION[currentOption] + 4,
+                OPTION[currentOption].length() * DIMENSION_FONT);
+        ContentUtil.drawStringFont(g, POSITION_X_OPTION, POSITION_Y_OPTION[0], VOLUME.get(lastVolIndex).toString());
+        ContentUtil.drawStringFont(g, POSITION_X_OPTION, POSITION_Y_OPTION[1], resolution.get(lastResIndex));
     }
 
     /**
@@ -84,7 +79,7 @@ public class OptionState extends GameState {
      * Down button pressed.
      */
     public void goDown() {
-        if (currentOption < options.length - 1) {
+        if (currentOption < OPTION.length - 1) {
             JukeBoxUtil.play(SoundUtil.OPTION_SOUND);
             currentOption++;
         }
@@ -96,9 +91,9 @@ public class OptionState extends GameState {
     public void increase() {
         JukeBoxUtil.play(SoundUtil.BUTTON_SOUND);
         JukeBoxUtil.stop(SoundUtil.MENU_SOUND);
-        if (currentOption == 0 && lastVolIndex < volume.size() - 1) {
+        if (currentOption == 0 && lastVolIndex < VOLUME.size() - 1) {
             lastVolIndex++;
-            JukeBoxUtil.setVolume(volume.get(lastVolIndex));
+            JukeBoxUtil.setVolume(VOLUME.get(lastVolIndex));
         } else if (currentOption == 1 && lastResIndex < resolution.size() - 1) {
             lastResIndex++;
         }
@@ -113,7 +108,7 @@ public class OptionState extends GameState {
         JukeBoxUtil.stop(SoundUtil.MENU_SOUND);
         if (currentOption == 0 && lastVolIndex > 0) {
             lastVolIndex--;
-            JukeBoxUtil.setVolume(volume.get(lastVolIndex));
+            JukeBoxUtil.setVolume(VOLUME.get(lastVolIndex));
         } else if (currentOption == 1 && lastResIndex > 0) {
             lastResIndex--;
         }

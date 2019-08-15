@@ -36,15 +36,15 @@ public class OrdersManagerImpl implements OrdersManager {
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public World getWorld() {
         return world;
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public boolean deliveryPlate(final Plate plate) {
         final Optional<Order> order = checkOrder(plate);
         if (order.isPresent()) {
@@ -67,8 +67,8 @@ public class OrdersManagerImpl implements OrdersManager {
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void update() {
         // generator(timertask) work with timers that call run
         // this is the alternative solution call every time in update
@@ -78,23 +78,23 @@ public class OrdersManagerImpl implements OrdersManager {
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void addOrder(final Order o) {
         this.currentOrders.add(o);
         this.currentOrders.sort((o1, o2) -> o1.getCountDownTime() - o2.getCountDownTime());
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public int getOrderQuantity() {
         return currentOrders.size();
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void orderFailed(final Order order) {
         order.stopOrder();
         currentOrders.remove(order);
@@ -103,64 +103,64 @@ public class OrdersManagerImpl implements OrdersManager {
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public List<Order> getCurrentOrders() {
         return currentOrders;
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public List<Order> getFinishedOrders() {
         return finishedOrders;
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void startGeneration() {
         generator.startGeneration(INTERVAL_MILLISECONDS);
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void stopGeneration() {
         generator.stopGeneration();
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void pauseGeneration() {
         this.generator.setPaused(true);
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void resumeGeneration() {
         this.generator.setPaused(false);
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void pauseOrders() {
         this.getCurrentOrders().stream().forEach(o -> o.setPaused(true));
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void resumeOrders() {
         this.getCurrentOrders().stream().forEach(o -> o.setPaused(false));
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void stopOrders() {
         this.getCurrentOrders().stream().forEach(o -> o.stopOrder());
     }

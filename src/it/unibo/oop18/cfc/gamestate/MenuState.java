@@ -1,6 +1,5 @@
 package it.unibo.oop18.cfc.gamestate;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 
 import it.unibo.oop18.cfc.main.GameEngine;
@@ -15,6 +14,7 @@ import it.unibo.oop18.cfc.util.SoundUtil;
  */
 public class MenuState extends GameState {
 
+    private static final int DIMENSION_FONT = 23;
     private int currentOption;
     private final String[] options = { "START", "OPTIONS", "INFO", "RANKING", "QUIT" };
     private final int menuOptions = options.length;
@@ -34,7 +34,6 @@ public class MenuState extends GameState {
      * Initialize the menu screen and load the sounds.
      */
     public void init() {
-        ContentUtil.setFontColor(Color.DARK_GRAY);
         JukeBoxUtil.load(SoundUtil.BUTTON_PATH, SoundUtil.BUTTON_SOUND);
         JukeBoxUtil.load(SoundUtil.OPTION_PATH, SoundUtil.OPTION_SOUND);
         JukeBoxUtil.load(SoundUtil.MENU_PATH, SoundUtil.MENU_SOUND);
@@ -58,13 +57,10 @@ public class MenuState extends GameState {
      */
     public void draw(final Graphics2D g) {
         ContentUtil.drawMenu(g);
-        // ContentUtil.drawFood(g, IMAGE_POS, posy[currentOption]);
         for (int i = 0; i < menuOptions; i++) {
-            // ContentUtil.drawString(g, options[i], STRING_POS, dim[i]);
-            //ContentUtil.setFontColor(Color.DARK_GRAY);
             ContentUtil.drawStringFont(g, posx[i], posy[i], options[i]);
             ContentUtil.drawBlueBar(g, posx[currentOption] - 10, posy[currentOption] + 4,
-                    options[currentOption].length() * 23, 5);
+                    options[currentOption].length() * DIMENSION_FONT);
         }
     }
 

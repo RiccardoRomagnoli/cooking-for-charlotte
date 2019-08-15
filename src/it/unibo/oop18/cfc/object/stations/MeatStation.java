@@ -18,11 +18,10 @@ public class MeatStation extends AbstractStationObject {
 
     private final GraphicsComponent graphicComponent;
 
-
     /**
      * Instantiates a new {@link MeatStation}.
      *
-     * @param position the {@link Position}
+     * @param position        the {@link Position}
      * @param meatStationTile the {@link MeatStationTile} to draw
      */
     public MeatStation(final Position position, final MeatStationTile meatStationTile) {
@@ -30,17 +29,16 @@ public class MeatStation extends AbstractStationObject {
         this.graphicComponent = new MeatStationGraphicComponent(this, meatStationTile);
     }
 
-
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void draw(final Graphics2D g) {
         this.graphicComponent.draw(g);
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void doAction(final World world) {
         if (!world.getPlayer().getItemInHand().isPresent()) {
             final IngredientImpl meat = new IngredientImpl(world.getItemManager(), IngredientType.MEAT);

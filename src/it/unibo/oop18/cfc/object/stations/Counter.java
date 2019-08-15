@@ -23,7 +23,7 @@ public class Counter extends AbstractStationObject {
     /**
      * Instantiates a new {@link Counter}.
      *
-     * @param position the {@link Position}
+     * @param position    the {@link Position}
      * @param counterTile the {@link CounterTile} to draw
      */
     public Counter(final Position position, final CounterTile counterTile) {
@@ -33,8 +33,8 @@ public class Counter extends AbstractStationObject {
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void draw(final Graphics2D g) {
         this.graphicComponent.draw(g);
     }
@@ -78,16 +78,17 @@ public class Counter extends AbstractStationObject {
                     final PlateImpl plate = (PlateImpl) world.getPlayer().getItemInHand().get();
                     // e la station ha un ingrediente
                     if (this.item.get() instanceof IngredientImpl) {
-                        //aggiungi l'ingrediente al piatto e svuota il counter
+                        // aggiungi l'ingrediente al piatto e svuota il counter
                         plate.addIngredient((IngredientImpl) this.item.get());
                         this.item = Optional.empty();
                     }
-                    //se invece ho un ingrediente e il piatto sulla station non è pieno
+                    // se invece ho un ingrediente e il piatto sulla station non è pieno
                 } else if (world.getPlayer().getItemInHand().get() instanceof IngredientImpl
                         && this.item.get() instanceof PlateImpl
-                        && ((PlateImpl) this.item.get()).getIngredients().size() < 4) { 
+                        && ((PlateImpl) this.item.get()).getIngredients().size() < 4) {
                     // aggiungo l'ingrediente al piatto
-                    ((PlateImpl) this.item.get()).addIngredient((IngredientImpl) world.getPlayer().getItemInHand().get());
+                    ((PlateImpl) this.item.get())
+                            .addIngredient((IngredientImpl) world.getPlayer().getItemInHand().get());
                     world.getPlayer().removeItemInHand();
                 }
             } else {

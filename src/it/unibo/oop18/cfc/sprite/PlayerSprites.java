@@ -15,8 +15,8 @@ public class PlayerSprites extends AbstractDynamicEntitySprites {
     private static final int X_LOCATION_STOP = 0;
 
     /**
-     * Creates a {@link PlayerSprites} that initializes all sprite lists for
-     * any movement.
+     * Creates a {@link PlayerSprites} that initializes all sprite lists for any
+     * movement.
      * 
      * @param sheet the {@link SpriteSheet} to take images
      */

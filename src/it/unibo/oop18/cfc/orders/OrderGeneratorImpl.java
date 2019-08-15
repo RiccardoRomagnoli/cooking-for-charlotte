@@ -37,33 +37,32 @@ public class OrderGeneratorImpl extends TimerTask implements OrderGenerator {
         initList();
     }
 
-
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void startGeneration(final long intervalMilliseconds) {
         this.timer = new Timer();
         this.timer.schedule(this, 0, intervalMilliseconds);
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void stopGeneration() {
         this.timer.cancel();
         this.timer.purge();
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void setPaused(final boolean paused) {
         this.paused = paused;
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void run() {
         if (!paused && ordersManager.getOrderQuantity() != 4) {
             generateNewOrder();
@@ -71,8 +70,8 @@ public class OrderGeneratorImpl extends TimerTask implements OrderGenerator {
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void setDifficulty(final OrderDifficulty difficulty) {
         currentDifficulty = difficulty;
     }

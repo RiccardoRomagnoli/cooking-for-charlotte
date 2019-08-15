@@ -1,12 +1,10 @@
 package it.unibo.oop18.cfc.gamestate;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.io.IOException;
 import it.unibo.oop18.cfc.hud.DownHud;
 import it.unibo.oop18.cfc.hud.TopHud;
 import it.unibo.oop18.cfc.manager.GameStateManager;
-import it.unibo.oop18.cfc.util.ContentUtil;
 import it.unibo.oop18.cfc.util.JukeBoxUtil;
 import it.unibo.oop18.cfc.util.SoundUtil;
 import it.unibo.oop18.cfc.world.World;
@@ -44,7 +42,6 @@ public class PlayState extends GameState {
         JukeBoxUtil.load(SoundUtil.THEME_PATH, SoundUtil.THEME_SOUND);
         JukeBoxUtil.load(SoundUtil.CUTTING_PATH, SoundUtil.CUTTING_SOUND);
         JukeBoxUtil.load(SoundUtil.TRASH_PATH, SoundUtil.TRASH_SOUND);
-        ContentUtil.setFontColor(Color.black);
     }
 
     /**

@@ -20,7 +20,7 @@ public class PlateStation extends AbstractStationObject {
     /**
      * Instantiates a new {@link PlateStation}.
      *
-     * @param position the {@link Position}
+     * @param position         the {@link Position}
      * @param plateStationTile the {@link PlateStationTile} to draw
      */
     public PlateStation(final Position position, final PlateStationTile plateStationTile) {
@@ -29,15 +29,15 @@ public class PlateStation extends AbstractStationObject {
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void draw(final Graphics2D g) {
         this.graphicComponent.draw(g);
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void doAction(final World world) {
         if (!world.getPlayer().getItemInHand().isPresent()) {
             final PlateImpl plate = new PlateImpl(world.getItemManager());

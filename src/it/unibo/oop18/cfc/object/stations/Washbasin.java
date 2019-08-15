@@ -17,11 +17,10 @@ public class Washbasin extends AbstractStationObject {
 
     private final GraphicsComponent graphicComponent;
 
-
     /**
      * Instantiates a new {@link Washbasin}.
      *
-     * @param position the {@link Position}
+     * @param position      the {@link Position}
      * @param washbasinTile the {@link WashbasinTile} to draw
      */
     public Washbasin(final Position position, final WashbasinTile washbasinTile) {
@@ -30,15 +29,15 @@ public class Washbasin extends AbstractStationObject {
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void draw(final Graphics2D g) {
         this.graphicComponent.draw(g);
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void doAction(final World world) {
         if (world.getPlayer().getItemInHand().isPresent()
                 && world.getPlayer().getItemInHand().get() instanceof PlateImpl) {

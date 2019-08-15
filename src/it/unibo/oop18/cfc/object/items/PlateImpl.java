@@ -5,6 +5,8 @@ import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
+
 import it.unibo.oop18.cfc.manager.ItemManager;
 import it.unibo.oop18.cfc.util.CheckStatus;
 import it.unibo.oop18.cfc.util.Position;
@@ -16,8 +18,8 @@ public class PlateImpl extends AbstractItem implements Plate {
 
     private final List<IngredientImpl> ingredients;
     private int points;
-    private static final int INGREDIENTS_WIDTH = 20;
-    private static final int INGREDIENTS_HEIGHT = 20;
+    private static final int INGREDIENTS_WIDTH = 15;
+    private static final int INGREDIENTS_HEIGHT = 15;
 
     /**
      * Instantiates a new plate impl.
@@ -90,10 +92,9 @@ public class PlateImpl extends AbstractItem implements Plate {
     public void drawWithIngredients(final Graphics2D g, final Position p, final int width, final int height) {
         g.drawImage(super.getItemManager().getPlateSprites().getPlateSprite().get(0).getImage().getScaledInstance(width,
                 height, Image.SCALE_SMOOTH), AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
-        this.ingredients.forEach(i -> {
-            i.draw(g, p, INGREDIENTS_WIDTH, INGREDIENTS_HEIGHT);
-        });
-
+        IntStream.range(0, ingredients.size()).forEach(a -> ingredients.get(a).draw(g,
+                new Position(p.getX() + ((a % 2) * INGREDIENTS_WIDTH), p.getY() + ((a / 2) * INGREDIENTS_HEIGHT)),
+                INGREDIENTS_WIDTH, INGREDIENTS_HEIGHT));
     }
 
     /**

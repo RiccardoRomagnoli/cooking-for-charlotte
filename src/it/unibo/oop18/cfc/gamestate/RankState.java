@@ -10,7 +10,6 @@ import it.unibo.oop18.cfc.util.RankingImpl;
  */
 public class RankState extends GameState {
 
-
     /**
      * Class constructor.
      * 

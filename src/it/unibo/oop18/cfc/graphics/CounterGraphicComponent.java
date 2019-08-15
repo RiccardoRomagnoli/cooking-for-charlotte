@@ -53,7 +53,12 @@ public class CounterGraphicComponent implements GraphicsComponent {
                         AffineTransform.getTranslateInstance(this.counter.getPosition().getX(),
                                 this.counter.getPosition().getY()),
                         null);
-                if (this.counter.getItem().isPresent()) {
+                if (this.counter.getItem().isPresent() && this.counter.getItem().get() instanceof PlateImpl) {
+                    ((PlateImpl) this.counter.getItem().get()).drawWithIngredients(g,
+                            new Position(counter.getPosition().getX() + POSITION_X_ITEM1,
+                                    counter.getPosition().getY() + POSITION_Y_ITEM1),
+                            WIDTH_ITEM, HEIGHT_ITEM);
+                } else if (this.counter.getItem().isPresent() && this.counter.getItem().get() instanceof Ingredient) {
                     this.counter.getItem().get().draw(g, new Position(counter.getPosition().getX() + POSITION_X_ITEM1,
                             counter.getPosition().getY() + POSITION_Y_ITEM1), WIDTH_ITEM, HEIGHT_ITEM);
                 }

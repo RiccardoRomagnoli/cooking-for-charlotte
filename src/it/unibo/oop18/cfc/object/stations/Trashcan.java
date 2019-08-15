@@ -19,7 +19,7 @@ public class Trashcan extends AbstractStationObject {
     /**
      * Instantiates a new {@link Trashcan}.
      *
-     * @param position the {@link Position}
+     * @param position     the {@link Position}
      * @param trashcanTile the {@link TrashcanTile} to draw
      */
     public Trashcan(final Position position, final TrashcanTile trashcanTile) {
@@ -28,15 +28,15 @@ public class Trashcan extends AbstractStationObject {
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void draw(final Graphics2D g) {
         this.graphicComponent.draw(g);
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void doAction(final World world) {
         if (world.getPlayer().getItemInHand().isPresent()) {
             world.getPlayer().removeItemInHand();

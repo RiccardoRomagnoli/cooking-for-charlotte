@@ -1,10 +1,6 @@
 package it.unibo.oop18.cfc.gamestate;
 
-import java.awt.Font;
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
 
 import it.unibo.oop18.cfc.manager.GameStateManager;
 import it.unibo.oop18.cfc.util.ContentUtil;
@@ -16,18 +12,15 @@ import it.unibo.oop18.cfc.util.RankingImpl;
  */
 public class GameOverState extends GameState {
 
-    // private Color color;
     private static final int STRING_COL = 220;
     private static final int STRING_ROW = 500;
     private static final int SMALL_PADDING = 50;
     private static final int BIG_PADDING = 350;
     private int finalScore;
-    //private Font myFont;
     private char[] choice = "_ _ _ _ _ _ _ _ _ _".toCharArray();
     private int index;
     private final RankingImpl ranking;
-    Image arrowUp;
-    Image arrowDown;
+
 
     /**
      * GameOverState constructor.
@@ -43,8 +36,6 @@ public class GameOverState extends GameState {
      * {@inheritDoc}
      */
     public void init() {
-        arrowDown = ContentUtil.loadImage("/HUD/arrowDown.png", 50, 50);
-        arrowUp = ContentUtil.loadImage("/HUD/arrowUp.png", 50, 50);
         super.getGsm().getPlayState().getWorld().stopTimers();
         finalScore = super.getGsm().getPlayState().getWorld().getScoreManager().getScore();
         JukeBoxUtil.stop("themeSong");
@@ -63,12 +54,10 @@ public class GameOverState extends GameState {
     public void draw(final Graphics2D g) {
         if (finalScore >= 0) {
             ContentUtil.drawMenu(g);
-            //img1 = op.filter(arrowUp, null);
-            //g.drawImage(arrowUp[0][0], 50,50,50,50,null);
-            g.drawImage(arrowUp.getScaledInstance(50, 50, Image.SCALE_SMOOTH), STRING_COL * 2,STRING_ROW - 80,  null);
-            g.drawImage(arrowDown.getScaledInstance(50, 50, Image.SCALE_SMOOTH), STRING_COL * 2,STRING_ROW + 20, null);
             ContentUtil.drawStringFont(g, STRING_COL, STRING_ROW - 100, "Insert your name:");
-            ContentUtil.drawStringFont(g, STRING_COL, STRING_ROW, String.valueOf(choice)); //
+            ContentUtil.drawArrowDown(g, STRING_COL + (index * 20), STRING_ROW - 50, 30, 30);
+            ContentUtil.drawStringFont(g, STRING_COL + 10, STRING_ROW, String.valueOf(choice), 30f);
+            ContentUtil.drawArrowUp(g, STRING_COL + (index * 20), STRING_ROW + 5, 30, 30);
             ContentUtil.drawStringFont(g, STRING_COL + BIG_PADDING, STRING_ROW,
                     String.format("Points: %d", finalScore));
         }
@@ -85,7 +74,7 @@ public class GameOverState extends GameState {
             if (choice[index * 2] < 90) {
                 choice[index * 2]++;
             } else {
-                choice[index * 2] = 'A';
+                choice[index * 2] = '_';
             }
         }
 
@@ -101,7 +90,7 @@ public class GameOverState extends GameState {
             if (choice[index * 2] > 65) {
                 choice[index * 2]--;
             } else {
-                choice[index * 2] = 'Z';
+                choice[index * 2] = '_';
             }
         }
     }

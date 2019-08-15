@@ -19,7 +19,7 @@ import it.unibo.oop18.cfc.world.World;
  */
 public class Cooker extends AbstractStationObject {
 
-    private static final  int TIME_TO_BURN = 5;
+    private static final int TIME_TO_BURN = 5;
 
     private final GraphicsComponent graphicComponent;
     private final GameTimer timer;
@@ -29,8 +29,8 @@ public class Cooker extends AbstractStationObject {
     /**
      * Instantiates a new {@link Cooker}.
      *
-     * @param position      the {@link Position}
-     * @param cookerTile    the {@link CookerTile} to draw
+     * @param position   the {@link Position}
+     * @param cookerTile the {@link CookerTile} to draw
      */
     public Cooker(final Position position, final CookerTile cookerTile) {
         super(position);
@@ -131,7 +131,7 @@ public class Cooker extends AbstractStationObject {
                 this.food = Optional.empty();
                 this.timer.reset();
                 this.cooking = false;
-            // se il player non ha niente in mano e l'ingrediente è cotto o bruciato
+                // se il player non ha niente in mano e l'ingrediente è cotto o bruciato
             } else if (!world.getPlayer().getItemInHand().isPresent()
                     && (this.food.get().getState() == IngredientState.PERFECT
                             || this.food.get().getState() == IngredientState.BURNED)) {

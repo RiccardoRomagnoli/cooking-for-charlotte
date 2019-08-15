@@ -97,8 +97,8 @@ public class TestOrders {
         // Generate a Correct plate in different ingredient order
         for (int i = o.getIngredientsList().size() - 1; i >= 0; i--) {
             final OrderIngredient orderIngredient = o.getIngredientsList().get(i);
-            correctPlateNotOrdered.addIngredient(new IngredientImpl(world.getItemManager(), orderIngredient.getIngredient(),
-                    orderIngredient.getState()));
+            correctPlateNotOrdered.addIngredient(new IngredientImpl(world.getItemManager(),
+                    orderIngredient.getIngredient(), orderIngredient.getState()));
         }
         // Test correct Delivery
         Assert.assertTrue(ordersMan.deliveryPlate(correctPlate));
@@ -141,7 +141,7 @@ public class TestOrders {
      * order.
      *
      * @throws IllegalStateException the illegal state exception
-     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws IOException           Signals that an I/O exception has occurred.
      */
     @Test(expected = IllegalStateException.class)
     public void testOrderIngredients() throws IllegalStateException, IOException {

@@ -16,7 +16,7 @@ public class ParquetFloor extends AbstractFloorObject {
     /**
      * Instantiates a new {@link ParquetFloor}.
      *
-     * @param position the {@link Position} to set
+     * @param position         the {@link Position} to set
      * @param parquetFloorTile the {@link ParquetFloorTile} to draw
      */
     public ParquetFloor(final Position position, final ParquetFloorTile parquetFloorTile) {
@@ -25,8 +25,8 @@ public class ParquetFloor extends AbstractFloorObject {
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public void draw(final Graphics2D g) {
         this.graphicComponent.draw(g);
     }

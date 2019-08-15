@@ -28,7 +28,7 @@ public class TopHud {
     /**
      * Draw to the screen.
      *
-     * @param g the {@link Graphics2D} to draw 
+     * @param g the {@link Graphics2D} to draw
      */
     public void draw(final Graphics2D g) {
         ContentUtil.drawTopHud(g);

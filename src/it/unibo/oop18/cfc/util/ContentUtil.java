@@ -25,9 +25,10 @@ public final class ContentUtil {
     private static final Image TOPBAR = loadImage("/HUD/topbar.png", 1024, 128);
     private static final Image DOWNBAR = loadImage("/HUD/downbar.png", 1024, 128);
     private static final Image BLUEBAR = loadImage("/HUD/bluebar.png", 153, 5);
+    private static final Image ARROWUP = loadImage("/HUD/arrowUp.png", 50, 50);
+    private static final Image ARROWDOWN = loadImage("/HUD/arrowDown.png", 50, 50);
     private static final BufferedImage[][] FONT = loadBufferedImage("/HUD/font.png", 50, 50);
     private static final BufferedImage[][] LOADBAR = loadBufferedImage("/Sprites/loadbar.png", 30, 20);
-    private static Color fontColor = Color.DARK_GRAY;
 
     private ContentUtil() {
 
@@ -107,7 +108,31 @@ public final class ContentUtil {
             myFont = Font.createFont(Font.TRUETYPE_FONT, InfoState.class.getResourceAsStream("/HUD/seguibl.ttf"));
             myFont = myFont.deriveFont(WorldImpl.FONT_SIZE);
             g.setFont(myFont);
-            g.setColor(fontColor);
+            g.setColor(Color.BLACK);
+            g.drawString(s, x, y);
+        } catch (FontFormatException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Draw.
+     * 
+     * @param g graphic to be printed
+     * @param s String to be printed
+     * @param x Pos
+     * @param y Pos
+     * @param fontSize The font size
+     */
+    public static void drawStringFont(final Graphics2D g, final int x, final int y, final String s, final float fontSize) {
+        Font myFont = null;
+        try {
+            myFont = Font.createFont(Font.TRUETYPE_FONT, InfoState.class.getResourceAsStream("/HUD/seguibl.ttf"));
+            myFont = myFont.deriveFont(fontSize);
+            g.setFont(myFont);
+            g.setColor(Color.BLACK);
             g.drawString(s, x, y);
         } catch (FontFormatException e) {
             e.printStackTrace();
@@ -153,14 +178,13 @@ public final class ContentUtil {
     /**
      * Draw food in specific location.
      * 
-     * @param g      {@link Graphics2D} the screen
-     * @param x      the x position to draw
-     * @param y      the y position to draw
-     * @param width  the width of the bar
-     * @param height the height of the bar
+     * @param g     {@link Graphics2D} the screen
+     * @param x     the x position to draw
+     * @param y     the y position to draw
+     * @param width the width of the bar
      */
-    public static void drawBlueBar(final Graphics2D g, final int x, final int y, final int width, final int height) {
-        g.drawImage(BLUEBAR.getScaledInstance(width, height, Image.SCALE_SMOOTH), x, y, null);
+    public static void drawBlueBar(final Graphics2D g, final int x, final int y, final int width) {
+        g.drawImage(BLUEBAR.getScaledInstance(width, BLUEBAR.getHeight(null), Image.SCALE_SMOOTH), x, y, null);
     }
 
     /**
@@ -207,20 +231,28 @@ public final class ContentUtil {
     }
 
     /**
-     * Get the color of the font.
+     * Draw load bar in specific location.
      * 
-     * @return the actual color font
+     * @param g      {@link Graphics2D} the screen
+     * @param x      the x position to draw
+     * @param y      the y position to draw
+     * @param width  the width of the bar
+     * @param height the height of the bar
      */
-    public static Color getFontColor() {
-        return fontColor;
+    public static void drawArrowUp(final Graphics2D g, final int x, final int y, final int width, final int height) {
+        g.drawImage(ARROWUP.getScaledInstance(width, height, Image.SCALE_SMOOTH), x, y, null);
     }
 
     /**
-     * Set the font color.
+     * Draw load bar in specific location.
      * 
-     * @param fontColor to be printed
+     * @param g      {@link Graphics2D} the screen
+     * @param x      the x position to draw
+     * @param y      the y position to draw
+     * @param width  the width of the bar
+     * @param height the height of the bar
      */
-    public static void setFontColor(final Color fontColor) {
-        ContentUtil.fontColor = fontColor;
+    public static void drawArrowDown(final Graphics2D g, final int x, final int y, final int width, final int height) {
+        g.drawImage(ARROWDOWN.getScaledInstance(width, height, Image.SCALE_SMOOTH), x, y, null);
     }
 }

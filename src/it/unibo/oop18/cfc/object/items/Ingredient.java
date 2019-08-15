@@ -1,6 +1,5 @@
 package it.unibo.oop18.cfc.object.items;
 
-
 /**
  * The Interface Ingredient.
  */

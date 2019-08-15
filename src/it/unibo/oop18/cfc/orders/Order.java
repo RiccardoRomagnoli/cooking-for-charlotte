@@ -37,9 +37,9 @@ public interface Order {
     /**
      * Add Ingredient to the Order.
      * 
-     * @param ingredientType Ingrediente
+     * @param ingredientType  Ingrediente
      * @param ingredientState Stato dell'Ingrediente
-     */ 
+     */
     void addIngredient(IngredientType ingredientType, IngredientState ingredientState);
 
     /**
@@ -65,12 +65,14 @@ public interface Order {
 
     /**
      * Delegates to the {@link GraphicComponent} the draw of the order.
+     * 
      * @param g Image 2D
      */
     void draw(Graphics2D g);
 
     /**
      * Return the Slot.
+     * 
      * @return Slot
      */
     int getSlot();
@@ -87,6 +89,7 @@ public interface Order {
 
     /**
      * Set in Pause state the timer.
+     * 
      * @param paused true to set pause
      */
     void setPaused(boolean paused);

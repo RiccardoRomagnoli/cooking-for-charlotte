@@ -18,13 +18,13 @@ import java.util.Map;
  */
 public class RankingImpl implements Ranking {
 
+    private static final int MAXROW = 5;
     private static Map<String, Integer> ranked = new HashMap<>();
     private static String path = "rank.txt";
     private static String row;
     private static String key;
     private static Integer value;
     private static String[] data;
-    private static int maxRow = 5;
     private final int rowNumber;
 
     /**
@@ -61,7 +61,7 @@ public class RankingImpl implements Ranking {
             ContentUtil.drawStringFont(g, 220, 310 + 50 * count,
                     String.format("#%d  -  Name: %s  -  Points: %d ", count, key.toUpperCase(Locale.ENGLISH), value));
             count++;
-            if (count > maxRow) {
+            if (count > MAXROW) {
                 return;
             }
         }

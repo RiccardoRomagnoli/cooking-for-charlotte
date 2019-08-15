@@ -25,8 +25,8 @@ public class DownHud {
     private static final int POSITION_X_FOOD = 427;
     private static final int POSITION_Y_FOOD = 46;
     private static final int DISTANCE_BETWEEN_FOOD = 100;
-    private static final int POSITION_X_STRINGS  = 17 + 50;
-    private static final int POSITION_X_POINTS  = 17 + 180;
+    private static final int POSITION_X_STRINGS = 17 + 50;
+    private static final int POSITION_X_POINTS = 17 + 180;
     private static final int POSITION_Y_LIFE = 654 + 35;
     private static final int POSITION_Y_TIME = 704 + 35;
     private static final int POSITION_Y_POINTS = 679 + 35;
@@ -62,8 +62,8 @@ public class DownHud {
                 p.draw(g, new Position(POSITION_X_PLATE, yoffset + POSITION_Y_PLATE), DIM_ITEM, DIM_ITEM);
                 IntStream.range(0, p.getIngredients().size()).forEach(a -> {
                     p.getIngredient(a).draw(g,
-                            new Position(POSITION_X_FOOD + a * DISTANCE_BETWEEN_FOOD, yoffset + POSITION_Y_FOOD), WIDTH_FOOD,
-                            HEIGHT_FOOD);
+                            new Position(POSITION_X_FOOD + a * DISTANCE_BETWEEN_FOOD, yoffset + POSITION_Y_FOOD),
+                            WIDTH_FOOD, HEIGHT_FOOD);
                 });
             } else {
                 world.getPlayer().getItemInHand().get().draw(g,
@@ -75,7 +75,7 @@ public class DownHud {
         final int seconds = (int) world.getGameTimer().getSeconds();
         if (minutes < 10) {
             if (seconds < 10) {
-                ContentUtil.drawStringFont(g, POSITION_X_STRINGS, POSITION_Y_TIME,  "0" + minutes + ":0" + seconds);
+                ContentUtil.drawStringFont(g, POSITION_X_STRINGS, POSITION_Y_TIME, "0" + minutes + ":0" + seconds);
 
             } else {
                 ContentUtil.drawStringFont(g, POSITION_X_STRINGS, POSITION_Y_TIME, "0" + minutes + ":" + seconds);

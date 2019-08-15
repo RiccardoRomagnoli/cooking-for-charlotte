@@ -71,8 +71,8 @@ public class Position {
     }
 
     /**
-    * {@inheritDoc}
-    */
+     * {@inheritDoc}
+     */
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -119,20 +119,20 @@ public class Position {
     }
 
     /**
-    * Stamp the {@link Position}.
-    * 
-    * @return the {@link Position} in specific format
-    */
+     * Stamp the {@link Position}.
+     * 
+     * @return the {@link Position} in specific format
+     */
     public String toString() {
         return "Position [x=" + x + ", y=" + y + "]";
     }
 
     /**
-    * Check if two elements of same class are in the same position.
-    * 
-    * @param obj a generic object to match the {@link Position}
-    * @return true, if in the same position and same class
-    */
+     * Check if two elements of same class are in the same position.
+     * 
+     * @param obj a generic object to match the {@link Position}
+     * @return true, if in the same position and same class
+     */
     public boolean equals(final Object obj) {
         Optional<Position> other = Optional.empty();
         final int sprDim = SpriteSheet.SPRITE_SIZE_IN_GAME;
