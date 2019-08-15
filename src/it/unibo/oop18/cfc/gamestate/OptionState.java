@@ -8,6 +8,7 @@ import java.util.List;
 import it.unibo.oop18.cfc.manager.GameStateManager;
 import it.unibo.oop18.cfc.util.ContentUtil;
 import it.unibo.oop18.cfc.util.JukeBoxUtil;
+import it.unibo.oop18.cfc.util.SoundUtil;
 
 /**
  * Option menu manager.
@@ -74,7 +75,7 @@ public class OptionState extends GameState {
      */
     public void goUp() {
         if (currentOption > 0) {
-            JukeBoxUtil.play("menuoption");
+            JukeBoxUtil.play(SoundUtil.OPTION_SOUND);
             currentOption--;
         }
     }
@@ -84,7 +85,7 @@ public class OptionState extends GameState {
      */
     public void goDown() {
         if (currentOption < options.length - 1) {
-            JukeBoxUtil.play("menuoption");
+            JukeBoxUtil.play(SoundUtil.OPTION_SOUND);
             currentOption++;
         }
     }
@@ -93,29 +94,29 @@ public class OptionState extends GameState {
      * Right button pressed. Increase the volume / resolution
      */
     public void increase() {
-        JukeBoxUtil.play("menuoption");
-        JukeBoxUtil.stop(MenuState.MENU_SOUND);
+        JukeBoxUtil.play(SoundUtil.BUTTON_SOUND);
+        JukeBoxUtil.stop(SoundUtil.MENU_SOUND);
         if (currentOption == 0 && lastVolIndex < volume.size() - 1) {
             lastVolIndex++;
             JukeBoxUtil.setVolume(volume.get(lastVolIndex));
         } else if (currentOption == 1 && lastResIndex < resolution.size() - 1) {
             lastResIndex++;
         }
-        JukeBoxUtil.resume(MenuState.MENU_SOUND);
+        JukeBoxUtil.resume(SoundUtil.MENU_SOUND);
     }
 
     /**
      * Left button pressed. Decrease Volume/Resolution
      */
     public void decrease() {
-        JukeBoxUtil.play("menuoption");
-        JukeBoxUtil.stop(MenuState.MENU_SOUND);
+        JukeBoxUtil.play(SoundUtil.BUTTON_SOUND);
+        JukeBoxUtil.stop(SoundUtil.MENU_SOUND);
         if (currentOption == 0 && lastVolIndex > 0) {
             lastVolIndex--;
             JukeBoxUtil.setVolume(volume.get(lastVolIndex));
         } else if (currentOption == 1 && lastResIndex > 0) {
             lastResIndex--;
         }
-        JukeBoxUtil.resume(MenuState.MENU_SOUND);
+        JukeBoxUtil.resume(SoundUtil.MENU_SOUND);
     }
 }

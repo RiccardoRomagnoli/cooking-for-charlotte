@@ -1,13 +1,15 @@
 package it.unibo.oop18.cfc.gamestate;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+
 import it.unibo.oop18.cfc.manager.GameStateManager;
 import it.unibo.oop18.cfc.util.ContentUtil;
 import it.unibo.oop18.cfc.util.JukeBoxUtil;
 import it.unibo.oop18.cfc.util.RankingImpl;
-import it.unibo.oop18.cfc.world.WorldImpl;
 
 /**
  * The Class GameOverState.
@@ -20,10 +22,12 @@ public class GameOverState extends GameState {
     private static final int SMALL_PADDING = 50;
     private static final int BIG_PADDING = 350;
     private int finalScore;
-    private Font myFont;
+    //private Font myFont;
     private char[] choice = "_ _ _ _ _ _ _ _ _ _".toCharArray();
     private int index;
     private final RankingImpl ranking;
+    Image arrowUp;
+    Image arrowDown;
 
     /**
      * GameOverState constructor.
@@ -39,6 +43,8 @@ public class GameOverState extends GameState {
      * {@inheritDoc}
      */
     public void init() {
+        arrowDown = ContentUtil.loadImage("/HUD/arrowDown.png", 50, 50);
+        arrowUp = ContentUtil.loadImage("/HUD/arrowUp.png", 50, 50);
         super.getGsm().getPlayState().getWorld().stopTimers();
         finalScore = super.getGsm().getPlayState().getWorld().getScoreManager().getScore();
         JukeBoxUtil.stop("themeSong");
@@ -57,19 +63,16 @@ public class GameOverState extends GameState {
     public void draw(final Graphics2D g) {
         if (finalScore >= 0) {
             ContentUtil.drawMenu(g);
-            try {
-                myFont = Font.createFont(Font.TRUETYPE_FONT, InfoState.class.getResourceAsStream("/HUD/comicsans.ttf"));
-                myFont = myFont.deriveFont(WorldImpl.FONT_SIZE);
-                g.setFont(myFont);
-                g.setColor(Color.DARK_GRAY);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            g.drawString("Insert your name:", STRING_COL, STRING_ROW - 100);
-            g.drawString(String.valueOf(choice), STRING_COL, STRING_ROW); //
-            g.drawString(String.format("Points: %d", finalScore), STRING_COL + BIG_PADDING, STRING_ROW);
+            //img1 = op.filter(arrowUp, null);
+            //g.drawImage(arrowUp[0][0], 50,50,50,50,null);
+            g.drawImage(arrowUp.getScaledInstance(50, 50, Image.SCALE_SMOOTH), STRING_COL * 2,STRING_ROW - 80,  null);
+            g.drawImage(arrowDown.getScaledInstance(50, 50, Image.SCALE_SMOOTH), STRING_COL * 2,STRING_ROW + 20, null);
+            ContentUtil.drawStringFont(g, STRING_COL, STRING_ROW - 100, "Insert your name:");
+            ContentUtil.drawStringFont(g, STRING_COL, STRING_ROW, String.valueOf(choice)); //
+            ContentUtil.drawStringFont(g, STRING_COL + BIG_PADDING, STRING_ROW,
+                    String.format("Points: %d", finalScore));
         }
-        g.drawString("press any key", STRING_COL + BIG_PADDING, STRING_ROW + SMALL_PADDING);
+        g.drawString("Press enter to save", STRING_COL + BIG_PADDING, STRING_ROW + SMALL_PADDING);
     }
 
     /**

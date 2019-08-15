@@ -1,5 +1,6 @@
 package it.unibo.oop18.cfc.util;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics2D;
@@ -26,6 +27,7 @@ public final class ContentUtil {
     private static final Image BLUEBAR = loadImage("/HUD/bluebar.png", 153, 5);
     private static final BufferedImage[][] FONT = loadBufferedImage("/HUD/font.png", 50, 50);
     private static final BufferedImage[][] LOADBAR = loadBufferedImage("/Sprites/loadbar.png", 30, 20);
+    private static Color fontColor = Color.DARK_GRAY;
 
     private ContentUtil() {
 
@@ -51,6 +53,8 @@ public final class ContentUtil {
     }
 
     /**
+     * TODO.
+     * 
      * @param s ..
      * @param w ..
      * @param h ..
@@ -103,6 +107,7 @@ public final class ContentUtil {
             myFont = Font.createFont(Font.TRUETYPE_FONT, InfoState.class.getResourceAsStream("/HUD/seguibl.ttf"));
             myFont = myFont.deriveFont(WorldImpl.FONT_SIZE);
             g.setFont(myFont);
+            g.setColor(fontColor);
             g.drawString(s, x, y);
         } catch (FontFormatException e) {
             e.printStackTrace();
@@ -148,10 +153,10 @@ public final class ContentUtil {
     /**
      * Draw food in specific location.
      * 
-     * @param g {@link Graphics2D} the screen
-     * @param x the x position to draw
-     * @param y the y position to draw
-     * @param width the width of the bar
+     * @param g      {@link Graphics2D} the screen
+     * @param x      the x position to draw
+     * @param y      the y position to draw
+     * @param width  the width of the bar
      * @param height the height of the bar
      */
     public static void drawBlueBar(final Graphics2D g, final int x, final int y, final int width, final int height) {
@@ -161,12 +166,12 @@ public final class ContentUtil {
     /**
      * Draw load bar in specific location.
      * 
-     * @param g {@link Graphics2D} the screen
-     * @param x the x position to draw
-     * @param y the y position to draw
-     * @param width the width of the bar
+     * @param g      {@link Graphics2D} the screen
+     * @param x      the x position to draw
+     * @param y      the y position to draw
+     * @param width  the width of the bar
      * @param height the height of the bar
-     * @param color the color of the bar
+     * @param color  the color of the bar
      */
     public static void drawLoadBar(final Graphics2D g, final int x, final int y, final int width, final int height,
             final int color) {
@@ -199,5 +204,23 @@ public final class ContentUtil {
      */
     public static void drawBotHud(final Graphics2D g) {
         g.drawImage(DOWNBAR, 0, GameEngine.HEIGHT2, null);
+    }
+
+    /**
+     * Get the color of the font.
+     * 
+     * @return the actual color font
+     */
+    public static Color getFontColor() {
+        return fontColor;
+    }
+
+    /**
+     * Set the font color.
+     * 
+     * @param fontColor to be printed
+     */
+    public static void setFontColor(final Color fontColor) {
+        ContentUtil.fontColor = fontColor;
     }
 }

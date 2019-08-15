@@ -20,7 +20,11 @@ public class RankingImpl implements Ranking {
 
     private static Map<String, Integer> ranked = new HashMap<>();
     private static String path = "rank.txt";
-
+    private static String row;
+    private static String key;
+    private static Integer value;
+    private static String[] data;
+    private static int maxRow = 5;
     private final int rowNumber;
 
     /**
@@ -52,11 +56,14 @@ public class RankingImpl implements Ranking {
     public static void printOnScreen(final Graphics2D g) {
         int count = 1;
         for (final HashMap.Entry<String, Integer> entry : ranked.entrySet()) {
-            final String key = entry.getKey();
-            final Integer value = entry.getValue();
+            RankingImpl.key = entry.getKey();
+            RankingImpl.value = entry.getValue();
             ContentUtil.drawStringFont(g, 220, 310 + 50 * count,
                     String.format("#%d  -  Name: %s  -  Points: %d ", count, key.toUpperCase(Locale.ENGLISH), value));
             count++;
+            if (count > maxRow) {
+                return;
+            }
         }
 
     }
@@ -67,9 +74,9 @@ public class RankingImpl implements Ranking {
     public void saveRanking() {
         try (BufferedWriter b = new BufferedWriter(new FileWriter(path));) {
             for (final HashMap.Entry<String, Integer> entry : ranked.entrySet()) {
-                final String key = entry.getKey();
-                final Integer value = entry.getValue();
-                final String row = String.format("%s;%d\n", key, value);
+                key = entry.getKey();
+                value = entry.getValue();
+                row = String.format("%s;%d\n", key, value);
                 b.write(row);
             }
             b.close();
@@ -85,13 +92,12 @@ public class RankingImpl implements Ranking {
      */
     public final void loadRanking() {
         try (BufferedReader csvReader = new BufferedReader(new FileReader(path))) {
-            String row;
             while ((row = csvReader.readLine()) != null) {
-                final String[] data = row.split(";");
+                data = row.split(";");
                 try {
                     ranked.put(data[0], Integer.parseInt(data[1]));
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    System.out.println("The loaded ranking, is empty");
+                    System.out.println("The ranking is empty");
                 }
             }
             csvReader.close();
