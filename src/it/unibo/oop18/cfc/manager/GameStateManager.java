@@ -129,6 +129,7 @@ public class GameStateManager {
 
     /**
      * Getter for rankstate.
+     * 
      * @return rankstate
      */
     public RankState getRankState() {

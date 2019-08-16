@@ -12,6 +12,7 @@ import it.unibo.oop18.cfc.util.RankingImpl;
 public class RankState extends GameState {
 
     private Ranking ranking;
+
     /**
      * Class constructor.
      * 
@@ -47,6 +48,7 @@ public class RankState extends GameState {
 
     /**
      * Get ranking Instance.
+     * 
      * @return ranking Instance
      */
     public Ranking getRanking() {

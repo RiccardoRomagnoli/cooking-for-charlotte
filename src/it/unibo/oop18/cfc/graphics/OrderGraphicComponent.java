@@ -45,14 +45,13 @@ public class OrderGraphicComponent implements GraphicsComponent {
                                         * order.getIngredientsList().indexOf(i),
                                 Y_INGREDIENTS),
                         INGREDIENT_WIDTH_HEIGHT, INGREDIENT_WIDTH_HEIGHT));
-        drawCountDownBar(g, order.getCountDownTime(), order.getCurrentCountDownTime(),  X_BAR + SLOT_DIMENSION * order.getSlot(),
-                Y_BAR, BAR_WEIGHT, BAR_HEIGHT);
+        drawCountDownBar(g, order.getCountDownTime(), order.getCurrentCountDownTime(),
+                X_BAR + SLOT_DIMENSION * order.getSlot(), Y_BAR, BAR_WEIGHT, BAR_HEIGHT);
     }
 
-    private void drawCountDownBar(final Graphics2D g, final int secondsTotal, final int secondsRemaining, final int x, final int y, final int width,
-            final int height) {
-        final int color = (secondsTotal - secondsRemaining - 1)
-                / (secondsTotal / 3) + 1;
+    private void drawCountDownBar(final Graphics2D g, final int secondsTotal, final int secondsRemaining, final int x,
+            final int y, final int width, final int height) {
+        final int color = (secondsTotal - secondsRemaining - 1) / (secondsTotal / 3) + 1;
         final double currentWidth = ((double) width) / secondsTotal * secondsRemaining + 1;
         ContentUtil.drawLoadBar(g, x, y, (int) currentWidth, height, color);
     }
