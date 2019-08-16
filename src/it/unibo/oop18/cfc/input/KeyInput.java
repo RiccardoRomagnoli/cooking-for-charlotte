@@ -212,6 +212,7 @@ public class KeyInput implements KeyListener {
             resumePlayState();
             break;
         case KeyEvent.VK_F1:
+            gsm.getPlayState().getWorld().stopTimers();
             gsm.setState(GameStates.MENU);
             break;
         default:
