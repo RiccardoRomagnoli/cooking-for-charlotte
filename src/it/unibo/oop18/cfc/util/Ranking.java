@@ -1,5 +1,7 @@
 package it.unibo.oop18.cfc.util;
 
+import java.awt.Graphics2D;
+
 /**
  * Manage the ranking.
  */
@@ -15,14 +17,15 @@ public interface Ranking {
     void addPlacement(String player, int points);
 
     /**
-     * Save rank on a csv formatted file.
-     * 
-     */
-    void saveRanking();
-
-    /**
      * Load rank from a csv formatted file.
      */
     void loadRanking();
+
+    /**
+     * Print point on screen.
+     * 
+     * @param g graphics
+     */
+    void printOnScreen(Graphics2D g);
 
 }

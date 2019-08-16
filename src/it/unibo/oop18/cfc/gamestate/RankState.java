@@ -3,6 +3,7 @@ package it.unibo.oop18.cfc.gamestate;
 import java.awt.Graphics2D;
 import it.unibo.oop18.cfc.manager.GameStateManager;
 import it.unibo.oop18.cfc.util.ContentUtil;
+import it.unibo.oop18.cfc.util.Ranking;
 import it.unibo.oop18.cfc.util.RankingImpl;
 
 /**
@@ -10,6 +11,7 @@ import it.unibo.oop18.cfc.util.RankingImpl;
  */
 public class RankState extends GameState {
 
+    private Ranking ranking;
     /**
      * Class constructor.
      * 
@@ -23,6 +25,7 @@ public class RankState extends GameState {
      * {@inheritDoc}.
      */
     public void init() {
+        ranking = new RankingImpl();
     }
 
     /**
@@ -39,6 +42,14 @@ public class RankState extends GameState {
      */
     public void draw(final Graphics2D g) {
         ContentUtil.drawMenu(g);
-        RankingImpl.printOnScreen(g);
+        ranking.printOnScreen(g);
+    }
+
+    /**
+     * Get ranking Instance.
+     * @return ranking Instance
+     */
+    public Ranking getRanking() {
+        return ranking;
     }
 }

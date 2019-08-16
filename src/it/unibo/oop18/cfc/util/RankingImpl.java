@@ -1,17 +1,17 @@
 package it.unibo.oop18.cfc.util;
 
-import static java.util.Map.Entry.comparingByValue;
-import static java.util.stream.Collectors.toMap;
 import java.awt.Graphics2D;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Ranking class manage a CSV file.
@@ -19,22 +19,19 @@ import java.util.Map;
 public class RankingImpl implements Ranking {
 
     private static final int MAXROW = 5;
-    private static Map<String, Integer> ranked = new HashMap<>();
-    private static String path = "rank.txt";
-    private static String row;
-    private static String key;
-    private static Integer value;
-    private static String[] data;
-    private final int rowNumber;
+    private Map<String, Integer> ranked;
+    private String path = "rank.txt";
+    private String row;
+    private String key;
+    private Integer value;
 
     /**
      * Constructor. Load the number of row (num of players classified) Load the
      * ranking in the hashmap from the csvfile Order the hashmap
      */
     public RankingImpl() {
-        this.rowNumber = ranked.size();
+        ranked = new HashMap<>();
         loadRanking();
-        ranked = RankingImpl.orderRank(ranked);
     }
 
     /**
@@ -46,6 +43,7 @@ public class RankingImpl implements Ranking {
         if (!ranked.containsKey(player)) {
             ranked.put(player, points);
         }
+        saveRanking();
     }
 
     /**
@@ -53,11 +51,12 @@ public class RankingImpl implements Ranking {
      * 
      * @param g graphics
      */
-    public static void printOnScreen(final Graphics2D g) {
+    public void printOnScreen(final Graphics2D g) {
+        orderRank(ranked);
         int count = 1;
         for (final HashMap.Entry<String, Integer> entry : ranked.entrySet()) {
-            RankingImpl.key = entry.getKey();
-            RankingImpl.value = entry.getValue();
+            key = entry.getKey();
+            value = entry.getValue();
             ContentUtil.drawStringFont(g, 220, 310 + 50 * count,
                     String.format("#%d  -  Name: %s  -  Points: %d ", count, key.toUpperCase(Locale.ENGLISH), value));
             count++;
@@ -68,10 +67,8 @@ public class RankingImpl implements Ranking {
 
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public void saveRanking() {
+    private void saveRanking() {
+        orderRank(ranked);
         try (BufferedWriter b = new BufferedWriter(new FileWriter(path));) {
             for (final HashMap.Entry<String, Integer> entry : ranked.entrySet()) {
                 key = entry.getKey();
@@ -83,7 +80,6 @@ public class RankingImpl implements Ranking {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        orderRank(ranked);
     }
 
     /**
@@ -91,6 +87,7 @@ public class RankingImpl implements Ranking {
      * 
      */
     public final void loadRanking() {
+        String[] data;
         try (BufferedReader csvReader = new BufferedReader(new FileReader(path))) {
             while ((row = csvReader.readLine()) != null) {
                 data = row.split(";");
@@ -104,37 +101,20 @@ public class RankingImpl implements Ranking {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        orderRank(ranked);
     }
 
     /**
-     * Returns the map ordered.
+     * Order the map.
      * 
      * @return the ordered map
      * @param map to be ordered
      */
-    // TODO mettere in ordine decrescente
-    public static Map<String, Integer> orderRank(final Map<String, Integer> map) {
-        return map.entrySet().stream().sorted(comparingByValue())
-                .collect(toMap(e -> e.getKey(), e -> e.getValue(), (e1, e2) -> e2, LinkedHashMap::new));
-    }
-
-    /**
-     * Return number of ranked.
-     * 
-     * @return the number of row in the map (dimension of the map)
-     */
-    public int getRowNumber() {
-        return rowNumber;
-    }
-
-    /**
-     * Get the map of classified player.
-     * 
-     * @return map of <player,points>
-     */
-    public static Map<String, Integer> getRanked() {
-        return ranked;
+    private void orderRank(final Map<String, Integer> map) {
+        final Map<String, Integer> result = map.entrySet().stream()
+                      .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                      .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                              (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+        this.ranked = result;
     }
 
     /**
@@ -142,8 +122,8 @@ public class RankingImpl implements Ranking {
      * 
      * @param path rank
      */
-    public static void setPath(final String path) {
-        RankingImpl.path = path;
+    public void setPath(final String path) {
+        this.path = path;
     }
 
 }

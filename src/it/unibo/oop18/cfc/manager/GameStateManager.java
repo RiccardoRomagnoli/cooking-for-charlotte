@@ -49,6 +49,7 @@ public class GameStateManager {
         rankingState = new RankState(this);
         currentState = introState;
         introState.init();
+        rankingState.init();
     }
 
     /**
@@ -124,6 +125,14 @@ public class GameStateManager {
      */
     public PlayState getPlayState() {
         return (PlayState) playState;
+    }
+
+    /**
+     * Getter for rankstate.
+     * @return rankstate
+     */
+    public RankState getRankState() {
+        return (RankState) rankingState;
     }
 
     /**

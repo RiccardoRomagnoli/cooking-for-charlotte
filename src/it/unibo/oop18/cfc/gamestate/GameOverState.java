@@ -5,7 +5,6 @@ import java.awt.Graphics2D;
 import it.unibo.oop18.cfc.manager.GameStateManager;
 import it.unibo.oop18.cfc.util.ContentUtil;
 import it.unibo.oop18.cfc.util.JukeBoxUtil;
-import it.unibo.oop18.cfc.util.RankingImpl;
 
 /**
  * The Class GameOverState.
@@ -19,8 +18,6 @@ public class GameOverState extends GameState {
     private int finalScore;
     private char[] choice = "_ _ _ _ _ _ _ _ _ _".toCharArray();
     private int index;
-    private final RankingImpl ranking;
-
 
     /**
      * GameOverState constructor.
@@ -29,7 +26,6 @@ public class GameOverState extends GameState {
      */
     public GameOverState(final GameStateManager gsm) {
         super(gsm, GameStates.GAMEOVER);
-        ranking = new RankingImpl();
     }
 
     /**
@@ -117,8 +113,7 @@ public class GameOverState extends GameState {
      * Save the ranking and exit.
      */
     public void save() {
-        ranking.addPlacement(getName(), finalScore);
-        ranking.saveRanking();
+        super.getGsm().getRankState().getRanking().addPlacement(getName(), finalScore);
     }
 
     /**
