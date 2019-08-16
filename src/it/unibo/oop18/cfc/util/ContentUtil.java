@@ -120,13 +120,14 @@ public final class ContentUtil {
     /**
      * Draw.
      * 
-     * @param g graphic to be printed
-     * @param s String to be printed
-     * @param x Pos
-     * @param y Pos
+     * @param g        graphic to be printed
+     * @param s        String to be printed
+     * @param x        Pos
+     * @param y        Pos
      * @param fontSize The font size
      */
-    public static void drawStringFont(final Graphics2D g, final int x, final int y, final String s, final float fontSize) {
+    public static void drawStringFont(final Graphics2D g, final int x, final int y, final String s,
+            final float fontSize) {
         Font myFont = null;
         try {
             myFont = Font.createFont(Font.TRUETYPE_FONT, InfoState.class.getResourceAsStream("/HUD/seguibl.ttf"));

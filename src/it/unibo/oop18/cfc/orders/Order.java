@@ -50,11 +50,18 @@ public interface Order {
     void setCountDownTimer(int timeInSeconds);
 
     /**
-     * Get seconds remained before the Order Expires.
+     * Get total seconds of the count down timer.
      * 
      * @return Seconds
      */
     int getCountDownTime();
+
+    /**
+     * Get seconds remained before the Order Expires.
+     * 
+     * @return Seconds
+     */
+    int getCurrentCountDownTime();
 
     /**
      * Set's the Order Slot.

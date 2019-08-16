@@ -93,8 +93,8 @@ public class OrderGeneratorImpl extends TimerTask implements OrderGenerator {
                         orderIngredientsAvaiable.get(randIng).getSecond());
             }
             o.setCountDownTimer(currentDifficulty.getSecondsOfConutDown());
-            o.startOrder();
             ordersManager.addOrder(o);
+            o.startOrder();
         }
     }
 

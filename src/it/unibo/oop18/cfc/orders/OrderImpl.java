@@ -25,6 +25,7 @@ public class OrderImpl implements Order {
     private int slot;
     private boolean paused;
     private int countDownTime;
+    private int currentCountDownTime;
     private final Timer countDownTimer;
     private final OrdersManager ordersManager;
     private final Order thisOrder;
@@ -79,8 +80,10 @@ public class OrderImpl implements Order {
      * {@inheritDoc}
      */
     public void setCountDownTimer(final int timeInSeconds) {
+        this.currentCountDownTime = timeInSeconds;
         this.countDownTime = timeInSeconds;
-        this.ordersManager.getCurrentOrders().sort((o1, o2) -> o1.getCountDownTime() - o2.getCountDownTime());
+        this.ordersManager.getCurrentOrders()
+                .sort((o1, o2) -> o1.getCurrentCountDownTime() - o2.getCurrentCountDownTime());
     }
 
     /**
@@ -88,6 +91,13 @@ public class OrderImpl implements Order {
      */
     public int getCountDownTime() {
         return countDownTime;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public int getCurrentCountDownTime() {
+        return currentCountDownTime;
     }
 
     /**
@@ -112,8 +122,8 @@ public class OrderImpl implements Order {
             @Override
             public void run() {
                 if (!paused) {
-                    countDownTime--;
-                    if (countDownTime == 0) {
+                    currentCountDownTime--;
+                    if (currentCountDownTime == 0) {
                         countDownTimer.cancel();
                         ordersManager.orderFailed(thisOrder);
                     }
