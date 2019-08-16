@@ -53,6 +53,6 @@ public class OrderGraphicComponent implements GraphicsComponent {
             final int y, final int width, final int height) {
         final int color = (secondsTotal - secondsRemaining - 1) / (secondsTotal / 3) + 1;
         final double currentWidth = ((double) width) / secondsTotal * secondsRemaining + 1;
-        ContentUtil.drawLoadBar(g, x, y, (int) currentWidth, height, color);
+        ContentUtil.drawLoadBar(g, x, y, (int) currentWidth, height, color > 3 ? 3 : color);
     }
 }
