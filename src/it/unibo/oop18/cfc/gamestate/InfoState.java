@@ -1,6 +1,5 @@
 package it.unibo.oop18.cfc.gamestate;
 
-
 import java.awt.Graphics2D;
 
 import it.unibo.oop18.cfc.manager.GameStateManager;

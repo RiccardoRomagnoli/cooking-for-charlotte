@@ -14,9 +14,9 @@ import it.unibo.oop18.cfc.sprite.PlayerSprites;
 public class DynamicPlayerGraphicsComponent implements GraphicsComponent {
 
     private static final int DIVISION_BY_ZERO_PROTECTION = 1;
-    private static final int MOVE_FRAME_DELAY = Math.round(GameEngine.FPS / 30) + DIVISION_BY_ZERO_PROTECTION;
+    private static final int MOVE_FRAME_DELAY = Math.round(GameEngine.FPS / 15) + DIVISION_BY_ZERO_PROTECTION;
     private static final int STOP_FRAME_DELAY = Math.round(GameEngine.FPS / 2) + DIVISION_BY_ZERO_PROTECTION;
-    private static final int COUNTER_FRAME_LIMITER = STOP_FRAME_DELAY * 2;
+    private static final int COUNTER_FRAME_LIMITER = STOP_FRAME_DELAY;
 
     private final AbstractEntity entity;
     private final PlayerSprites sprites;

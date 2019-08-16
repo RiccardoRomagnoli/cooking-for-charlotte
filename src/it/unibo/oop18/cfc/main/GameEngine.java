@@ -71,7 +71,7 @@ public class GameEngine extends JPanel implements Runnable {
 
     private Thread thread;
     private boolean running;
-    private final int targetTime = 1000 / FPS;
+    private static final int TARGET_TIME = 1000 / FPS;
     private BufferedImage image;
     private static Graphics2D g;
     private GameStateManager gsm;
@@ -104,29 +104,15 @@ public class GameEngine extends JPanel implements Runnable {
 
         init();
 
-        long start;
-        long elapsed;
-        long wait;
-
+        long currentFrameTime;
         while (running) {
+            currentFrameTime = System.currentTimeMillis();
 
-            start = System.currentTimeMillis();
-
-            update();
-            draw();
-            drawToScreen();
-
-            elapsed = System.currentTimeMillis() - start;
-
-            wait = targetTime - elapsed / 1000;
-            if (wait < 0) {
-                wait = targetTime;
-            }
-            try {
-                Thread.sleep(wait);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            this.update();
+            this.draw();
+            this.drawToScreen();
+            final long dTime = System.currentTimeMillis() - currentFrameTime;
+            this.waitNextFrame(dTime);
         }
     }
 
@@ -163,6 +149,22 @@ public class GameEngine extends JPanel implements Runnable {
      */
     public static Graphics2D getG() {
         return g;
+    }
+
+    private void waitNextFrame(final long deltaTime) {
+        long sleepTime;
+        long remainingTime;
+        remainingTime = TARGET_TIME - deltaTime;
+        if (remainingTime < 0) {
+            sleepTime = TARGET_TIME;
+        } else {
+            sleepTime = remainingTime;
+        }
+        try {
+            Thread.sleep(sleepTime);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }
