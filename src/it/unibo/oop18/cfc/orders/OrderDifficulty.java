@@ -8,7 +8,7 @@ public enum OrderDifficulty {
     /**
      * First Param : numeber of Ingredients Second Param : time delay.
      */
-    EASY(2, 45), MEDIUM(3, 60), HARD(4, 90), EXTREME(4, 80);
+    EASY(2, 55), MEDIUM(3, 75), HARD(4, 95), EXTREME(4, 80);
 
     private int numberOfIngredients;
     private int secondsOfCountDown;
