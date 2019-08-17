@@ -144,7 +144,7 @@ public class KeyInput implements KeyListener {
      * @param e key pressed
      */
     private void introKeyInput(final KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             gsm.setState(GameStates.MENU);
             JukeBoxUtil.play("collect");
         }
@@ -210,6 +210,10 @@ public class KeyInput implements KeyListener {
         case KeyEvent.VK_ESCAPE:
         case KeyEvent.VK_P:
             resumePlayState();
+            break;
+        case KeyEvent.VK_R:
+            gsm.getPlayState().getWorld().stopTimers();
+            gsm.newGame();
             break;
         case KeyEvent.VK_F1:
             gsm.getPlayState().getWorld().stopTimers();

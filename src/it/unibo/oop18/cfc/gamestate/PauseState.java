@@ -11,14 +11,12 @@ import it.unibo.oop18.cfc.util.JukeBoxUtil;
  */
 public class PauseState extends GameState {
 
-    private static final int POSITION_X_PAUSE = 400;
-    private static final int POSITION_Y_PAUSE = 200;
-    private static final int POSITION_X_MOVE = 120;
-    private static final int POSITION_Y_MOVE = 270;
-    private static final int POSITION_X_DOACTION = 200;
-    private static final int POSITION_Y_DOACTION = 340;
-    private static final int POSITION_X_MENU = 120;
-    private static final int POSITION_Y_MENU = 410;
+    private static final int POSITION_X_RESUME = 400;
+    private static final int POSITION_Y_RESUME = 370;
+    private static final int POSITION_X_RESTART = 440;
+    private static final int POSITION_Y_RESTART = 430;
+    private static final int POSITION_X_MENU = 380;
+    private static final int POSITION_Y_MENU = 490;
 
     /**
      * Class constructor.
@@ -49,13 +47,9 @@ public class PauseState extends GameState {
         if (JukeBoxUtil.isPlaying("themeSong")) {
             JukeBoxUtil.stop("themeSong");
         }
-
-        ContentUtil.drawString(g, "pause", POSITION_X_PAUSE, POSITION_Y_PAUSE);
-
-        ContentUtil.drawString(g, "arrow keys : move", POSITION_X_MOVE, POSITION_Y_MOVE);
-
-        ContentUtil.drawString(g, "space : action", POSITION_X_DOACTION, POSITION_Y_DOACTION);
-
-        ContentUtil.drawString(g, "F1: return to menu", POSITION_X_MENU, POSITION_Y_MENU);
+        ContentUtil.drawPause(g);
+        ContentUtil.drawStringFont(g, POSITION_X_RESUME, POSITION_Y_RESUME, "Resume: Esc / P");
+        ContentUtil.drawStringFont(g, POSITION_X_RESTART, POSITION_Y_RESTART, "Restart: R");
+        ContentUtil.drawStringFont(g, POSITION_X_MENU, POSITION_Y_MENU, "Return to menu: F1");
     }
 }
