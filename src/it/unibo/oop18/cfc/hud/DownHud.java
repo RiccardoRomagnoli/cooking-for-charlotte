@@ -1,5 +1,6 @@
 package it.unibo.oop18.cfc.hud;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.io.IOException;
 import java.util.stream.IntStream;
@@ -25,12 +26,11 @@ public class DownHud {
     private static final int POSITION_X_FOOD = 427;
     private static final int POSITION_Y_FOOD = 46;
     private static final int DISTANCE_BETWEEN_FOOD = 100;
-    private static final int POSITION_X_STRINGS = 17 + 50;
-    private static final int POSITION_X_POINTS = 17 + 180;
-    private static final int POSITION_Y_LIFE = 654 + 35;
-    private static final int POSITION_Y_TIME = 704 + 35;
-    private static final int POSITION_Y_POINTS = 679 + 35;
-
+    private static final int POSITION_X_STRINGS = 67;
+    private static final int POSITION_X_POINTS = 197;
+    private static final int POSITION_Y_LIFE = 689;
+    private static final int POSITION_Y_TIME = 739;
+    private static final int POSITION_Y_POINTS = 714;
     private final int yoffset;
     private final World world;
 
@@ -75,31 +75,35 @@ public class DownHud {
         final int seconds = (int) world.getGameTimer().getSeconds();
         if (minutes < 10) {
             if (seconds < 10) {
-                ContentUtil.drawStringFont(g, POSITION_X_STRINGS, POSITION_Y_TIME, "0" + minutes + ":0" + seconds);
+                ContentUtil.drawStringFont(g, POSITION_X_STRINGS, POSITION_Y_TIME, "0" + minutes + ":0" + seconds,
+                        Color.WHITE);
 
             } else {
-                ContentUtil.drawStringFont(g, POSITION_X_STRINGS, POSITION_Y_TIME, "0" + minutes + ":" + seconds);
+                ContentUtil.drawStringFont(g, POSITION_X_STRINGS, POSITION_Y_TIME, "0" + minutes + ":" + seconds,
+                        Color.WHITE);
 
             }
         } else {
             if (seconds < 10) {
-                ContentUtil.drawStringFont(g, POSITION_X_STRINGS, POSITION_Y_TIME, minutes + ":0" + seconds);
+                ContentUtil.drawStringFont(g, POSITION_X_STRINGS, POSITION_Y_TIME, minutes + ":0" + seconds,
+                        Color.WHITE);
 
             } else {
-                ContentUtil.drawStringFont(g, POSITION_X_STRINGS, POSITION_Y_TIME, minutes + ":" + seconds);
+                ContentUtil.drawStringFont(g, POSITION_X_STRINGS, POSITION_Y_TIME, minutes + ":" + seconds,
+                        Color.WHITE);
 
             }
         }
         // draw lifes
         final Integer lifes = world.getPlayer().getLifes();
         if (lifes <= 10) {
-            ContentUtil.drawStringFont(g, POSITION_X_STRINGS, POSITION_Y_LIFE, "0" + lifes.toString());
+            ContentUtil.drawStringFont(g, POSITION_X_STRINGS, POSITION_Y_LIFE, "0" + lifes.toString(), Color.WHITE);
         } else {
-            ContentUtil.drawStringFont(g, POSITION_X_STRINGS, POSITION_Y_LIFE, lifes.toString());
+            ContentUtil.drawStringFont(g, POSITION_X_STRINGS, POSITION_Y_LIFE, lifes.toString(), Color.WHITE);
         }
         // draw points
         final Integer points = world.getScoreManager().getScore();
-        ContentUtil.drawStringFont(g, POSITION_X_POINTS, POSITION_Y_POINTS, points.toString());
+        ContentUtil.drawStringFont(g, POSITION_X_POINTS, POSITION_Y_POINTS, points.toString(), Color.WHITE);
 
     }
 }
