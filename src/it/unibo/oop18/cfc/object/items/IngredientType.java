@@ -12,7 +12,7 @@ public enum IngredientType {
     /** The bread. */
     BREAD(0, 2, 200, 1, 0),
     /** The meat. */
-    MEAT(1, 5, 500, 2, 6);
+    MEAT(1, 5, 500, 2, 10);
 
     private int x;
     private int y;
