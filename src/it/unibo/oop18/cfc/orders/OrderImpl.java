@@ -8,10 +8,10 @@ import java.util.TimerTask;
 
 import it.unibo.oop18.cfc.graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.graphics.OrderGraphicComponent;
-import it.unibo.oop18.cfc.object.items.IngredientImpl;
 import it.unibo.oop18.cfc.object.items.IngredientState;
 import it.unibo.oop18.cfc.object.items.IngredientType;
 import it.unibo.oop18.cfc.object.items.OrderIngredient;
+import it.unibo.oop18.cfc.object.items.OrderIngredientImpl;
 import it.unibo.oop18.cfc.object.items.Plate;
 
 /**
@@ -59,7 +59,7 @@ public class OrderImpl implements Order {
 
         }
         ingredientsList.add(
-                new IngredientImpl(this.ordersManager.getWorld().getItemManager(), ingredientType, ingredientState));
+                new OrderIngredientImpl(this.ordersManager.getWorld().getItemManager(), ingredientType, ingredientState));
     }
 
     /**

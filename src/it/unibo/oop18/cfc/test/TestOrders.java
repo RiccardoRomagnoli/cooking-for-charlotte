@@ -5,10 +5,10 @@ import java.io.IOException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import it.unibo.oop18.cfc.object.items.IngredientImpl;
 import it.unibo.oop18.cfc.object.items.IngredientState;
 import it.unibo.oop18.cfc.object.items.IngredientType;
 import it.unibo.oop18.cfc.object.items.OrderIngredient;
+import it.unibo.oop18.cfc.object.items.OrderIngredientImpl;
 import it.unibo.oop18.cfc.object.items.Plate;
 import it.unibo.oop18.cfc.object.items.PlateImpl;
 import it.unibo.oop18.cfc.orders.Order;
@@ -82,7 +82,7 @@ public class TestOrders {
         o.stopOrder();
         // Generate a Correct plate
         for (final OrderIngredient orderIngredient : o.getIngredientsList()) {
-            correctPlate.addIngredient(new IngredientImpl(world.getItemManager(), orderIngredient.getIngredient(),
+            correctPlate.addIngredient(new OrderIngredientImpl(world.getItemManager(), orderIngredient.getIngredient(),
                     orderIngredient.getState()));
         }
         o = ordersMan.getCurrentOrders().get(1);
@@ -90,14 +90,14 @@ public class TestOrders {
         // Generate a Wrong plate
         for (final OrderIngredient orderIngredient : o.getIngredientsList()) {
             wrongPlate.addIngredient(
-                    new IngredientImpl(world.getItemManager(), IngredientType.BREAD, orderIngredient.getState()));
+                    new OrderIngredientImpl(world.getItemManager(), IngredientType.BREAD, orderIngredient.getState()));
         }
         o = ordersMan.getCurrentOrders().get(2);
         o.stopOrder();
         // Generate a Correct plate in different ingredient order
         for (int i = o.getIngredientsList().size() - 1; i >= 0; i--) {
             final OrderIngredient orderIngredient = o.getIngredientsList().get(i);
-            correctPlateNotOrdered.addIngredient(new IngredientImpl(world.getItemManager(),
+            correctPlateNotOrdered.addIngredient(new OrderIngredientImpl(world.getItemManager(),
                     orderIngredient.getIngredient(), orderIngredient.getState()));
         }
         // Test correct Delivery

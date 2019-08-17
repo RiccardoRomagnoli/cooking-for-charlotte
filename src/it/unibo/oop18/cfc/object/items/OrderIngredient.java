@@ -8,7 +8,7 @@ import it.unibo.oop18.cfc.util.Position;
 /**
  * The Interface OrderIngredient.
  */
-public interface OrderIngredient {
+public interface OrderIngredient extends Ingredient {
 
     /**
      * Check ingredient.
