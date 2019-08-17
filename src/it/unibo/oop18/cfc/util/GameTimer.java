@@ -110,4 +110,13 @@ public class GameTimer {
     public String toString() {
         return String.format("%02d", this.getMinutes()) + ":" + String.format("%02d", this.getSeconds());
     }
+
+    /**
+     * Resume the timer if was already running.
+     */
+    public void resume() {
+        if (this.stopped && this.getTimeMillis() != 0) {
+            start();
+        }
+    }
 }
