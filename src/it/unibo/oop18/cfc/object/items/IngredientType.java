@@ -6,24 +6,22 @@ package it.unibo.oop18.cfc.object.items;
 public enum IngredientType {
 
     /** The tomato. */
-    TOMATO(3, 0, 200, 2, 0),
+    TOMATO(3, 0, 2, 0),
     /** The lettuce. */
-    LETTUCE(2, 0, 200, 2, 0),
+    LETTUCE(2, 0, 2, 0),
     /** The bread. */
-    BREAD(0, 2, 200, 1, 0),
+    BREAD(0, 2, 1, 0),
     /** The meat. */
-    MEAT(1, 5, 500, 2, 10);
+    MEAT(1, 5, 2, 10);
 
     private int x;
     private int y;
-    private int pointValue;
     private int timeToCut;
     private int timeToCook;
 
-    IngredientType(final int x, final int y, final int pointValue, final int timeToCut, final int timeToCook) {
+    IngredientType(final int x, final int y, final int timeToCut, final int timeToCook) {
         this.x = x;
         this.y = y;
-        this.pointValue = pointValue;
         this.timeToCut = timeToCut;
         this.timeToCook = timeToCook;
     }
@@ -45,16 +43,6 @@ public enum IngredientType {
     public int getY() {
         return this.y;
     }
-
-    /**
-     * Gets the value points.
-     *
-     * @return the value of the value of the ingredient
-     */
-    public int getPoints() {
-        return this.pointValue;
-    }
-
     /**
      * Gets the time to cut.
      *

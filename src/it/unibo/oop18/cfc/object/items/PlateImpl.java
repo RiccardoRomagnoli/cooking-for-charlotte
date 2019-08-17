@@ -55,7 +55,6 @@ public class PlateImpl extends AbstractItem implements Plate {
         int counter = 0;
         this.points = 0;
         for (final IngredientImpl i : ingredients) {
-            updatePoints(i.getIngredient().getPoints());
             if (i.isReady()) {
                 counter++;
             }

@@ -5,13 +5,12 @@ import java.awt.Image;
 import java.awt.geom.AffineTransform;
 
 import it.unibo.oop18.cfc.manager.ItemManager;
-import it.unibo.oop18.cfc.util.CheckStatus;
 import it.unibo.oop18.cfc.util.Position;
 
 /**
  * The Class IngredientImpl.
  */
-public class IngredientImpl extends AbstractItem implements Ingredient, OrderIngredient {
+public class IngredientImpl extends AbstractItem implements Ingredient {
 
     private final IngredientType type;
     private IngredientState state;
@@ -76,7 +75,6 @@ public class IngredientImpl extends AbstractItem implements Ingredient, OrderIng
         }
         return false;
     }
-
     /**
      * {@inheritDoc}
      */
@@ -84,7 +82,6 @@ public class IngredientImpl extends AbstractItem implements Ingredient, OrderIng
         g.drawImage(super.getItemManager().getFoodSprites().getIngredientSprite().get(type.getX()).get(state.getX())
                 .getImage(), AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
     }
-
     /**
      * {@inheritDoc}
      */
@@ -93,19 +90,5 @@ public class IngredientImpl extends AbstractItem implements Ingredient, OrderIng
                 super.getItemManager().getFoodSprites().getIngredientSprite().get(type.getX()).get(state.getX())
                         .getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH),
                 AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public CheckStatus checkIngredient(final Ingredient ingredient) {
-        CheckStatus returnStatus = CheckStatus.NOT_ACCEPTABLE;
-        if (ingredient.getIngredient().equals(this.type) && ingredient.getState().equals(this.state)) {
-            returnStatus = CheckStatus.ACCEPTABLE_WITHOUT_ERROR;
-        } else if (ingredient.getIngredient().equals(this.type)
-                && ingredient.getState().equals(IngredientState.BURNED)) {
-            returnStatus = CheckStatus.ACCEPTABLE_WITH_ERROR;
-        }
-        return returnStatus;
     }
 }
