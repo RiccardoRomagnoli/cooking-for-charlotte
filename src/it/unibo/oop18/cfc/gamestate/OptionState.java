@@ -55,7 +55,7 @@ public class OptionState extends GameState {
      * @param g basic graphics
      */
     public void draw(final Graphics2D g) {
-        ContentUtil.drawMenu(g);
+        ContentUtil.drawOptions(g);
         for (int i = 0; i < OPTION.length; i++) {
             ContentUtil.drawStringFont(g, STRING_POS, POSITION_Y_OPTION[i], OPTION[i]);
         }

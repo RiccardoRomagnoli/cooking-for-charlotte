@@ -7,13 +7,10 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Locale;
-
 import javax.imageio.ImageIO;
 
 import it.unibo.oop18.cfc.gamestate.InfoState;
 import it.unibo.oop18.cfc.main.GameEngine;
-import it.unibo.oop18.cfc.world.WorldImpl;
 
 /**
  * Loads and splits all sprites on start up. The sprites can easily be accessed
@@ -21,13 +18,17 @@ import it.unibo.oop18.cfc.world.WorldImpl;
  */
 public final class ContentUtil {
 
-    private static final Image MENUBG = loadImage("/HUD/menu.png", 1024, 768);
+    private static final float FONT_SIZE = 30f;
+    private static final Image MENU = loadImage("/HUD/menu.png", 1024, 768);
+    private static final Image OPTIONS = loadImage("/HUD/options.png", 1024, 768);
+    private static final Image INFO = loadImage("/HUD/menu.png", 1024, 768);
+    private static final Image RANK = loadImage("/HUD/rank.png", 1024, 768);
+    private static final Image PAUSE = loadImage("/HUD/pause.png", 1024, 768);
     private static final Image TOPBAR = loadImage("/HUD/topbar.png", 1024, 128);
     private static final Image DOWNBAR = loadImage("/HUD/downbar.png", 1024, 128);
     private static final Image BLUEBAR = loadImage("/HUD/bluebar.png", 153, 5);
     private static final Image ARROWUP = loadImage("/HUD/arrowUp.png", 50, 50);
     private static final Image ARROWDOWN = loadImage("/HUD/arrowDown.png", 50, 50);
-    private static final BufferedImage[][] FONT = loadBufferedImage("/HUD/font.png", 50, 50);
     private static final BufferedImage[][] LOADBAR = loadBufferedImage("/Sprites/loadbar.png", 30, 20);
 
     private ContentUtil() {
@@ -35,10 +36,12 @@ public final class ContentUtil {
     }
 
     /**
-     * @param s ..
-     * @param w ..
-     * @param h ..
-     * @return ..
+     * Load an {@link Image} from a String path with specific width and height.
+     * 
+     * @param s the String of the path
+     * @param w the width to be printed
+     * @param h .. the height to be printed
+     * @return the image or null if there is an error
      */
     public static Image loadImage(final String s, final int w, final int h) {
         Image ret;
@@ -54,12 +57,13 @@ public final class ContentUtil {
     }
 
     /**
-     * TODO.
+     * Load a {@link BufferedImage} from a String path with specific width and
+     * height for each element.
      * 
-     * @param s ..
-     * @param w ..
-     * @param h ..
-     * @return ..
+     * @param s the String of the path
+     * @param w the width of a single element
+     * @param h .. the height of a single element
+     * @return the image or null if there is an error
      */
     public static BufferedImage[][] loadBufferedImage(final String s, final int w, final int h) {
         BufferedImage[][] ret;
@@ -83,30 +87,18 @@ public final class ContentUtil {
     }
 
     /**
-     * Draw.
+     * Draw a String in specific position.
      * 
-     * @param g   graphic to be printed
-     * @param str String to be printed
-     * @param x   Pos
-     * @param y   Pos
-     */
-    public static void drawString(final Graphics2D g, final String str, final int x, final int y) {
-        drawString(g, str, x, y, FONT[0][0].getWidth(), FONT[0][0].getHeight());
-    }
-
-    /**
-     * Draw.
-     * 
-     * @param g graphic to be printed
+     * @param g graphic of the screen
      * @param s String to be printed
-     * @param x Pos
-     * @param y Pos
+     * @param x the x position to start draw
+     * @param y the y position to start draw
      */
     public static void drawStringFont(final Graphics2D g, final int x, final int y, final String s) {
         Font myFont = null;
         try {
             myFont = Font.createFont(Font.TRUETYPE_FONT, InfoState.class.getResourceAsStream("/HUD/seguibl.ttf"));
-            myFont = myFont.deriveFont(WorldImpl.FONT_SIZE);
+            myFont = myFont.deriveFont(FONT_SIZE);
             g.setFont(myFont);
             g.setColor(Color.BLACK);
             g.drawString(s, x, y);
@@ -118,22 +110,21 @@ public final class ContentUtil {
     }
 
     /**
-     * Draw.
+     * Draw a String in specific position with specific font size.
      * 
-     * @param g        graphic to be printed
-     * @param s        String to be printed
-     * @param x        Pos
-     * @param y        Pos
-     * @param fontSize The font size
+     * @param g graphic of the screen
+     * @param s String to be printed
+     * @param x the x position to start draw
+     * @param y the y position to start draw
+     * @param c the color of the String
      */
-    public static void drawStringFont(final Graphics2D g, final int x, final int y, final String s,
-            final float fontSize) {
+    public static void drawStringFont(final Graphics2D g, final int x, final int y, final String s, final Color c) {
         Font myFont = null;
         try {
             myFont = Font.createFont(Font.TRUETYPE_FONT, InfoState.class.getResourceAsStream("/HUD/seguibl.ttf"));
-            myFont = myFont.deriveFont(fontSize);
+            myFont = myFont.deriveFont(FONT_SIZE);
             g.setFont(myFont);
-            g.setColor(Color.BLACK);
+            g.setColor(c);
             g.drawString(s, x, y);
         } catch (FontFormatException e) {
             e.printStackTrace();
@@ -143,41 +134,7 @@ public final class ContentUtil {
     }
 
     /**
-     * Draw.
-     * 
-     * @param g      graphic to be printed
-     * @param str    String to be printed
-     * @param x      Pos
-     * @param y      Pos
-     * @param width  width
-     * @param height height
-     */
-    public static void drawString(final Graphics2D g, final String str, final int x, final int y, final int width,
-            final int height) {
-        final String s = str.toUpperCase(Locale.getDefault());
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            // if(c == 47) c = 36; // slash
-            if (c == 58) {
-                c = 26; // colon
-            }
-            if (c == 32) {
-                c = 28; // space
-            }
-            if (c >= 48 && c <= 57) {
-                c -= 32; // numbers
-            }
-            if (c >= 65 && c <= 90) {
-                c -= 32; // letters
-            }
-            final int row = c / FONT[0].length;
-            final int col = c % FONT[0].length;
-            g.drawImage(FONT[row][col], x + width * i, y, width, height, null);
-        }
-    }
-
-    /**
-     * Draw food in specific location.
+     * Draw a blue bar in specific location.
      * 
      * @param g     {@link Graphics2D} the screen
      * @param x     the x position to draw
@@ -209,7 +166,43 @@ public final class ContentUtil {
      * @param g {@link Graphics2D} the screen
      */
     public static void drawMenu(final Graphics2D g) {
-        g.drawImage(MENUBG, 0, 0, null);
+        g.drawImage(MENU, 0, 0, null);
+    }
+
+    /**
+     * Draw options.
+     * 
+     * @param g {@link Graphics2D} the screen
+     */
+    public static void drawOptions(final Graphics2D g) {
+        g.drawImage(OPTIONS, 0, 0, null);
+    }
+
+    /**
+     * Draw info.
+     * 
+     * @param g {@link Graphics2D} the screen
+     */
+    public static void drawInfo(final Graphics2D g) {
+        g.drawImage(INFO, 0, 0, null);
+    }
+
+    /**
+     * Draw rank.
+     * 
+     * @param g {@link Graphics2D} the screen
+     */
+    public static void drawRank(final Graphics2D g) {
+        g.drawImage(RANK, 0, 0, null);
+    }
+
+    /**
+     * Draw pause.
+     * 
+     * @param g {@link Graphics2D} the screen
+     */
+    public static void drawPause(final Graphics2D g) {
+        g.drawImage(PAUSE, 0, 0, null);
     }
 
     /**

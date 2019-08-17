@@ -11,12 +11,17 @@ import it.unibo.oop18.cfc.util.JukeBoxUtil;
  */
 public class GameOverState extends GameState {
 
-    private static final int STRING_COL = 220;
+    private static final int STRING_COL = 230;
     private static final int STRING_ROW = 500;
     private static final int SMALL_PADDING = 50;
     private static final int BIG_PADDING = 350;
+    private static final int ARROW_DIM = 30;
+    private static final int ARROWUP_Y_OFFSET = -50;
+    private static final int ARROWDOWN_Y_OFFSET = 5;
+    private static final int ARROW_X_OFFSET = -4;
+    private static final int TEXTDISTANCE = 30;
     private int finalScore;
-    private char[] choice = "_ _ _ _ _ _ _ _ _ _".toCharArray();
+    private char[] choice = "AAAAAAAAAA".toCharArray();
     private int index;
 
     /**
@@ -49,11 +54,15 @@ public class GameOverState extends GameState {
      */
     public void draw(final Graphics2D g) {
         if (finalScore >= 0) {
-            ContentUtil.drawMenu(g);
+            ContentUtil.drawRank(g);
             ContentUtil.drawStringFont(g, STRING_COL, STRING_ROW - 100, "Insert your name:");
-            ContentUtil.drawArrowDown(g, STRING_COL + (index * 20), STRING_ROW - 50, 30, 30);
-            ContentUtil.drawStringFont(g, STRING_COL + 10, STRING_ROW, String.valueOf(choice), 30f);
-            ContentUtil.drawArrowUp(g, STRING_COL + (index * 20), STRING_ROW + 5, 30, 30);
+            ContentUtil.drawArrowDown(g, STRING_COL + (index * TEXTDISTANCE) + ARROW_X_OFFSET,
+                    STRING_ROW + ARROWUP_Y_OFFSET, ARROW_DIM, ARROW_DIM);
+            for (int i = 0; i < choice.length; i++) {
+                ContentUtil.drawStringFont(g, STRING_COL + (i * TEXTDISTANCE), STRING_ROW, String.valueOf(choice[i]));
+            }
+            ContentUtil.drawArrowUp(g, STRING_COL + (index * TEXTDISTANCE) + ARROW_X_OFFSET,
+                    STRING_ROW + ARROWDOWN_Y_OFFSET, ARROW_DIM, ARROW_DIM);
             ContentUtil.drawStringFont(g, STRING_COL + BIG_PADDING, STRING_ROW,
                     String.format("Points: %d", finalScore));
         }
@@ -64,30 +73,21 @@ public class GameOverState extends GameState {
      * Change letter with next.
      */
     public void goUp() {
-        if (choice[index * 2] == '_') {
-            choice[index * 2] = 'A';
+        if (choice[index] < 'Z') {
+            choice[index]++;
         } else {
-            if (choice[index * 2] < 90) {
-                choice[index * 2]++;
-            } else {
-                choice[index * 2] = '_';
-            }
+            choice[index] = 'A';
         }
-
     }
 
     /**
      * Change letter with prev.
      */
     public void goDown() {
-        if (choice[index * 2] == '_') {
-            choice[index * 2] = 'Z';
+        if (choice[index] > 'A') {
+            choice[index]--;
         } else {
-            if (choice[index * 2] > 65) {
-                choice[index * 2]--;
-            } else {
-                choice[index * 2] = '_';
-            }
+            choice[index] = 'Z';
         }
     }
 
@@ -104,7 +104,7 @@ public class GameOverState extends GameState {
      * Change letter position.
      */
     public void goRight() {
-        if (index < choice.length / 2) {
+        if (index < choice.length - 1) {
             index++;
         }
     }
@@ -113,15 +113,6 @@ public class GameOverState extends GameState {
      * Save the ranking and exit.
      */
     public void save() {
-        super.getGsm().getRankState().getRanking().addPlacement(getName(), finalScore);
-    }
-
-    /**
-     * Return the name of the player.
-     * 
-     * @return player's name
-     */
-    public String getName() {
-        return String.valueOf(choice).replaceAll(" ", "").replaceAll("_", "");
+        super.getGsm().getRankState().getRanking().addPlacement(String.valueOf(choice), finalScore);
     }
 }

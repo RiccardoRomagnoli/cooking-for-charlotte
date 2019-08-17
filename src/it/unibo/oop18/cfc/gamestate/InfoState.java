@@ -56,11 +56,11 @@ public class InfoState extends GameState implements Runnable {
      * @throws IOException
      */
     public void draw(final Graphics2D g) {
-        ContentUtil.drawMenu(g);
-        ContentUtil.drawString(g, "INFO", 400, 300);
-        ContentUtil.drawString(g, "arrow keys : move", 100, 370);
-        ContentUtil.drawString(g, "space : action", 200, 440);
-        ContentUtil.drawString(g, "F1: return to menu", 100, 510);
+        ContentUtil.drawInfo(g);
+        ContentUtil.drawStringFont(g, 400, 300, "INFO");
+        ContentUtil.drawStringFont(g, 100, 370, "arrow keys : move");
+        ContentUtil.drawStringFont(g, 200, 440, "space : action");
+        ContentUtil.drawStringFont(g, 100, 510, "F1: return to menu");
         ContentUtil.drawStringFont(g, x, y, "Fai attenzione a comporre il piatto con gli ingredienti giusti");
         ContentUtil.drawStringFont(g, x, y + 40, "altrimenti dovrai buttare tutto e ricominciare da capo!!");
     }

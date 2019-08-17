@@ -2,7 +2,6 @@ package it.unibo.oop18.cfc.gamestate;
 
 import java.awt.Graphics2D;
 
-import it.unibo.oop18.cfc.main.GameEngine;
 import it.unibo.oop18.cfc.manager.GameStateManager;
 import it.unibo.oop18.cfc.util.ContentUtil;
 import it.unibo.oop18.cfc.util.JukeBoxUtil;
@@ -68,22 +67,18 @@ public class MenuState extends GameState {
      * Action to be performed when a menu entry is pressed.
      */
     private void selectOption() {
-        final Graphics2D g = GameEngine.getG();
         if (currentOption == 0) {
             getGsm().newGame();
             JukeBoxUtil.stop(SoundUtil.MENU_SOUND);
         }
         if (currentOption == 1) {
             getGsm().setState(GameStates.OPTION);
-            getGsm().draw(g);
         }
         if (currentOption == 2) {
             getGsm().setState(GameStates.INFO);
-            getGsm().draw(g);
         }
         if (currentOption == 3) {
             getGsm().setState(GameStates.RANKING);
-            getGsm().draw(g);
         }
         if (currentOption == 4) {
             JukeBoxUtil.stop(SoundUtil.MENU_SOUND);

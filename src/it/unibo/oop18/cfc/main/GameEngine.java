@@ -142,15 +142,6 @@ public class GameEngine extends JPanel implements Runnable {
         g2.dispose();
     }
 
-    /**
-     * Gets the g.
-     *
-     * @return g
-     */
-    public static Graphics2D getG() {
-        return g;
-    }
-
     private void waitNextFrame(final long deltaTime) {
         long sleepTime;
         long remainingTime;
