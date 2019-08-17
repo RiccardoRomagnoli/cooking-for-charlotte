@@ -54,28 +54,22 @@ public class WorldImpl implements World {
      * The lower bound in pixel.
      */
     public static final int LOWER_BOUND_IN_PIXEL = 0 + TileSheet.TILE_SIZE_IN_GAME;
-
     /**
      * Path to map.
      */
-    public static final String MAPPATH = "/Maps/testmap1.map";
+    private static final String MAPPATH = "/Maps/testmap1.map";
     /**
      * Path to tile sheet.
      */
-    public static final String TILEPATH = "/Tilesets/tilesheet.png";
+    private static final String TILEPATH = "/Tilesets/tilesheet.png";
     /**
      * Path to player Sprite.
      */
-    public static final String SPRITEPATH = "/Sprites/baker.png";
+    private static final String SPRITEPATH = "/Sprites/baker.png";
     /**
      * Path to player Sprite.
      */
-    public static final String ITEMPATH = "/Sprites/itemSprite.png";
-
-    /**
-     * Font size.
-     */
-    public static final float FONT_SIZE = 30f;
+    private static final String ITEMPATH = "/Sprites/itemSprite.png";
 
     private final Set<ChoppingStation> choppingStations;
     private final Set<Cooker> cookers;
@@ -92,8 +86,6 @@ public class WorldImpl implements World {
 
     private Player player;
     private final GameTimer timer;
-    // private final PlayerScore score;
-
     private final TileManager tileManager;
     private final SpriteManager spriteManager;
     private final ItemManager itemManager;
@@ -299,6 +291,8 @@ public class WorldImpl implements World {
         this.getOrdersManager().stopGeneration();
         this.getOrdersManager().stopOrders();
         this.timer.reset();
+        this.choppingStations.forEach(c -> c.getChoppingStationTimer().reset());
+        this.cookers.forEach(c -> c.getCookerTimer().reset());
     }
 
     /**
@@ -308,6 +302,8 @@ public class WorldImpl implements World {
         this.ordersManager.pauseOrders();
         this.ordersManager.pauseGeneration();
         this.timer.stop();
+        this.choppingStations.forEach(c -> c.getChoppingStationTimer().stop());
+        this.cookers.forEach(c -> c.getCookerTimer().stop());
     }
 
     /**
@@ -317,6 +313,8 @@ public class WorldImpl implements World {
         this.ordersManager.resumeOrders();
         this.ordersManager.resumeGeneration();
         this.timer.start();
+        this.choppingStations.forEach(c -> c.getChoppingStationTimer().resume());
+        this.cookers.forEach(c -> c.getCookerTimer().resume());
     }
 
     /**
