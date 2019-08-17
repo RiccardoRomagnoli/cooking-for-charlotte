@@ -18,7 +18,7 @@ public enum IngredientState {
     /**
      * the ingredient perfectly cooked.
      */
-    PERFECT(2, 10),
+    PERFECT(2, 15),
 
     /**
      * the ingredient is overcooked, so burned but still edible.
