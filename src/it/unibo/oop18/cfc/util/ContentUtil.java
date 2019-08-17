@@ -30,6 +30,7 @@ public final class ContentUtil {
     private static final Image ARROWUP = loadImage("/HUD/arrowUp.png", 50, 50);
     private static final Image ARROWDOWN = loadImage("/HUD/arrowDown.png", 50, 50);
     private static final BufferedImage[][] LOADBAR = loadBufferedImage("/Sprites/loadbar.png", 30, 20);
+    private static final Font MYFONT = initFont("/HUD/seguibl.ttf", FONT_SIZE);
 
     private ContentUtil() {
 
@@ -43,7 +44,7 @@ public final class ContentUtil {
      * @param h .. the height to be printed
      * @return the image or null if there is an error
      */
-    public static Image loadImage(final String s, final int w, final int h) {
+    private static Image loadImage(final String s, final int w, final int h) {
         Image ret;
         try {
             ret = ImageIO.read(ContentUtil.class.getResource(s)).getScaledInstance(w, h, Image.SCALE_SMOOTH);
@@ -57,6 +58,28 @@ public final class ContentUtil {
     }
 
     /**
+     * Load the font for the game.
+     * 
+     * @param s the path of the file with font
+     * @param size the size of the font
+     * 
+     * @return the font of the game
+     */
+    private static Font initFont(final String s, final float size) {
+        Font font;
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT, InfoState.class.getResourceAsStream(s));
+            font = font.deriveFont(size);
+            return font;
+        } catch (FontFormatException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
      * Load a {@link BufferedImage} from a String path with specific width and
      * height for each element.
      * 
@@ -65,7 +88,7 @@ public final class ContentUtil {
      * @param h .. the height of a single element
      * @return the image or null if there is an error
      */
-    public static BufferedImage[][] loadBufferedImage(final String s, final int w, final int h) {
+    private static BufferedImage[][] loadBufferedImage(final String s, final int w, final int h) {
         BufferedImage[][] ret;
         try {
             final BufferedImage spritesheet = ImageIO.read(ContentUtil.class.getResourceAsStream(s));
@@ -95,18 +118,9 @@ public final class ContentUtil {
      * @param y the y position to start draw
      */
     public static void drawStringFont(final Graphics2D g, final int x, final int y, final String s) {
-        Font myFont = null;
-        try {
-            myFont = Font.createFont(Font.TRUETYPE_FONT, InfoState.class.getResourceAsStream("/HUD/seguibl.ttf"));
-            myFont = myFont.deriveFont(FONT_SIZE);
-            g.setFont(myFont);
-            g.setColor(Color.BLACK);
-            g.drawString(s, x, y);
-        } catch (FontFormatException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        g.setFont(MYFONT);
+        g.setColor(Color.BLACK);
+        g.drawString(s, x, y);
     }
 
     /**
@@ -119,18 +133,9 @@ public final class ContentUtil {
      * @param c the color of the String
      */
     public static void drawStringFont(final Graphics2D g, final int x, final int y, final String s, final Color c) {
-        Font myFont = null;
-        try {
-            myFont = Font.createFont(Font.TRUETYPE_FONT, InfoState.class.getResourceAsStream("/HUD/seguibl.ttf"));
-            myFont = myFont.deriveFont(FONT_SIZE);
-            g.setFont(myFont);
-            g.setColor(c);
-            g.drawString(s, x, y);
-        } catch (FontFormatException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        g.setFont(MYFONT);
+        g.setColor(c);
+        g.drawString(s, x, y);
     }
 
     /**
