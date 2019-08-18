@@ -1,10 +1,8 @@
 package it.unibo.oop18.cfc.physics;
 
-import java.awt.geom.Rectangle2D;
-
 import it.unibo.oop18.cfc.main.GameEngine;
 import it.unibo.oop18.cfc.object.entity.DynamicObject;
-import it.unibo.oop18.cfc.tile.TileSheet;
+import it.unibo.oop18.cfc.sprite.SpriteSheet;
 import it.unibo.oop18.cfc.util.Pair;
 import it.unibo.oop18.cfc.util.Position;
 import it.unibo.oop18.cfc.util.Velocity;
@@ -14,10 +12,6 @@ import it.unibo.oop18.cfc.util.VelocityImpl;
  * The Class DynamicPhysicsComponentImpl.
  */
 public class DynamicPhysicsComponentImpl implements DynamicPhysicsComponent {
-
-    private static final int POSITION_ADJUSTMENT = 10;
-    private static final int HEIGHT_ADJUSTMENT = 5;
-    private static final int WIDTH_ADJUSTMENT = 20;
 
     private final Velocity vector;
     private final DynamicObject entity;
@@ -42,37 +36,31 @@ public class DynamicPhysicsComponentImpl implements DynamicPhysicsComponent {
     /**
      * {@inheritDoc}
      */
-    public Rectangle2D getTopBound() {
-        return new Rectangle2D.Double(this.entity.getPosition().getX() + POSITION_ADJUSTMENT,
-                this.entity.getPosition().getY(), TileSheet.TILE_SIZE_IN_GAME - WIDTH_ADJUSTMENT, HEIGHT_ADJUSTMENT);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Rectangle2D getLowerBound() {
-        return new Rectangle2D.Double(this.entity.getPosition().getX() + POSITION_ADJUSTMENT,
-                this.entity.getPosition().getY() + TileSheet.TILE_SIZE_IN_GAME - HEIGHT_ADJUSTMENT,
-                TileSheet.TILE_SIZE_IN_GAME - WIDTH_ADJUSTMENT, HEIGHT_ADJUSTMENT);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Rectangle2D getLeftBound() {
-        return new Rectangle2D.Double(this.entity.getPosition().getX(),
-                this.entity.getPosition().getY() + POSITION_ADJUSTMENT, HEIGHT_ADJUSTMENT,
-                TileSheet.TILE_SIZE_IN_GAME - WIDTH_ADJUSTMENT);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Rectangle2D getRightBound() {
-        return new Rectangle2D.Double(
-                this.entity.getPosition().getX() + TileSheet.TILE_SIZE_IN_GAME - HEIGHT_ADJUSTMENT,
-                this.entity.getPosition().getY() + POSITION_ADJUSTMENT, HEIGHT_ADJUSTMENT,
-                TileSheet.TILE_SIZE_IN_GAME - WIDTH_ADJUSTMENT);
+    public Position getNextPosition() {
+        final Position nextPosition = new Position(0, 0);
+        final Position currentPosition = this.entity.getPosition();
+        final Direction way = this.vector.getOldDirection();
+        switch (way) {
+        case UP:
+            nextPosition.setX(currentPosition.getX() + SpriteSheet.SPRITE_SIZE_IN_GAME / 2);
+            nextPosition.setY(currentPosition.getY() - 1);
+            break;
+        case DOWN:
+            nextPosition.setX(currentPosition.getX() + SpriteSheet.SPRITE_SIZE_IN_GAME / 2);
+            nextPosition.setY(currentPosition.getY() + SpriteSheet.SPRITE_SIZE_IN_GAME + 1);
+            break;
+        case LEFT:
+            nextPosition.setX(currentPosition.getX() - 1);
+            nextPosition.setY(currentPosition.getY() + SpriteSheet.SPRITE_SIZE_IN_GAME / 2);
+            break;
+        case RIGHT:
+            nextPosition.setX(currentPosition.getX() + SpriteSheet.SPRITE_SIZE_IN_GAME + 1);
+            nextPosition.setY(currentPosition.getY() + SpriteSheet.SPRITE_SIZE_IN_GAME / 2);
+            break;
+        default:
+            break;
+        }
+        return nextPosition;
     }
 
     /**
