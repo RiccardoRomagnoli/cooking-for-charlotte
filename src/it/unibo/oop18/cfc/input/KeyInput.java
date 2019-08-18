@@ -77,6 +77,75 @@ public class KeyInput implements KeyListener {
         }
     }
 
+    /**
+     * It stops the player when a key button is released. If more than one key is
+     * pressed, on release the player continues to move to the current key being
+     * pressed
+     */
+    @Override
+    public void keyReleased(final KeyEvent e) {
+        if (gsm.getCurrentGameState().getGameStateName() == GameStates.PLAY) {
+            if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                this.cutIngredient(false);
+                this.doAction();
+            }
+            if (keys.keySet().contains(e.getKeyCode())) {
+                keys.put(e.getKeyCode(), false);
+            }
+            if (keys.values().stream().filter(k -> k).count() == 1) {
+                keys.keySet().forEach(k -> {
+                    if (keys.get(k)) {
+                        this.moveEntity(Optional.of(keyToDir(k)));
+                    }
+                });
+            }
+            handleStopPlayer(e);
+        }
+    }
+
+    @Override
+    public void keyTyped(final KeyEvent e) {
+
+    }
+
+    /**
+     * Key pressed during intro state.
+     * 
+     * @param e key pressed
+     */
+    private void introKeyInput(final KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            gsm.setState(GameStates.MENU);
+            JukeBoxUtil.play("collect");
+        }
+    }
+
+    /**
+     * Key pressed during menuState.
+     * 
+     * @param e key pressed
+     */
+    private void menuKeyInput(final KeyEvent e) {
+        final MenuState menu = (MenuState) currentState;
+        switch (e.getKeyCode()) {
+        case KeyEvent.VK_UP:
+            menu.goUp();
+            break;
+        case KeyEvent.VK_DOWN:
+            menu.goDown();
+            break;
+        case KeyEvent.VK_ENTER:
+            menu.select();
+        default:
+            break;
+        }
+    }
+    
+    /**
+     * Key pressed during optionState.
+     * 
+     * @param e key pressed
+     */
     private void optionKeyInput(final KeyEvent e) {
         final OptionState option = (OptionState) currentState;
         switch (e.getKeyCode()) {
@@ -101,7 +170,43 @@ public class KeyInput implements KeyListener {
         }
     }
 
-    // key pressed during play state
+    /**
+     * Key pressed during infoState.
+     * 
+     * @param e key pressed
+     */
+    private void infoKeyInput(final KeyEvent e) {
+        final InfoState info = (InfoState) currentState;
+        switch (e.getKeyCode()) {
+        case KeyEvent.VK_LEFT:
+        case KeyEvent.VK_A:
+            info.goLeft();
+            break;
+        case KeyEvent.VK_RIGHT:
+        case KeyEvent.VK_D:
+            info.goRight();
+            break;
+        default:
+            gsm.setState(GameStates.MENU);
+            break;
+        }
+    }
+
+    /**
+     * Key pressed during rankState.
+     * 
+     * @param e key pressed
+     */
+    private void rankingKeyInput(final KeyEvent e) {
+        e.consume();
+        gsm.setState(GameStates.MENU);
+    }
+
+    /**
+     * Key pressed during playState.
+     * 
+     * @param e key pressed
+     */
     private void playKeyInput(final KeyEvent e) {
         final Optional<Direction> way;
         switch (e.getKeyCode()) {
@@ -122,7 +227,7 @@ public class KeyInput implements KeyListener {
             way = Optional.empty();
             break;
         case KeyEvent.VK_SPACE:
-            this.gsm.getPlayState().getWorld().getPlayer().setCutAction(true);
+            cutIngredient(true);
             way = Optional.empty();
             break;
         case KeyEvent.VK_P:
@@ -140,19 +245,31 @@ public class KeyInput implements KeyListener {
     }
 
     /**
-     * Key pressed during intro state.
+     * Key pressed during pauseState.
      * 
      * @param e key pressed
      */
-    private void introKeyInput(final KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+    private void pauseKeyInput(final KeyEvent e) {
+        switch (e.getKeyCode()) {
+        case KeyEvent.VK_ESCAPE:
+        case KeyEvent.VK_P:
+            resumePlayState();
+            break;
+        case KeyEvent.VK_R:
+            gsm.getPlayState().getWorld().stopTimers();
+            gsm.newGame();
+            break;
+        case KeyEvent.VK_F1:
+            gsm.getPlayState().getWorld().stopTimers();
             gsm.setState(GameStates.MENU);
-            JukeBoxUtil.play("collect");
+            break;
+        default:
+            break;
         }
     }
 
     /**
-     * Key pressed during gameOver.
+     * Key pressed during gameOverState.
      * 
      * @param e key pressed
      */
@@ -180,114 +297,6 @@ public class KeyInput implements KeyListener {
         }
     }
 
-    /**
-     * Key pressed during menuState.
-     * 
-     * @param e key pressed
-     */
-    private void menuKeyInput(final KeyEvent e) {
-        final MenuState menu = (MenuState) currentState;
-        switch (e.getKeyCode()) {
-        case KeyEvent.VK_UP:
-            menu.goUp();
-            break;
-        case KeyEvent.VK_DOWN:
-            menu.goDown();
-            break;
-        case KeyEvent.VK_ENTER:
-            menu.select();
-        default:
-            break;
-        }
-    }
-
-    /**
-     * Key pressed during pause.
-     * 
-     * @param e key pressed
-     */
-    private void pauseKeyInput(final KeyEvent e) {
-        switch (e.getKeyCode()) {
-        case KeyEvent.VK_ESCAPE:
-        case KeyEvent.VK_P:
-            resumePlayState();
-            break;
-        case KeyEvent.VK_R:
-            gsm.getPlayState().getWorld().stopTimers();
-            gsm.newGame();
-            break;
-        case KeyEvent.VK_F1:
-            gsm.getPlayState().getWorld().stopTimers();
-            gsm.setState(GameStates.MENU);
-            break;
-        default:
-            break;
-        }
-    }
-
-    /**
-     * Key pressed during rankState.
-     * 
-     * @param e key pressed
-     */
-    private void rankingKeyInput(final KeyEvent e) {
-        e.consume();
-        gsm.setState(GameStates.MENU);
-    }
-
-    /**
-     * Key pressed during infoState.
-     * 
-     * @param e key pressed
-     */
-    private void infoKeyInput(final KeyEvent e) {
-        final InfoState info = (InfoState) currentState;
-        switch (e.getKeyCode()) {
-        case KeyEvent.VK_LEFT:
-        case KeyEvent.VK_A:
-            info.goLeft();
-            break;
-        case KeyEvent.VK_RIGHT:
-        case KeyEvent.VK_D:
-            info.goRight();
-            break;
-        default:
-            gsm.setState(GameStates.MENU);
-            break;
-        }
-    }
-
-    /**
-     * It stops the player when a key button is released. If more than one key is
-     * pressed, on release the player continues to move to the current key being
-     * pressed
-     */
-    @Override
-    public void keyReleased(final KeyEvent e) {
-        if (gsm.getCurrentGameState().getGameStateName() == GameStates.PLAY) {
-            if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                this.gsm.getPlayState().getWorld().getPlayer().setCutAction(false);
-                this.doAction();
-            }
-            if (keys.keySet().contains(e.getKeyCode())) {
-                keys.put(e.getKeyCode(), false);
-            }
-            if (keys.values().stream().filter(k -> k).count() == 1) {
-                keys.keySet().forEach(k -> {
-                    if (keys.get(k)) {
-                        this.moveEntity(Optional.of(keyToDir(k)));
-                    }
-                });
-            }
-            handleStopPlayer(e);
-        }
-    }
-
-    @Override
-    public void keyTyped(final KeyEvent e) {
-
-    }
-
     private void launchPause() {
         this.gsm.setState(GameStates.PAUSE);
         resetKeys();
@@ -302,6 +311,10 @@ public class KeyInput implements KeyListener {
 
     private void doAction() {
         this.gsm.getPlayState().getWorld().getPlayer().getInput().doAction();
+    }
+
+    private void cutIngredient(final boolean cut) {
+        this.gsm.getPlayState().getWorld().getPlayer().setCutAction(cut);
     }
 
     private void handleStopPlayer(final KeyEvent e) {
