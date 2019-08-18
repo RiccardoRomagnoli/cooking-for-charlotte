@@ -9,11 +9,9 @@ import it.unibo.oop18.cfc.input.PlayerInputComponent;
 import it.unibo.oop18.cfc.input.PlayerInputComponentImpl;
 import it.unibo.oop18.cfc.object.items.Item;
 import it.unibo.oop18.cfc.object.stations.ChoppingStation;
-import it.unibo.oop18.cfc.physics.Direction;
 import it.unibo.oop18.cfc.physics.DynamicPhysicsComponent;
 import it.unibo.oop18.cfc.physics.DynamicPhysicsComponentImpl;
 import it.unibo.oop18.cfc.sprite.PlayerSprites;
-import it.unibo.oop18.cfc.sprite.SpriteSheet;
 import it.unibo.oop18.cfc.util.Position;
 import it.unibo.oop18.cfc.world.World;
 
@@ -22,9 +20,8 @@ import it.unibo.oop18.cfc.world.World;
  */
 public class PlayerImpl extends AbstractEntity implements Player {
 
+    private static final int INITIAL_LIFES = 3;
     // gameplay
-    private int points;
-    private int totalPoints;
     private int lifes;
     private Optional<Item> hand;
     private boolean actionCut;
@@ -42,41 +39,12 @@ public class PlayerImpl extends AbstractEntity implements Player {
      */
     public PlayerImpl(final Position position, final PlayerSprites playerSprites, final World world) {
         super(position, world);
-        this.points = 0;
         this.actionCut = false;
         this.hand = Optional.empty();
-        this.lifes = 3;
+        this.lifes = INITIAL_LIFES;
         this.physics = new DynamicPhysicsComponentImpl(this);
         this.input = new PlayerInputComponentImpl(this);
         this.gfx = new DynamicPlayerGraphicsComponent(this, playerSprites);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void increasePoints() {
-        points++;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public int getPoints() {
-        return points;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public int getTotalPoints() {
-        return totalPoints;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void setTotalPoints(final int i) {
-        totalPoints = i;
     }
 
     /**
@@ -165,16 +133,16 @@ public class PlayerImpl extends AbstractEntity implements Player {
      */
     public void doAction() {
         super.getWorld().getAllStations().stream()
-                .filter(p -> p.getPosition().samePosition((Position.setInTile(getNextPosition())))).findFirst()
+                .filter(p -> p.getPosition().samePosition((Position.setInTile(this.physics.getNextPosition())))).findFirst()
                 .ifPresent(val -> val.doAction(super.getWorld()));
     }
 
     /**
-     * {@inheritDoc}
+     * Cut ingredient when press bar space.
      */
-    public void cutIngredient() {
+    private void cutIngredient() {
         final Optional<ChoppingStation> cs = super.getWorld().getChoppingStations().stream()
-                .filter(p -> p.getPosition().samePosition((Position.setInTile(getNextPosition())))).findFirst();
+                .filter(p -> p.getPosition().samePosition((Position.setInTile(this.physics.getNextPosition())))).findFirst();
         if (cs.isPresent()) {
             cs.get().cutIngredient();
         } else {
@@ -182,33 +150,6 @@ public class PlayerImpl extends AbstractEntity implements Player {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public Position getNextPosition() {
-        final Position nextPosition = new Position(0, 0);
-        final Direction way = this.physics.getVelocity().getOldDirection();
-        switch (way) {
-        case UP:
-            nextPosition.setX(this.getPosition().getX() + SpriteSheet.SPRITE_SIZE_IN_GAME / 2);
-            nextPosition.setY(this.getPosition().getY() - 1);
-            break;
-        case DOWN:
-            nextPosition.setX(this.getPosition().getX() + SpriteSheet.SPRITE_SIZE_IN_GAME / 2);
-            nextPosition.setY(this.getPosition().getY() + SpriteSheet.SPRITE_SIZE_IN_GAME + 1);
-            break;
-        case LEFT:
-            nextPosition.setX(this.getPosition().getX() - 1);
-            nextPosition.setY(this.getPosition().getY() + SpriteSheet.SPRITE_SIZE_IN_GAME / 2);
-            break;
-        case RIGHT:
-            nextPosition.setX(this.getPosition().getX() + SpriteSheet.SPRITE_SIZE_IN_GAME + 1);
-            nextPosition.setY(this.getPosition().getY() + SpriteSheet.SPRITE_SIZE_IN_GAME / 2);
-            break;
-        default:
-            break;
-        }
-        return nextPosition;
-    }
+
 
 }

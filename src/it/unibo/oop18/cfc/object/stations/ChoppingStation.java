@@ -120,7 +120,6 @@ public class ChoppingStation extends AbstractStationObject {
      * When a player press/longpress Spacebar do this.
      */
     public void cutIngredient() {
-
         if (this.timer.isStopped() && food.isPresent() && food.get().getState() == IngredientState.RAW
                 && !world.getPlayer().getItemInHand().isPresent()) {
             isCutting = true;
@@ -131,7 +130,6 @@ public class ChoppingStation extends AbstractStationObject {
 
             }
         }
-
     }
 
     /**

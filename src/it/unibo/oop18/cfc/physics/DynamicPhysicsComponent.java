@@ -1,7 +1,6 @@
 package it.unibo.oop18.cfc.physics;
 
-import java.awt.geom.Rectangle2D;
-
+import it.unibo.oop18.cfc.util.Position;
 import it.unibo.oop18.cfc.util.Velocity;
 
 /**
@@ -17,36 +16,16 @@ public interface DynamicPhysicsComponent {
     Velocity getVelocity();
 
     /**
-     * Gets an entity upper shape.
+     * Gets the next position.
      *
-     * @return a rectangle to check a upper bound collision
+     * @return the next {@link Position}
      */
-    Rectangle2D getTopBound();
-
-    /**
-     * Gets an entity lower shape.
-     *
-     * @return a rectangle to check a lower bound collision
-     */
-    Rectangle2D getLowerBound();
-
-    /**
-     * Gets an entity left shape.
-     *
-     * @return a rectangle to check a left bound collision
-     */
-    Rectangle2D getLeftBound();
-
-    /**
-     * Gets an entity right shape.
-     *
-     * @return a rectangle to check a right bound collision
-     */
-    Rectangle2D getRightBound();
+    Position getNextPosition();
 
     /**
      * Let the entity move.
      */
+
     void move();
 
 }
