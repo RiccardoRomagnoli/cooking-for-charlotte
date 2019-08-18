@@ -8,6 +8,7 @@ import java.util.Optional;
 import it.unibo.oop18.cfc.gamestate.GameOverState;
 import it.unibo.oop18.cfc.gamestate.GameState;
 import it.unibo.oop18.cfc.gamestate.GameStates;
+import it.unibo.oop18.cfc.gamestate.InfoState;
 import it.unibo.oop18.cfc.gamestate.MenuState;
 import it.unibo.oop18.cfc.gamestate.OptionState;
 import it.unibo.oop18.cfc.manager.GameStateManager;
@@ -240,8 +241,20 @@ public class KeyInput implements KeyListener {
      * @param e key pressed
      */
     private void infoKeyInput(final KeyEvent e) {
-        e.consume();
-        gsm.setState(GameStates.MENU);
+        final InfoState info = (InfoState) currentState;
+        switch (e.getKeyCode()) {
+        case KeyEvent.VK_LEFT:
+        case KeyEvent.VK_A:
+            info.goLeft();
+            break;
+        case KeyEvent.VK_RIGHT:
+        case KeyEvent.VK_D:
+            info.goRight();
+            break;
+        default:
+            gsm.setState(GameStates.MENU);
+            break;
+        }
     }
 
     /**

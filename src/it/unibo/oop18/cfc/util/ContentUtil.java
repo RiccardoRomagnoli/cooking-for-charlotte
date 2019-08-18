@@ -21,7 +21,8 @@ public final class ContentUtil {
     private static final float FONT_SIZE = 30f;
     private static final Image MENU = loadImage("/HUD/menu.png", 1024, 768);
     private static final Image OPTIONS = loadImage("/HUD/options.png", 1024, 768);
-    private static final Image INFO = loadImage("/HUD/menu.png", 1024, 768);
+    private static final Image CONTROLLI = loadImage("/HUD/controlli.png", 1024, 768);
+    private static final Image GUIDA = loadImage("/HUD/guida.png", 1024, 768);
     private static final Image RANK = loadImage("/HUD/rank.png", 1024, 768);
     private static final Image PAUSE = loadImage("/HUD/pause.png", 1024, 768);
     private static final Image TOPBAR = loadImage("/HUD/topbar.png", 1024, 128);
@@ -184,12 +185,21 @@ public final class ContentUtil {
     }
 
     /**
-     * Draw info.
+     * Draw controlli.
      * 
      * @param g {@link Graphics2D} the screen
      */
-    public static void drawInfo(final Graphics2D g) {
-        g.drawImage(INFO, 0, 0, null);
+    public static void drawControlli(final Graphics2D g) {
+        g.drawImage(CONTROLLI, 0, 0, null);
+    }
+
+    /**
+     * Draw guida.
+     * 
+     * @param g {@link Graphics2D} the screen
+     */
+    public static void drawGuida(final Graphics2D g) {
+        g.drawImage(GUIDA, 0, 0, null);
     }
 
     /**
@@ -254,4 +264,5 @@ public final class ContentUtil {
     public static void drawArrowDown(final Graphics2D g, final int x, final int y, final int width, final int height) {
         g.drawImage(ARROWDOWN.getScaledInstance(width, height, Image.SCALE_SMOOTH), x, y, null);
     }
+
 }

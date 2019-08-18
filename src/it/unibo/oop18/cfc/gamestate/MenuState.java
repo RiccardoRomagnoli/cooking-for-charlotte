@@ -82,7 +82,7 @@ public class MenuState extends GameState {
         }
         if (currentOption == 4) {
             JukeBoxUtil.stop(SoundUtil.MENU_SOUND);
-            System.exit(0);
+            Runtime.getRuntime().exit(0);
         }
     }
 
