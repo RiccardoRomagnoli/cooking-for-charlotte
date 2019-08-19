@@ -19,20 +19,11 @@ import java.util.stream.Collectors;
 public class RankingImpl implements Ranking {
 
     private static final int MAXROW = 5;
-    private Map<String, Integer> ranked;
+    private static Map<String, Integer> ranked = new HashMap<String, Integer>();
     private String path = "rank.txt";
     private String row;
     private String key;
     private Integer value;
-
-    /**
-     * Constructor. Load the number of row (num of players classified) Load the
-     * ranking in the hashmap from the csvfile Order the hashmap
-     */
-    public RankingImpl() {
-        ranked = new HashMap<>();
-        loadRanking();
-    }
 
     /**
      * {@inheritDoc}
@@ -67,7 +58,10 @@ public class RankingImpl implements Ranking {
 
     }
 
-    private void saveRanking() {
+    /**
+     * Save the rank to file.
+     */
+    public void saveRanking() {
         orderRank(ranked);
         try (BufferedWriter b = new BufferedWriter(new FileWriter(path));) {
             for (final HashMap.Entry<String, Integer> entry : ranked.entrySet()) {
@@ -113,7 +107,7 @@ public class RankingImpl implements Ranking {
         final Map<String, Integer> result = map.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).collect(Collectors.toMap(
                         Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
-        this.ranked = result;
+        RankingImpl.ranked = result;
     }
 
     /**
@@ -121,8 +115,17 @@ public class RankingImpl implements Ranking {
      * 
      * @param path rank
      */
-    public void setPath(final String path) {
+    public  void setPath(final String path) {
         this.path = path;
+    }
+
+    /**
+     * Return map.
+     * 
+     * @return actual rank map
+     */
+    public Map<String, Integer> getRanked() {
+        return ranked;
     }
 
 }
