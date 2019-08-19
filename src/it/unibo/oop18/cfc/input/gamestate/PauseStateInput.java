@@ -6,7 +6,6 @@ import it.unibo.oop18.cfc.gamestate.GameState;
 import it.unibo.oop18.cfc.gamestate.GameStates;
 import it.unibo.oop18.cfc.gamestate.PauseState;
 
-
 /**
  * Pause state Input class.
  *
@@ -17,6 +16,7 @@ public class PauseStateInput implements GameStateInput {
 
     /**
      * Create a Game State Input.
+     * 
      * @param pauseState related state
      */
     public PauseStateInput(final GameState pauseState) {

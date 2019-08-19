@@ -54,12 +54,12 @@ public class TestPlayer {
         // Player was moved in position (8, 7)
         player.getPosition().setX(testxpos * SpriteSheet.SPRITE_SIZE_IN_GAME);
         Assert.assertFalse(player.getPosition().equals(INITIAL_POSITION));
-        Assert.assertTrue(player.getPosition().equals(
-                new Position(testxpos * SpriteSheet.SPRITE_SIZE_IN_GAME, START_POSOTION * SpriteSheet.SPRITE_SIZE_IN_GAME)));
+        Assert.assertTrue(player.getPosition().equals(new Position(testxpos * SpriteSheet.SPRITE_SIZE_IN_GAME,
+                START_POSOTION * SpriteSheet.SPRITE_SIZE_IN_GAME)));
         // Player was moved in position (8, 6)
         player.getPosition().setY(testypos * SpriteSheet.SPRITE_SIZE_IN_GAME);
-        Assert.assertTrue(player.getPosition()
-                .equals(new Position(testxpos * SpriteSheet.SPRITE_SIZE_IN_GAME, testypos * SpriteSheet.SPRITE_SIZE_IN_GAME)));
+        Assert.assertTrue(player.getPosition().equals(
+                new Position(testxpos * SpriteSheet.SPRITE_SIZE_IN_GAME, testypos * SpriteSheet.SPRITE_SIZE_IN_GAME)));
     }
 
     /**

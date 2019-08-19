@@ -7,7 +7,6 @@ import it.unibo.oop18.cfc.gamestate.GameStates;
 import it.unibo.oop18.cfc.gamestate.IntroState;
 import it.unibo.oop18.cfc.util.JukeBoxUtil;
 
-
 /**
  * Intro State Input Class.
  *
@@ -18,6 +17,7 @@ public class IntroStateInput implements GameStateInput {
 
     /**
      * Create a Game State Input.
+     * 
      * @param introState related state
      */
     public IntroStateInput(final GameState introState) {

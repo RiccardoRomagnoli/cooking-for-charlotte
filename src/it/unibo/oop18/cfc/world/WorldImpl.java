@@ -93,6 +93,7 @@ public class WorldImpl implements World {
     private final OrdersManager ordersManager;
     private final GameScore gameScoreManager;
     private final GameStateManager gsm;
+
     /**
      * Creates a {@code WorldImpl}.
      * 

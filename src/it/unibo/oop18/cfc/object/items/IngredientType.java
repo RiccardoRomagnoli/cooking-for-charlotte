@@ -43,6 +43,7 @@ public enum IngredientType {
     public int getY() {
         return this.y;
     }
+
     /**
      * Gets the time to cut.
      *

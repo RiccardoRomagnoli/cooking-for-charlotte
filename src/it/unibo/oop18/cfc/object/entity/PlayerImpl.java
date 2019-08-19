@@ -133,8 +133,8 @@ public class PlayerImpl extends AbstractEntity implements Player {
      */
     public void doAction() {
         super.getWorld().getAllStations().stream()
-                .filter(p -> p.getPosition().samePosition((Position.setInTile(this.physics.getNextPosition())))).findFirst()
-                .ifPresent(val -> val.doAction(super.getWorld()));
+                .filter(p -> p.getPosition().samePosition((Position.setInTile(this.physics.getNextPosition()))))
+                .findFirst().ifPresent(val -> val.doAction(super.getWorld()));
     }
 
     /**
@@ -142,14 +142,13 @@ public class PlayerImpl extends AbstractEntity implements Player {
      */
     private void cutIngredient() {
         final Optional<ChoppingStation> cs = super.getWorld().getChoppingStations().stream()
-                .filter(p -> p.getPosition().samePosition((Position.setInTile(this.physics.getNextPosition())))).findFirst();
+                .filter(p -> p.getPosition().samePosition((Position.setInTile(this.physics.getNextPosition()))))
+                .findFirst();
         if (cs.isPresent()) {
             cs.get().cutIngredient();
         } else {
             this.actionCut = false;
         }
     }
-
-
 
 }

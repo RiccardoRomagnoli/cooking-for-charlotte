@@ -10,6 +10,7 @@ public class OrderIngredientImpl extends IngredientImpl implements OrderIngredie
 
     private final IngredientType type;
     private IngredientState state;
+
     /**
      * Instantiates a new {@link OrderIngredientImpl}.
      *
@@ -20,6 +21,7 @@ public class OrderIngredientImpl extends IngredientImpl implements OrderIngredie
         super(itemManager, type);
         this.type = type;
     }
+
     /**
      * Instantiates a new {@link OrderIngredientImpl}.
      *
@@ -32,6 +34,7 @@ public class OrderIngredientImpl extends IngredientImpl implements OrderIngredie
         this.type = type;
         this.state = state;
     }
+
     /**
      * {@inheritDoc}
      */

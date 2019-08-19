@@ -75,6 +75,7 @@ public class IngredientImpl extends AbstractItem implements Ingredient {
         }
         return false;
     }
+
     /**
      * {@inheritDoc}
      */
@@ -82,6 +83,7 @@ public class IngredientImpl extends AbstractItem implements Ingredient {
         g.drawImage(super.getItemManager().getFoodSprites().getIngredientSprite().get(type.getX()).get(state.getX())
                 .getImage(), AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
     }
+
     /**
      * {@inheritDoc}
      */

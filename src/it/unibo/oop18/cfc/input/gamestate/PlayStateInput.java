@@ -11,7 +11,6 @@ import it.unibo.oop18.cfc.gamestate.PlayState;
 import it.unibo.oop18.cfc.physics.Direction;
 import it.unibo.oop18.cfc.util.JukeBoxUtil;
 
-
 /**
  * Play State Input Class.
  *
@@ -26,6 +25,7 @@ public class PlayStateInput implements GameStateInput {
 
     /**
      * Create a Game State Input.
+     * 
      * @param playState related state
      */
     public PlayStateInput(final GameState playState) {
@@ -109,6 +109,7 @@ public class PlayStateInput implements GameStateInput {
     private void cutIngredient(final boolean cut) {
         this.playState.getWorld().getPlayer().setCutAction(cut);
     }
+
     private void moveEntity(final Optional<Direction> way) {
         if (way.isPresent()) {
             this.playState.getWorld().getPlayer().getInput().move(way.get());

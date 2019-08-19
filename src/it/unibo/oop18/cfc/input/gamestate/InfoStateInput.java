@@ -16,6 +16,7 @@ public class InfoStateInput implements GameStateInput {
 
     /**
      * Create a Game State Input.
+     * 
      * @param infoState related state
      */
     public InfoStateInput(final GameState infoState) {

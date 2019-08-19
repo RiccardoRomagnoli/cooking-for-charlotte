@@ -61,7 +61,7 @@ public final class ContentUtil {
     /**
      * Load the font for the game.
      * 
-     * @param s the path of the file with font
+     * @param s    the path of the file with font
      * @param size the size of the font
      * 
      * @return the font of the game

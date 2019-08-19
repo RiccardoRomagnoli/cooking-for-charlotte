@@ -15,6 +15,7 @@ public class MenuStateInput implements GameStateInput {
 
     /**
      * Create a Game State Input.
+     * 
      * @param menuState related state
      */
     public MenuStateInput(final GameState menuState) {

@@ -17,6 +17,7 @@ public class OptionStateInput implements GameStateInput {
 
     /**
      * Create a Game State Input.
+     * 
      * @param optionState related state
      */
     public OptionStateInput(final GameState optionState) {

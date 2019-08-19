@@ -58,8 +58,8 @@ public class OrderImpl implements Order {
             throw new IllegalStateException();
 
         }
-        ingredientsList.add(
-                new OrderIngredientImpl(this.ordersManager.getWorld().getItemManager(), ingredientType, ingredientState));
+        ingredientsList.add(new OrderIngredientImpl(this.ordersManager.getWorld().getItemManager(), ingredientType,
+                ingredientState));
     }
 
     /**

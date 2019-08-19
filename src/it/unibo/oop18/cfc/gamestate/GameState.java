@@ -54,6 +54,7 @@ public abstract class GameState {
     public void setInput(final GameStateInput gameStateInput) {
         this.gameStateInput = gameStateInput;
     }
+
     /**
      * Getter name of game state.
      * 
@@ -65,6 +66,7 @@ public abstract class GameState {
 
     /**
      * Getter input of game state.
+     * 
      * @return {@link GameStateInput} input
      */
     public GameStateInput getGameStateInput() {

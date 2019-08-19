@@ -28,7 +28,8 @@ public class TestWorld {
 
     /**
      * Tests to remove all kind of object in the world.
-     * @throws IOException 
+     * 
+     * @throws IOException
      */
     @Test
     public void testStations() throws IOException {
@@ -44,23 +45,23 @@ public class TestWorld {
         player.getPosition().setX(xMeatStation * SpriteSheet.SPRITE_SIZE_IN_GAME);
         player.getPosition().setY(yMeatStation * SpriteSheet.SPRITE_SIZE_IN_GAME);
         player.getPhysics().getVelocity().setDirection(Direction.DOWN);
-        //Get Meat
+        // Get Meat
         player.doAction();
         Assert.assertTrue(player.getItemInHand().isPresent());
         Assert.assertTrue(player.getItemInHand().get() instanceof IngredientImpl);
-        //Move in front of choppingStation and put the item in it
+        // Move in front of choppingStation and put the item in it
         player.getPosition().setX(3 * SpriteSheet.SPRITE_SIZE_IN_GAME);
         player.doAction();
         Assert.assertFalse(player.getItemInHand().isPresent());
-        //Try the plateStation
+        // Try the plateStation
         player.getPosition().setX(xPlateStation * SpriteSheet.SPRITE_SIZE_IN_GAME);
         player.getPosition().setY(yPlateStation * SpriteSheet.SPRITE_SIZE_IN_GAME);
         player.getPhysics().getVelocity().setDirection(Direction.UP);
-        //Get Plate
+        // Get Plate
         player.doAction();
         Assert.assertTrue(player.getItemInHand().isPresent());
         Assert.assertTrue(player.getItemInHand().get() instanceof PlateImpl);
-        //Move to the cooker
+        // Move to the cooker
         player.getPosition().setX(xCooker * SpriteSheet.SPRITE_SIZE_IN_GAME);
         // Take a chopped meat
         player.setItemInHand(new IngredientImpl(new ItemManager("/Sprites/itemSprite.png"), IngredientType.MEAT,

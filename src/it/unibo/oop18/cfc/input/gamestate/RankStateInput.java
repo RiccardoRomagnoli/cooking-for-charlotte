@@ -6,7 +6,6 @@ import it.unibo.oop18.cfc.gamestate.GameState;
 import it.unibo.oop18.cfc.gamestate.GameStates;
 import it.unibo.oop18.cfc.gamestate.RankState;
 
-
 /**
  * Rank State Input Class.
  *
@@ -17,6 +16,7 @@ public class RankStateInput implements GameStateInput {
 
     /**
      * Create a Game State Input.
+     * 
      * @param rankState related state
      */
     public RankStateInput(final GameState rankState) {
