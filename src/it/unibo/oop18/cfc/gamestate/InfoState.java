@@ -2,6 +2,7 @@ package it.unibo.oop18.cfc.gamestate;
 
 import java.awt.Graphics2D;
 
+import it.unibo.oop18.cfc.input.gamestate.InfoStateInput;
 import it.unibo.oop18.cfc.manager.GameStateManager;
 import it.unibo.oop18.cfc.util.ContentUtil;
 
@@ -19,6 +20,7 @@ public class InfoState extends GameState {
      */
     public InfoState(final GameStateManager gsm) {
         super(gsm, GameStates.INFO);
+        super.setInput(new InfoStateInput(this));
     }
 
     /**

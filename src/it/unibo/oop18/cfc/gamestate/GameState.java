@@ -2,6 +2,7 @@ package it.unibo.oop18.cfc.gamestate;
 
 import java.awt.Graphics2D;
 
+import it.unibo.oop18.cfc.input.gamestate.GameStateInput;
 import it.unibo.oop18.cfc.manager.GameStateManager;
 
 /**
@@ -16,6 +17,11 @@ public abstract class GameState {
 
     /** The game state name. */
     private final GameStates gameStateName;
+
+    /**
+     * The game state Input.
+     */
+    private GameStateInput gameStateInput;
 
     /**
      * Constructor for all game states.
@@ -43,12 +49,26 @@ public abstract class GameState {
     }
 
     /**
+     * @param gameStateInput input to set
+     */
+    public void setInput(final GameStateInput gameStateInput) {
+        this.gameStateInput = gameStateInput;
+    }
+    /**
      * Getter name of game state.
      * 
      * @return {@link GameStates} name
      */
     public GameStates getGameStateName() {
         return gameStateName;
+    }
+
+    /**
+     * Getter input of game state.
+     * @return {@link GameStateInput} input
+     */
+    public GameStateInput getGameStateInput() {
+        return gameStateInput;
     }
 
     /**

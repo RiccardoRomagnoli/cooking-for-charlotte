@@ -1,6 +1,8 @@
 package it.unibo.oop18.cfc.gamestate;
 
 import java.awt.Graphics2D;
+
+import it.unibo.oop18.cfc.input.gamestate.RankStateInput;
 import it.unibo.oop18.cfc.manager.GameStateManager;
 import it.unibo.oop18.cfc.util.ContentUtil;
 import it.unibo.oop18.cfc.util.Ranking;
@@ -20,6 +22,7 @@ public class RankState extends GameState {
      */
     public RankState(final GameStateManager gsm) {
         super(gsm, GameStates.RANKING);
+        super.setInput(new RankStateInput(this));
     }
 
     /**

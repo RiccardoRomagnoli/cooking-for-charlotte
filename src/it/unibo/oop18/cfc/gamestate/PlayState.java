@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.io.IOException;
 import it.unibo.oop18.cfc.hud.DownHud;
 import it.unibo.oop18.cfc.hud.TopHud;
+import it.unibo.oop18.cfc.input.gamestate.PlayStateInput;
 import it.unibo.oop18.cfc.manager.GameStateManager;
 import it.unibo.oop18.cfc.util.JukeBoxUtil;
 import it.unibo.oop18.cfc.util.SoundUtil;
@@ -26,6 +27,7 @@ public class PlayState extends GameState {
      */
     public PlayState(final GameStateManager gsm) {
         super(gsm, GameStates.PLAY);
+        super.setInput(new PlayStateInput(this));
     }
 
     /**
@@ -33,6 +35,7 @@ public class PlayState extends GameState {
      */
     public void init() {
         try {
+            ((PlayStateInput) super.getGameStateInput()).resetKeys();
             this.world = new WorldImpl(this.getGsm());
             this.topHud = new TopHud(world);
             this.downHud = new DownHud(world);

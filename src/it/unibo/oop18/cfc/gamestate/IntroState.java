@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
+import it.unibo.oop18.cfc.input.gamestate.IntroStateInput;
 import it.unibo.oop18.cfc.main.GameEngine;
 import it.unibo.oop18.cfc.manager.GameStateManager;
 
@@ -31,6 +32,7 @@ public class IntroState extends GameState {
      */
     public IntroState(final GameStateManager gsm) {
         super(gsm, GameStates.INTRO);
+        super.setInput(new IntroStateInput(this));
     }
 
     /**

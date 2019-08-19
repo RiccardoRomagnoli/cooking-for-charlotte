@@ -2,6 +2,7 @@ package it.unibo.oop18.cfc.gamestate;
 
 import java.awt.Graphics2D;
 
+import it.unibo.oop18.cfc.input.gamestate.PauseStateInput;
 import it.unibo.oop18.cfc.manager.GameStateManager;
 import it.unibo.oop18.cfc.util.ContentUtil;
 import it.unibo.oop18.cfc.util.JukeBoxUtil;
@@ -25,6 +26,7 @@ public class PauseState extends GameState {
      */
     public PauseState(final GameStateManager gsm) {
         super(gsm, GameStates.PAUSE);
+        super.setInput(new PauseStateInput(this));
     }
 
     /**

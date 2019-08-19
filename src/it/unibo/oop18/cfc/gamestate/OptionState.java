@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import it.unibo.oop18.cfc.input.gamestate.OptionStateInput;
 import it.unibo.oop18.cfc.manager.GameStateManager;
 import it.unibo.oop18.cfc.util.ContentUtil;
 import it.unibo.oop18.cfc.util.JukeBoxUtil;
@@ -34,6 +35,7 @@ public class OptionState extends GameState {
      */
     public OptionState(final GameStateManager gsm) {
         super(gsm, GameStates.OPTION);
+        super.setInput(new OptionStateInput(this));
     }
 
     /**

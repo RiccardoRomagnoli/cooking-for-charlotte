@@ -2,6 +2,7 @@ package it.unibo.oop18.cfc.gamestate;
 
 import java.awt.Graphics2D;
 
+import it.unibo.oop18.cfc.input.gamestate.GameOverStateInput;
 import it.unibo.oop18.cfc.manager.GameStateManager;
 import it.unibo.oop18.cfc.util.ContentUtil;
 import it.unibo.oop18.cfc.util.JukeBoxUtil;
@@ -31,6 +32,7 @@ public class GameOverState extends GameState {
      */
     public GameOverState(final GameStateManager gsm) {
         super(gsm, GameStates.GAMEOVER);
+        super.setInput(new GameOverStateInput(this));
     }
 
     /**

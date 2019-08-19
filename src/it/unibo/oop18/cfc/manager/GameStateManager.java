@@ -12,6 +12,7 @@ import it.unibo.oop18.cfc.gamestate.OptionState;
 import it.unibo.oop18.cfc.gamestate.PauseState;
 import it.unibo.oop18.cfc.gamestate.PlayState;
 import it.unibo.oop18.cfc.gamestate.RankState;
+import it.unibo.oop18.cfc.input.gamestate.PlayStateInput;
 import it.unibo.oop18.cfc.util.JukeBoxUtil;
 
 /**
@@ -143,5 +144,24 @@ public class GameStateManager {
      */
     public GameState getCurrentGameState() {
         return currentState;
+    }
+
+    /**
+     * Resume Play State.
+     */
+    public void resumePlayState() {
+        this.setState(GameStates.PLAY);
+        ((PlayStateInput) playState.getGameStateInput()).resetKeys();
+        this.getPlayState().getWorld().resumeTimers();
+        this.getPlayState().getWorld().getPlayer().getInput().stop();
+        JukeBoxUtil.resumeLoop("themeSong");
+    }
+
+    /**
+     * Request Pause State.
+     */
+    public void requestPauseState() {
+        this.setState(GameStates.PAUSE);
+        this.getPlayState().getWorld().pauseTimers();
     }
 }

@@ -2,6 +2,7 @@ package it.unibo.oop18.cfc.gamestate;
 
 import java.awt.Graphics2D;
 
+import it.unibo.oop18.cfc.input.gamestate.MenuStateInput;
 import it.unibo.oop18.cfc.manager.GameStateManager;
 import it.unibo.oop18.cfc.util.ContentUtil;
 import it.unibo.oop18.cfc.util.JukeBoxUtil;
@@ -27,6 +28,7 @@ public class MenuState extends GameState {
      */
     public MenuState(final GameStateManager gsm) {
         super(gsm, GameStates.MENU);
+        super.setInput(new MenuStateInput(this));
     }
 
     /**
