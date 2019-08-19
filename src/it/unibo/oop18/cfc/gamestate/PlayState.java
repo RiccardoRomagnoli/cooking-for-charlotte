@@ -33,7 +33,7 @@ public class PlayState extends GameState {
      */
     public void init() {
         try {
-            this.world = new WorldImpl();
+            this.world = new WorldImpl(this.getGsm());
             this.topHud = new TopHud(world);
             this.downHud = new DownHud(world);
         } catch (IOException e) {
@@ -49,9 +49,6 @@ public class PlayState extends GameState {
      */
     public void update() {
         world.update();
-        if (this.world.getPlayer().getLifes() == 0) {
-            getGsm().setState(GameStates.GAMEOVER);
-        }
     }
 
     /**

@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import it.unibo.oop18.cfc.manager.GameStateManager;
 import it.unibo.oop18.cfc.manager.ItemManager;
 import it.unibo.oop18.cfc.manager.SpriteManager;
 import it.unibo.oop18.cfc.manager.TileManager;
@@ -91,14 +92,17 @@ public class WorldImpl implements World {
     private final ItemManager itemManager;
     private final OrdersManager ordersManager;
     private final GameScore gameScoreManager;
-
+    private final GameStateManager gsm;
     /**
      * Creates a {@code WorldImpl}.
+     * 
+     * @param gsm The game state Manager
      * 
      * @throws IOException on tilemanager, spritemanager or itemmanager
      *
      */
-    public WorldImpl() throws IOException {
+    public WorldImpl(final GameStateManager gsm) throws IOException {
+        this.gsm = gsm;
         this.timer = new GameTimer();
         this.choppingStations = new HashSet<>();
         this.counters = new HashSet<>();
@@ -119,6 +123,13 @@ public class WorldImpl implements World {
         this.ordersManager = new OrdersManagerImpl(this);
         this.createLevel();
         timer.start();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public GameStateManager getGameStateManager() {
+        return gsm;
     }
 
     /**

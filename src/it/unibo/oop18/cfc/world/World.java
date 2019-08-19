@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.util.List;
 import java.util.Set;
 
+import it.unibo.oop18.cfc.manager.GameStateManager;
 import it.unibo.oop18.cfc.manager.ItemManager;
 import it.unibo.oop18.cfc.manager.SpriteManager;
 import it.unibo.oop18.cfc.manager.TileManager;
@@ -57,6 +58,13 @@ public interface World {
      * @return all games object
      */
     List<? extends Station> getAllStations();
+
+    /**
+     * Gets the {@link GameStateManager}.
+     * 
+     * @return the {@link GameStateManager}
+     */
+    GameStateManager getGameStateManager();
 
     /**
      * Gets the {@link TileManager}.

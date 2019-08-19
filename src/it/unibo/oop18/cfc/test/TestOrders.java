@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.junit.Assert;
 import org.junit.Test;
 
+import it.unibo.oop18.cfc.manager.GameStateManager;
 import it.unibo.oop18.cfc.object.items.IngredientState;
 import it.unibo.oop18.cfc.object.items.IngredientType;
 import it.unibo.oop18.cfc.object.items.OrderIngredient;
@@ -36,7 +37,7 @@ public class TestOrders {
     @Test
     public void testGenerationOrder() throws IOException {
         // Class initialization
-        this.world = new WorldImpl();
+        this.world = new WorldImpl(new GameStateManager());
         final OrdersManager ordersMan = new OrdersManagerImpl(world);
         final OrderGenerator orderGen = new OrderGeneratorImpl(ordersMan);
         orderGen.generateNewOrder();
@@ -64,7 +65,7 @@ public class TestOrders {
     @Test
     public void testDeliveryAction() throws IOException {
         // World's initialization
-        this.world = new WorldImpl();
+        this.world = new WorldImpl(new GameStateManager());
         Order o;
         final Plate correctPlate;
         final Plate wrongPlate;
@@ -117,7 +118,7 @@ public class TestOrders {
     @Test
     public void testOrdersListUpdating() throws IOException {
         // Initialization
-        this.world = new WorldImpl();
+        this.world = new WorldImpl(new GameStateManager());
         final OrdersManager ordersMan = new OrdersManagerImpl(world);
         final OrderGenerator orderGen = new OrderGeneratorImpl(ordersMan);
         // Generate an Order
@@ -145,7 +146,7 @@ public class TestOrders {
      */
     @Test(expected = IllegalStateException.class)
     public void testOrderIngredients() throws IllegalStateException, IOException {
-        this.world = new WorldImpl();
+        this.world = new WorldImpl(new GameStateManager());
         final OrdersManager ordersMan = new OrdersManagerImpl(world);
         final Order o = new OrderImpl(ordersMan);
         o.addIngredient(IngredientType.BREAD, IngredientState.CHOPPED);
@@ -163,7 +164,7 @@ public class TestOrders {
     @Test
     public void testOrdersListOrdering() throws IOException {
         // Initialization
-        this.world = new WorldImpl();
+        this.world = new WorldImpl(new GameStateManager());
         final OrdersManager ordersMan = new OrdersManagerImpl(world);
         final OrderGenerator orderGen = new OrderGeneratorImpl(ordersMan);
         // Generate an Order

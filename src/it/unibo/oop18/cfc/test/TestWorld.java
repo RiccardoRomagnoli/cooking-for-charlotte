@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import it.unibo.oop18.cfc.main.GameEngine;
+import it.unibo.oop18.cfc.manager.GameStateManager;
 import it.unibo.oop18.cfc.manager.ItemManager;
 import it.unibo.oop18.cfc.object.entity.Player;
 import it.unibo.oop18.cfc.object.items.IngredientImpl;
@@ -37,7 +38,7 @@ public class TestWorld {
         final int yPlateStation = 3;
         final int xCooker = 4;
         // World's initialization
-        final World world = new WorldImpl();
+        final World world = new WorldImpl(new GameStateManager());
         final Player player = world.getPlayer();
         // Initial player's is not in front of a food station
         player.getPosition().setX(xMeatStation * SpriteSheet.SPRITE_SIZE_IN_GAME);

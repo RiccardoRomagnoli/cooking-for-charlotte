@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.junit.Assert;
 import org.junit.Test;
 
+import it.unibo.oop18.cfc.manager.GameStateManager;
 import it.unibo.oop18.cfc.manager.ItemManager;
 import it.unibo.oop18.cfc.object.entity.Player;
 import it.unibo.oop18.cfc.object.items.IngredientType;
@@ -37,8 +38,10 @@ public class TestPlayer {
      */
     @Test
     public void testPlayerPosition() throws IOException {
+        final int testypos = 6;
+        final int testxpos = 8;
         // World's initialization
-        this.world = new WorldImpl();
+        this.world = new WorldImpl(new GameStateManager());
         // World graphic component closed
         final Player player = world.getPlayer();
         // Player is not in position (0, 0)
@@ -49,14 +52,14 @@ public class TestPlayer {
         player.getPhysics().move();
         Assert.assertTrue(player.getPosition().equals(INITIAL_POSITION));
         // Player was moved in position (8, 7)
-        player.getPosition().setX(8 * SpriteSheet.SPRITE_SIZE_IN_GAME);
+        player.getPosition().setX(testxpos * SpriteSheet.SPRITE_SIZE_IN_GAME);
         Assert.assertFalse(player.getPosition().equals(INITIAL_POSITION));
         Assert.assertTrue(player.getPosition().equals(
-                new Position(8 * SpriteSheet.SPRITE_SIZE_IN_GAME, START_POSOTION * SpriteSheet.SPRITE_SIZE_IN_GAME)));
+                new Position(testxpos * SpriteSheet.SPRITE_SIZE_IN_GAME, START_POSOTION * SpriteSheet.SPRITE_SIZE_IN_GAME)));
         // Player was moved in position (8, 6)
-        player.getPosition().setY(6 * SpriteSheet.SPRITE_SIZE_IN_GAME);
+        player.getPosition().setY(testypos * SpriteSheet.SPRITE_SIZE_IN_GAME);
         Assert.assertTrue(player.getPosition()
-                .equals(new Position(8 * SpriteSheet.SPRITE_SIZE_IN_GAME, 6 * SpriteSheet.SPRITE_SIZE_IN_GAME)));
+                .equals(new Position(testxpos * SpriteSheet.SPRITE_SIZE_IN_GAME, testypos * SpriteSheet.SPRITE_SIZE_IN_GAME)));
     }
 
     /**
@@ -67,7 +70,7 @@ public class TestPlayer {
     @Test
     public void testDoAcion() throws IOException {
         // World's initialization
-        this.world = new WorldImpl();
+        this.world = new WorldImpl(new GameStateManager());
         final Player player = world.getPlayer();
         // Initial player's is not in front of a food station
         player.getPosition().setX(START_POSOTION * SpriteSheet.SPRITE_SIZE_IN_GAME);
@@ -89,7 +92,7 @@ public class TestPlayer {
     @Test
     public void testPlayerInput() throws IOException {
         // World's initialization
-        this.world = new WorldImpl();
+        this.world = new WorldImpl(new GameStateManager());
         final Player player = world.getPlayer();
         // Checks if player is not moving
         Assert.assertTrue(player.getPhysics().getVelocity().getDirection().equals(Direction.STOP));

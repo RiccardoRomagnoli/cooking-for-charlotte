@@ -140,7 +140,7 @@ public class KeyInput implements KeyListener {
             break;
         }
     }
-    
+
     /**
      * Key pressed during optionState.
      * 

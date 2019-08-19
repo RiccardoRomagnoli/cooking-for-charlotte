@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import it.unibo.oop18.cfc.gamestate.GameStates;
 import it.unibo.oop18.cfc.object.items.Plate;
 import it.unibo.oop18.cfc.util.GameScore;
 import it.unibo.oop18.cfc.util.GameTimer;
@@ -219,6 +221,8 @@ public class OrdersManagerImpl implements OrdersManager {
 
     private void loseLife() {
         this.world.getPlayer().decLifes();
-        System.out.println("You just losed a life!!");
+        if (this.world.getPlayer().getLifes() == 0) {
+            this.world.getGameStateManager().setState(GameStates.GAMEOVER);
+        }
     }
 }
