@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Optional;
 
 import it.unibo.oop18.cfc.gamestate.GameState;
-import it.unibo.oop18.cfc.gamestate.GameStates;
 import it.unibo.oop18.cfc.gamestate.PlayState;
 import it.unibo.oop18.cfc.physics.Direction;
 import it.unibo.oop18.cfc.util.JukeBoxUtil;
@@ -50,10 +49,6 @@ public class PlayStateInput implements GameStateInput {
             break;
         case KeyEvent.VK_UP:
             way = Optional.ofNullable(Direction.UP);
-            break;
-        case KeyEvent.VK_Q:// TODO : da togliere solo per debug
-            this.playState.getGsm().setState(GameStates.GAMEOVER);
-            way = Optional.empty();
             break;
         case KeyEvent.VK_SPACE:
             cutIngredient(true);
