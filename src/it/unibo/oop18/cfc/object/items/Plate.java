@@ -33,13 +33,6 @@ public interface Plate {
     List<IngredientImpl> getIngredients();
 
     /**
-     * Check ready.
-     *
-     * @return true, if successful
-     */
-    boolean checkReady();
-
-    /**
      * Matches each order Ingredient to each plate ingredient if found a match
      * removes the ingredients matched in the plate if there is no match for just an
      * order ingredient it fails directly.

@@ -50,21 +50,6 @@ public class PlateImpl extends AbstractItem implements Plate {
     /**
      * {@inheritDoc}
      */
-    public boolean checkReady() {
-        final int max = ingredients.size();
-        int counter = 0;
-        this.points = 0;
-        for (final IngredientImpl i : ingredients) {
-            if (i.isReady()) {
-                counter++;
-            }
-        }
-        return counter == max ? true : false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public List<IngredientImpl> getIngredients() {
         return this.ingredients;
     }

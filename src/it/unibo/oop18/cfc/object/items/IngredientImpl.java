@@ -64,21 +64,6 @@ public class IngredientImpl extends AbstractItem implements Ingredient {
     /**
      * {@inheritDoc}
      */
-    public boolean isReady() {
-        if (this.state != IngredientState.RAW) {
-            if (this.state == IngredientState.CHOPPED) {
-                return this.type.getTimeToCook() == 0 ? true : false;
-            }
-            if (this.state != IngredientState.WASTE) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public void draw(final Graphics2D g, final Position p) {
         g.drawImage(super.getItemManager().getFoodSprites().getIngredientSprite().get(type.getX()).get(state.getX())
                 .getImage(), AffineTransform.getTranslateInstance(p.getX(), p.getY()), null);
