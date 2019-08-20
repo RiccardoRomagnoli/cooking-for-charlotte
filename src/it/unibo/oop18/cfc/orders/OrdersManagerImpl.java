@@ -72,9 +72,6 @@ public class OrdersManagerImpl implements OrdersManager {
      * {@inheritDoc}
      */
     public void update() {
-        // generator(timertask) work with timers that call run
-        // this is the alternative solution call every time in update
-        // generator.run();
         updateDifficulty();
         checkZeroOrders();
     }

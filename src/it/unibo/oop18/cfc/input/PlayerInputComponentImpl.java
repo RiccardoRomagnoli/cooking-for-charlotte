@@ -44,9 +44,6 @@ public class PlayerInputComponentImpl extends AbstractInputComponent implements 
     @Override
     public void doAction() {
         super.resetCommands();
-        super.createGenericCommand(() -> {
-            this.player.doAction();
-        });
+        super.createGenericCommand(() -> this.player.doAction());
     }
-
 }
