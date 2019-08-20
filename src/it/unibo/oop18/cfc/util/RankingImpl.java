@@ -19,6 +19,9 @@ import java.util.stream.Collectors;
 public class RankingImpl implements Ranking {
 
     private static final int MAXROW = 5;
+    private static final int POSXRANK = 220;
+    private static final int POSYRANK = 310;
+    private static final int OFFSET = 50;
     private static Map<String, Integer> ranked = new HashMap<String, Integer>();
     private String path = "rank.txt";
     private String row;
@@ -27,10 +30,9 @@ public class RankingImpl implements Ranking {
 
     /**
      * {@inheritDoc}
-     * 
-     * @param player player that scored @param points
      */
     public void addPlacement(final String player, final int points) {
+        loadRanking();
         if (!ranked.containsKey(player)) {
             ranked.put(player, points);
         }
@@ -38,17 +40,16 @@ public class RankingImpl implements Ranking {
     }
 
     /**
-     * Print point on screen.
-     * 
-     * @param g graphics
+     * {@inheritDoc}
      */
     public void printOnScreen(final Graphics2D g) {
+        loadRanking();
         orderRank(ranked);
         int count = 1;
         for (final HashMap.Entry<String, Integer> entry : ranked.entrySet()) {
             key = entry.getKey();
             value = entry.getValue();
-            ContentUtil.drawStringFont(g, 220, 310 + 50 * count,
+            ContentUtil.drawStringFont(g, POSXRANK, POSYRANK + OFFSET * count,
                     String.format("#%d  -  Name: %s  -  Points: %d ", count, key.toUpperCase(Locale.ENGLISH), value));
             count++;
             if (count > MAXROW) {
@@ -59,7 +60,7 @@ public class RankingImpl implements Ranking {
     }
 
     /**
-     * Save the rank to file.
+     * {@inheritDoc}
      */
     public void saveRanking() {
         orderRank(ranked);
@@ -77,13 +78,12 @@ public class RankingImpl implements Ranking {
     }
 
     /**
-     * Read the ranking from the CSV file.
-     * 
+     * {@inheritDoc}
      */
     public final void loadRanking() {
         String[] data;
         try (BufferedReader csvReader = new BufferedReader(new FileReader(path))) {
-            while ((row = csvReader.readLine()) != null) {
+            for (row = csvReader.readLine(); row != null; row = csvReader.readLine()) {
                 data = row.split(";");
                 try {
                     ranked.put(data[0], Integer.parseInt(data[1]));
@@ -111,18 +111,14 @@ public class RankingImpl implements Ranking {
     }
 
     /**
-     * Set the path of the rank.
-     * 
-     * @param path rank
+     * {@inheritDoc}
      */
     public  void setPath(final String path) {
         this.path = path;
     }
 
     /**
-     * Return map.
-     * 
-     * @return actual rank map
+     * {@inheritDoc}
      */
     public Map<String, Integer> getRanked() {
         return ranked;

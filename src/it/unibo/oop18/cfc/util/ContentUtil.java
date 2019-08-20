@@ -19,19 +19,26 @@ import it.unibo.oop18.cfc.main.GameEngine;
 public final class ContentUtil {
 
     private static final float FONT_SIZE = 30f;
-    private static final Image MENU = loadImage("/HUD/menu.png", 1024, 768);
-    private static final Image OPTIONS = loadImage("/HUD/options.png", 1024, 768);
-    private static final Image CONTROLLI = loadImage("/HUD/controlli.png", 1024, 768);
-    private static final Image GUIDA = loadImage("/HUD/guida.png", 1024, 768);
-    private static final Image RANK = loadImage("/HUD/rank.png", 1024, 768);
-    private static final Image PAUSE = loadImage("/HUD/pause.png", 1024, 768);
+    private static final Image MENU = loadImage("/States/menu.png", 1024, 768);
+    private static final Image OPTIONS = loadImage("/States/options.png", 1024, 768);
+    private static final Image CONTROLLI = loadImage("/States/controlli.png", 1024, 768);
+    private static final Image GUIDA = loadImage("/States/guida.png", 1024, 768);
+    private static final Image RANK = loadImage("/States/rank.png", 1024, 768);
+    private static final Image PAUSE = loadImage("/States/pause.png", 1024, 768);
     private static final Image TOPBAR = loadImage("/HUD/topbar.png", 1024, 128);
     private static final Image DOWNBAR = loadImage("/HUD/downbar.png", 1024, 128);
     private static final Image BLUEBAR = loadImage("/HUD/bluebar.png", 153, 5);
     private static final Image ARROWUP = loadImage("/HUD/arrowUp.png", 50, 50);
     private static final Image ARROWDOWN = loadImage("/HUD/arrowDown.png", 50, 50);
+    private static final Image INTRO = loadImage("/States/intro.png", 1024, 768);
     private static final BufferedImage[][] LOADBAR = loadBufferedImage("/Sprites/loadbar.png", 30, 20);
     private static final Font MYFONT = initFont("/HUD/seguibl.ttf", FONT_SIZE);
+
+    /**
+     * The icon of the game.
+     */
+    public static final Image ICON = loadImage("/Logo/icona.png", 256, 256);
+
 
     private ContentUtil() {
 
@@ -45,7 +52,7 @@ public final class ContentUtil {
      * @param h .. the height to be printed
      * @return the image or null if there is an error
      */
-    private static Image loadImage(final String s, final int w, final int h) {
+    public static Image loadImage(final String s, final int w, final int h) {
         Image ret;
         try {
             ret = ImageIO.read(ContentUtil.class.getResource(s)).getScaledInstance(w, h, Image.SCALE_SMOOTH);
@@ -167,6 +174,15 @@ public final class ContentUtil {
     }
 
     /**
+     * Draw intro in specific location.
+     * 
+     * @param g {@link Graphics2D} the screen
+     */
+    public static void drawIntro(final Graphics2D g) {
+        g.drawImage(INTRO, 0, 0, null);
+    }
+
+    /**
      * Draw menu.
      * 
      * @param g {@link Graphics2D} the screen
@@ -264,5 +280,4 @@ public final class ContentUtil {
     public static void drawArrowDown(final Graphics2D g, final int x, final int y, final int width, final int height) {
         g.drawImage(ARROWDOWN.getScaledInstance(width, height, Image.SCALE_SMOOTH), x, y, null);
     }
-
 }

@@ -5,8 +5,11 @@ import java.io.IOException;
 
 import org.junit.Assert;
 import org.junit.Test;
+
 import it.unibo.oop18.cfc.util.GameScoreImpl;
+import it.unibo.oop18.cfc.util.Ranking;
 import it.unibo.oop18.cfc.util.RankingImpl;
+
 
 /**
  * Test the functionality of the ranking. It test the assigment of points to the
@@ -41,13 +44,13 @@ public class TestScore {
      */
     @Test
     public void testRanking() throws IOException {
-        final RankingImpl rankTest = new RankingImpl();
+        final Ranking rankTest = new RankingImpl();
         rankTest.setPath("unitTestRank.txt");
 
         rankTest.addPlacement("ReadyPlayer1", SCORE_2);
         rankTest.addPlacement("FearOfTheBest", SCORE_3);
         rankTest.addPlacement("DemoGorgon", SCORE_4);
-        rankTest.saveRanking();
+        //rankTest.saveRanking();
         rankTest.loadRanking();
         Assert.assertTrue(rankTest.getRanked().containsKey("ReadyPlayer1")
                 && rankTest.getRanked().containsKey("FearOfTheBest") && rankTest.getRanked().containsKey("DemoGorgon"));

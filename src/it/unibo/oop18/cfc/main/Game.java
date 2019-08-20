@@ -5,6 +5,7 @@
 package it.unibo.oop18.cfc.main;
 
 import javax.swing.JFrame;
+import it.unibo.oop18.cfc.util.ContentUtil;
 
 /**
  * Graphics basic class. Entry point of the game. this class loads up a JFrame
@@ -24,6 +25,7 @@ public final class Game {
     public static void main(final String[] args) {
 
         final JFrame window = new JFrame("Cooking for Charlotte");
+        window.setIconImage(ContentUtil.ICON);
         window.add(new GameEngine());
         window.setResizable(false);
         window.pack();

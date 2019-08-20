@@ -259,7 +259,7 @@ public final class JukeBoxUtil {
         }
         gainControl = (FloatControl) c.getControl(FloatControl.Type.MASTER_GAIN);
         gain = f / 3; // number between 0 and 2 (loudest)
-        dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
+        dB = (float) (Math.log(gain) / Math.log(10.0) * 10.0 * 2.0);
         gainControl.setValue(dB);
     }
 

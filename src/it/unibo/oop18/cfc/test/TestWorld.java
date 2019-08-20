@@ -28,8 +28,9 @@ public class TestWorld {
 
     /**
      * Tests to remove all kind of object in the world.
-     * 
-     * @throws IOException exeption expected
+
+     *
+     * @throws IOException Signals that an I/O exception has occurred.
      */
     @Test
     public void testStations() throws IOException {
