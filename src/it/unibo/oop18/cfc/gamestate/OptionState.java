@@ -20,7 +20,12 @@ public class OptionState extends GameState {
     private static final List<Integer> VOLUME = new ArrayList<Integer>(Arrays.asList(0, 15, 30, 45, 60, 75, 90, 100));
     private static final int POSITION_X_OPTION = 610;
     private static final int DIMENSION_FONT = 23;
-    private static final String[] OPTION = { "Volume", "Resolution", "Back" };
+    private static final String[] OPTION = { "Volume", "Back" };
+    /*
+     * For future implementation private static final String[] OPTION = {
+     * "Volume","Resolution", "Back" };
+     */
+
     private static final int[] POSITION_Y_OPTION = { 400, 450, 500 };
 
     private int lastVolIndex = 1;
@@ -64,7 +69,8 @@ public class OptionState extends GameState {
         ContentUtil.drawBlueBar(g, STRING_POS - 10, POSITION_Y_OPTION[currentOption] + 4,
                 OPTION[currentOption].length() * DIMENSION_FONT);
         ContentUtil.drawStringFont(g, POSITION_X_OPTION, POSITION_Y_OPTION[0], VOLUME.get(lastVolIndex).toString());
-        ContentUtil.drawStringFont(g, POSITION_X_OPTION, POSITION_Y_OPTION[1], resolution.get(lastResIndex));
+        // ContentUtil.drawStringFont(g, POSITION_X_OPTION, POSITION_Y_OPTION[1],
+        // resolution.get(lastResIndex));
     }
 
     /**
@@ -91,13 +97,12 @@ public class OptionState extends GameState {
      * Right button pressed. Increase the volume / resolution
      */
     public void increase() {
-        JukeBoxUtil.play(SoundUtil.BUTTON_SOUND);
-        JukeBoxUtil.stop(SoundUtil.MENU_SOUND);
+
         if (currentOption == 0 && lastVolIndex < VOLUME.size() - 1) {
+            JukeBoxUtil.play(SoundUtil.BUTTON_SOUND);
+            JukeBoxUtil.stop(SoundUtil.MENU_SOUND);
             lastVolIndex++;
             JukeBoxUtil.setVolume(VOLUME.get(lastVolIndex));
-        } else if (currentOption == 1 && lastResIndex < resolution.size() - 1) {
-            lastResIndex++;
         }
         JukeBoxUtil.resume(SoundUtil.MENU_SOUND);
     }
@@ -106,13 +111,11 @@ public class OptionState extends GameState {
      * Left button pressed. Decrease Volume/Resolution
      */
     public void decrease() {
-        JukeBoxUtil.play(SoundUtil.BUTTON_SOUND);
-        JukeBoxUtil.stop(SoundUtil.MENU_SOUND);
         if (currentOption == 0 && lastVolIndex > 0) {
+            JukeBoxUtil.play(SoundUtil.BUTTON_SOUND);
+            JukeBoxUtil.stop(SoundUtil.MENU_SOUND);
             lastVolIndex--;
             JukeBoxUtil.setVolume(VOLUME.get(lastVolIndex));
-        } else if (currentOption == 1 && lastResIndex > 0) {
-            lastResIndex--;
         }
         JukeBoxUtil.resume(SoundUtil.MENU_SOUND);
     }
