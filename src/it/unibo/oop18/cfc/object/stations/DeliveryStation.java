@@ -39,10 +39,9 @@ public class DeliveryStation extends AbstractStationObject {
      * {@inheritDoc}
      */
     public void doAction(final World world) {
-        if (world.getPlayer().getItemInHand().isPresent() && world.getPlayer().getItemInHand().get() instanceof Plate) {
-            world.getOrdersManager().deliveryPlate((Plate) world.getPlayer().getItemInHand().get());
+        if (world.getPlayer().getItemInHand().isPresent() && world.getPlayer().getItemInHand().get() instanceof Plate
+                && world.getOrdersManager().deliveryPlate((Plate) world.getPlayer().getItemInHand().get())) {
             world.getPlayer().removeItemInHand();
         }
     }
-
 }
