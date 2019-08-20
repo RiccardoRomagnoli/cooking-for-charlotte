@@ -28,6 +28,7 @@ public class TestWorld {
 
     /**
      * Tests to remove all kind of object in the world.
+
      *
      * @throws IOException Signals that an I/O exception has occurred.
      */
