@@ -2,13 +2,11 @@ package it.unibo.oop18.cfc.gamestate;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-
-import javax.imageio.ImageIO;
 
 import it.unibo.oop18.cfc.input.gamestate.IntroStateInput;
 import it.unibo.oop18.cfc.main.GameEngine;
 import it.unibo.oop18.cfc.manager.GameStateManager;
+import it.unibo.oop18.cfc.util.ContentUtil;
 
 /**
  * The IntroState class that shows the intro.
@@ -16,7 +14,6 @@ import it.unibo.oop18.cfc.manager.GameStateManager;
  */
 public class IntroState extends GameState {
 
-    private BufferedImage logo;
     private int alpha;
     private int ticks;
 
@@ -40,11 +37,6 @@ public class IntroState extends GameState {
      */
     public void init() {
         ticks = 0;
-        try {
-            logo = ImageIO.read(getClass().getResourceAsStream("/Logo/icon.png"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -75,7 +67,7 @@ public class IntroState extends GameState {
     public void draw(final Graphics2D g) {
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, GameEngine.WIDTH, GameEngine.HEIGHT3);
-        g.drawImage(logo, 0, 0, GameEngine.WIDTH, GameEngine.HEIGHT3, null);
+        ContentUtil.drawIntro(g);
         g.setColor(new Color(0, 0, 0, alpha));
         g.fillRect(0, 0, GameEngine.WIDTH, GameEngine.HEIGHT3);
     }
