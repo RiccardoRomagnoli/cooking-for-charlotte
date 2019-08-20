@@ -29,7 +29,7 @@ public class TestWorld {
     /**
      * Tests to remove all kind of object in the world.
      * 
-     * @throws IOException
+     * @throws IOException exeption expected
      */
     @Test
     public void testStations() throws IOException {
