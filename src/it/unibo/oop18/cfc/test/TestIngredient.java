@@ -7,32 +7,30 @@ import it.unibo.oop18.cfc.object.items.IngredientState;
 import it.unibo.oop18.cfc.object.items.IngredientType;
 import it.unibo.oop18.cfc.world.World;
 import it.unibo.oop18.cfc.world.WorldImpl;
-import junit.framework.Assert;
-
+import org.junit.Assert;
+import org.junit.Test;
 import java.io.IOException;
 
-import org.junit.Test;
 /**
  * This class test some Ingredient features like .
  */
 public class TestIngredient {
 
-    private World world;
     /**
      * This class test some ingredient features, such the creation and the state
      * changing.
      * @throws IOException Signals that an I/O exception has occurred.
      */
     @Test
-    public void TestIngredientCreation() throws IOException {
-          this.world = new WorldImpl(new GameStateManager()); 
-          ItemManager im = world.getItemManager();
+    public void testIngredientCreation() throws IOException {
+          final World world = new WorldImpl(new GameStateManager()); 
+          final ItemManager im = world.getItemManager();
           // creation of the ingredients
-          IngredientImpl bread = new IngredientImpl(im, IngredientType.BREAD);
-          IngredientImpl lettuce = new IngredientImpl(im, IngredientType.LETTUCE);
-          IngredientImpl tomato = new IngredientImpl(im, IngredientType.TOMATO);
-          IngredientImpl meat = new IngredientImpl(im, IngredientType.MEAT);
-          IngredientImpl cookedMeat = new IngredientImpl(im, IngredientType.MEAT, IngredientState.PERFECT);
+          final IngredientImpl bread = new IngredientImpl(im, IngredientType.BREAD);
+          final IngredientImpl lettuce = new IngredientImpl(im, IngredientType.LETTUCE);
+          final IngredientImpl tomato = new IngredientImpl(im, IngredientType.TOMATO);
+          final IngredientImpl meat = new IngredientImpl(im, IngredientType.MEAT);
+          final IngredientImpl cookedMeat = new IngredientImpl(im, IngredientType.MEAT, IngredientState.PERFECT);
           //testing the right creation
           Assert.assertTrue(bread.getState() == IngredientState.RAW);
           Assert.assertTrue(lettuce.getState() == IngredientState.RAW);
