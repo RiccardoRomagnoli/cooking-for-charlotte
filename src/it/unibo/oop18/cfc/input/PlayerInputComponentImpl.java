@@ -46,4 +46,12 @@ public class PlayerInputComponentImpl extends AbstractInputComponent implements 
         super.resetCommands();
         super.createGenericCommand(() -> this.player.doAction());
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setCutAction(final boolean b) {
+        super.createGenericCommand(() -> this.player.setCutAction(b));
+    }
 }
