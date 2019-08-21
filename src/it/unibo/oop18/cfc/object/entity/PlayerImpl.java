@@ -3,7 +3,7 @@ package it.unibo.oop18.cfc.object.entity;
 import java.awt.Graphics2D;
 import java.util.Optional;
 
-import it.unibo.oop18.cfc.graphics.DynamicPlayerGraphicsComponent;
+import it.unibo.oop18.cfc.graphics.DynamicEntityGraphicsComponent;
 import it.unibo.oop18.cfc.graphics.GraphicsComponent;
 import it.unibo.oop18.cfc.input.PlayerInputComponent;
 import it.unibo.oop18.cfc.input.PlayerInputComponentImpl;
@@ -44,7 +44,7 @@ public class PlayerImpl extends AbstractEntity implements Player {
         this.lifes = INITIAL_LIFES;
         this.physics = new DynamicPhysicsComponentImpl(this);
         this.input = new PlayerInputComponentImpl(this);
-        this.gfx = new DynamicPlayerGraphicsComponent(this, playerSprites);
+        this.gfx = new DynamicEntityGraphicsComponent(this, playerSprites);
     }
 
     /**

@@ -6,12 +6,12 @@ import java.awt.geom.AffineTransform;
 import it.unibo.oop18.cfc.main.GameEngine;
 import it.unibo.oop18.cfc.object.entity.AbstractEntity;
 import it.unibo.oop18.cfc.physics.Direction;
-import it.unibo.oop18.cfc.sprite.PlayerSprites;
+import it.unibo.oop18.cfc.sprite.AbstractDynamicEntitySprites;
 
 /**
  * Graphics component for any dynamic entity that it moves.
  */
-public class DynamicPlayerGraphicsComponent implements GraphicsComponent {
+public class DynamicEntityGraphicsComponent implements GraphicsComponent {
 
     private static final int DIVISION_BY_ZERO_PROTECTION = 1;
     private static final int MOVE_FRAME_DELAY = Math.round(GameEngine.FPS / 15) + DIVISION_BY_ZERO_PROTECTION;
@@ -19,7 +19,7 @@ public class DynamicPlayerGraphicsComponent implements GraphicsComponent {
     private static final int COUNTER_FRAME_LIMITER = STOP_FRAME_DELAY;
 
     private final AbstractEntity entity;
-    private final PlayerSprites sprites;
+    private final AbstractDynamicEntitySprites sprites;
     private int frame;
     private int updateFrame;
 
@@ -27,9 +27,9 @@ public class DynamicPlayerGraphicsComponent implements GraphicsComponent {
      * Creates {@link DynamicEntityGraphicsComponent}.
      *
      * @param entity  {@link AbstractEntity} referenced to take its direction
-     * @param sprites {@link PlayerSprites} for player animations
+     * @param sprites {@link AbstractDynamicEntitySprites} for entity animations
      */
-    public DynamicPlayerGraphicsComponent(final AbstractEntity entity, final PlayerSprites sprites) {
+    public DynamicEntityGraphicsComponent(final AbstractEntity entity, final AbstractDynamicEntitySprites sprites) {
         this.sprites = sprites;
         this.entity = entity;
         this.frame = 0;
