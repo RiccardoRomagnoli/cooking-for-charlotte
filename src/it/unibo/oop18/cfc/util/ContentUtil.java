@@ -13,8 +13,8 @@ import it.unibo.oop18.cfc.gamestate.InfoState;
 import it.unibo.oop18.cfc.main.GameEngine;
 
 /**
- * Loads and splits all sprites on start up. The sprites can easily be accessed
- * as they are public and static.
+ * Loads all the images and fonts on start up. The images can easily be accessed
+ * with their methods.
  */
 public final class ContentUtil {
 
