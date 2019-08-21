@@ -102,7 +102,7 @@ public class PlayStateInput implements GameStateInput {
     }
 
     private void cutIngredient(final boolean cut) {
-        this.playState.getWorld().getPlayer().setCutAction(cut);
+        this.playState.getWorld().getPlayer().getInput().setCutAction(cut);
     }
 
     private void moveEntity(final Optional<Direction> way) {

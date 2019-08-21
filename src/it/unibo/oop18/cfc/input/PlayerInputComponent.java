@@ -23,4 +23,11 @@ public interface PlayerInputComponent extends InputComponent {
      * Do action on a specific Station.
      */
     void doAction();
+
+    /**
+     * Sets the cut action.
+     *
+     * @param b the new cut action
+     */
+    void setCutAction(boolean b);
 }
