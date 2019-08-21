@@ -70,7 +70,10 @@ public class PlayStateInput implements GameStateInput {
     }
 
     /**
-     * {@inheritDoc}
+     * It stops the player when a key button is released. If more than one key is
+     * pressed, on release the player continues to move to the current key being
+     * pressed
+     * @param e KeyEvent
      */
     public void processInputReleased(final KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
@@ -98,7 +101,6 @@ public class PlayStateInput implements GameStateInput {
         this.keys.put(KeyEvent.VK_RIGHT, false);
         this.keys.put(KeyEvent.VK_UP, false);
         this.keys.put(KeyEvent.VK_DOWN, false);
-        this.keys.put(KeyEvent.VK_SPACE, false);
     }
 
     private void cutIngredient(final boolean cut) {
