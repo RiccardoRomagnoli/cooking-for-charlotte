@@ -29,8 +29,8 @@ public class OptionState extends GameState {
     private static final int[] POSITION_Y_OPTION = { 400, 450, 500 };
 
     private int lastVolIndex = 1;
-    private int lastResIndex;
-    private static List<String> resolution = new ArrayList<String>(Arrays.asList("1400x900", "800x600", "640x480"));
+    //private int lastResIndex;
+    //private static List<String> resolution = new ArrayList<String>(Arrays.asList("1400x900", "800x600", "640x480"));
     private int currentOption;
 
     /**
