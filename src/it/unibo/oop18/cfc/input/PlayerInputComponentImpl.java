@@ -52,6 +52,6 @@ public class PlayerInputComponentImpl extends AbstractInputComponent implements 
      */
     @Override
     public void setCutAction(final boolean b) {
-        super.createGenericCommand(() -> this.player.setCutAction(b));
+        this.player.setCutAction(b);
     }
 }
