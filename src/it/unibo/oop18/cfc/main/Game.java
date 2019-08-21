@@ -1,7 +1,3 @@
-// The entry point of the game.
-// This class loads up a JFrame window and
-// puts a GamePanel into it.
-
 package it.unibo.oop18.cfc.main;
 
 import javax.swing.JFrame;
