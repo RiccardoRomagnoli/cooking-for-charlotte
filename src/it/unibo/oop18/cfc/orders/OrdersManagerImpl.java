@@ -81,7 +81,7 @@ public class OrdersManagerImpl implements OrdersManager {
      */
     public void addOrder(final Order o) {
         this.currentOrders.add(o);
-        this.currentOrders.sort((o1, o2) -> o1.getCountDownTime() - o2.getCountDownTime());
+        this.currentOrders.sort((o1, o2) -> o1.getCurrentCountDownTime() - o2.getCurrentCountDownTime());
     }
 
     /**
